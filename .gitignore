@@ -1,0 +1,8 @@
+# Sensitive and internal business intelligence
+internal/
+scratch/
+*.py
+
+# System files
+.DS_Store
+Thumbs.db

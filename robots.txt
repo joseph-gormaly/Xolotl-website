@@ -1,0 +1,20 @@
+# robots.txt for https://xolotl.ca/
+# Xolotl Canadian Shield Cooperative
+
+User-agent: *
+Disallow: /internal/
+Disallow: /*.md$
+Disallow: /*.pdf$
+Disallow: /docs/
+Disallow: /scratch/
+Allow: /
+Allow: /index.html
+Allow: /deck.html
+Allow: /assets/
+
+# Host
+Host: https://xolotl.ca
+
+# Sitemap location
+Sitemap: https://xolotl.ca/sitemap.xml
+

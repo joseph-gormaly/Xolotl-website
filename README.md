@@ -6,7 +6,7 @@
 
 Welcome to the public web and investor materials package for the **Xolotl Canadian Shield Cooperative**.
 
-Xolotl is a **zero-trust, hybrid sovereign edge file-synchronization platform** designed for institutions (legal, defense, healthcare, wealth management, critical infrastructure) and sovereign entities that require absolute data confidentiality and immunity against single-party legal compulsion (such as US CLOUD Act warrants, National Security Letters, and extraterritorial MLAT subpoenas).
+Xolotl is a **zero-trust, hybrid sovereign edge file-synchronization platform** designed for institutions (legal, defense, healthcare, wealth management, critical infrastructure) and sovereign entities that require absolute data confidentiality and immunity against single-party legal compulsion.
 
 ---
 

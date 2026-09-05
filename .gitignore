@@ -1,5 +1,6 @@
 # Sensitive and internal business intelligence
 internal/
+research/
 scratch/
 *.py
 

@@ -2594,7 +2594,7 @@
           <span>Xolotl</span>
           <span class="brand-tag">Canadian Shield</span>
         </a>
-        <button class="pronounce-chip" onclick="playPronounceAudio(event)" title="Listen to pronunciation: 'SHOW-lot' [ˈʃoːloːtɬ]" aria-label="Listen to pronunciation: SHOW-lot">
+        <button class="pronounce-chip" onclick="playPronounceAudio(event)" title="Listen to audio: 'SHOW-lot' · Canadian Shield" aria-label="Listen to audio: SHOW-lot · Canadian Shield">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="speaker-svg"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
           <span class="pronounce-text">"SHOW-lot"</span>
           <span class="pronounce-ipa">/ˈʃoːloːtɬ/</span>
@@ -3997,7 +3997,7 @@
               fallbackSpeechSynthesis(clearPlaying);
             });
         } else {
-          setTimeout(clearPlaying, 2200);
+          setTimeout(clearPlaying, 3500);
         }
       } catch (err) {
         console.warn("Audio exception, falling back to Web Speech:", err);
@@ -4009,8 +4009,8 @@
       if ('speechSynthesis' in window) {
         try {
           window.speechSynthesis.cancel();
-          const utter = new SpeechSynthesisUtterance("Show lot");
-          utter.rate = 0.85;
+          const utter = new SpeechSynthesisUtterance("Show lot. Canadian Shield.");
+          utter.rate = 0.82;
           utter.pitch = 1.0;
 
           const voices = window.speechSynthesis.getVoices();
@@ -4030,7 +4030,7 @@
           console.warn("Web Speech synthesis failed:", e);
         }
       }
-      if (onComplete) setTimeout(onComplete, 1400);
+      if (onComplete) setTimeout(onComplete, 3200);
     }
 
     // Simulator Toggle

@@ -21,7 +21,8 @@ function playPronounceAudio(e) {
 
   try {
     if (!pronounceAudio) {
-      pronounceAudio = new Audio('assets/audio/xolotl_pronunciation.mp3');
+      const audioPath = window.location.pathname.includes('/es/') ? '../assets/audio/xolotl_pronunciation.mp3' : 'assets/audio/xolotl_pronunciation.mp3';
+      pronounceAudio = new Audio(audioPath);
       pronounceAudio.preload = 'auto';
     }
     
@@ -345,4 +346,105 @@ function scrubTimeline(val) {
   }
 }
 
-document.addEventListener('DOMContentLoaded', initCookie);
+// --- Multi-Language & Geo-Location Detection (Auto-Serve Spanish for Mexico / Latin America / Spain) ---
+function initLanguageRouting() {
+  const path = window.location.pathname;
+  const isSpanishPage = path.includes('/es/') || path.endsWith('/es') || path.endsWith('/es/');
+  
+  // 1. If user explicitly chose a language, respect their preference permanently
+  const storedLang = localStorage.getItem('xolotl_user_lang');
+  if (storedLang) {
+    if (storedLang === 'es' && !isSpanishPage) {
+      redirectToSpanish();
+    } else if (storedLang === 'en' && isSpanishPage) {
+      redirectToEnglish();
+    }
+    return;
+  }
+
+  // If already on Spanish page, do not redirect
+  if (isSpanishPage) {
+    return;
+  }
+
+  // 2. Instant Zero-Latency Heuristics (Language & Timezone)
+  let isSpanishUser = false;
+
+  // Browser language check
+  const browserLangs = navigator.languages || [navigator.language || navigator.userLanguage || ''];
+  for (const l of browserLangs) {
+    if (l && l.toLowerCase().startsWith('es')) {
+      isSpanishUser = true;
+      break;
+    }
+  }
+
+  // Timezone check: Mexico & Latin America / Spain
+  try {
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+    const spanishTzPrefixes = [
+      'Mexico', 'Cancun', 'Merida', 'Monterrey', 'Mazatlan', 'Chihuahua', 
+      'Hermosillo', 'Tijuana', 'Matamoros', 'Bahia_Banderas', 'Ojinaga',
+      'Bogota', 'Buenos_Aires', 'Santiago', 'Lima', 'Caracas', 'Guatemala', 
+      'Costa_Rica', 'Panama', 'Montevideo', 'Madrid', 'Asuncion', 'La_Paz',
+      'El_Salvador', 'Tegucigalpa', 'Managua', 'Santo_Domingo', 'Havana'
+    ];
+    if (spanishTzPrefixes.some(prefix => tz.includes(prefix))) {
+      isSpanishUser = true;
+    }
+  } catch (e) {
+    // ignore
+  }
+
+  if (isSpanishUser) {
+    redirectToSpanish();
+    return;
+  }
+
+  // 3. Fast Geo-IP Fallback for users physically in Mexico or Spanish countries with English OS
+  try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 1600);
+    fetch('https://api.country.is', { signal: controller.signal })
+      .then(res => res.json())
+      .then(data => {
+        clearTimeout(timeoutId);
+        const spanishCountries = ['MX', 'ES', 'AR', 'CO', 'CL', 'PE', 'VE', 'GT', 'EC', 'CU', 'BO', 'DO', 'HN', 'PY', 'SV', 'NI', 'CR', 'PA', 'UY', 'PR'];
+        if (data && data.country && spanishCountries.includes(data.country.toUpperCase())) {
+          redirectToSpanish();
+        }
+      })
+      .catch(() => {});
+  } catch (e) {}
+}
+
+function redirectToSpanish() {
+  const currentPath = window.location.pathname;
+  if (currentPath.includes('/es/')) return;
+  const fileName = currentPath.substring(currentPath.lastIndexOf('/') + 1) || 'index.html';
+  const target = 'es/' + (fileName.endsWith('.html') ? fileName : 'index.html');
+  window.location.replace(target);
+}
+
+function redirectToEnglish() {
+  const currentPath = window.location.pathname;
+  if (!currentPath.includes('/es/')) return;
+  const fileName = currentPath.substring(currentPath.lastIndexOf('/') + 1) || 'index.html';
+  const target = '../' + (fileName.endsWith('.html') ? fileName : 'index.html');
+  window.location.replace(target);
+}
+
+function setUserLanguage(lang) {
+  try {
+    localStorage.setItem('xolotl_user_lang', lang);
+  } catch (e) {}
+}
+
+// Initialize routing immediately
+try {
+  initLanguageRouting();
+} catch (e) {}
+
+document.addEventListener('DOMContentLoaded', () => {
+  initCookie();
+});

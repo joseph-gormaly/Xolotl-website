@@ -76,13 +76,14 @@
           <li><a href="architecture.html">Architecture</a></li>
           <li><a href="deck.html">Deck ↗</a></li>
           <li><a href="news.html">News</a></li>
-          <li><a href="careers.html" class="active">Careers <span class="hiring-pill">Hiring</span></a></li>
+          <li><a href="careers.html" class="active">Careers <span class="hiring-pill" style="background:rgba(212,175,55,0.15); color:var(--accent-gold); border-color:rgba(212,175,55,0.35);">Research</span></a></li>
           <li><a href="suppliers.html">Suppliers</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
 
         <div class="nav-actions">
-          <a href="EXECUTIVE_SUMMARY.md" class="btn btn-secondary nav-memo-btn">Memo</a>
+          <a href="es/careers.html" class="lang-switch-btn" title="Ver en Español" onclick="setUserLanguage('es')">🇲🇽 ES</a>
+          <a href="memo.html" class="btn btn-secondary nav-memo-btn">Memo</a>
           <button class="btn btn-gold" onclick="openModal('pilot')">Join Pilot</button>
           <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu" onclick="toggleMobileMenu()">
             <span class="menu-bar"></span>
@@ -112,12 +113,16 @@
         <li><a href="architecture.html" onclick="closeMobileMenu()">Architecture</a></li>
         <li><a href="deck.html" onclick="closeMobileMenu()">Interactive 14-Slide Deck ↗</a></li>
         <li><a href="news.html" onclick="closeMobileMenu()">News & Press</a></li>
-        <li><a href="careers.html" onclick="closeMobileMenu()">Careers (Hiring)</a></li>
+        <li><a href="careers.html" onclick="closeMobileMenu()">Careers (Research)</a></li>
         <li><a href="suppliers.html" onclick="closeMobileMenu()">Suppliers</a></li>
         <li><a href="contact.html" onclick="closeMobileMenu()">Contact & Pilot</a></li>
       </ul>
       <div style="padding: 20px 24px; display: flex; flex-direction: column; gap: 12px;">
-        <a href="EXECUTIVE_SUMMARY.md" class="btn btn-secondary" style="width: 100%; text-align: center;">Read Executive Memo</a>
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px;">
+          <span style="font-family: var(--font-mono); font-size: 0.76rem; color: var(--text-warm-gray);">Idioma / Language:</span>
+          <a href="es/careers.html" class="lang-switch-btn" onclick="setUserLanguage('es')">🇲🇽 Español</a>
+        </div>
+        <a href="memo.html" class="btn btn-secondary" style="width: 100%; text-align: center;">Read Executive Memo</a>
         <button class="btn btn-gold" style="width: 100%;" onclick="closeMobileMenu(); openModal('pilot');">Request Pilot Access</button>
       </div>
       <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-warm-gray); text-align: center; margin-top: 16px;">
@@ -132,10 +137,10 @@
       <div class="breadcrumb-nav">
         <a href="index.html">Home</a> <span>/</span> <span>Careers</span>
       </div>
-      <div class="hero-eyebrow"><span>⚙️</span> Engineering &amp; Research</div>
-      <h1 class="section-title" style="font-size: 2.4rem; margin-bottom: 14px;">Build Sovereign Cryptography.</h1>
+      <div class="hero-eyebrow"><span>🔬</span> Academic &amp; Applied Research Fellowships</div>
+      <h1 class="section-title" style="font-size: 2.4rem; margin-bottom: 14px;">Sovereign Cryptography Research Positions.</h1>
       <p style="max-width: 780px; color: var(--text-warm-gray); font-size: 1.05rem; line-height: 1.6;">
-        We are hiring elite Rust systems engineers, applied cryptographers, and high-assurance infrastructure specialists in Montreal, QC and globally.
+        We are accepting applications for unpaid Research Fellow and Research Contributor positions in applied threshold cryptography, high-assurance Rust systems, and sovereign distributed networking.
       </p>
     </div>
   </div>
@@ -143,72 +148,94 @@
 <section id="careers" class="section-standard">
     <div class="container">
       <div class="section-head" style="text-align: center; margin-left: auto; margin-right: auto;">
-        <span class="section-eyebrow">Join the Cooperative Engineering Core</span>
-        <h2 class="section-heading">Careers in Sovereign Cryptography.</h2>
-        <p class="section-desc" style="max-width: 680px; margin: 12px auto 0;">
-          Help build the world's first mathematical data shield against foreign surveillance and ransomware extortion. Remote-first across Canada with cooperative equity participation.
+        <span class="section-eyebrow">Research &amp; Open Source Core</span>
+        <h2 class="section-heading">Research Fellowships in Sovereign Cryptography.</h2>
+        <p class="section-desc" style="max-width: 720px; margin: 12px auto 0;">
+          Contribute to the world's first mathematical data shield against extraterritorial surveillance and ransomware extortion. Positions are structured as unpaid research contributor roles, with clear pathways to formal compensation, grant-funded stipends, or core appointments upon project milestones and pilot commercialization.
         </p>
+      </div>
+
+      <!-- Fellowship Notice Card -->
+      <div style="background: rgba(212, 175, 55, 0.08); border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 8px; padding: 20px 24px; margin: 32px auto; max-width: 960px;">
+        <div style="display: flex; align-items: flex-start; gap: 14px;">
+          <span style="font-size: 1.5rem; line-height: 1;">🏛️</span>
+          <div>
+            <h4 style="color: var(--accent-gold); font-size: 1.05rem; margin-bottom: 6px;">Fellowship Structure &amp; Compensation Pathway</h4>
+            <p style="color: #E2E8F0; font-size: 0.88rem; line-height: 1.6; margin: 0;">
+              All listed roles begin as <strong>unpaid research contributions</strong> tailored for graduate researchers, independent cryptographers, and systems specialists. As institutional pilots scale and non-dilutive sovereign grant allocations (Sovereign Tech Fund, NRC IRAP) are disbursed, research contributors become eligible for milestone-based stipends, equity grants, and priority consideration for paid full-time core appointments.
+            </p>
+          </div>
+        </div>
       </div>
 
       <div class="careers-grid">
         <!-- Role 1 -->
         <div class="career-card">
           <div class="career-top">
-            <span class="career-badge">ENGINEERING</span>
-            <span class="career-loc">🇨🇦 Remote (Canada) · Full-Time</span>
+            <span class="career-badge">CRYPTOGRAPHY RESEARCH</span>
+            <span class="career-loc">🌍 Global Remote · Unpaid (Future Stipend)</span>
           </div>
-          <h4 class="career-title">Senior Rust Systems Engineer — Virtual Filesystem & Tauri</h4>
+          <h4 class="career-title">Research Fellow — Applied Threshold Schemes &amp; FROST Resharing</h4>
           <p class="career-desc">
-            Lead the development of our native Windows (ProjFS) and macOS (FileProvider) virtual drive sync engines. Optimize trailing-edge debouncers, SQLite state machines, and zero-allocation cryptographic pipelines.
+            Investigate and formally verify multi-party computation protocols. Research FROST (RFC 9591), Threshold ElGamal coordinate blinding, Pedersen DKG, and Chaum-Pedersen zero-knowledge verification in audited Rust.
           </p>
-          <div class="career-stack">
-            <span>Rust</span>
-            <span>Tauri</span>
-            <span>ProjFS</span>
-            <span>WireGuard</span>
-            <span>Tokio</span>
+          <div style="font-size: 0.8rem; color: var(--accent-gold-light); font-family: var(--font-mono); margin-bottom: 12px;">
+            ✦ Compensation Pathway: Prospective grant stipend upon cryptographic audit completion &amp; pilot deployment.
           </div>
-          <a href="mailto:cooperate@xolotl.ca?subject=Application:%20Senior%20Rust%20Systems%20Engineer" class="career-apply-btn">Apply (cooperate@xolotl.ca) &rarr;</a>
+          <div class="career-stack">
+            <span>FROST</span>
+            <span>Threshold ElGamal</span>
+            <span>ZK Proofs</span>
+            <span>Rust</span>
+            <span>MPC</span>
+          </div>
+          <a href="mailto:cooperate@xolotl.ca?subject=Application:%20Research%20Fellow%20-%20Applied%20Cryptography" class="career-apply-btn">Apply for Fellowship (cooperate@xolotl.ca) &rarr;</a>
         </div>
 
         <!-- Role 2 -->
         <div class="career-card">
           <div class="career-top">
-            <span class="career-badge">CRYPTOGRAPHY</span>
-            <span class="career-loc">🇨🇦 / 🇨🇭 Remote · Full-Time</span>
+            <span class="career-badge">SYSTEMS RESEARCH</span>
+            <span class="career-loc">🌍 Global Remote · Unpaid (Future Stipend)</span>
           </div>
-          <h4 class="career-title">Applied Cryptographer — Threshold Schemes & Distributed Key Gen</h4>
+          <h4 class="career-title">Systems Research Contributor — High-Assurance Rust &amp; Virtual Drives</h4>
           <p class="career-desc">
-            Architect and audit our multi-party computation protocols. Implement FROST (RFC 9591), Threshold ElGamal decryption, Pedersen DKG, and Chaum-Pedersen zero-knowledge verification in audited Rust.
+            Research low-overhead zero-allocation filesystem event coalescing, Windows ProjFS / macOS FileProvider virtualization, and memory safety invariants in the native desktop client engine.
           </p>
-          <div class="career-stack">
-            <span>FROST</span>
-            <span>Threshold ElGamal</span>
-            <span>ZK Proofs</span>
-            <span>Ed25519</span>
-            <span>MPC</span>
+          <div style="font-size: 0.8rem; color: var(--accent-gold-light); font-family: var(--font-mono); margin-bottom: 12px;">
+            ✦ Compensation Pathway: Prospective grant stipend upon desktop GA release and multi-device deployment.
           </div>
-          <a href="mailto:cooperate@xolotl.ca?subject=Application:%20Applied%20Cryptographer" class="career-apply-btn">Apply (cooperate@xolotl.ca) &rarr;</a>
+          <div class="career-stack">
+            <span>Rust</span>
+            <span>Tauri</span>
+            <span>ProjFS</span>
+            <span>Tokio</span>
+            <span>Zeroize</span>
+          </div>
+          <a href="mailto:cooperate@xolotl.ca?subject=Application:%20Systems%20Research%20Contributor" class="career-apply-btn">Apply for Fellowship (cooperate@xolotl.ca) &rarr;</a>
         </div>
 
         <!-- Role 3 -->
         <div class="career-card">
           <div class="career-top">
-            <span class="career-badge">INFRASTRUCTURE</span>
-            <span class="career-loc">Montréal, QC · Hybrid / Remote</span>
+            <span class="career-badge">NETWORK RESEARCH</span>
+            <span class="career-loc">🇨🇦 / 🌍 Remote · Unpaid (Future Stipend)</span>
           </div>
-          <h4 class="career-title">Sovereign Cloud & MinIO Infrastructure Lead</h4>
+          <h4 class="career-title">Visiting Researcher — Sovereign Mesh Topology &amp; Jurisdictional Quorums</h4>
           <p class="career-desc">
-            Own the deployment and hardening of our Montreal Precambrian S3 clusters, Headscale WireGuard mesh networks, and 93-day compliance WORM storage lockers across carrier-neutral Canadian hydro facilities.
+            Research multi-jurisdiction WireGuard mesh routing, non-aligned custodian quorum policies (enforcing 3-of-5 threshold diversity across Canada, Switzerland, and Iceland), and compliance WORM immutable storage.
           </p>
-          <div class="career-stack">
-            <span>MinIO S3</span>
-            <span>Headscale</span>
-            <span>Postgres RLS</span>
-            <span>Terraform</span>
-            <span>Linux Hardening</span>
+          <div style="font-size: 0.8rem; color: var(--accent-gold-light); font-family: var(--font-mono); margin-bottom: 12px;">
+            ✦ Compensation Pathway: Prospective grant stipend upon multi-region federation &amp; institutional pilot launch.
           </div>
-          <a href="mailto:cooperate@xolotl.ca?subject=Application:%20Sovereign%20Infrastructure%20Lead" class="career-apply-btn">Apply (cooperate@xolotl.ca) &rarr;</a>
+          <div class="career-stack">
+            <span>WireGuard</span>
+            <span>Headscale</span>
+            <span>MinIO S3</span>
+            <span>WORM Locks</span>
+            <span>Linux</span>
+          </div>
+          <a href="mailto:cooperate@xolotl.ca?subject=Application:%20Visiting%20Researcher%20-%20Mesh%20Topology" class="career-apply-btn">Apply for Fellowship (cooperate@xolotl.ca) &rarr;</a>
         </div>
       </div>
 
@@ -360,7 +387,7 @@
             <li><a href="about.html">Who We Are</a></li>
             <li><a href="architecture.html">Sovereign Architecture</a></li>
             <li><a href="deck.html">14-Slide Investor Deck ↗</a></li>
-            <li><a href="EXECUTIVE_SUMMARY.md">Executive Memo</a></li>
+            <li><a href="memo.html">Executive Memo</a></li>
           </ul>
         </div>
 

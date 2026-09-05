@@ -20,7 +20,7 @@ Xolotl is a **zero-trust, hybrid sovereign edge file-synchronization platform** 
 | [**CNAME**](CNAME) | GitHub Pages custom domain routing file (`xolotl.ca`). | GitHub Pages DNS Deployment |
 | [**robots.txt**](robots.txt) | Search engine indexing directives protecting internal and markdown documents. | Web Crawlers, SEO (Googlebot, Bingbot) |
 | [**sitemap.xml**](sitemap.xml) | Clean XML sitemap covering canonical routes (`xolotl.ca`, `deck.html`). | Search Engines, SEO Indexing |
-| [**EXECUTIVE_SUMMARY.md**](EXECUTIVE_SUMMARY.md) | 2-page investment memo covering problem, solution, cryptographic moat, traction, and financing ask. | VCs, Angel Syndicates, Family Offices, Grant Evaluators |
+| [**memo.html**](memo.html) | Executive investment memo covering problem, solution, cryptographic moat, traction, and financing ask (also available in Spanish at [`es/memo.html`](es/memo.html)). | VCs, Angel Syndicates, Family Offices, Grant Evaluators |
 | [**PITCH_DECK.md**](PITCH_DECK.md) | Full 14-slide presentation script with slide copy, visual diagrams, talking points, and anticipated audience questions. | Seed Pitch Meetings, Demo Days, Partner Presentations |
 | [**INVESTOR_FAQ_AND_OBJECTIONS.md**](INVESTOR_FAQ_AND_OBJECTIONS.md) | Deep technical, legal, and operational FAQ addressing hard questions on cryptography, CLOUD Act resistance, and disaster recovery. | Technical Due Diligence Teams, Cryptographers, Lead Investors |
 | **Data Room (Under NDA)** | Detailed 18-month pro-forma financial model, sovereign grant funding roadmap, and cryptographic audit RFP. | Qualified Institutional Investors (via `cooperate@xolotl.ca`) |

@@ -2529,4 +2529,197 @@
       letter-spacing: 0.05em;
       word-break: break-all;
     }
-  </style>
+
+    /* Language Switcher */
+    .lang-switch-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #FFFFFF;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      white-space: nowrap;
+    }
+    .lang-switch-btn:hover {
+      background: rgba(212, 175, 55, 0.15);
+      border-color: var(--accent-gold);
+      color: var(--accent-gold-light);
+      transform: translateY(-1px);
+    }
+
+    /* ==========================================================================
+       Responsive & Mobile Media Queries
+       ========================================================================== */
+    @media (max-width: 960px) {
+      .mobile-menu-btn {
+        display: flex;
+      }
+      .nav-links {
+        display: none;
+      }
+      .nav-memo-btn {
+        display: none;
+      }
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+      .hero-media-card {
+        height: 340px;
+      }
+      .mythos-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+      .mythos-media {
+        height: 340px;
+      }
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .careers-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .news-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .arch-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .sectors-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+      .banner-cta {
+        grid-template-columns: 1fr;
+        padding: 36px 24px;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+      }
+      .topology-cards {
+        grid-template-columns: 1fr;
+      }
+      .non-negotiables-grid {
+        grid-template-columns: 1fr;
+      }
+      .non-neg-col {
+        border-right: none;
+        border-bottom: 1px solid var(--border-light);
+        padding: 24px 0;
+      }
+    }
+
+    @media (max-width: 800px) {
+      .pitr-grid {
+        grid-template-columns: 1fr;
+      }
+      .mobile-swipe-prompt {
+        display: block;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        padding: 0 18px;
+      }
+      .hero {
+        padding: 32px 0 24px;
+      }
+      .hero-title {
+        font-size: clamp(1.9rem, 7.5vw, 2.5rem);
+        word-break: break-word;
+      }
+      .hero-desc {
+        font-size: 1.0rem;
+        margin-bottom: 20px;
+      }
+      .hero-ctas {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+      }
+      .hero-ctas .btn {
+        width: 100%;
+        min-height: 48px;
+        text-align: center;
+      }
+      .hero-badge-row {
+        flex-wrap: wrap;
+        gap: 6px 10px;
+        font-size: 0.74rem;
+      }
+      .hero-media-card {
+        height: 260px;
+      }
+      .trust-strip-inner {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      .section-standard {
+        padding: 48px 0;
+      }
+      .section-heading, .section-title {
+        font-size: clamp(1.65rem, 6.5vw, 2.1rem);
+      }
+      .section-desc {
+        font-size: 0.95rem;
+      }
+      .sectors-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+      .brand-tag {
+        display: none;
+      }
+      .pronounce-chip .pronounce-ipa {
+        display: none;
+      }
+      .cookie-banner {
+        bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+        left: 12px;
+        right: 12px;
+        padding: 14px 16px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+      .cookie-banner .btn {
+        width: 100%;
+        text-align: center;
+      }
+      .modal-card {
+        padding: 24px 18px;
+        max-height: 88vh;
+        overflow-y: auto;
+      }
+      .banner-cta {
+        padding: 30px 18px;
+        margin: 32px 0;
+      }
+      .banner-cta h2 {
+        font-size: 1.7rem;
+      }
+      .banner-cta .btn {
+        width: 100%;
+        text-align: center;
+      }
+    }

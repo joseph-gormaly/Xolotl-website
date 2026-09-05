@@ -439,7 +439,7 @@
   * 4% Cross-Border Legal Opinions
 * **Contact Information:**
   * Joseph Gormaly / Xolotl Canadian Shield Cooperative Core Team
-  * Email: coop@xolotl.ca
+  * Email: cooperate@xolotl.ca
   * Codebase: Available under institutional evaluation license & NDA
 
 ### Slide Copy

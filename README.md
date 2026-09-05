@@ -23,7 +23,7 @@ Xolotl is a **zero-trust, hybrid sovereign edge file-synchronization platform** 
 | [**EXECUTIVE_SUMMARY.md**](EXECUTIVE_SUMMARY.md) | 2-page investment memo covering problem, solution, cryptographic moat, traction, and financing ask. | VCs, Angel Syndicates, Family Offices, Grant Evaluators |
 | [**PITCH_DECK.md**](PITCH_DECK.md) | Full 14-slide presentation script with slide copy, visual diagrams, talking points, and anticipated audience questions. | Seed Pitch Meetings, Demo Days, Partner Presentations |
 | [**INVESTOR_FAQ_AND_OBJECTIONS.md**](INVESTOR_FAQ_AND_OBJECTIONS.md) | Deep technical, legal, and operational FAQ addressing hard questions on cryptography, CLOUD Act resistance, and disaster recovery. | Technical Due Diligence Teams, Cryptographers, Lead Investors |
-| **Data Room (Under NDA)** | Detailed 18-month pro-forma financial model, sovereign grant funding roadmap, and cryptographic audit RFP. | Qualified Institutional Investors (via `coop@xolotl.ca`) |
+| **Data Room (Under NDA)** | Detailed 18-month pro-forma financial model, sovereign grant funding roadmap, and cryptographic audit RFP. | Qualified Institutional Investors (via `cooperate@xolotl.ca`) |
 
 ---
 

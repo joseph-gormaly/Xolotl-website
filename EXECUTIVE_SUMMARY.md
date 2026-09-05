@@ -154,6 +154,6 @@ Axolotl is raising a **$1,250,000 Seed Round** alongside **$250,000–$400,000 i
 
 **Contact:**  
 Joseph Gormaly / Xolotl Canadian Shield Cooperative Core Team  
-Email: coop@xolotl.ca  
+Email: cooperate@xolotl.ca  
 Website: https://xolotl.ca  
 Codebase: Available under institutional evaluation license & NDA

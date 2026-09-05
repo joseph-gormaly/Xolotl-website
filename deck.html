@@ -1352,6 +1352,7 @@
     let captionsVisible = true;
     let synth = window.speechSynthesis;
     let currentUtterance = null;
+    let currentAudio = null;
     let captionInterval = null;
 
     // Initialize UI
@@ -1516,6 +1517,7 @@
     }
 
     // Voice Narration System
+    // Voice Narration System (Executive English Female Studio Audio with Web Speech Fallback)
     function toggleNarration() {
       if (isSpeaking) {
         stopNarration();
@@ -1525,28 +1527,10 @@
     }
 
     function startNarration() {
-      if (!('speechSynthesis' in window)) {
-        alert('Web Speech API is not supported in this browser. Showing interactive captions instead.');
-        return;
-      }
-
       stopNarration();
 
       const text = slideScripts[currentSlide];
       if (!text) return;
-
-      currentUtterance = new SpeechSynthesisUtterance(text);
-      currentUtterance.rate = 1.02;
-      currentUtterance.pitch = 1.0;
-
-      // Select natural sounding voice if available
-      const voices = synth.getVoices();
-      const preferred = voices.find(v => (v.lang.startsWith('en') && (v.name.includes('Natural') || v.name.includes('Google') || v.name.includes('Daniel') || v.name.includes('David')))) || voices.find(v => v.lang.startsWith('en'));
-      if (preferred) currentUtterance.voice = preferred;
-
-      // Split text into sentences for synchronized closed captioning
-      const sentences = text.match(/[^.!?]+[.!?]+/g) || [text];
-      let sentenceIndex = 0;
 
       const wave = document.getElementById('voiceWave');
       const captionText = document.getElementById('captionText');
@@ -1554,18 +1538,94 @@
       const narrateIcon = document.getElementById('narrateIcon');
       const narrateLabel = document.getElementById('narrateLabel');
 
+      const sentences = text.match(/[^.!?]+[.!?]+/g) || [text];
+
+      // Primary: Play broadcast-quality English female neural studio audio
+      const audioSrc = `assets/audio/narration/slide_${currentSlide}.mp3`;
+      currentAudio = new Audio(audioSrc);
+
+      const onAudioStart = () => {
+        isSpeaking = true;
+        wave.classList.add('speaking');
+        narrateBtn.classList.add('active');
+        narrateIcon.innerText = '⏸';
+        narrateLabel.innerText = 'Pause Track';
+        captionText.innerHTML = `<span class="active-sentence">${sentences[0].trim()}</span>`;
+      };
+
+      currentAudio.addEventListener('play', onAudioStart);
+
+      currentAudio.addEventListener('timeupdate', () => {
+        if (!currentAudio || !currentAudio.duration) return;
+        const progress = currentAudio.currentTime / currentAudio.duration;
+        const activeIdx = Math.min(sentences.length - 1, Math.floor(progress * sentences.length));
+        if (sentences[activeIdx]) {
+          captionText.innerHTML = `<span class="active-sentence">${sentences[activeIdx].trim()}</span>`;
+        }
+      });
+
+      currentAudio.addEventListener('ended', () => {
+        stopNarrationState();
+        currentAudio = null;
+        captionText.innerHTML = `<span style="color:var(--accent-sage);">✓ Narration complete for Slide ${currentSlide}.</span>`;
+        if (autoAdvance && currentSlide < totalSlides) {
+          setTimeout(() => {
+            nextSlide();
+            startNarration();
+          }, 1200);
+        }
+      });
+
+      currentAudio.addEventListener('error', (err) => {
+        console.warn("Studio audio load error, engaging Web Speech fallback:", err);
+        fallbackSpeechNarration(text, sentences);
+      });
+
+      const playPromise = currentAudio.play();
+      if (playPromise !== undefined) {
+        playPromise.catch((err) => {
+          console.warn("Autoplay or audio playback restriction, using Web Speech:", err);
+          fallbackSpeechNarration(text, sentences);
+        });
+      }
+    }
+
+    function fallbackSpeechNarration(text, sentences) {
+      if (!('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+
+      // Phonetic pronunciation for synthesized speech
+      const spoken = text.replace(/\bXolotl\'s\b/g, "Show-lot's").replace(/\bXolotl\b/g, "Show-lot");
+      currentUtterance = new SpeechSynthesisUtterance(spoken);
+      currentUtterance.rate = 0.96;
+      currentUtterance.pitch = 1.0;
+
+      // Prefer British English female voice
+      const voices = synth.getVoices();
+      const preferred = voices.find(v => v.lang.includes('en-GB') && v.name.toLowerCase().includes('female')) ||
+                        voices.find(v => v.lang.includes('en-GB') && (v.name.includes('Sonia') || v.name.includes('Libby') || v.name.includes('Hazel'))) ||
+                        voices.find(v => v.lang.includes('en-GB')) ||
+                        voices.find(v => v.lang.startsWith('en') && v.name.toLowerCase().includes('female')) ||
+                        voices.find(v => v.lang.startsWith('en'));
+      if (preferred) currentUtterance.voice = preferred;
+
+      const wave = document.getElementById('voiceWave');
+      const captionText = document.getElementById('captionText');
+      const narrateBtn = document.getElementById('narrateBtn');
+      const narrateIcon = document.getElementById('narrateIcon');
+      const narrateLabel = document.getElementById('narrateLabel');
+
+      let sentenceIndex = 0;
+
       currentUtterance.onstart = () => {
         isSpeaking = true;
         wave.classList.add('speaking');
         narrateBtn.classList.add('active');
         narrateIcon.innerText = '⏸';
         narrateLabel.innerText = 'Pause Track';
-        
-        // Show first sentence in caption
         captionText.innerHTML = `<span class="active-sentence">${sentences[0].trim()}</span>`;
       };
 
-      // Progressively update captions as speech progresses
       currentUtterance.onboundary = (event) => {
         if (event.name === 'sentence' || event.name === 'word') {
           const charIndex = event.charIndex;
@@ -1600,6 +1660,11 @@
     }
 
     function stopNarration() {
+      if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+        currentAudio = null;
+      }
       if (synth) {
         synth.cancel();
       }

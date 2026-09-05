@@ -3732,7 +3732,7 @@
   <div id="pilotModal" class="modal-backdrop" onclick="handleBackdrop(event)">
     <div class="modal-card">
       <button class="modal-close-btn" onclick="closeModal()">&times;</button>
-      <h3 style="font-size: 1.35rem; color: var(--text-dark); margin-bottom: 6px;">Institutional Pilot Onboarding</h3>
+      <h3 style="font-size: 1.35rem; color: #FFFFFF; margin-bottom: 6px;">Institutional Pilot Onboarding</h3>
       <p style="font-size: 0.88rem; color: var(--text-warm-gray); margin-bottom: 20px;">
         Deploy a dedicated Sovereign Edge node with Canadian S3 core mirror storage and cross-border custodian enclaves. Direct executive contact: <a href="mailto:cooperate@xolotl.ca" style="color: var(--accent-gold); font-weight: 600;">cooperate@xolotl.ca</a>.
       </p>
@@ -3756,17 +3756,48 @@
         <label class="form-label" for="pNotes">Topology or Residency Requirements</label>
         <textarea id="pNotes" class="form-input" rows="3" placeholder="Anticipated seat count, current cloud stack, or custodian placement preferences..."></textarea>
 
-        <button type="submit" class="btn btn-gold" style="width: 100%;">Submit Pilot Application</button>
+        <button type="submit" class="btn btn-gold" style="width: 100%; justify-content: center;">Submit Pilot Application</button>
         <div style="text-align: center; margin-top: 10px; font-size: 0.82rem; color: var(--text-warm-gray);">
           Prefer direct email? Contact us at <a href="mailto:cooperate@xolotl.ca" style="color: var(--accent-sage); font-weight: 600;">cooperate@xolotl.ca</a>
         </div>
       </form>
 
-      <div id="pSuccess" style="display:none; text-align: center; padding: 20px 0;">
-        <h4 style="font-size: 1.15rem; color: var(--accent-sage); margin-bottom: 8px;">Application Received</h4>
-        <p style="font-size: 0.88rem; color: var(--text-warm-gray);">
-          Our core architecture team will review your topology parameters and contact you within 24 hours. For urgent inquiries, email <a href="mailto:cooperate@xolotl.ca" style="color: var(--accent-gold); font-weight: 600;">cooperate@xolotl.ca</a>.
+      <div id="pSuccess" style="display:none; text-align: left; padding: 6px 0;">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+          <div style="width: 34px; height: 34px; border-radius: 50%; background: rgba(94, 180, 137, 0.18); border: 1px solid var(--accent-sage); display: flex; align-items: center; justify-content: center; color: var(--accent-sage); font-weight: bold; flex-shrink: 0;">✓</div>
+          <div>
+            <h4 style="font-size: 1.15rem; color: #FFFFFF; margin: 0;">Application Dispatched</h4>
+            <span style="font-size: 0.78rem; font-family: var(--font-mono); color: var(--accent-sage);">ROUTED TO: cooperate@xolotl.ca</span>
+          </div>
+        </div>
+
+        <p style="font-size: 0.86rem; color: var(--text-warm-gray); margin-bottom: 14px; line-height: 1.5;">
+          Your pilot onboarding package has been generated. If your email application did not launch automatically, click below to transmit directly or copy your application receipt:
         </p>
+
+        <!-- Receipt Box -->
+        <div id="pReceiptBox" style="background: rgba(0, 0, 0, 0.55); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 8px; padding: 14px; font-size: 0.82rem; margin-bottom: 16px; font-family: var(--font-mono); color: #D1D5DB; line-height: 1.6;">
+          <div style="color: var(--accent-gold); font-weight: 600; margin-bottom: 6px; font-size: 0.75rem; letter-spacing: 0.05em;">// ENCRYPTED ONBOARDING DISPATCH</div>
+          <div><span style="color: #9CA3AF;">Organization:</span> <strong style="color: #FFFFFF;" id="rOrg">—</strong></div>
+          <div><span style="color: #9CA3AF;">Work Email:</span> <strong style="color: #FFFFFF;" id="rEmail">—</strong></div>
+          <div><span style="color: #9CA3AF;">Sector:</span> <strong style="color: #FFFFFF;" id="rSector">—</strong></div>
+          <div id="rNotesRow" style="margin-top: 4px;"><span style="color: #9CA3AF;">Requirements:</span> <span id="rNotes" style="color: #E5E7EB;">—</span></div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <a id="pMailtoBtn" href="mailto:cooperate@xolotl.ca" class="btn btn-gold" style="width: 100%; text-align: center; text-decoration: none; justify-content: center;">
+            Open Email Client (cooperate@xolotl.ca) ↗
+          </a>
+          <button type="button" class="btn btn-secondary" onclick="copyApplicationDetails()" id="pCopyBtn" style="width: 100%; justify-content: center;">
+            📋 Copy Application Details
+          </button>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 6px;">
+            <button type="button" onclick="editApplicationDetails()" style="background: none; border: none; color: var(--accent-gold); font-size: 0.8rem; cursor: pointer; text-decoration: underline; padding: 0;">
+              ← Edit parameters
+            </button>
+            <span style="font-size: 0.75rem; color: #8F9994;">Response SLA: &lt; 24h</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -3978,14 +4009,16 @@
       if ('speechSynthesis' in window) {
         try {
           window.speechSynthesis.cancel();
-          const utter = new SpeechSynthesisUtterance("SHOW-lot");
+          const utter = new SpeechSynthesisUtterance("Show lot");
           utter.rate = 0.85;
           utter.pitch = 1.0;
-          utter.lang = 'en-CA';
 
           const voices = window.speechSynthesis.getVoices();
           if (voices && voices.length > 0) {
-            const preferred = voices.find(v => v.lang.includes('CA') || v.lang.includes('GB') || v.lang.includes('US'));
+            const preferred = voices.find(v => (v.lang.includes('es-MX') || v.lang.includes('es')) && v.name.toLowerCase().includes('female')) ||
+                              voices.find(v => v.lang.includes('es-MX') || v.lang.includes('es')) ||
+                              voices.find(v => (v.lang.includes('en-CA') || v.lang.includes('en-US')) && v.name.toLowerCase().includes('female')) ||
+                              voices.find(v => v.lang.includes('en-CA') || v.lang.includes('en-US'));
             if (preferred) utter.voice = preferred;
           }
 
@@ -4114,12 +4147,28 @@
       btn.parentElement.classList.toggle('open');
     }
 
-    // Modal Control
+    // Modal Control & Pilot Transmission Handling
+    let currentApplicationText = '';
+
     function openModal(type) {
       if (type === 'privacy') {
         document.getElementById('privacyModal').classList.add('active');
       } else {
-        document.getElementById('pilotModal').classList.add('active');
+        const modal = document.getElementById('pilotModal');
+        modal.classList.add('active');
+        // Restore saved draft/inputs if available
+        try {
+          const saved = localStorage.getItem('xolotl_pilot_application');
+          if (saved) {
+            const data = JSON.parse(saved);
+            const oInput = document.getElementById('oName');
+            const wInput = document.getElementById('wEmail');
+            const pInput = document.getElementById('pNotes');
+            if (oInput && !oInput.value && data.org) oInput.value = data.org;
+            if (wInput && !wInput.value && data.email) wInput.value = data.email;
+            if (pInput && !pInput.value && data.notes) pInput.value = data.notes;
+          }
+        } catch (e) {}
       }
     }
 
@@ -4136,8 +4185,108 @@
 
     function handleFormSubmit(e) {
       e.preventDefault();
+      const org = (document.getElementById('oName').value || '').trim();
+      const email = (document.getElementById('wEmail').value || '').trim();
+      const sectorSelect = document.getElementById('iSector');
+      const sector = sectorSelect ? sectorSelect.options[sectorSelect.selectedIndex].text : 'General Enterprise';
+      const notes = (document.getElementById('pNotes').value || '').trim();
+      const timestamp = new Date().toUTCString();
+
+      // Populate Visual Receipt
+      const rOrg = document.getElementById('rOrg');
+      const rEmail = document.getElementById('rEmail');
+      const rSector = document.getElementById('rSector');
+      const rNotes = document.getElementById('rNotes');
+      const rNotesRow = document.getElementById('rNotesRow');
+
+      if (rOrg) rOrg.innerText = org || 'Not specified';
+      if (rEmail) rEmail.innerText = email || 'Not specified';
+      if (rSector) rSector.innerText = sector;
+      if (rNotesRow && rNotes) {
+        if (notes) {
+          rNotes.innerText = notes;
+          rNotesRow.style.display = 'block';
+        } else {
+          rNotesRow.style.display = 'none';
+        }
+      }
+
+      // Build structured email body
+      const subject = `Institutional Pilot Application: ${org}`;
+      const emailBody = 
+`INSTITUTIONAL PILOT APPLICATION // XOLOTL CANADIAN SHIELD
+=========================================================
+
+Organization:   ${org}
+Contact Email:  ${email}
+Target Sector:  ${sector}
+Submitted At:   ${timestamp}
+
+Residency / Topology / Deployment Parameters:
+---------------------------------------------
+${notes || 'Standard 3-of-5 threshold topology deployment requested.'}
+
+---------------------------------------------
+Direct Routing: cooperate@xolotl.ca
+Portal: https://xolotl.ca`;
+
+      currentApplicationText = emailBody;
+      const mailtoUrl = `mailto:cooperate@xolotl.ca?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+      
+      const mailBtn = document.getElementById('pMailtoBtn');
+      if (mailBtn) {
+        mailBtn.href = mailtoUrl;
+      }
+
+      // Persist to localStorage for user reference
+      try {
+        localStorage.setItem('xolotl_pilot_application', JSON.stringify({
+          org, email, sector, notes, timestamp
+        }));
+      } catch (err) {
+        console.warn('LocalStorage save failed:', err);
+      }
+
+      // Display Receipt Card
       document.getElementById('pForm').style.display = 'none';
       document.getElementById('pSuccess').style.display = 'block';
+
+      // Automatically launch default email client
+      try {
+        const tempLink = document.createElement('a');
+        tempLink.href = mailtoUrl;
+        tempLink.style.display = 'none';
+        document.body.appendChild(tempLink);
+        tempLink.click();
+        setTimeout(() => tempLink.remove(), 1000);
+      } catch (err) {
+        console.warn('Auto mailto invocation deferred to user click:', err);
+      }
+    }
+
+    function copyApplicationDetails() {
+      if (!currentApplicationText) return;
+      navigator.clipboard.writeText(currentApplicationText).then(() => {
+        const btn = document.getElementById('pCopyBtn');
+        if (btn) {
+          const origText = btn.innerHTML;
+          btn.innerHTML = '✓ Copied to Clipboard!';
+          btn.style.borderColor = 'var(--accent-sage)';
+          btn.style.color = 'var(--accent-sage)';
+          setTimeout(() => {
+            btn.innerHTML = origText;
+            btn.style.borderColor = '';
+            btn.style.color = '';
+          }, 2500);
+        }
+      }).catch(() => {
+        alert('Please select and copy the text inside the submission receipt box.');
+      });
+    }
+
+    function editApplicationDetails() {
+      document.getElementById('pSuccess').style.display = 'none';
+      document.getElementById('pForm').style.display = 'block';
     }
 
     // Cookie Notice Initialization

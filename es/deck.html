@@ -37,7 +37,7 @@
         radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.12) 0%, transparent 60%),
         radial-gradient(circle at 85% 20%, rgba(52, 211, 153, 0.08) 0%, transparent 45%),
         linear-gradient(to bottom, rgba(11, 17, 14, 0.88), rgba(7, 11, 9, 0.95)),
-        url('../assets/images/canadian_granite_texture.jpg');
+        url('assets/images/canadian_granite_texture.jpg');
       background-attachment: fixed;
       background-size: cover;
       background-position: center;
@@ -667,13 +667,12 @@
         <path d="M16 2L4 7V15C4 22.5 9.1 29 16 31C22.9 29 28 22.5 28 15V7L16 2Z" fill="#15231C" stroke="#C89D4B" stroke-width="2"/>
         <circle cx="16" cy="16" r="4.5" fill="#D97706"/>
       </svg>
-      <span>Cooperativa Xolotl</span>
-      <span class="brand-badge">Presentación Soberana</span>
+      <span>Xolotl Cooperative</span>
+      <span class="brand-badge">Sovereign Deck</span>
     </a>
 
     <div class="header-controls">
       <!-- Narration Audio Controls -->
-      <a href="../deck.html" class="btn btn-secondary" title="View in English" onclick="setUserLanguage('en')">🇨🇦 EN</a>
       <button id="narrateBtn" class="btn btn-gold" onclick="toggleNarration()" title="Start/Pause Voice Narration">
         <span id="narrateIcon">▶</span>
         <span id="narrateLabel">Voice Track</span>
@@ -687,19 +686,19 @@
         <span>Auto-Play: <strong id="autoStatus">Off</strong></span>
       </button>
 
-      <button id="thumbsBtn" class="btn btn-secondary" onclick="toggleThumbModal()" title="View all 14 slide thumbnails">
+      <button id="thumbsBtn" class="btn btn-secondary" onclick="toggleThumbModal()" title="Ver miniaturas de las 14 diapositivas">
         <span>Diapositivas</span>
       </button>
 
-      <button id="notesBtn" class="btn btn-secondary" onclick="toggleNotesDrawer()" title="View Presenter Notes &amp; Q&amp;A">
+      <button id="notesBtn" class="btn btn-secondary" onclick="toggleNotesDrawer()" title="Ver Notas del Presentador y Preguntas Frecuentes">
         <span>Notas</span>
       </button>
 
-      <button id="fsBtn" class="btn btn-secondary" onclick="toggleFullScreen()" title="Toggle Fullscreen (F)">
+      <button id="fsBtn" class="btn btn-secondary" onclick="toggleFullScreen()" title="Alternar Pantalla Completa (F)">
         <span>⛶</span>
       </button>
       
-      <a href="index.html" class="btn btn-secondary" title="Exit to Landing Page">
+      <a href="index.html" class="btn btn-secondary" title="Salir a la Página Principal">
         <span>Salir ✕</span>
       </a>
     </div>
@@ -708,7 +707,6 @@
   <!-- Presentation Stage -->
   <main class="deck-stage">
     <div id="slideViewport" class="slide-viewport">
-      
       <!-- Slide 1: Title & Hook -->
       <section class="slide-pane active" data-slide="1" data-category="Visión Ejecutiva">
         <div class="slide-meta">
@@ -725,30 +723,30 @@
         <div class="slide-grid">
           <div>
             <ul class="slide-bullets">
-              <li><strong>The Sovereign Dilemma:</strong> Regulated institutions are legally barred from unencrypted cloud synchronization by the US CLOUD Act, yet air-gapped on-prem servers fall prey to ransomware.</li>
-              <li><strong>Seamless Desktop UX:</strong> Delivers the familiar "drop-a-file-in-a-folder" OneDrive experience via native Rust &amp; Tauri desktop clients (<30MB RAM overhead).</li>
-              <li><strong>Mathematical Immunity:</strong> Audited threshold cryptography (Pedersen DKG + Threshold ElGamal) ensures <em>no single court order, cloud provider, or root admin compromise</em> can produce plaintext.</li>
+              <li><strong>El Dilema Soberano:</strong> Las instituciones reguladas tienen prohibida por ley la sincronización en la nube sin cifrar debido a la ley CLOUD Act de EE. UU., mientras que los servidores locales aislados son presa fácil del ransomware.</li>
+              <li><strong>Experiencia de Escritorio Fluida:</strong> Ofrece la conocida experiencia de "arrastrar y soltar archivos en una carpeta" estilo OneDrive mediante clientes nativos de escritorio en Rust y Tauri (&lt;30 MB de consumo de RAM).</li>
+              <li><strong>Inmunidad Matemática:</strong> La criptografía de umbral auditada (DKG Pedersen + ElGamal de Umbral) garantiza que <em>ninguna orden judicial individual, proveedor de nube o vulneración de administrador raíz</em> pueda extraer texto en claro.</li>
             </ul>
             <div class="metric-row">
               <div class="metric-card">
                 <div class="metric-val">$1.25M</div>
-                <div class="metric-desc">Seed Capital Round for 18-Month Runway to GA</div>
+                <div class="metric-desc">Ronda de Capital Semilla para 18 Meses de Operación hacia GA</div>
               </div>
               <div class="metric-card">
-                <div class="metric-val">3 of 5</div>
-                <div class="metric-desc">Cross-Border Jurisdictional Quorum Required</div>
+                <div class="metric-val">3 de 5</div>
+                <div class="metric-desc">Cuórum Jurisdiccional Transfronterizo Requerido</div>
               </div>
               <div class="metric-card">
-                <div class="metric-val">0 Keys</div>
-                <div class="metric-desc">Held by S3 Canadian Cloud Backup Mirror</div>
+                <div class="metric-val">0 Claves</div>
+                <div class="metric-desc">Bajo Custodia del Espejo Canadiense S3 en la Nube</div>
               </div>
             </div>
           </div>
           <div class="media-box">
             <video autoplay loop muted playsinline src="../assets/videos/sovereign_mesh_radar.mp4"></video>
             <div class="media-caption">
-              <span>CANADIAN SHIELD CORE TOPOLOGY</span>
-              <span>LIVE MESH RADAR</span>
+              <span>TOPOLOGÍA NÚCLEO ESCUDO CANADIENSE</span>
+              <span>RADAR DE MALLA EN VIVO</span>
             </div>
           </div>
         </div>
@@ -761,22 +759,22 @@
           <span class="slide-category">La Falla del Mercado</span>
         </div>
         <h2 class="slide-heading">
-          The Collapse of "Cloud Sovereignty": <br>
-          <span class="serif">The US CLOUD Act Trap.</span>
+          El Colapso de la "Soberanía en la Nube": <br>
+          <span class="serif">La Trampa del CLOUD Act de EE. UU.</span>
         </h2>
         <div class="slide-grid">
           <div>
             <ul class="slide-bullets">
-              <li><strong>Extraterritorial Jurisdiction:</strong> Under the 2018 US CLOUD Act, domestic US providers must disclose data stored anywhere globally—rendering geographic hosting in Frankfurt or Montreal legally moot.</li>
-              <li><strong>Centralized Key Escrow:</strong> Enterprise KMS solutions (AWS KMS, Azure Key Vault) retain master key control. A single subpoena served against the provider forces full plaintext disclosure.</li>
-              <li><strong>The Ransomware Silo Trap:</strong> Pure on-premises air-gapped NAS/SAN setups disrupt distributed workflows and lack continuous, immutable offsite disaster recovery against modern encryptors.</li>
-              <li><strong>The Institutional Crisis:</strong> Over $120B in enterprise data must comply with Schrems II, NIS2, and Swiss FADP, leaving CIOs trapped between unusable silos and legally compromised clouds.</li>
+              <li><strong>Jurisdicción Extraterritorial:</strong> Bajo la ley CLOUD Act de 2018 de EE. UU., los proveedores estadounidenses deben entregar datos almacenados en cualquier lugar del mundo, tornando legalmente irrelevante el alojamiento geográfico en Fráncfort o Montreal.</li>
+              <li><strong>Custodia Centralizada de Claves:</strong> Las soluciones KMS empresariales (AWS KMS, Azure Key Vault) retienen el control de la clave maestra. Una sola citación judicial notificada al proveedor fuerza la entrega total en texto en claro.</li>
+              <li><strong>La Trampa del Aislamiento ante Ransomware:</strong> Los sistemas tradicionales de almacenamiento NAS/SAN desconectados de internet rompen los flujos de trabajo colaborativos y carecen de recuperación remota, continua e inmutable frente a cifradores modernos.</li>
+              <li><strong>La Crisis Institucional:</strong> Más de $120B en datos corporativos deben cumplir con Schrems II, NIS2 y la FADP suiza, dejando a los directores de TI atrapados entre silos aislados y nubes legalmente comprometidas.</li>
             </ul>
           </div>
           <div class="media-box">
             <img src="../assets/images/canadian_shield_twilight.jpg" alt="Atmospheric Canadian Shield granite under twilight">
             <div class="media-caption">
-              <span>JURISDICTIONAL JURISPRUDENCE</span>
+              <span>JURISPRUDENCIA JURISDICCIONAL</span>
               <span>SCHREMS II · PIPEDA</span>
             </div>
           </div>
@@ -784,49 +782,49 @@
       </section>
 
       <!-- Slide 3: Threat Model Reframe -->
-      <section class="slide-pane" data-slide="3" data-category="Threat Modeling">
+      <section class="slide-pane" data-slide="3" data-category="Modelo de Amenazas">
         <div class="slide-meta">
           <span class="slide-number-badge">03 / 14</span>
-          <span class="slide-category">Threat Modeling</span>
+          <span class="slide-category">Modelo de Amenazas</span>
         </div>
         <h2 class="slide-heading">
-          Redefining the Adversary: <br>
-          <span class="serif">Lawful Compulsion is Indistinguishable from Breach.</span>
+          Redefiniendo al Adversario: <br>
+          <span class="serif">El Apremio Legal es Indistinguible de una Vulneración.</span>
         </h2>
         <div class="slide-grid single-col">
           <table class="slide-table">
             <thead>
               <tr>
-                <th>Threat Axiom</th>
-                <th>Legacy Enterprise Cloud (OneDrive / Box)</th>
-                <th>Xolotl Sovereign Architecture</th>
-                <th>Cryptographic Proof</th>
+                <th>Axioma de Amenaza</th>
+                <th>Nube Empresarial Tradicional (OneDrive / Box)</th>
+                <th>Arquitectura Soberana Xolotl</th>
+                <th>Demostración Criptográfica</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td><strong>Axiom 1: Plaintext Egress</strong></td>
-                <td>Plaintext reaches cloud for indexing / DLP scanning</td>
-                <td class="col-win">Plaintext strictly isolated in volatile RAM</td>
-                <td>Streaming AES-256-GCM chunking</td>
+                <td><strong>Axioma 1: Salida en Texto en Claro</strong></td>
+                <td>El texto en claro llega a la nube para indexación o escaneo DLP</td>
+                <td class="col-win">Texto en claro estrictamente aislado en memoria RAM volátil</td>
+                <td>Fragmentación continua por flujo con AES-256-GCM</td>
               </tr>
               <tr>
-                <td><strong>Axiom 2: Key Persistence</strong></td>
-                <td>Master keys held perpetually in centralized HSMs</td>
-                <td class="col-win">Master key never touches persistent disk</td>
-                <td>Zeroize-on-Drop in memory</td>
+                <td><strong>Axioma 2: Persistencia de Claves</strong></td>
+                <td>Claves maestras retenidas indefinidamente en HSMs centralizados</td>
+                <td class="col-win">La clave maestra jamás toca el almacenamiento en disco</td>
+                <td>Destrucción en memoria (Zeroize-on-Drop)</td>
               </tr>
               <tr>
-                <td><strong>Axiom 3: Backup Mirror Authority</strong></td>
-                <td>Cloud provider possesses full decryption authority</td>
-                <td class="col-win">Cloud mirror holds 0 key shares (100% blind)</td>
-                <td>Mathematical Powerlessness</td>
+                <td><strong>Axioma 3: Autoridad del Espejo de Respaldo</strong></td>
+                <td>El proveedor en la nube posee plena autoridad de descifrado</td>
+                <td class="col-win">El espejo en la nube custodia 0 fragmentos de clave (100% ciego)</td>
+                <td>Impotencia Matemática por Diseño</td>
               </tr>
               <tr>
-                <td><strong>Axiom 4: Legal Compulsion</strong></td>
-                <td>Single court order in US forces secret disclosure</td>
-                <td class="col-win">Requires simultaneous quorum across borders</td>
-                <td>(3, 5) Threshold ElGamal</td>
+                <td><strong>Axioma 4: Apremio Legal</strong></td>
+                <td>Una sola orden judicial en EE. UU. fuerza la entrega secreta</td>
+                <td class="col-win">Requiere cuórum concurrente a través de múltiples fronteras</td>
+                <td>ElGamal de Umbral (3 de 5)</td>
               </tr>
             </tbody>
           </table>
@@ -834,356 +832,313 @@
       </section>
 
       <!-- Slide 4: 3-Layer Architecture -->
-      <section class="slide-pane" data-slide="4" data-category="System Architecture">
+      <section class="slide-pane" data-slide="4" data-category="Arquitectura del Sistema">
         <div class="slide-meta">
           <span class="slide-number-badge">04 / 14</span>
-          <span class="slide-category">System Architecture</span>
+          <span class="slide-category">Arquitectura del Sistema</span>
         </div>
         <h2 class="slide-heading">
-          The 3-Layer Hybrid Sovereign Edge: <br>
-          <span class="serif">Private Mesh, Native Engine, Blind Storage.</span>
+          Borde Soberano Híbrido de 3 Capas: <br>
+          <span class="serif">Malla Privada, Motor Nativo, Almacenamiento Ciego.</span>
         </h2>
         <div class="slide-grid">
           <div>
             <ul class="slide-bullets">
-              <li><strong>Layer 1: Sovereign Edge Stack (Customer Controlled):</strong> Isolated on-prem Docker node running Postgres RLS and Supabase GoTrue behind a private WireGuard network namespace—zero public ingress.</li>
-              <li><strong>Layer 2: Axolotl Client Engine (Rust / Tauri):</strong> Native OS directory-tree watcher with trailing-edge debouncing; streams encrypted files in constant 8 MiB resident RAM pipelines.</li>
-              <li><strong>Layer 3: Canadian Blind Core Mirror (Axolotl SaaS):</strong> High-availability S3 cluster in Montreal featuring 93-day immutable object locks. Holds zero key shares and zero plaintext authority.</li>
+              <li><strong>Capa 1: Pila en el Borde Soberano (On-Premises / VPC):</strong> Aloja el directorio institucional e implementa el Agente Custodio 3 dentro de un espacio de red aislado WireGuard.</li>
+              <li><strong>Capa 2: Motor Nativo de Escritorio (Rust &amp; Tauri):</strong> Integración con el explorador nativo (&lt;30MB RAM); fragmenta en bloques continuos de 8 MiB con AES-256-GCM antes de que los datos abandonen el kernel del SO.</li>
+              <li><strong>Capa 3: Espejo Central Canadiense (Montréal):</strong> Almacenamiento en nube ciego para recuperación ante desastres multinquilino con bloqueo inmutable de objetos por 93 días. <em>0 claves custodiadas.</em></li>
             </ul>
           </div>
           <div class="media-box">
-            <video autoplay loop muted playsinline src="../assets/videos/sovereign_mesh_radar.mp4"></video>
+            <img src="../assets/images/sovereign_defense_matrix.jpg" alt="3-layer sovereign architecture matrix">
             <div class="media-caption">
-              <span>LAYER 1-3 MESH TOPOLOGY</span>
-              <span>MONTREAL S3 MIRROR</span>
+              <span>TOPOLOGÍA DE 3 CAPAS</span>
+              <span>ENCLAVE PRIVADO + S3 CIEGO</span>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Slide 5: Cryptographic Moat -->
-      <section class="slide-pane" data-slide="5" data-category="Cryptographic Moat">
+      <!-- Slide 5: The Cryptographic Moat -->
+      <section class="slide-pane" data-slide="5" data-category="Foso Criptográfico">
         <div class="slide-meta">
           <span class="slide-number-badge">05 / 14</span>
-          <span class="slide-category">Cryptographic Moat</span>
+          <span class="slide-category">Foso Criptográfico</span>
         </div>
         <h2 class="slide-heading">
-          Solving the FROST Non-Determinism Trap: <br>
-          <span class="serif">Pedersen DKG + Threshold ElGamal.</span>
+          Resolviendo la Trampa del No-Determinismo en FROST: <br>
+          <span class="serif">DKG Pedersen + ElGamal de Umbral.</span>
         </h2>
         <div class="slide-grid">
           <div>
             <ul class="slide-bullets">
-              <li><strong>The Signature Nonce Problem:</strong> Standard FROST (RFC 9591) signatures produce randomized nonces per round, making deterministic derivation of static AES Key Encryption Keys (KEKs) impossible without key leakage.</li>
-              <li><strong>Threshold ElGamal Decryption:</strong> Xolotl pairs Pedersen Distributed Key Generation with Chaum-Pedersen zero-knowledge proofs over Ed25519 for deterministic KEK unwrapping.</li>
-              <li><strong>Session Coordinate Blinding:</strong> Every unlock request blinds public points ($R' = R^\beta$). Intercepted partial decryptions are mathematically worthless in any future session.</li>
-              <li><strong>Audited Foundation:</strong> Built on battle-tested <code>frost-core</code> and <code>curve25519-dalek</code> with strict <code>ZeroizeOnDrop</code> RAM protection.</li>
+              <li><strong>El Límite de las Firmas FROST:</strong> La especificación RFC 9591 de FROST emplea nonces aleatorios nuevos en cada firma para proteger las claves maestras. Sin embargo, esto imposibilita derivar claves AES estáticas de forma determinista para la recuperación de archivos sin vulnerar el secreto.</li>
+              <li><strong>Nuestra Innovación en Descifrado:</strong> Diseñamos un esquema desacoplado de Descifrado ElGamal de Umbral sobre Curve25519 con pruebas de conocimiento cero Chaum-Pedersen y coordenadas cegadas por sesión.</li>
+              <li><strong>Ceremonia en Milisegundos:</strong> La sincronización de claves efímeras de sesión se completa en ~1.5 segundos entre custodios transfronterizos sin revelar fragmentos individuales.</li>
             </ul>
           </div>
           <div class="media-box">
-            <video autoplay loop muted playsinline src="../assets/videos/threshold_ceremony.mp4"></video>
+            <div class="media-archival-header" style="background: rgba(0,0,0,0.6); padding: 6px 12px; font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-gold);">
+              // ED25519 THRESHOLD FORMAL REASONING
+            </div>
+            <div style="background: rgba(14,24,20,0.9); border: 1px solid rgba(200,157,75,0.3); border-radius: 8px; padding: 18px; font-family: var(--font-mono); font-size: 0.8rem; color: #D1D5DB; line-height: 1.6;">
+              <div style="color: var(--accent-gold); margin-bottom: 6px;">DKG PEDERSEN + ELGAMAL DE UMBRAL:</div>
+              <code>1. C = (g^r, M * y^r)  // Cifrado de clave de archivo</code><br>
+              <code>2. Cada Custodio i: D_i = C_1^{s_i} con prueba Chaum-Pedersen</code><br>
+              <code>3. Cliente agrega (3 de 5): M = C_2 / prod(D_i^{lambda_i})</code><br>
+              <code>4. Clave AES efímera destruida (zeroize) al cerrar sesión</code>
+            </div>
             <div class="media-caption">
-              <span>PEDERSEN DKG CEREMONY</span>
-              <span>CHAUM-PEDERSEN ZKP</span>
+              <span>CRIPTOGRAFÍA DE DOBLE CEREMONIA</span>
+              <span>FROST RFC 9591 · ELGAMAL DE UMBRAL</span>
             </div>
           </div>
         </div>
       </section>
 
       <!-- Slide 6: Jurisdictional Diversity -->
-      <section class="slide-pane" data-slide="6" data-category="Jurisdictional Defense">
+      <section class="slide-pane" data-slide="6" data-category="Defensa Jurisdiccional">
         <div class="slide-meta">
           <span class="slide-number-badge">06 / 14</span>
-          <span class="slide-category">Jurisdictional Defense</span>
+          <span class="slide-category">Defensa Jurisdiccional</span>
         </div>
         <h2 class="slide-heading">
-          Cryptographically Enforced Jurisdictional Diversity: <br>
-          <span class="serif">Breaking the Economics of Dragnet Subpoenas.</span>
+          Diversidad Jurisdiccional Criptográficamente Forzada: <br>
+          <span class="serif">Rompiendo la Economía de las Citaciones Masivas.</span>
         </h2>
         <div class="slide-grid">
           <div>
             <ul class="slide-bullets">
-              <li><strong>The Multi-Sig Fallacy:</strong> If all key holders reside in one country, a single domestic court order compels the entire quorum simultaneously under sealed contempt of court.</li>
-              <li><strong>Code-Enforced Topology Policy:</strong> The unlock coordinator mathematically rejects any quorum comprised of custodians from a single national jurisdiction.</li>
-              <li><strong>Standard (3, 5) Enclave Distribution:</strong>
-                <br>• Node 1: Workstation Desktop (Local)
-                <br>• Node 2: Chief Compliance Officer Enclave (Local)
-                <br>• Node 3: Sovereign Edge Gateway (Headquarters)
-                <br>• Node 4: Independent Enclave (Zurich, Switzerland)
-                <br>• Node 5: Independent Enclave (Reykjavik, Iceland)
-              </li>
-              <li><strong>Adversary Impossibility:</strong> Requires simultaneous court orders across three non-aligned nations executed within a 120-second signing window.</li>
+              <li><strong>El Radio de Explosión Legal:</strong> Separar servidores técnicamente es inútil si todos se encuentran en el mismo distrito legal: una sola orden judicial puede coaccionar a todos los custodios a la vez.</li>
+              <li><strong>Regla de Topología Matemática:</strong> El coordinador de desbloqueo del cliente verifica rigurosamente la distribución legal. Si tres custodios pertenecen a la misma jurisdicción, el software bloquea la ceremonia de descifrado.</li>
+              <li><strong>Cuórum Transfronterizo (3 de 5):</strong> Nodo local del cliente, dispositivo físico del oficial de cumplimiento y enclaves independientes en Canadá, Suiza e Islandia.</li>
             </ul>
           </div>
           <div class="media-box">
             <video autoplay loop muted playsinline src="../assets/videos/sovereign_mesh_radar.mp4"></video>
             <div class="media-caption">
-              <span>(3, 5) MULTI-JURISDICTION MESH</span>
-              <span>CA · CH · IS ENCLAVES</span>
+              <span>MATRIZ JURISDICCIONAL</span>
+              <span>CANADÁ · SUIZA · ISLANDIA</span>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Slide 7: Enterprise UX & Ransomware WORM -->
-      <section class="slide-pane" data-slide="7" data-category="User Experience">
+      <!-- Slide 7: User Experience & Ransomware Immunity -->
+      <section class="slide-pane" data-slide="7" data-category="Experiencia de Usuario">
         <div class="slide-meta">
           <span class="slide-number-badge">07 / 14</span>
-          <span class="slide-category">User Experience</span>
+          <span class="slide-category">Experiencia de Usuario</span>
         </div>
         <h2 class="slide-heading">
-          OneDrive Ergonomics, Enclave Immunity: <br>
-          <span class="serif">Point-in-Time Recovery vs Zero-Day Ransomware.</span>
+          Ergonomía de OneDrive, Inmunidad de Enclave: <br>
+          <span class="serif">Recuperación a Punto en el Tiempo vs Ransomware Día Cero.</span>
         </h2>
         <div class="slide-grid">
           <div>
             <ul class="slide-bullets">
-              <li><strong>Zero Behavioral Friction:</strong> Users interact with standard Explorer/Finder folders. Files save, encrypt, and synchronize seamlessly in the background.</li>
-              <li><strong>Constant-Memory Streaming:</strong> Chunked 8 MiB pipelines process massive 50GB video archives and multi-gigabyte CAD models without desktop RAM spikes.</li>
-              <li><strong>Point-in-Time Recovery (PITR):</strong> When ransomware encrypts local workstations, administrators select any second in the past 93 days on our PITR slider and reconstitute clean data immediately.</li>
-              <li><strong>Immutable S3 Object Lock:</strong> Canadian Core storage buckets enforce compliance-mode WORM locks—rejecting all deletion and overwrite requests, even from compromised admin credentials.</li>
+              <li><strong>Cero Fricción para el Empleado:</strong> Los usuarios guardan documentos de Word, modelos de Excel o expedientes legales en su carpeta habitual. La sincronización y cifrado ocurren en segundo plano sin pedir claves ni contraseñas adicionales.</li>
+              <li><strong>Recuperación a Punto en el Tiempo (PITR):</strong> Si un equipo es atacado por ransomware día cero o un archivo se corrompe, el usuario o administrador desliza la barra temporal hacia atrás y recupera los archivos intactos al segundo exacto.</li>
+              <li><strong>Inmutabilidad WORM de 93 Días:</strong> El espejo en la nube de Montreal rechaza cualquier comando de borrado o sobreescritura maliciosa gracias a directivas rígidas de bloqueo por hardware S3.</li>
             </ul>
           </div>
           <div class="media-box">
             <video autoplay loop muted playsinline src="../assets/videos/immutable_worm_rollback.mp4"></video>
             <div class="media-caption">
-              <span>93-DAY COMPLIANCE WORM</span>
-              <span>POINT-IN-TIME ROLLBACK</span>
+              <span>BLOQUEO WORM DE CUMPLIMIENTO DE 93 DÍAS</span>
+              <span>REVERSIÓN A PUNTO EN EL TIEMPO</span>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Slide 8: Live Technical Validation -->
-      <section class="slide-pane" data-slide="8" data-category="De-risked Codebase">
+      <!-- Slide 8: Technical Validation & De-Risking -->
+      <section class="slide-pane" data-slide="8" data-category="Código sin Riesgo">
         <div class="slide-meta">
           <span class="slide-number-badge">08 / 14</span>
-          <span class="slide-category">De-risked Codebase</span>
+          <span class="slide-category">Código sin Riesgo</span>
         </div>
         <h2 class="slide-heading">
-          Production Code, Not Whitepaper Vaporware: <br>
-          <span class="serif">Verified Rust Systems Architecture.</span>
+          Código en Producción, No Vaporware Teórico: <br>
+          <span class="serif">Arquitectura de Sistemas en Rust Verificada.</span>
         </h2>
-        <div class="slide-grid">
-          <div>
-            <ul class="slide-bullets">
-              <li><strong>Functional End-to-End Monorepo:</strong> All 3 layers are implemented and passing continuous unit, integration, and security regression suites.</li>
-              <li><strong>Real Network Sockets:</strong> DKG enrollment ceremonies and threshold partial decryption exchanges execute over live TCP sockets—not simulated in-memory mocks.</li>
-              <li><strong>Pre-Audit Hardening Completed:</strong> Exhaustive cryptographic security review completed. Remediated session coordinate blinding, rate-limiting gates, and custodian authorization checks.</li>
-              <li><strong>RFP Audit Engagement Ready:</strong> Comprehensive 15-page cryptographic review RFP prepared for independent tier-1 audit engagement (Trail of Bits / Kudelski).</li>
-            </ul>
-            <div class="metric-row">
-              <div class="metric-card">
-                <div class="metric-val">14 / 14</div>
-                <div class="metric-desc">Passing Crypto Test Suites</div>
-              </div>
-              <div class="metric-card">
-                <div class="metric-val">8 MiB</div>
-                <div class="metric-desc">Fixed Chunk Streaming RAM</div>
-              </div>
-              <div class="metric-card">
-                <div class="metric-val">100%</div>
-                <div class="metric-desc">Pre-Audit Items Remediated</div>
-              </div>
+        <div class="slide-grid single-col">
+          <ul class="slide-bullets">
+            <li><strong>Pila Completa Operativa:</strong> Implementada de principio a fin en Rust, TypeScript y contenedores Docker. Cero conceptos abstractos: el monorrepo ejecuta ceremonias de umbral sobre sockets de red reales.</li>
+            <li><strong>Cargas Multipartes SigV4 en Streaming:</strong> Conexión de alto rendimiento probada directamente contra depósitos de almacenamiento S3 con cifrado continuo en RAM.</li>
+            <li><strong>Aislamiento Multinquilino con RLS:</strong> Políticas de seguridad a nivel de fila (Row-Level Security) en PostgreSQL formalmente verificadas para aislamiento estricto de cada organización.</li>
+          </ul>
+          <div class="metric-row" style="margin-top: 20px;">
+            <div class="metric-card">
+              <div class="metric-val">100% Rust</div>
+              <div class="metric-desc">Clientes nativos de escritorio para Windows, macOS y Linux</div>
             </div>
-          </div>
-          <div class="media-box">
-            <video autoplay loop muted playsinline src="../assets/videos/threshold_ceremony.mp4"></video>
-            <div class="media-caption">
-              <span>INTEGRATION REGRESSION SUITE</span>
-              <span>PASSING CI/CD</span>
+            <div class="metric-card">
+              <div class="metric-val">&lt;30 MB</div>
+              <div class="metric-desc">Consumo de RAM en reposo frente a &gt;400 MB de aplicaciones Electron</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-val">&lt;1.5 s</div>
+              <div class="metric-desc">Ceremonia de desbloqueo entre enclaves de Canadá, Suiza e Islandia</div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Slide 9: Target Market & ICP -->
-      <section class="slide-pane" data-slide="9" data-category="Go-To-Market">
+      <!-- Slide 9: Target Customers (ICP) -->
+      <section class="slide-pane" data-slide="9" data-category="Estrategia Comercial">
         <div class="slide-meta">
           <span class="slide-number-badge">09 / 14</span>
-          <span class="slide-category">Go-To-Market</span>
+          <span class="slide-category">Estrategia Comercial</span>
         </div>
         <h2 class="slide-heading">
-          Target Institutional Customers: <br>
-          <span class="serif">Acute Legal Compulsion &amp; High ACV.</span>
+          Clientes Institucionales Objetivo: <br>
+          <span class="serif">Apremio Legal Crítico y Alto ACV.</span>
         </h2>
         <div class="slide-grid single-col">
           <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
-            <div class="metric-card" style="padding: 20px;">
-              <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-sage); margin-bottom: 6px;">BEACHHEAD · LEGAL</div>
-              <h4 style="font-size: 1.1rem; color: #FFFFFF; margin-bottom: 10px;">Cross-Border M&amp;A &amp; Litigation Law</h4>
-              <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 14px;">US discovery in foreign suits can pierce client privilege; managing partners face personal bar sanctions.</p>
-              <div class="metric-val" style="font-size: 1.15rem;">$75k – $150k</div>
-              <div class="metric-desc">Annual Contract Value (ACV)</div>
+            <div class="attribute-card" style="background: rgba(25, 43, 35, 0.45); border: 1px solid rgba(200, 157, 75, 0.3); border-radius: 8px; padding: 20px;">
+              <h4 style="color: var(--accent-gold); margin-bottom: 8px;">Derecho Corporativo Transfronterizo, Fusiones y Litigios</h4>
+              <p style="font-size: 0.88rem; color: #CBD5E1; line-height: 1.5;">Bufetes internacionales que gestionan litigios de alto impacto y adquisiciones confidenciales vulnerables a citaciones de tribunales estadounidenses.</p>
+              <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-sage); margin-top: 12px; font-weight: 600;">ACV: $75k–$150k / firma</div>
             </div>
-            <div class="metric-card" style="padding: 20px;">
-              <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-gold); margin-bottom: 6px;">EXPANSION · DEFENSE</div>
-              <h4 style="font-size: 1.1rem; color: #FFFFFF; margin-bottom: 10px;">Defense Subcontractors (CMMC / ITAR)</h4>
-              <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 14px;">Forbids extraterritorial exposure of export-controlled Controlled Unclassified Information (CUI).</p>
-              <div class="metric-val" style="font-size: 1.15rem;">$120k – $250k</div>
-              <div class="metric-desc">Annual Contract Value (ACV)</div>
+            <div class="attribute-card" style="background: rgba(25, 43, 35, 0.45); border: 1px solid rgba(200, 157, 75, 0.3); border-radius: 8px; padding: 20px;">
+              <h4 style="color: var(--accent-gold); margin-bottom: 8px;">Subcontratistas de Defensa (CMMC / ITAR)</h4>
+              <p style="font-size: 0.88rem; color: #CBD5E1; line-height: 1.5;">Proveedores aeroespaciales y de defensa que requieren cumplimiento CMMC 2.0 Nivel 2 e ITAR para Información No Clasificada Controlada (CUI).</p>
+              <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-sage); margin-top: 12px; font-weight: 600;">ACV: $120k–$250k / firma</div>
             </div>
-            <div class="metric-card" style="padding: 20px;">
-              <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-sage); margin-bottom: 6px;">EXPANSION · FINANCE</div>
-              <h4 style="font-size: 1.1rem; color: #FFFFFF; margin-bottom: 10px;">Swiss Private Wealth &amp; Family Offices</h4>
-              <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 14px;">Swiss Banking Act and GDPR Article 48 make disclosure of client rosters to foreign agencies a felony.</p>
-              <div class="metric-val" style="font-size: 1.15rem;">$100k – $300k</div>
-              <div class="metric-desc">Annual Contract Value (ACV)</div>
+            <div class="attribute-card" style="background: rgba(25, 43, 35, 0.45); border: 1px solid rgba(200, 157, 75, 0.3); border-radius: 8px; padding: 20px;">
+              <h4 style="color: var(--accent-gold); margin-bottom: 8px;">Banca Privada Suiza y Family Offices</h4>
+              <p style="font-size: 0.88rem; color: #CBD5E1; line-height: 1.5;">Entidades financieras que administran patrimonios protegidos por la Ley Federal de Protección de Datos (FADP) y el Artículo 48 del RGPD.</p>
+              <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-sage); margin-top: 12px; font-weight: 600;">ACV: $100k–$300k / firma</div>
             </div>
           </div>
         </div>
       </section>
 
       <!-- Slide 10: Market Size & Geopolitical Tailwinds -->
-      <section class="slide-pane" data-slide="10" data-category="Market Opportunity">
+      <section class="slide-pane" data-slide="10" data-category="Oportunidad de Mercado">
         <div class="slide-meta">
           <span class="slide-number-badge">10 / 14</span>
-          <span class="slide-category">Market Opportunity</span>
+          <span class="slide-category">Oportunidad de Mercado</span>
         </div>
         <h2 class="slide-heading">
-          $120B Sovereign Cloud Tailwinds: <br>
-          <span class="serif">Global De-Hyperscalization.</span>
+          Vientos de Cola de $120B en la Nube Soberana: <br>
+          <span class="serif">Des-hiperescalarización Global.</span>
         </h2>
         <div class="slide-grid">
           <div>
             <ul class="slide-bullets">
-              <li><strong>TAM ($120B):</strong> Global Sovereign Cloud and Enterprise File Synchronization Market by 2030 (24.5% CAGR).</li>
-              <li><strong>SAM ($18.5B):</strong> Regulated high-consequence institutional data storage (legal, defense, banking, critical government enclaves).</li>
-              <li><strong>SOM ($3.8B):</strong> North American and European cross-border firms requiring verifiable extraterritorial subpoena immunity.</li>
-              <li><strong>Boardroom Geopolitical Driver:</strong> Escalating tech-cold-war tensions and EU Data Act mandates are compelling enterprise boards to remove single-vendor US cloud dependencies.</li>
+              <li><strong>Imperativo Geopolítico Global:</strong> Directivas como NIS2, Ley de Datos de la UE y la invalidación de Privacy Shield por Schrems II han transformado el uso de nubes comerciales de EE. UU. en un pasivo corporativo crítico.</li>
+              <li><strong>Mercado de $120B para 2030:</strong> El sector de nubes soberanas crece a una tasa compuesta superior al 24% anual, impulsado por la necesidad de desvincularse de proveedores sujetos a vigilancia extraterritorial.</li>
+              <li><strong>Mercado Accesible Inmediato (SOM) de $3.8B:</strong> Nuestro foco inicial abarca bufetes transfronterizos, proveedores de defensa y banca privada de alta exigencia en Norteamérica y Europa.</li>
             </ul>
           </div>
-          <div class="metric-row" style="grid-template-columns: 1fr; gap: 14px;">
-            <div class="metric-card">
-              <div class="metric-val">$120 Billion</div>
-              <div class="metric-desc">Total Addressable Market by 2030</div>
-            </div>
-            <div class="metric-card">
-              <div class="metric-val">$18.5 Billion</div>
-              <div class="metric-desc">Serviceable Addressable Market (Regulated High-Consequence)</div>
-            </div>
-            <div class="metric-card">
-              <div class="metric-val">$3.8 Billion</div>
-              <div class="metric-desc">Serviceable Obtainable Market (Immediate Cross-Border Beachhead)</div>
+          <div class="media-box">
+            <div class="metric-row" style="flex-direction: column; gap: 14px; width: 100%;">
+              <div class="metric-card" style="width: 100%;">
+                <div class="metric-val">$120B+</div>
+                <div class="metric-desc">Mercado Global de Nube Soberana y Privacidad proyectado para 2030</div>
+              </div>
+              <div class="metric-card" style="width: 100%;">
+                <div class="metric-val">$3.8B</div>
+                <div class="metric-desc">SOM Inmediato en Servicios Legales, Defensa y Banca Privada</div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Slide 11: Business Model & Unit Economics -->
-      <section class="slide-pane" data-slide="11" data-category="Financial Engine">
+      <!-- Slide 11: Business Model & Pricing -->
+      <section class="slide-pane" data-slide="11" data-category="Modelo Financiero">
         <div class="slide-meta">
           <span class="slide-number-badge">11 / 14</span>
-          <span class="slide-category">Financial Engine</span>
+          <span class="slide-category">Modelo Financiero</span>
         </div>
         <h2 class="slide-heading">
-          Hybrid Enterprise SaaS Economics: <br>
-          <span class="serif">82% Gross Margins, High Net Retention.</span>
+          Economía SaaS Empresarial Híbrida: <br>
+          <span class="serif">82% de Margen Bruto, Alta Retención Neta.</span>
         </h2>
-        <div class="slide-grid single-col">
-          <table class="slide-table">
-            <thead>
-              <tr>
-                <th>Revenue Stream</th>
-                <th>Pricing Structure</th>
-                <th>Target Customer Metric</th>
-                <th>Unit Gross Margin</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>1. Sovereign Edge Node License</strong></td>
-                <td>$35,000 – $75,000 / year base fee</td>
-                <td>Per organization (Docker orchestration &amp; WireGuard mesh)</td>
-                <td class="col-win">94%</td>
-              </tr>
-              <tr>
-                <td><strong>2. Enterprise Seat Subscription</strong></td>
-                <td>$45 / user / month ($540/yr)</td>
-                <td>Min. 50 seats ($27,000/yr floor)</td>
-                <td class="col-win">88%</td>
-              </tr>
-              <tr>
-                <td><strong>3. Blind S3 Core Mirror Capacity</strong></td>
-                <td>$0.035 / GB / month</td>
-                <td>93-day compliance WORM storage consumption</td>
-                <td class="col-win">65%</td>
-              </tr>
-            </tbody>
-          </table>
-          <div class="metric-row" style="margin-top: 20px;">
-            <div class="metric-card">
-              <div class="metric-val">5.2x</div>
-              <div class="metric-desc">Projected LTV / CAC Ratio</div>
-            </div>
-            <div class="metric-card">
-              <div class="metric-val">125%</div>
-              <div class="metric-desc">Target Net Revenue Retention</div>
-            </div>
-            <div class="metric-card">
-              <div class="metric-val">$62,000</div>
-              <div class="metric-desc">Minimum Initial Contract Floor</div>
+        <div class="slide-grid">
+          <div>
+            <ul class="slide-bullets">
+              <li><strong>Licencia por Nodo en el Borde Soberano:</strong> $35,000–$75,000 anuales por institución según niveles de alta disponibilidad y soporte de red en malla.</li>
+              <li><strong>Suscripción de Asiento Soberano:</strong> $45 por usuario al mes (mínimo de 50 asientos = $27,000 anuales de contrato base).</li>
+              <li><strong>Almacenamiento Ciego y Ancho de Banda:</strong> $0.035 / GB / mes por almacenamiento S3 auditado con bloqueo inmutable WORM de 93 días.</li>
+              <li><strong>Márgenes Brutos del 82%:</strong> Al trasladar el procesamiento criptográfico intensivo al cliente y ejecutar únicamente almacenamiento ciego y enrutamiento en malla, los costos de infraestructura se mantienen extremadamente bajos.</li>
+            </ul>
+          </div>
+          <div class="media-box">
+            <div class="metric-row" style="flex-direction: column; gap: 14px; width: 100%;">
+              <div class="metric-card" style="width: 100%;">
+                <div class="metric-val">$62k–$102k</div>
+                <div class="metric-desc">Tamaño Mínimo de Contrato Anual (ACV) de Entrada</div>
+              </div>
+              <div class="metric-card" style="width: 100%;">
+                <div class="metric-val">82%</div>
+                <div class="metric-desc">Margen Bruto Proyectado en Modelo Híbrido</div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Slide 12: Competitive Landscape -->
-      <section class="slide-pane" data-slide="12" data-category="Competitive Moat">
+      <!-- Slide 12: Competitive Differentiation -->
+      <section class="slide-pane" data-slide="12" data-category="Ventaja Competitiva">
         <div class="slide-meta">
           <span class="slide-number-badge">12 / 14</span>
-          <span class="slide-category">Competitive Moat</span>
+          <span class="slide-category">Ventaja Competitiva</span>
         </div>
         <h2 class="slide-heading">
-          Competitive Positioning: <br>
-          <span class="serif">The Only Architecture Resisting the CLOUD Act.</span>
+          Posicionamiento Competitivo: <br>
+          <span class="serif">La Única Arquitectura Inmune al CLOUD Act.</span>
         </h2>
         <div class="slide-grid single-col">
           <table class="slide-table">
             <thead>
               <tr>
-                <th>Capability Matrix</th>
-                <th>Hyperscalers (OneDrive / Box)</th>
-                <th>Consumer E2EE (Tresorit / Proton)</th>
-                <th>Hardware Enclaves (Virtru / HSMs)</th>
-                <th>Xolotl Sovereign Cooperative</th>
+                <th>Capacidad Arquitectónica</th>
+                <th>Hiperproveedores (OneDrive / Box)</th>
+                <th>Unidades Cifradas de Consumo (Tresorit / Proton)</th>
+                <th>Aparatos Físicos On-Premise</th>
+                <th>Escudo Soberano Xolotl</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td><strong>Frictionless Desktop Sync</strong></td>
-                <td>Yes</td>
-                <td>Yes</td>
-                <td>No (Web Portal / Plugin)</td>
-                <td class="col-win">Yes (Rust / Tauri Native)</td>
+                <td><strong>Inmunidad ante CLOUD Act de EE. UU.</strong></td>
+                <td>✕ Sujetos a citaciones judiciales</td>
+                <td>✕ Clave única local vulnerable</td>
+                <td>✓ Aislado físicamente</td>
+                <td class="col-win">✓ Inmunidad matemática garantizada</td>
               </tr>
               <tr>
-                <td><strong>US CLOUD Act Immunity</strong></td>
-                <td>No (Legally Bound)</td>
-                <td>No (Endpoint Vulnerable)</td>
-                <td>Partial (US Incorporation)</td>
-                <td class="col-win">Yes (Mathematical Immunity)</td>
+                <td><strong>Experiencia Nativa de Escritorio</strong></td>
+                <td>✓ Integración fluida</td>
+                <td>△ Aplicaciones lentas</td>
+                <td>✕ Sin integración nativa</td>
+                <td class="col-win">✓ Nativo en Rust &amp; Tauri (&lt;30MB)</td>
               </tr>
               <tr>
-                <td><strong>Threshold Key Escrow</strong></td>
-                <td>No (Centralized KMS)</td>
-                <td>No (Single Passphrase)</td>
-                <td>No (Central HSM)</td>
-                <td class="col-win">Yes (Pedersen DKG (3,5))</td>
+                <td><strong>Defensa contra Ransomware</strong></td>
+                <td>△ Papelera básica</td>
+                <td>△ Versiones limitadas</td>
+                <td>✕ Vulnerable a cifrado local</td>
+                <td class="col-win">✓ Bloqueo WORM de 93 días y PITR</td>
               </tr>
               <tr>
-                <td><strong>Enforced Diversity Policy</strong></td>
-                <td>No</td>
-                <td>No</td>
-                <td>No</td>
-                <td class="col-win">Yes (Multi-Nation Quorum)</td>
+                <td><strong>Diversidad Jurisdiccional</strong></td>
+                <td>✕ Monojurisdiccional</td>
+                <td>✕ Clave única local</td>
+                <td>✕ Un solo sitio físico</td>
+                <td class="col-win">✓ Cuórum (3 de 5) CA / CH / IS</td>
               </tr>
               <tr>
-                <td><strong>93-Day Immutable WORM</strong></td>
-                <td>Add-on Only</td>
-                <td>No</td>
-                <td>Varies</td>
-                <td class="col-win">Native (S3 Object-Lock)</td>
+                <td><strong>Costo y Complejidad de Adopción</strong></td>
+                <td>Bajo pero riesgoso</td>
+                <td>Moderado</td>
+                <td>Extremadamente costoso ($150k+)</td>
+                <td class="col-win">Software híbrido sin hardware adicional</td>
               </tr>
             </tbody>
           </table>
@@ -1191,115 +1146,84 @@
       </section>
 
       <!-- Slide 13: Roadmap to GA -->
-      <section class="slide-pane" data-slide="13" data-category="Execution Roadmap">
+      <section class="slide-pane" data-slide="13" data-category="Hoja de Ruta">
         <div class="slide-meta">
           <span class="slide-number-badge">13 / 14</span>
-          <span class="slide-category">Execution Roadmap</span>
+          <span class="slide-category">Hoja de Ruta</span>
         </div>
         <h2 class="slide-heading">
-          18-Month Phased Roadmap to GA: <br>
-          <span class="serif">From Validated Monorepo to Series A Scale.</span>
+          Hoja de Ruta de 18 Meses hacia GA: <br>
+          <span class="serif">Del Monorrepo Validado a Escala Serie A.</span>
         </h2>
-        <div class="slide-grid">
-          <div>
-            <ul class="slide-bullets">
-              <li><strong>Phase 1 (M1 – M4): Formal Audit &amp; Legal Opinions:</strong> Execute $75k cryptographic audit RFP with Trail of Bits / Kudelski; file cross-border legal opinions in CH/CA.</li>
-              <li><strong>Phase 2 (M5 – M8): Multi-Platform GA Desktop:</strong> Deliver polished macOS, Windows, and Linux Tauri native clients with automated custodian enrollment; SOC 2 Type 1.</li>
-              <li><strong>Phase 3 (M9 – M12): 6 Paid Enterprise Pilots ($450k ARR):</strong> Convert design partner pipeline; achieve positive net cash flow on pilot operations; unlock Sovereign Tech Fund grant milestones.</li>
-              <li><strong>Phase 4 (M13 – M18): Scale to Series A ($1.35M+ ARR):</strong> Expand to 18 enterprise deployments across Legal and Defense sectors; trigger Series A at $12M–$15M valuation.</li>
-            </ul>
-          </div>
-          <div class="metric-row" style="grid-template-columns: 1fr; gap: 14px;">
-            <div class="metric-card">
-              <div class="metric-val">Month 4</div>
-              <div class="metric-desc">Formal External Cryptographic Audit Sign-off</div>
+        <div class="slide-grid single-col">
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+            <div class="attribute-card" style="background: rgba(25, 43, 35, 0.45); border: 1px solid rgba(200, 157, 75, 0.3); border-radius: 8px; padding: 16px;">
+              <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-gold); margin-bottom: 6px;">FASE 1 (M 1–4)</div>
+              <h4 style="color: #FFFFFF; font-size: 0.95rem; margin-bottom: 8px;">Auditoría Criptográfica</h4>
+              <p style="font-size: 0.82rem; color: #CBD5E1; line-height: 1.4;">Auditoría externa formal de DKG Pedersen y ElGamal de Umbral con firma de primer nivel ($75k). Dictámenes legales transfronterizos.</p>
             </div>
-            <div class="metric-card">
-              <div class="metric-val">Month 12</div>
-              <div class="metric-desc">6 Paid Enterprise Contracts ($450,000 ARR)</div>
+            <div class="attribute-card" style="background: rgba(25, 43, 35, 0.45); border: 1px solid rgba(200, 157, 75, 0.3); border-radius: 8px; padding: 16px;">
+              <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-gold); margin-bottom: 6px;">FASE 2 (M 5–8)</div>
+              <h4 style="color: #FFFFFF; font-size: 0.95rem; margin-bottom: 8px;">Clientes Multiplataforma</h4>
+              <p style="font-size: 0.82rem; color: #CBD5E1; line-height: 1.4;">Optimización en Windows, macOS y Linux. Pruebas de esfuerzo en sincronización continua y despliegues piloto.</p>
             </div>
-            <div class="metric-card">
-              <div class="metric-val">Month 18</div>
-              <div class="metric-desc">18 Enterprise Deployments ($1.35M+ ARR) &amp; Series A</div>
+            <div class="attribute-card" style="background: rgba(25, 43, 35, 0.45); border: 1px solid rgba(200, 157, 75, 0.3); border-radius: 8px; padding: 16px;">
+              <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-gold); margin-bottom: 6px;">FASE 3 (M 9–12)</div>
+              <h4 style="color: #FFFFFF; font-size: 0.95rem; margin-bottom: 8px;">6 Clientes ($450k ARR)</h4>
+              <p style="font-size: 0.82rem; color: #CBD5E1; line-height: 1.4;">Conversión del programa piloto con socios de diseño en bufetes transfronterizos y contratistas de defensa.</p>
+            </div>
+            <div class="attribute-card" style="background: rgba(25, 43, 35, 0.45); border: 1px solid rgba(200, 157, 75, 0.3); border-radius: 8px; padding: 16px;">
+              <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-gold); margin-bottom: 6px;">FASE 4 (M 13–18)</div>
+              <h4 style="color: #FFFFFF; font-size: 0.95rem; margin-bottom: 8px;">Serie A ($1.35M ARR)</h4>
+              <p style="font-size: 0.82rem; color: #CBD5E1; line-height: 1.4;">Escala a 18 despliegues corporativos, expansión del equipo comercial y preparación de ronda Serie A dominante.</p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Slide 14: The Ask & Summary -->
-      <section class="slide-pane" data-slide="14" data-category="Investment Summary">
+      <!-- Slide 14: The Ask & Capital Allocation -->
+      <section class="slide-pane" data-slide="14" data-category="Resumen de Inversión">
         <div class="slide-meta">
           <span class="slide-number-badge">14 / 14</span>
-          <span class="slide-category">Investment Summary</span>
+          <span class="slide-category">Resumen de Inversión</span>
         </div>
         <h2 class="slide-heading">
-          The Ask &amp; Capital Allocation: <br>
-          <span class="serif">Building the Bedrock of Sovereign Data.</span>
+          Requerimiento y Asignación de Capital: <br>
+          <span class="serif">Construyendo los Cimientos de los Datos Soberanos.</span>
         </h2>
         <div class="slide-grid">
           <div>
             <ul class="slide-bullets">
-              <li><strong>Seed Financing Round:</strong> Raising <strong>$1,250,000</strong> (Equity / SAFE) providing 18 months of runway to GA and $1.35M+ ARR.</li>
-              <li><strong>Non-Dilutive Grant Leverage:</strong> Augmented by <strong>$250,000 – $400,000</strong> from Canadian &amp; European sovereign innovation funds (NRC IRAP, Sovereign Tech Fund, NLnet).</li>
-              <li><strong>Capital Allocation:</strong>
-                <br>• <strong>66% Engineering Team:</strong> 2 Senior Rust Systems Engineers, 1 Tauri Desktop Engineer, 1 SecOps Specialist.
-                <br>• <strong>14% Enterprise Pilots:</strong> Sovereign cloud infrastructure &amp; custodian nodes.
-                <br>• <strong>10% Working Capital:</strong> Operational reserve &amp; compliance tooling.
-                <br>• <strong>6% External Audit:</strong> Tier-1 formal cryptographic audit.
-                <br>• <strong>4% Legal Opinions:</strong> Swiss/Canadian cross-border bar opinions.
+              <li><strong>Ronda Semilla de $1.25M:</strong> Complementada con $250,000–$400,000 en subvenciones de innovación soberana no dilutivas de programas canadienses y europeos.</li>
+              <li><strong>Asignación de Capital:</strong>
+                <ul style="margin-top: 6px; padding-left: 20px; font-size: 0.9rem; color: #CBD5E1;">
+                  <li><strong>65% Ingeniería de Sistemas:</strong> 2 ingenieros de sistemas Rust sénior, un desarrollador Tauri y un especialista en SecOps.</li>
+                  <li><strong>15% Auditoría Criptográfica y Legal:</strong> Verificación formal con firma de primer nivel y dictámenes de inmunidad transfronteriza.</li>
+                  <li><strong>12% Pilotos Empresariales:</strong> Despliegue de nodos piloto dedicados y almacenamiento blindado en Montreal.</li>
+                  <li><strong>8% Operaciones Generales:</strong> Capital de trabajo y gobernanza cooperativa fiduciaria.</li>
+                </ul>
               </li>
-              <li><strong>Founder Contact:</strong> Joseph Gormaly • <a href="mailto:cooperate@xolotl.ca" style="color: var(--accent-gold);">cooperate@xolotl.ca</a> • <code>xolotl.ca</code></li>
+              <li><strong>Por Qué Ahora:</strong> La convergencia de la ley CLOUD Act, NIS2 y el ransomware ha creado una demanda institucional masiva que ninguna solución actual resuelve.</li>
             </ul>
           </div>
-          <div class="media-box" style="padding: 24px; background: rgba(18, 28, 23, 0.7); display: flex; flex-direction: column; justify-content: center; gap: 14px;">
-            <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-gold-light); text-transform: uppercase;">INVESTMENT HIGHLIGHTS</div>
-            <h3 style="font-size: 1.3rem; color: #FFFFFF;">Why Xolotl Wins:</h3>
-            <p style="font-size: 0.88rem; color: #CBD5E1; line-height: 1.5;">1. Genuine Cryptographic Moat (DKG + FROST).<br>2. True Extraterritorial CLOUD Act Immunity.<br>3. Secular Geopolitical De-Hyperscalization Tailwinds.<br>4. Functional Tested Codebase Ready Today.</p>
-            <a href="index.html" class="btn btn-gold" style="width: 100%; margin-top: 8px;">Explore Live Prototype &nbsp;→</a>
+          <div class="media-box">
+            <div style="background: rgba(14,24,20,0.85); border: 1px solid rgba(200,157,75,0.4); border-radius: 8px; padding: 20px;">
+              <h3 style="color: var(--accent-gold); font-size: 1.15rem; margin-bottom: 12px;">Por Qué Gana Xolotl:</h3>
+              <p style="font-size: 0.88rem; color: #CBD5E1; line-height: 1.5;">1. Foso Criptográfico Auténtico (DKG Pedersen + ElGamal de Umbral)</p>
+              <p style="font-size: 0.88rem; color: #CBD5E1; line-height: 1.5;">2. Inmunidad Jurisdiccional Verificable (Canadá, Suiza, Islandia)</p>
+              <p style="font-size: 0.88rem; color: #CBD5E1; line-height: 1.5;">3. Ergonomía Nativa sin Fricción (&lt;30MB RAM en Rust y Tauri)</p>
+              <p style="font-size: 0.88rem; color: #CBD5E1; line-height: 1.5;">4. Código en Producción Verificado (sockets de red reales y S3 SigV4)</p>
+            </div>
           </div>
         </div>
       </section>
-
-      <!-- Closed Captions HUD Overlay -->
-      <div id="captionBanner" class="caption-banner">
-        <span class="caption-badge">CC</span>
-        <div class="voice-wave" id="voiceWave">
-          <div class="voice-bar"></div>
-          <div class="voice-bar"></div>
-          <div class="voice-bar"></div>
-          <div class="voice-bar"></div>
-        </div>
-        <div id="captionText" class="caption-text">
-          <span>Click <strong>Voice Track ▶</strong> to play synchronized founder narration for this slide.</span>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Bottom Controller Dock -->
-    <div class="deck-controller">
-      <button class="btn btn-secondary" onclick="prevSlide()" title="Previous Slide (Left Arrow)">
-        <span>← Prev</span>
-      </button>
-
-      <div class="progress-track" id="progressTrack">
-        <!-- 14 progress segment pills generated via JS -->
-      </div>
-
-      <div style="font-family: var(--font-mono); font-size: 0.82rem; color: var(--accent-gold-light); min-width: 75px; text-align: center;">
-        <span id="slideCounter">01 / 14</span>
-      </div>
-
-      <button class="btn btn-gold" onclick="nextSlide()" title="Next Slide (Right Arrow or Space)">
-        <span>Next →</span>
-      </button>
     </div>
   </main>
 
   <!-- Presenter Notes Drawer -->
   <aside id="notesDrawer" class="notes-drawer">
     <div class="notes-head">
-      <h3 style="font-size: 1.1rem; color: #FFFFFF;">Presenter Script &amp; Q&amp;A</h3>
+      <h3 style="font-size: 1.1rem; color: #FFFFFF;">Guion del Presentador y Preguntas Frecuentes</h3>
       <button class="btn btn-secondary" onclick="toggleNotesDrawer()" style="padding: 4px 8px;">✕</button>
     </div>
     <div class="notes-body" id="notesBody">
@@ -1311,8 +1235,8 @@
   <div id="gridModal" class="grid-modal" onclick="handleModalBackdrop(event)">
     <div class="grid-content">
       <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-glass); padding-bottom: 12px;">
-        <h3 style="font-size: 1.2rem; color: #FFFFFF;">14-Slide Presentation Index</h3>
-        <button class="btn btn-secondary" onclick="toggleThumbModal()" style="padding: 4px 8px;">✕ Close</button>
+        <h3 style="font-size: 1.2rem; color: #FFFFFF;">Índice de la Presentación (14 Diapositivas)</h3>
+        <button class="btn btn-secondary" onclick="toggleThumbModal()" style="padding: 4px 8px;">✕ Cerrar</button>
       </div>
       <div class="thumbs-grid" id="thumbsGrid">
         <!-- Injected via JS -->
@@ -1321,29 +1245,29 @@
   </div>
 
   <script>
-    // Slide Narrations (Official Founder Talking Tracks from PITCH_DECK.md)
+        // Slide Narrations (Official Founder Talking Tracks in Spanish)
     const slideScripts = {
-      1: "Good morning. If you manage litigation files for a multinational law firm, classified avionics schematics for a defense subcontractor, or client registries for a Zurich private bank, you face an existential legal trap today. You are told that enterprise cloud storage is zero-trust and encrypted at rest. But in reality, every major cloud provider—Microsoft, Google, Box, AWS—is subject to the US CLOUD Act and foreign surveillance warrants. If a US court issues a sealed directive, your cloud vendor will comply. We built Xolotl to solve this fundamental flaw. Xolotl gives enterprise knowledge workers the exact, frictionless 'drop-a-file-in-a-folder' experience of OneDrive, backed by a cryptographic architecture that makes it mathematically impossible for any single court, any single cloud provider, or any single technical breach to produce their plaintext.",
-      2: "Let's be precise about what changed. In 2018, the United States passed the CLOUD Act. It rendered geographical data residency obsolete. It doesn't matter if your OneDrive instance is physically hosted in Frankfurt or Calgary. If the corporate entity operating that server is subject to US jurisdiction, they are legally compelled to hand over the data in secret. European data protection authorities recognized this in Schrems II and NIS2. Meanwhile, CIOs who flee to on-premises air-gapped file servers get hit by ransomware because air-gaps lack continuous, offsite, immutable replication. Today's enterprise is stuck choosing between convenience that leaks to foreign courts, and air-gapped silos that get destroyed by ransomware.",
-      3: "In Xolotl's threat model, we made a radical but necessary assumption: we assume that our own cloud company, our customer's cloud providers, and even individual company executives can and will be served with lawful, coercive government court orders accompanied by gag orders. If you engineer a system where an administrator or vendor has the technical ability to decrypt data, they will eventually be forced to use it. Therefore, true sovereignty requires what we call Mathematical Powerlessness. Our Canadian backup mirror receives only AES-256-GCM ciphertext. It holds zero key shares. If federal marshals enter our data center with a search warrant, all they will receive is high-entropy noise. They cannot decrypt a single byte because we do not have, have never had, and cannot reconstruct the keys.",
-      4: "How does this look in practice? We divide the system into three distinct layers. At Layer 1, the customer runs a lightweight Sovereign Edge Stack on their own premises or private VPC. This holds user directory metadata and runs Custodian Agent 3 inside an isolated WireGuard mesh network namespace. At Layer 2 is our native desktop app, written in Rust with Tauri. It feels just like Dropbox or OneDrive. When a lawyer saves a brief or an engineer saves a CAD drawing, our background engine catches the event, encrypts the file on the fly using AES-256-GCM in 8 MiB streaming chunks, and dispatches it directly. At Layer 3 is our Canadian Core Mirror located in Montreal, providing multi-tenant disaster recovery with 93-day immutable object locking.",
-      5: "Now let's look under the hood at our cryptographic moat. When we engineered Xolotl, we uncovered a critical flaw in standard threshold signature designs: FROST signatures are inherently non-deterministic because they use fresh random nonces in every signing round. You cannot derive a static AES encryption key from a FROST signature without leaking the key or failing deterministic file recovery. We solved this by designing a dedicated Threshold ElGamal Decryption scheme paired with Chaum-Pedersen zero-knowledge proofs. When an employee logs in, their client initiates an unlock ceremony. The custodians produce partial decryptions of an ephemeral coordinate. Each custodian mathematically proves its share was evaluated correctly without revealing its secret.",
-      6: "Technical separation is meaningless if your legal blast radius is consolidated. If a financial institution runs three custodians, but all three are servers sitting in Northern Virginia, a single subpoena compels all three keys at once. Xolotl introduces cryptographically enforced jurisdictional diversity. Our unlock coordinator enforces a strict mathematical topology check. If an unlock request attempts to use three custodians from the same legal jurisdiction, the client software refuses to execute the ceremony. In our default (3,5) architecture, custodians are distributed across the client's office, a compliance officer's physical device, and independent enclaves in Switzerland and Iceland.",
-      7: "Security systems fail when they are difficult to use. With Xolotl, the user sees a regular folder on their desktop. They save a Word document, an Excel model, or a litigation bundle, and it syncs instantly. If an employee accidentally deletes a folder, or if an endpoint gets hit by zero-day ransomware that encrypts their local drive, they open the Xolotl client, select our Point-in-Time Recovery slider, drag it back five minutes, and restore the uncorrupted files instantly. The Canadian mirror's 93-day object lock ensures that even if ransomware attempts to wipe the backup, the S3 storage bucket rejects the delete command.",
-      8: "Investors see countless cybersecurity pitches that are nothing more than slide decks and theoretical whitepapers. Xolotl is already built and working. Over the past four sprints, we built the entire end-to-end stack in Rust, TypeScript, and Docker. We proved multi-party DKG enrollment across real network sockets. We verified streaming SigV4 multi-part uploads to real S3 infrastructure. We wrote and verified Row-Level Security policies in Postgres that guarantee multi-tenant cryptographic isolation. The code in our repository is fully functional, cleanly documented, and ready for formal verification.",
-      9: "Where do we go to market first? We focus on customers who feel acute legal pain today. Our beachhead is cross-border corporate law firms. When a London or Frankfurt law firm advises on a multi-billion dollar hostile takeover involving US competitors, storing case files on standard cloud drives exposes them to US grand jury subpoenas and CLOUD Act discovery. That can destroy client confidentiality and violate local professional bar ethics. Our second target is defense subcontractors who must meet CMMC 2.0 Level 2 and ITAR standards. Our third segment is Swiss and European private wealth management, where disclosing client rosters to foreign agencies carries criminal penalties.",
-      10: "The macroeconomic and geopolitical tailwinds behind Xolotl are unprecedented. Over the last three years, the concept of national data sovereignty has exploded into boardroom conversations worldwide. The European Union's NIS2 directive and Data Act, combined with strict enforcement of GDPR Article 48, have made standard US cloud storage a massive compliance liability. The sovereign cloud market is projected to surpass $120 billion by 2030. Within that, our serviceable obtainable market of cross-border legal, defense, and private banking institutions represents an immediate $3.8 billion opportunity.",
-      11: "Xolotl uses a high-margin enterprise hybrid business model that aligns directly with how institutions procure high-assurance software. We charge a base Sovereign Edge Node License of $35,000 to $75,000 annually per institution. On top of that, we charge $45 per seat per month, sold with a 50-seat minimum. That ensures our minimum entry deal size is around $62,000, with typical enterprise contracts landing between $75,000 and $150,000 in Year 1. Finally, we charge for dedicated blind storage and streaming bandwidth on our Canadian S3 mirror at $0.035 per gigabyte per month, yielding gross margins above 80%.",
-      12: "When you look at the competitive landscape, existing tools occupy extreme ends of the spectrum without solving the real problem. The hyperscalers—OneDrive and Box—offer world-class desktop ergonomics, but their business model and US incorporation make them fundamentally incapable of resisting the CLOUD Act. Consumer encrypted drives like Tresorit or Proton rely on a single master key stored on the local endpoint. Hardware-based sovereign appliances are outrageously complex and cost hundreds of thousands of dollars in specialized HSM hardware. Xolotl stands alone: we deliver the seamless native sync of OneDrive, paired with the multi-jurisdictional cryptographic protection of a defense-grade enclave.",
-      13: "We have a clear, rigorous 18-month execution plan to take Xolotl from its current validated state to General Availability and Series A scale. In Phase 1, we deploy our Seed funding to complete our formal external cryptographic audit with a premier security firm and secure written legal opinions on our cross-border jurisdictional posture. In Phase 2, we polish our multi-device desktop client for macOS, Windows, and Linux. In Phase 3, we convert our initial pipeline of design partners into six paid enterprise contracts, generating $450,000 in ARR. By Month 18, we will scale to 18 enterprise production deployments, surpass $1.35 million in ARR, and be primed for a dominant Series A round.",
-      14: "To execute this vision, we are raising a $1.25 million Seed round, which we are pairing with $250,000 to $400,000 in non-dilutive sovereign innovation grants from Canadian and European programs. Two-thirds of this capital goes directly into elite systems engineering: hiring two senior Rust systems engineers, a Tauri desktop engineer, and a SecOps specialist to scale our sovereign nodes. The remainder funds our formal cryptographic audit, sovereign legal counsel, and enterprise pilot deployments. The era of naive enterprise cloud storage is over. We invite you to join us in building the sovereign foundation for global enterprise data. Thank you, and I look forward to your questions."
+      1: "Buenos días. Si usted gestiona expedientes de litigio para un bufete internacional, planos de aviónica confidenciales para un subcontratista de defensa o registros de clientes para un banco privado en Zúrich, hoy enfrenta una trampa legal crítica. Le dicen que el almacenamiento empresarial en la nube es de confianza cero y está cifrado en reposo. Pero en realidad, todos los grandes proveedores de nube —Microsoft, Google, Box, AWS— están sujetos a la ley CLOUD Act de EE. UU. y a órdenes de vigilancia secreta extranjeras. Si un tribunal estadounidense emite una directiva sellada, su proveedor de nube la acatará. Construimos Xolotl para resolver esta falla fundamental. Xolotl ofrece a los profesionales la experiencia exacta y fluida de arrastrar y soltar archivos en una carpeta estilo OneDrive, respaldada por una arquitectura criptográfica que hace matemáticamente imposible que un tribunal, un proveedor de nube o una brecha técnica acceda al texto en claro.",
+      2: "Seamos precisos sobre lo que cambió. En 2018, Estados Unidos aprobó la ley CLOUD Act. Esta norma tornó obsoleta la residencia geográfica de datos. No importa si su instancia de OneDrive se aloja físicamente en Fráncfort o Montreal: si la entidad corporativa que opera ese servidor está sujeta a la jurisdicción de EE. UU., está legalmente obligada a entregar los datos en secreto. Las autoridades europeas de protección de datos reconocieron esto en Schrems II y NIS2. Mientras tanto, los directores de TI que se refugian en servidores locales desconectados de internet sufren ataques de ransomware, ya que carecen de replicación remota, continua e inmutable. Las empresas actuales están atrapadas entre la comodidad que se filtra ante tribunales extranjeros y silos aislados destruidos por el ransomware.",
+      3: "En el modelo de amenazas de Xolotl, adoptamos una premisa radical pero indispensable: asumimos que nuestra propia empresa de nube, los proveedores de nuestros clientes e incluso ejecutivos individuales pueden recibir órdenes judiciales coactivas acompañadas de cláusulas de confidencialidad estricta. Si usted diseña un sistema donde un administrador o proveedor tiene la capacidad técnica de descifrar datos, eventualmente será forzado a usarla. Por lo tanto, la verdadera soberanía exige lo que llamamos Impotencia Matemática por Diseño. Nuestro espejo de respaldo canadiense en Montreal recibe exclusivamente texto cifrado con AES-256-GCM y custodia cero fragmentos de claves. Si alguaciles federales entran en nuestro centro de datos con una orden de registro, solo obtendrán ruido aleatorio de alta entropía. No pueden descifrar ni un solo byte porque no tenemos, nunca hemos tenido y no podemos reconstruir las claves.",
+      4: "¿Cómo funciona esto en la práctica? Dividimos el sistema en tres capas independientes. En la Capa 1, la organización ejecuta una pila en el Borde Soberano en sus propias instalaciones o VPC privada. Esta administra los metadatos del directorio corporativo e implementa el Agente Custodio 3 dentro de una malla WireGuard aislada. En la Capa 2 opera nuestra aplicación nativa de escritorio, escrita en Rust con Tauri. Se siente idéntica a Dropbox o OneDrive. Cuando un abogado guarda un escrito o un ingeniero guarda un modelo CAD, nuestro motor intercepta el evento, fragmenta y cifra el archivo en bloques de 8 MiB con AES-256-GCM y lo sincroniza de inmediato. En la Capa 3 se encuentra nuestro Espejo Central Canadiense en Montreal, que proporciona recuperación ante desastres multinquilino con bloqueo inmutable de objetos por 93 días.",
+      5: "Examinemos ahora nuestro foso criptográfico. Al diseñar Xolotl descubrimos una limitación crítica en las firmas de umbral estándar: las firmas FROST son inherentemente no deterministas porque generan nonces aleatorios nuevos en cada ronda de firma. No es posible derivar una clave de cifrado AES estática a partir de una firma FROST sin filtrar la clave o arriesgar la recuperación determinista de archivos. Resolvimos esto combinando la autorización FROST con un esquema desacoplado de Descifrado ElGamal de Umbral emparejado con pruebas de conocimiento cero Chaum-Pedersen. Cuando un empleado inicia sesión, el cliente inicia una ceremonia de desbloqueo en la que los custodios producen descifrados parciales de coordenadas efímeras, demostrando matemáticamente la validez del cálculo sin revelar jamás su secreto.",
+      6: "La separación técnica carece de sentido si el radio de acción legal se encuentra concentrado. Si una institución financiera ejecuta tres custodios pero los tres están alojados en Virginia del Norte, una sola citación judicial compromete las tres claves a la vez. Xolotl introduce una diversidad jurisdiccional criptográficamente forzada. Nuestro coordinador de desbloqueo ejecuta una estricta verificación topológica: si una solicitud intenta emplear custodios bajo el mismo régimen legal, el software rechaza de forma absoluta ejecutar la ceremonia. En nuestra arquitectura por defecto (3 de 5), los custodios se distribuyen entre la oficina de la entidad, el dispositivo físico del oficial de cumplimiento y enclaves independientes en Canadá, Suiza e Islandia.",
+      7: "Los sistemas de seguridad fracasan cuando son difíciles de utilizar. Con Xolotl, el usuario ve una carpeta normal en su escritorio. Guarda un documento de Word, un modelo de Excel o un expediente legal y se sincroniza al instante. Si un empleado elimina accidentalmente una carpeta o un punto final es infectado por ransomware día cero que cifra su disco local, basta con abrir el cliente Xolotl, deslizar la barra de Recuperación a Punto en el Tiempo cinco minutos atrás y restaurar los archivos intactos de inmediato. El bloqueo de objetos de 93 días en el espejo canadiense asegura que incluso si el ransomware intenta eliminar el respaldo, el almacenamiento S3 rechaza de inmediato la orden de borrado.",
+      8: "Los inversionistas ven incontables propuestas de ciberseguridad que no son más que presentaciones de diapositivas y documentos teóricos. Xolotl ya está construido y operativo. Durante los últimos cuatro ciclos desarrollamos la pila completa de extremo a extremo en Rust, TypeScript y Docker. Demostramos ceremonias de registro DKG entre múltiples partes sobre sockets de red reales, verificamos transmisiones en streaming multipart SigV4 a infraestructura S3 real e implementamos políticas de seguridad a nivel de fila en Postgres que garantizan aislamiento multinquilino estricto. El código en nuestro repositorio es plenamente funcional, documentado y listo para auditoría formal.",
+      9: "¿Cuál es nuestro mercado inicial? Nos enfocamos en organizaciones que sienten apremio legal crítico hoy mismo. Nuestra cabeza de playa son los bufetes de derecho corporativo transfronterizo. Cuando un bufete en Londres o Fráncfort asesora una adquisición confidencial multimillonaria frente a competidores estadounidenses, almacenar los expedientes en discos comerciales en la nube los expone a órdenes selladas bajo el CLOUD Act. Eso destruye el secreto profesional y viola los códigos de ética jurídica locales. Nuestro segundo objetivo son los subcontratistas de defensa que deben cumplir con CMMC 2.0 e ITAR. Nuestro tercer segmento es la banca privada y gestión de patrimonios en Suiza y Europa, donde divulgar registros de clientes a agencias extranjeras acarrea sanciones penales.",
+      10: "Los vientos de cola macroeconómicos y geopolíticos detrás de Xolotl no tienen precedentes. En los últimos tres años, la soberanía de datos ha escalado a las juntas directivas globales. La directiva NIS2 de la Unión Europea y el Artículo 48 del RGPD han convertido el almacenamiento tradicional en nubes estadounidenses en un grave riesgo de cumplimiento legal. El mercado de nube soberana superará los $120,000 millones para 2030. Dentro de este, nuestro mercado accesible inmediato en servicios legales transfronterizos, defensa y banca privada representa una oportunidad inmediata de $3,800 millones.",
+      11: "Xolotl utiliza un modelo híbrido de software empresarial con márgenes elevados alineado con los procesos de compra institucional. Cobramos una Licencia Anual por Nodo en el Borde Soberano de $35,000 a $75,000 por entidad. Adicionalmente, cobramos $45 por usuario al mes con un mínimo de 50 licencias, asegurando que nuestro contrato de entrada ronde los $62,000, con acuerdos típicos de $75,000 a $150,000 en el primer año. Finalmente, facturamos el almacenamiento ciego dedicado y ancho de banda en nuestro espejo canadiense S3 a $0.035 por gigabyte al mes, generando márgenes brutos superiores al 80%.",
+      12: "Al analizar el panorama competitivo, las herramientas existentes ocupan extremos opuestos sin resolver el problema real. Los hiperproveedores —OneDrive y Box— ofrecen una ergonomía de escritorio insuperable, pero su modelo de negocio y matriz en EE. UU. los hace incapaces de resistir el CLOUD Act. Las unidades cifradas de consumo como Tresorit o Proton dependen de una única clave maestra local en el dispositivo. Los aparatos físicos de almacenamiento desconectado son excesivamente complejos y cuestan cientos de miles de dólares en hardware HSM dedicado. Xolotl se ubica en una categoría propia: sincronización nativa fluida al estilo de OneDrive, combinada con la protección criptográfica multijurisdiccional de un enclave de defensa.",
+      13: "Contamos con un plan de ejecución riguroso de 18 meses para llevar a Xolotl desde su estado validado actual hasta Disponibilidad General y escala Serie A. En la Fase 1, aplicamos nuestro capital semilla a completar la auditoría criptográfica externa formal con una firma de primer nivel y obtener dictámenes legales transfronterizos. En la Fase 2, optimizamos el cliente nativo multiplataforma para Windows, macOS y Linux. En la Fase 3, convertimos nuestra cartera inicial de socios de diseño en seis contratos corporativos remunerados, alcanzando $450,000 en ARR. Para el mes 18, escalaremos a 18 despliegues empresariales, superaremos los $1.35 millones en ARR y estaremos posicionados para una sólida ronda Serie A.",
+      14: "Para ejecutar esta visión, estamos levantando una ronda Semilla de $1.25 millones, que complementamos con $250,000 a $400,000 en subvenciones de innovación soberana no dilutivas de programas canadienses y europeos. Dos tercios de este capital se destinan directamente a ingeniería de sistemas de élite: contratando a dos ingenieros sénior de sistemas Rust, un desarrollador de escritorio Tauri y un especialista en SecOps para escalar nuestros nodos soberanos. El tercio restante financia nuestra auditoría criptográfica formal, asesoría jurídica soberana y despliegues piloto empresariales. La era de la nube corporativa ingenua ha terminado. Los invitamos a unirse a nosotros para construir los cimientos de los datos corporativos soberanos a nivel global. Muchas gracias y quedo a su disposición para sus preguntas."
     };
 
     const investorQnA = {
-      1: { q: "Doesn't Box, OneDrive, or Tresorit already claim end-to-end encryption?", a: "OneDrive and Box manage keys centrally and routinely comply with CLOUD Act warrants. Tresorit and Proton rely on a single master key on the endpoint. If an administrator is served a subpoena, all data is exposed. Xolotl partitions keys across independent sovereign borders via Pedersen DKG; no single entity holds the key alone." },
-      2: { q: "Can't enterprise customers just use Client-Side Encryption in Google Workspace or Microsoft Purview?", a: "Those still rely on centralized KMS infrastructure or enterprise APIs. If compelled, a single API key dump unseals all documents. Furthermore, they lack cryptographically enforced jurisdictional diversity: all keys remain under one domestic legal regime." },
-      5: { q: "Writing custom crypto is notoriously dangerous. Why trust your cryptographic implementation?", a: "We built on top of the battle-tested, peer-reviewed frost-core and curve25519-dalek libraries maintained by the Zcash Foundation and Dalek Cryptography teams. We conducted pre-audit reviews, implemented negative regressions, and budgeted $75,000 for an independent formal audit by firms like Trail of Bits." },
-      11: { q: "How do you justify $45/user/month when standard OneDrive is $15?", a: "Standard OneDrive does not provide CLOUD Act immunity or subpoena resistance. A single privileged breach in cross-border litigation or defense CUI costs tens of millions. Customers are replacing $150k specialized hardware appliances and private enclaves with Xolotl." }
+      1: { q: "¿Acaso Box, OneDrive o Tresorit no ofrecen ya cifrado de extremo a extremo?", a: "OneDrive y Box administran claves centralizadamente y acatan habitualmente las directivas del CLOUD Act. Tresorit y Proton dependen de una única clave maestra en el punto final. Si un administrador recibe una citación, todos los datos quedan expuestos. Xolotl fragmenta las claves entre fronteras soberanas independientes mediante DKG Pedersen; ninguna entidad posee la clave por sí sola." },
+      2: { q: "¿No pueden los clientes empresariales recurrir simplemente al cifrado del lado del cliente en Google Workspace o Microsoft Purview?", a: "Esos sistemas aún dependen de infraestructura KMS centralizada o APIs empresariales. Ante un requerimiento judicial, la extracción de una sola clave API descifra todos los documentos. Además, carecen de diversidad jurisdiccional forzada: todas las claves permanecen bajo un único régimen legal nacional." },
+      5: { q: "Diseñar criptografía a medida es sumamente delicado. ¿Por qué confiar en su implementación criptográfica?", a: "Construimos sobre las bibliotecas curve25519-dalek y frost-core revisadas por pares y probadas en combate, mantenidas por la Fundación Zcash y los equipos de Dalek Cryptography. Realizamos revisiones pre-auditoría, implementamos pruebas de regresión negativas y presupuestamos $75,000 para una auditoría formal independiente por firmas como Trail of Bits." },
+      11: { q: "¿Cómo justifican $45/usuario/mes cuando OneDrive comercial cuesta $15?", a: "OneDrive comercial no ofrece inmunidad ante el CLOUD Act ni resistencia a órdenes judiciales extraterritoriales. Una sola filtración en litigios internacionales o información clasificada de defensa cuesta decenas de millones. Nuestros clientes reemplazan aparatos de hardware especializados de más de $150k y enclaves privados con la solución de Xolotl." }
     };
 
     let currentSlide = 1;
@@ -1473,19 +1397,19 @@
 
     function updateNotesContent() {
       const body = document.getElementById('notesBody');
-      const script = slideScripts[currentSlide] || 'No speaker notes available.';
+      const script = slideScripts[currentSlide] || 'No hay notas disponibles para esta diapositiva.';
       const qna = investorQnA[currentSlide];
       
       let html = `
-        <h4>Presenter Talking Track (Slide ${currentSlide})</h4>
+        <h4>Guion del Presentador (Diapositiva ${currentSlide})</h4>
         <p>${script}</p>
       `;
 
       if (qna) {
         html += `
-          <h4>Anticipated Investor Q&amp;A</h4>
+          <h4>Preguntas y Respuestas Anticipadas de Inversionistas</h4>
           <div class="notes-qna">
-            <strong>Investor Trap: "${qna.q}"</strong>
+            <strong>Objeción de Inversionista: "${qna.q}"</strong>
             <p style="margin-bottom:0;">${qna.a}</p>
           </div>
         `;
@@ -1550,7 +1474,7 @@
         wave.classList.add('speaking');
         narrateBtn.classList.add('active');
         narrateIcon.innerText = '⏸';
-        narrateLabel.innerText = 'Pause Track';
+        narrateLabel.innerText = 'Pausar Pista';
         captionText.innerHTML = `<span class="active-sentence">${sentences[0].trim()}</span>`;
       };
 
@@ -1568,7 +1492,7 @@
       currentAudio.addEventListener('ended', () => {
         stopNarrationState();
         currentAudio = null;
-        captionText.innerHTML = `<span style="color:var(--accent-sage);">✓ Narration complete for Slide ${currentSlide}.</span>`;
+        captionText.innerHTML = `<span style="color:var(--accent-sage);">✓ Narración completada para la Diapositiva ${currentSlide}.</span>`;
         if (autoAdvance && currentSlide < totalSlides) {
           setTimeout(() => {
             nextSlide();
@@ -1623,7 +1547,7 @@
         wave.classList.add('speaking');
         narrateBtn.classList.add('active');
         narrateIcon.innerText = '⏸';
-        narrateLabel.innerText = 'Pause Track';
+        narrateLabel.innerText = 'Pausar Pista';
         captionText.innerHTML = `<span class="active-sentence">${sentences[0].trim()}</span>`;
       };
 
@@ -1644,7 +1568,7 @@
 
       currentUtterance.onend = () => {
         stopNarrationState();
-        captionText.innerHTML = `<span style="color:var(--accent-sage);">✓ Narration complete for Slide ${currentSlide}.</span>`;
+        captionText.innerHTML = `<span style="color:var(--accent-sage);">✓ Narración completada para la Diapositiva ${currentSlide}.</span>`;
         if (autoAdvance && currentSlide < totalSlides) {
           setTimeout(() => {
             nextSlide();

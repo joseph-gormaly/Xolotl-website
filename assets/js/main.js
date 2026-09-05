@@ -163,8 +163,9 @@ function handleFormSubmit(e) {
   const rNotes = document.getElementById('rNotes');
   const rNotesRow = document.getElementById('rNotesRow');
 
-  if (rOrg) rOrg.innerText = org || 'Not specified';
-  if (rEmail) rEmail.innerText = email || 'Not specified';
+  const isEs = window.location.pathname.includes('/es/') || document.documentElement.lang === 'es';
+  if (rOrg) rOrg.innerText = org || (isEs ? 'No especificado' : 'Not specified');
+  if (rEmail) rEmail.innerText = email || (isEs ? 'No especificado' : 'Not specified');
   if (rSector) rSector.innerText = sector;
   if (rNotesRow && rNotes) {
     if (notes) {
@@ -176,7 +177,8 @@ function handleFormSubmit(e) {
   }
 
   // Build structured email payload
-  const subject = `Institutional Pilot Application: ${org}`;
+  const isEs = window.location.pathname.includes('/es/') || document.documentElement.lang === 'es';
+  const subject = isEs ? `Solicitud de Piloto Institucional: ${org}` : `Institutional Pilot Application: ${org}`;
   const emailBody = 
 `INSTITUTIONAL PILOT APPLICATION // XOLOTL CANADIAN SHIELD
 =========================================================
@@ -236,7 +238,8 @@ function copyApplicationDetails() {
     const btn = document.getElementById('pCopyBtn');
     if (btn) {
       const origText = btn.innerHTML;
-      btn.innerHTML = '✓ Copied to Clipboard!';
+      const isEs = window.location.pathname.includes('/es/') || document.documentElement.lang === 'es';
+      btn.innerHTML = isEs ? '✓ ¡Copiado al Portapapeles!' : '✓ Copied to Clipboard!';
       btn.style.borderColor = 'var(--accent-sage)';
       btn.style.color = 'var(--accent-sage)';
       setTimeout(() => {
@@ -281,31 +284,45 @@ function switchThreatMode(mode) {
   const flow = document.getElementById('simFlow');
   if (!msg || !badge || !flow) return;
 
+  const isEs = window.location.pathname.includes('/es/') || document.documentElement.lang === 'es';
+
   if (bNorm) bNorm.className = 'btn btn-secondary';
   if (bCloud) bCloud.className = 'btn btn-secondary';
   if (bRansom) bRansom.className = 'btn btn-secondary';
 
   if (mode === 'normal') {
     if (bNorm) bNorm.className = 'btn btn-gold';
-    badge.innerText = 'STATUS: NORMAL OPERATION (ZERO-TRUST)';
+    badge.innerText = isEs ? 'ESTADO: OPERACIÓN NORMAL (CONFIANZA CERO)' : 'STATUS: NORMAL OPERATION (ZERO-TRUST)';
     badge.style.color = 'var(--accent-sage)';
-    flow.innerHTML = 'Edge Node (Local AES-256) ──▶ WireGuard Mesh ──▶ S3 Canadian Shield (Encrypted)';
+    flow.innerHTML = isEs 
+      ? 'Nodo en el Borde (AES-256 Local) ──▶ Malla WireGuard ──▶ S3 Escudo Canadiense (Cifrado)'
+      : 'Edge Node (Local AES-256) ──▶ WireGuard Mesh ──▶ S3 Canadian Shield (Encrypted)';
     msg.style.borderLeftColor = 'var(--accent-sage)';
-    msg.innerHTML = '<strong>Standard Workflow:</strong> Files are chunked and encrypted on the client before leaving the OS kernel. Montreal core stores only high-entropy ciphertext with 93-day object lock.';
+    msg.innerHTML = isEs
+      ? '<strong>Flujo de Trabajo Estándar:</strong> Los archivos se fragmentan y cifran en el cliente antes de abandonar el núcleo del SO. El núcleo en Montreal almacena exclusivamente texto cifrado de alta entropía con bloqueo inmutable de objetos por 93 días.'
+      : '<strong>Standard Workflow:</strong> Files are chunked and encrypted on the client before leaving the OS kernel. Montreal core stores only high-entropy ciphertext with 93-day object lock.';
   } else if (mode === 'cloudact') {
     if (bCloud) bCloud.className = 'btn btn-gold';
-    badge.innerText = 'SIMULATION: US CLOUD ACT SUBPOENA SERVED';
+    badge.innerText = isEs ? 'SIMULACIÓN: CITACIÓN JUDICIAL BAJO EL CLOUD ACT DE EE. UU.' : 'SIMULATION: US CLOUD ACT SUBPOENA SERVED';
     badge.style.color = '#F59E0B';
-    flow.innerHTML = 'US Court ──[Subpoena]──▶ US Entity ──[BLOCKED: 0 Shares]──▶ <strong>NO PLAINTEXT</strong>';
+    flow.innerHTML = isEs
+      ? 'Tribunal de EE. UU. ──[Citación]──▶ Entidad de EE. UU. ──[BLOQUEADO: 0 Fragmentos]──▶ <strong>SIN TEXTO EN CLARO</strong>'
+      : 'US Court ──[Subpoena]──▶ US Entity ──[BLOCKED: 0 Shares]──▶ <strong>NO PLAINTEXT</strong>';
     msg.style.borderLeftColor = '#F59E0B';
-    msg.innerHTML = '<strong>Subpoena Result:</strong> Court order served on cloud providers or US affiliates yields zero decryption shares. Quorum requires independent Canadian and European custodians. Plaintext recovery is mathematically impossible.';
+    msg.innerHTML = isEs
+      ? '<strong>Resultado de la Citación:</strong> La orden judicial notificada a proveedores de nube o filiales estadounidenses arroja cero fragmentos de descifrado. El cuórum requiere custodios independientes canadienses y europeos. La recuperación de texto en claro es matemáticamente imposible.'
+      : '<strong>Subpoena Result:</strong> Court order served on cloud providers or US affiliates yields zero decryption shares. Quorum requires independent Canadian and European custodians. Plaintext recovery is mathematically impossible.';
   } else if (mode === 'ransomware') {
     if (bRansom) bRansom.className = 'btn btn-gold';
-    badge.innerText = 'SIMULATION: ZERO-DAY RANSOMWARE ATTACK';
+    badge.innerText = isEs ? 'SIMULACIÓN: ATAQUE DE RANSOMWARE DÍA CERO' : 'SIMULATION: ZERO-DAY RANSOMWARE ATTACK';
     badge.style.color = 'var(--accent-gold)';
-    flow.innerHTML = 'Endpoint Encrypted ──▶ Point-in-Time Rollback ──▶ <strong>100% Uncorrupted Files Restored</strong>';
+    flow.innerHTML = isEs
+      ? 'Punto Final Cifrado ──▶ Reversión a Punto en el Tiempo ──▶ <strong>100% de Archivos Intactos Restaurados</strong>'
+      : 'Endpoint Encrypted ──▶ Point-in-Time Rollback ──▶ <strong>100% Uncorrupted Files Restored</strong>';
     msg.style.borderLeftColor = 'var(--accent-gold)';
-    msg.innerHTML = '<strong>Ransomware Attack Result:</strong> Ransomware encrypts local drives, but cannot modify past S3 versions protected by 93-day compliance WORM locks. Administrator triggers <code>restore_vault_as_of()</code> and restores all files uncorrupted.';
+    msg.innerHTML = isEs
+      ? '<strong>Resultado del Ataque de Ransomware:</strong> El ransomware cifra los discos locales, pero no puede modificar las versiones anteriores en S3 protegidas por bloqueos de cumplimiento WORM de 93 días. El administrador activa <code>restore_vault_as_of()</code> y restaura todos los archivos sin corrupción.'
+      : '<strong>Ransomware Attack Result:</strong> Ransomware encrypts local drives, but cannot modify past S3 versions protected by 93-day compliance WORM locks. Administrator triggers <code>restore_vault_as_of()</code> and restores all files uncorrupted.';
   }
 }
 
@@ -320,29 +337,31 @@ function scrubTimeline(val) {
   const f3s = document.getElementById('f3s');
   if (!pTime || !f1 || !f2 || !f3 || !f1s || !f2s || !f3s) return;
 
+  const isEs = window.location.pathname.includes('/es/') || document.documentElement.lang === 'es';
+
   if (val > 80) {
-    pTime.innerText = "T-0: Present Time (Compromised)";
+    pTime.innerText = isEs ? "T-0: Momento Actual (Comprometido)" : "T-0: Present Time (Compromised)";
     f1.className = "file-row corrupted";
     f1.querySelector('span:first-child').innerText = "📄 Turbine_Telemetry_Final.cad.locked";
-    f1s.innerText = "Ransomware Encrypted";
+    f1s.innerText = isEs ? "Cifrado por Ransomware" : "Ransomware Encrypted";
     f2.className = "file-row corrupted";
     f2.querySelector('span:first-child').innerText = "📊 Stress_Testing_Log_Q3.xlsx.locked";
-    f2s.innerText = "Ransomware Encrypted";
+    f2s.innerText = isEs ? "Cifrado por Ransomware" : "Ransomware Encrypted";
     f3.className = "file-row corrupted";
     f3.querySelector('span:first-child').innerText = "📑 Export_Compliance_ITAR.pdf.locked";
-    f3s.innerText = "Ransomware Encrypted";
+    f3s.innerText = isEs ? "Cifrado por Ransomware" : "Ransomware Encrypted";
   } else {
     const mins = Math.round((100 - val) / 5) + 1;
-    pTime.innerText = `Rollback: T - ${mins} minutes ago`;
+    pTime.innerText = isEs ? `Reversión: T - ${mins} minutos atrás` : `Rollback: T - ${mins} minutes ago`;
     f1.className = "file-row good";
     f1.querySelector('span:first-child').innerText = "📄 Turbine_Telemetry_Final.cad";
-    f1s.innerText = "Restored & Verified (v4)";
+    f1s.innerText = isEs ? "Restaurado y Verificado (v4)" : "Restored & Verified (v4)";
     f2.className = "file-row good";
     f2.querySelector('span:first-child').innerText = "📊 Stress_Testing_Log_Q3.xlsx";
-    f2s.innerText = "Restored & Verified (v2)";
+    f2s.innerText = isEs ? "Restaurado y Verificado (v2)" : "Restored & Verified (v2)";
     f3.className = "file-row good";
     f3.querySelector('span:first-child').innerText = "📑 Export_Compliance_ITAR.pdf";
-    f3s.innerText = "Restored & Verified (v7)";
+    f3s.innerText = isEs ? "Restaurado y Verificado (v7)" : "Restored & Verified (v7)";
   }
 }
 

@@ -192,6 +192,40 @@
       font-size: 0.68rem;
     }
 
+    .sound-bars {
+      display: inline-flex;
+      align-items: flex-end;
+      gap: 2px;
+      height: 12px;
+      margin-left: 2px;
+    }
+    .sound-bars .bar {
+      width: 2px;
+      height: 4px;
+      background: var(--accent-gold);
+      border-radius: 1px;
+      transition: height 0.15s ease;
+    }
+    .pronounce-chip.playing .sound-bars .bar:nth-child(1),
+    .meta-speaker-btn.playing .sound-bars .bar:nth-child(1) {
+      animation: eqBar 0.4s infinite alternate ease-in-out;
+      background: var(--accent-sage);
+    }
+    .pronounce-chip.playing .sound-bars .bar:nth-child(2),
+    .meta-speaker-btn.playing .sound-bars .bar:nth-child(2) {
+      animation: eqBar 0.32s 0.1s infinite alternate ease-in-out;
+      background: var(--accent-sage-light);
+    }
+    .pronounce-chip.playing .sound-bars .bar:nth-child(3),
+    .meta-speaker-btn.playing .sound-bars .bar:nth-child(3) {
+      animation: eqBar 0.45s 0.2s infinite alternate ease-in-out;
+      background: var(--accent-sage);
+    }
+    @keyframes eqBar {
+      0% { height: 3px; }
+      100% { height: 12px; }
+    }
+
     .nav-links {
       display: flex;
       gap: 32px;
@@ -434,6 +468,13 @@
       background: rgba(212, 175, 55, 0.38);
       color: #FFFFFF;
       transform: translateY(-1px);
+    }
+
+    .meta-speaker-btn.playing {
+      background: rgba(52, 211, 153, 0.28);
+      border-color: var(--accent-sage);
+      color: var(--accent-sage-light);
+      box-shadow: 0 0 12px rgba(52, 211, 153, 0.6);
     }
 
     .hero-meta-h {
@@ -813,6 +854,237 @@
       line-height: 1.15;
     }
 
+    /* Problem Section: The Four Fatal Illusions */
+    .problem-section {
+      background: radial-gradient(circle at 80% 20%, rgba(239, 68, 68, 0.07) 0%, transparent 55%),
+                  radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.06) 0%, transparent 60%),
+                  rgba(10, 16, 13, 0.85);
+      border-top: 1px solid var(--border-glass-subtle);
+      border-bottom: 1px solid var(--border-glass-subtle);
+      position: relative;
+    }
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 44px;
+      align-items: center;
+      margin-top: 36px;
+    }
+
+    .problem-tab-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .problem-tab-card {
+      background: var(--bg-glass-card);
+      border: 1px solid var(--border-glass);
+      border-radius: 10px;
+      padding: 16px 20px;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .problem-tab-card:hover {
+      background: var(--bg-glass-hover);
+      border-color: rgba(255, 255, 255, 0.25);
+      transform: translateX(4px);
+    }
+
+    .problem-tab-card.active {
+      background: linear-gradient(135deg, rgba(24, 38, 30, 0.92) 0%, rgba(16, 26, 20, 0.96) 100%);
+      border-color: var(--accent-gold);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), inset 0 0 1px rgba(245, 208, 116, 0.5);
+    }
+
+    .problem-tab-card.active::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: linear-gradient(to bottom, var(--accent-gold), var(--accent-sage));
+    }
+
+    .tab-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+
+    .tab-index {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--accent-gold);
+      letter-spacing: 0.08em;
+      font-weight: 700;
+    }
+
+    .tab-threat-tag {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: rgba(239, 68, 68, 0.15);
+      color: #FCA5A5;
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      letter-spacing: 0.05em;
+    }
+
+    .tab-title {
+      font-size: 1.02rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      margin-bottom: 6px;
+    }
+
+    .tab-brief {
+      font-size: 0.84rem;
+      color: var(--text-warm-gray);
+      line-height: 1.45;
+    }
+
+    .tab-details {
+      display: none;
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      animation: fadeInTab 0.3s ease;
+    }
+
+    .problem-tab-card.active .tab-details {
+      display: block;
+    }
+
+    @keyframes fadeInTab {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .flaw-vs-solution {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .box-flaw {
+      background: rgba(239, 68, 68, 0.08);
+      border: 1px solid rgba(239, 68, 68, 0.28);
+      border-radius: 6px;
+      padding: 10px 12px;
+      font-size: 0.8rem;
+      line-height: 1.4;
+      color: #FEE2E2;
+    }
+
+    .box-flaw .box-label {
+      color: #F87171;
+      font-weight: 700;
+      font-family: var(--font-mono);
+      font-size: 0.66rem;
+      margin-bottom: 4px;
+      display: block;
+      letter-spacing: 0.06em;
+    }
+
+    .box-sol {
+      background: rgba(52, 211, 153, 0.08);
+      border: 1px solid rgba(52, 211, 153, 0.3);
+      border-radius: 6px;
+      padding: 10px 12px;
+      font-size: 0.8rem;
+      line-height: 1.4;
+      color: #ECFDF5;
+    }
+
+    .box-sol .box-label {
+      color: var(--accent-sage);
+      font-weight: 700;
+      font-family: var(--font-mono);
+      font-size: 0.66rem;
+      margin-bottom: 4px;
+      display: block;
+      letter-spacing: 0.06em;
+    }
+
+    /* Problem Matrix Media Frame */
+    .matrix-media-frame {
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--border-glass-gold);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7), 0 0 35px rgba(212, 175, 55, 0.12);
+      background: #080D0B;
+    }
+
+    .matrix-media-frame img {
+      width: 100%;
+      height: 100%;
+      min-height: 480px;
+      max-height: 520px;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      filter: contrast(1.05);
+      transition: transform 0.6s ease;
+    }
+
+    .matrix-media-frame:hover img {
+      transform: scale(1.02);
+    }
+
+    .matrix-telemetry-hud {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      right: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(12, 19, 15, 0.92);
+      border: 1px solid var(--border-glass);
+      border-radius: 6px;
+      padding: 8px 14px;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-warm-gray);
+      backdrop-filter: blur(10px);
+      z-index: 2;
+    }
+
+    .matrix-telemetry-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 18px 22px;
+      background: linear-gradient(to top, rgba(8, 13, 10, 0.96) 0%, rgba(8, 13, 10, 0.75) 75%, transparent 100%);
+      z-index: 2;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .matrix-telemetry-caption h5 {
+      font-size: 1rem;
+      color: #FFFFFF;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .matrix-telemetry-caption p {
+      font-size: 0.82rem;
+      color: var(--text-warm-gray);
+      line-height: 1.4;
+      margin: 0;
+    }
+
     .non-negotiables-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -930,6 +1202,8 @@
       padding: 24px;
       transition: all 0.3s ease;
       position: relative;
+      display: flex;
+      flex-direction: column;
     }
 
     .topo-card.active-layer {
@@ -979,8 +1253,61 @@
       font-weight: 700;
     }
 
+    .topo-vault-frame {
+      margin: 14px 0 16px 0;
+      position: relative;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid rgba(52, 211, 153, 0.25);
+      background: rgba(0, 0, 0, 0.4);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    }
+
+    .topo-vault-frame img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.9) contrast(1.1);
+      transition: transform 0.4s ease, filter 0.4s ease;
+    }
+
+    .topo-vault-frame:hover img {
+      transform: scale(1.04);
+      filter: brightness(1.02) contrast(1.15);
+    }
+
+    .topo-vault-badge {
+      position: absolute;
+      bottom: 8px;
+      left: 8px;
+      background: rgba(11, 17, 14, 0.88);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      color: var(--accent-gold);
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 3px 8px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .topo-vault-badge::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent-sage);
+      box-shadow: 0 0 6px var(--accent-sage);
+    }
+
     .status-badge {
-      margin-top: 16px;
+      margin-top: auto;
       padding: 8px 12px;
       border-radius: 6px;
       font-size: 0.82rem;
@@ -1579,6 +1906,14 @@
       .mythos-media {
         height: 340px;
       }
+      .problem-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .matrix-media-frame img {
+        min-height: 360px;
+        max-height: 420px;
+      }
       .non-negotiables-grid {
         grid-template-columns: 1fr;
       }
@@ -1661,6 +1996,13 @@
       .mythos-attributes {
         grid-template-columns: 1fr;
       }
+      .flaw-vs-solution {
+        grid-template-columns: 1fr;
+      }
+      .matrix-media-frame img {
+        min-height: 280px;
+        max-height: 340px;
+      }
       .section-standard {
         padding: 50px 0;
       }
@@ -1741,10 +2083,16 @@
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="speaker-svg"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
           <span class="pronounce-text">"SHOW-lotl"</span>
           <span class="pronounce-ipa">/ˈʃoːloːtɬ/</span>
+          <span class="sound-bars">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </span>
         </button>
       </div>
 
       <ul class="nav-links">
+        <li><a href="#problem">The Problem</a></li>
         <li><a href="#philosophy">Philosophy</a></li>
         <li><a href="#presentation">Presentation</a></li>
         <li><a href="#architecture">Architecture</a></li>
@@ -1769,6 +2117,7 @@
   <!-- Mobile Drawer Menu -->
   <div id="mobileDrawer" class="mobile-drawer">
     <div class="mobile-drawer-links">
+      <a href="#problem" onclick="closeMobileMenu()">The Four Fatal Illusions</a>
       <a href="#philosophy" onclick="closeMobileMenu()">Philosophy & Etymology</a>
       <a href="#presentation" onclick="closeMobileMenu()">14-Slide Presentation Deck</a>
       <a href="#non-negotiables" onclick="closeMobileMenu()">The Non-Negotiables</a>
@@ -1816,6 +2165,11 @@
                 <button class="meta-speaker-btn" onclick="playPronounceAudio(event)" title="Hear audio pronunciation" aria-label="Hear pronunciation">
                   <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
                   <span>Hear</span>
+                  <span class="sound-bars">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                  </span>
                 </button>
               </div>
               <span class="hero-meta-h">Hard to spell. Impossible to compel.</span>
@@ -1832,8 +2186,8 @@
             <a href="#presentation" class="btn btn-secondary">
               14-Slide Presentation ▾
             </a>
-            <a href="INVESTOR_FAQ_AND_OBJECTIONS.md" class="btn btn-secondary">
-              Technical FAQ
+            <a href="#problem" class="btn btn-secondary">
+              The Four Fatal Flaws ▾
             </a>
           </div>
 
@@ -1881,6 +2235,135 @@
         <div class="ticker-item">
           <span class="num">8 MiB</span>
           <span class="label">Constant Resident RAM Streaming AES-256</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Four Fatal Illusions of Modern Data Custody Section -->
+  <section id="problem" class="section-standard problem-section">
+    <div class="container">
+      <div class="section-head" style="max-width: 820px;">
+        <span class="section-eyebrow" style="color: #F87171;">THE FOUR FATAL ILLUSIONS OF MODERN DATA CUSTODY</span>
+        <h2 class="section-heading">Why Cloud "Sovereignty" Fails Enterprise Scrutiny.</h2>
+        <p style="color: var(--text-warm-gray); margin-top: 12px; font-size: 1.05rem;">
+          Hyperscaler entropy gimmicks, extraterritorial US subpoenas, on-premise hardware fatigue, and dead-key lockouts leave enterprise data dangerously exposed. Explore how each illusion collapses—and how the Canadian Shield solves it:
+        </p>
+      </div>
+
+      <div class="problem-grid">
+        <!-- Interactive 4-Flaw Tab List -->
+        <div class="problem-tab-list">
+          
+          <!-- Flaw 1: Lava Lamps / Gimmick Entropy -->
+          <div class="problem-tab-card active" onclick="selectProblemTab(0, this)">
+            <div class="tab-header">
+              <span class="tab-index">ILLUSION 01</span>
+              <span class="tab-threat-tag">HYPERSCALER ENTROPY GIMMICKS</span>
+            </div>
+            <div class="tab-title">The "Lava Lamp" Mirage vs. Sovereign Bedrock</div>
+            <div class="tab-brief">
+              Filming 100 bubbling lava lamps in a California lobby makes for great tech marketing, but provides zero legal protection under international subpoena.
+            </div>
+            <div class="tab-details">
+              <div class="flaw-vs-solution">
+                <div class="box-flaw">
+                  <span class="box-label">✕ THE INDUSTRY ILLUSION</span>
+                  Hyperscalers rely on novelty physical entropy (e.g. Cloudflare Lavarand), yet remain US corporations bound to 18 U.S.C. § 2713 (CLOUD Act), FISA 702, and National Security Letters. Physical novelty in San Francisco cannot produce sovereign immunity.
+                </div>
+                <div class="box-sol">
+                  <span class="box-label">✓ THE XOLOTL BEDROCK</span>
+                  Cryptographic resilience grounded in physical reality: Canadian Shield Precambrian granite bedrock with 93-day WORM locks, distributed across non-aligned nations (CA / CH / IS). The cloud mirror holds 0 keys and is mathematically powerless to comply.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Flaw 2: US CLOUD Act & Physical Seizure -->
+          <div class="problem-tab-card" onclick="selectProblemTab(1, this)">
+            <div class="tab-header">
+              <span class="tab-index">ILLUSION 02</span>
+              <span class="tab-threat-tag">EXTRATERRITORIAL COMPULSION</span>
+            </div>
+            <div class="tab-title">The "Local Region" Lie: US CLOUD Act & Physical Search</div>
+            <div class="tab-brief">
+              Storing files in "AWS Canada" or "Frankfurt Azure" leaves plaintext vulnerable to extraterritorial US federal warrants served on the US parent company.
+            </div>
+            <div class="tab-details">
+              <div class="flaw-vs-solution">
+                <div class="box-flaw">
+                  <span class="box-label">✕ THE INDUSTRY ILLUSION</span>
+                  Under the US CLOUD Act, US courts compel US tech vendors to disclose data wherever stored worldwide under contempt fines. Furthermore, physical raids and search warrants (as seen in GrapheneOS seizure cases) force single custodians to unlock.
+                </div>
+                <div class="box-sol">
+                  <span class="box-label">✓ THE XOLOTL BEDROCK</span>
+                  True jurisdictional immunity: threshold ElGamal decryption requires simultaneous concurrence from (3 of 5) independent sovereign nodes across non-aligned nations. Even physical armed seizure of one node yields zero usable key shards.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Flaw 3: On-Premise Crypto Headaches -->
+          <div class="problem-tab-card" onclick="selectProblemTab(2, this)">
+            <div class="tab-header">
+              <span class="tab-index">ILLUSION 03</span>
+              <span class="tab-threat-tag">OPERATIONAL FRICTION</span>
+            </div>
+            <div class="tab-title">On-Premise Crypto Headaches: HSM Fatigue & Shadow IT</div>
+            <div class="tab-brief">
+              Air-gapped HSMs, hardware dongles, and manual seed phrases create so much employee friction that workers actively bypass security policies.
+            </div>
+            <div class="tab-details">
+              <div class="flaw-vs-solution">
+                <div class="box-flaw">
+                  <span class="box-label">✕ THE INDUSTRY ILLUSION</span>
+                  Traditional zero-trust tools force users to act like cryptographers—memorizing passphrases, juggling dongles, and navigating complex CLI rituals. When security slows daily work, staff leak files onto unencrypted personal cloud drives.
+                </div>
+                <div class="box-sol">
+                  <span class="box-label">✓ THE XOLOTL BEDROCK</span>
+                  Zero-friction abstraction: audited Pedersen DKG and threshold decryption operate invisibly behind native OS file sync (Windows & macOS). Your team drags and drops files naturally while military-grade threshold security protects every byte.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Flaw 4: Digital Succession & Keyholder Death -->
+          <div class="problem-tab-card" onclick="selectProblemTab(3, this)">
+            <div class="tab-header">
+              <span class="tab-index">ILLUSION 04</span>
+              <span class="tab-threat-tag">INSTITUTIONAL SUCCESSION</span>
+            </div>
+            <div class="tab-title">The Keyholder Succession Abyss: Death, Departure & Bricked Vaults</div>
+            <div class="tab-brief">
+              When an executive or keyholder dies, resigns, or is compromised, traditional encryption either bricks the vault forever or relies on dangerous paper backups.
+            </div>
+            <div class="tab-details">
+              <div class="flaw-vs-solution">
+                <div class="box-flaw">
+                  <span class="box-label">✕ THE INDUSTRY ILLUSION</span>
+                  In single-key or static multisig systems, key loss is catastrophic. Organizations resort to fragile "treasure trails" of seed phrases in office safes—creating devastating insider theft risks and operational paralysis when leaders depart.
+                </div>
+                <div class="box-sol">
+                  <span class="box-label">✓ THE XOLOTL BEDROCK</span>
+                  Dynamic biological regrowth: like the axolotl regenerating a limb, FROST threshold resharing allows the cooperative to rotate out a deceased or departed keyholder's share mathematically, self-healing the access structure without re-encrypting petabytes.
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Problem Media Frame with High-Impact Defense Matrix Image -->
+        <div class="matrix-media-frame">
+          <div class="matrix-telemetry-hud">
+            <span id="matrixScenarioTag" style="color: var(--accent-gold); font-weight: 700;">● SCENARIO 01 // ENTROPY DECONSTRUCTION</span>
+            <span style="color: var(--accent-sage);">ACTIVE DEFLECTION</span>
+          </div>
+          <img src="assets/images/sovereign_defense_matrix.jpg" alt="Cryptographic sovereign shield deflecting extraterritorial surveillance and compulsion rays">
+          <div class="matrix-telemetry-caption">
+            <h5 id="matrixCaptionTitle">Deflecting Novelty Illusions with True Sovereign Bedrock</h5>
+            <p id="matrixCaptionDesc">Crystalline multi-jurisdictional shield deflecting foreign surveillance probes and legal compulsion rays. No single party, court, or cloud mirror holds the mathematical quorum.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -2110,6 +2593,10 @@
               <li><span class="bullet">•</span> 100% Blind Ciphertext — 0 Key Shards Ever</li>
               <li><span class="bullet">•</span> 93-Day Immutable Compliance WORM Lock</li>
             </ul>
+            <div class="topo-vault-frame">
+              <img src="assets/images/canadian_vault_bedrock.jpg" alt="Subterranean Canadian Shield Precambrian Bedrock S3 Vault">
+              <div class="topo-vault-badge">Precambrian Bedrock S3</div>
+            </div>
             <div id="sBadge3" class="status-badge">
               <span>✓ Canadian Core • WORM Active</span>
             </div>
@@ -2514,7 +3001,54 @@
 
   <!-- Scripts -->
   <script>
-    // Pronunciation Audio Playback via Web Speech API
+    // Problem Scenarios Telemetry Data
+    const problemScenarios = [
+      {
+        tag: '● SCENARIO 01 // ENTROPY DECONSTRUCTION',
+        title: 'Deflecting Novelty Illusions with True Sovereign Bedrock',
+        desc: 'Crystalline multi-jurisdictional shield deflecting foreign surveillance probes and legal compulsion rays. No single party, court, or cloud mirror holds the mathematical quorum.'
+      },
+      {
+        tag: '● SCENARIO 02 // EXTRATERRITORIAL INTERCEPTION',
+        title: 'Nullifying US CLOUD Act Compulsion & Physical Seizures',
+        desc: 'Multi-sovereign (3-of-5) threshold ElGamal consensus across Canada, Switzerland, and Iceland. Subpoenas served on US corporate parents or local hardware yield zero decryptable data.'
+      },
+      {
+        tag: '● SCENARIO 03 // ZERO-FRICTION ABSTRACTION',
+        title: 'Eliminating On-Prem HSM Fatigue & Shadow IT Hazards',
+        desc: 'Enterprise-grade cryptographic ceremony runs seamlessly behind native OS sync drivers. No USB keys, no memorized seeds, no user friction—just invisible, audited zero-trust protection.'
+      },
+      {
+        tag: '● SCENARIO 04 // BIOLOGICAL REGENERATION',
+        title: 'Autonomous Keyholder Succession & Dynamic Self-Healing',
+        desc: 'Like the Axolotl regenerating its tissue, FROST dynamic key resharing rotates deceased or departed stakeholders seamlessly, eliminating single points of mortality without re-encrypting storage.'
+      }
+    ];
+
+    function selectProblemTab(idx, cardEl) {
+      const cards = document.querySelectorAll('.problem-tab-card');
+      cards.forEach(c => c.classList.remove('active'));
+      
+      if (cardEl) {
+        cardEl.classList.add('active');
+      } else if (cards[idx]) {
+        cards[idx].classList.add('active');
+      }
+
+      const s = problemScenarios[idx];
+      if (s) {
+        const tagEl = document.getElementById('matrixScenarioTag');
+        const titleEl = document.getElementById('matrixCaptionTitle');
+        const descEl = document.getElementById('matrixCaptionDesc');
+        if (tagEl) tagEl.textContent = s.tag;
+        if (titleEl) titleEl.textContent = s.title;
+        if (descEl) descEl.textContent = s.desc;
+      }
+    }
+
+    // Natural Audio Playback (Neural Mexican Spanish Female) with Web Speech Fallback
+    let pronounceAudio = null;
+
     function playPronounceAudio(e) {
       if (e) {
         e.preventDefault();
@@ -2523,25 +3057,66 @@
       
       const chips = document.querySelectorAll('.pronounce-chip, .meta-speaker-btn');
       chips.forEach(c => c.classList.add('playing'));
-      setTimeout(() => {
+
+      const clearPlaying = () => {
         chips.forEach(c => c.classList.remove('playing'));
-      }, 1400);
+      };
 
-      if ('speechSynthesis' in window) {
-        window.speechSynthesis.cancel();
-        const utter = new SpeechSynthesisUtterance("SHOW-lotl");
-        utter.rate = 0.85;
-        utter.pitch = 1.0;
-        utter.lang = 'en-CA';
-
-        const voices = window.speechSynthesis.getVoices();
-        if (voices.length > 0) {
-          const preferred = voices.find(v => v.lang.includes('CA') || v.lang.includes('GB') || v.lang.includes('US'));
-          if (preferred) utter.voice = preferred;
+      try {
+        if (!pronounceAudio) {
+          pronounceAudio = new Audio('assets/audio/xolotl_pronunciation.mp3');
+          pronounceAudio.preload = 'auto';
         }
-
-        window.speechSynthesis.speak(utter);
+        
+        pronounceAudio.currentTime = 0;
+        const playPromise = pronounceAudio.play();
+        
+        if (playPromise !== undefined) {
+          playPromise
+            .then(() => {
+              pronounceAudio.onended = clearPlaying;
+              pronounceAudio.onerror = () => fallbackSpeechSynthesis(clearPlaying);
+            })
+            .catch(err => {
+              console.warn("HTML5 audio playback failed, falling back to Web Speech:", err);
+              fallbackSpeechSynthesis(clearPlaying);
+            });
+        } else {
+          setTimeout(clearPlaying, 1850);
+        }
+      } catch (err) {
+        console.warn("Audio exception, falling back to Web Speech:", err);
+        fallbackSpeechSynthesis(clearPlaying);
       }
+    }
+
+    function fallbackSpeechSynthesis(onComplete) {
+      if ('speechSynthesis' in window) {
+        try {
+          window.speechSynthesis.cancel();
+          const utter = new SpeechSynthesisUtterance("Xólotl");
+          utter.rate = 0.85;
+          utter.pitch = 1.05;
+          utter.lang = 'es-MX';
+
+          const voices = window.speechSynthesis.getVoices();
+          if (voices && voices.length > 0) {
+            const preferred = voices.find(v => 
+              (v.lang.includes('es-MX') || v.lang.includes('es-ES') || v.lang.startsWith('es')) &&
+              (v.name.toLowerCase().includes('female') || v.name.toLowerCase().includes('dalia') || v.name.toLowerCase().includes('sabina') || v.name.toLowerCase().includes('elena') || v.name.toLowerCase().includes('monica'))
+            ) || voices.find(v => v.lang.startsWith('es'));
+            if (preferred) utter.voice = preferred;
+          }
+
+          utter.onend = () => { if (onComplete) onComplete(); };
+          utter.onerror = () => { if (onComplete) onComplete(); };
+          window.speechSynthesis.speak(utter);
+          return;
+        } catch (e) {
+          console.warn("Web Speech synthesis failed:", e);
+        }
+      }
+      if (onComplete) setTimeout(onComplete, 1400);
     }
 
     // Simulator Toggle

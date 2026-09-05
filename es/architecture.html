@@ -3,17 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sovereign Architecture & Cryptographic Moat — Xolotl Escudo Canadiense Cooperative</title>
-  <meta name="description" content="3-Layer Sovereign Edge Topology, Threshold ElGamal, Pedersen DKG, and point-in-time recovery.">
+  <title>Arquitectura Soberana y Foso Criptográfico — Xolotl Canadian Shield Cooperative</title>
+  <meta name="description" content="Topología soberana de 3 capas, ElGamal de umbral, DKG de Pedersen y recuperación por punto en el tiempo.">
   <meta name="keywords" content="Data Sovereignty, Escudo Canadiense, Sovereign Cloud, CLOUD Act Resistance, FROST, Threshold ElGamal, Zero-Trust Sync, CMMC, ITAR, PIPEDA, WireGuard, Rust Tauri, Xolotl, Nahuatl Deity">
+  <link rel="alternate" hreflang="en" href="https://xolotl.ca/architecture.html">
+  <link rel="alternate" hreflang="es" href="https://xolotl.ca/es/architecture.html">
   
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://xolotl.ca/">
-  <meta property="og:title" content="Sovereign Architecture & Cryptographic Moat — Xolotl Escudo Canadiense Cooperative">
-  <meta property="og:description" content="3-Layer Sovereign Edge Topology, Threshold ElGamal, Pedersen DKG, and point-in-time recovery.">
+  <meta property="og:title" content="Arquitectura Soberana y Foso Criptográfico — Xolotl Canadian Shield Cooperative">
+  <meta property="og:description" content="Topología soberana de 3 capas, ElGamal de umbral, DKG de Pedersen y recuperación por punto en el tiempo.">
   <meta property="og:image" content="https://xolotl.ca/assets/images/canadian_shield_twilight.jpg">
   
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 2 L4 8 V16 C4 23.5 9.1 30 16 32 C22.9 30 28 23.5 28 16 V8 Z' fill='%23192B23' stroke='%23C89D4B' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='5' fill='%23D97706'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;0,700;0,900;1,400;1,600&display=swap">
   <link rel="stylesheet" href="../assets/css/style.css">
   <style>
     .nav-links a.active {
@@ -85,7 +90,7 @@
           <a href="../architecture.html" class="lang-switch-btn" title="View in English" onclick="setUserLanguage('en')">🇨🇦 EN</a>
           <a href="memo.html" class="btn btn-secondary nav-memo-btn">Memo</a>
           <button class="btn btn-gold" onclick="openModal('pilot')">Unirse al Piloto</button>
-          <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu" onclick="toggleMobileMenu()">
+          <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Alternar menú de navegación" onclick="toggleMobileMenu()">
             <span class="menu-bar"></span>
             <span class="menu-bar"></span>
             <span class="menu-bar"></span>
@@ -122,7 +127,7 @@
           <span style="font-family: var(--font-mono); font-size: 0.76rem; color: var(--text-warm-gray);">Idioma / Language:</span>
           <a href="../architecture.html" class="lang-switch-btn" onclick="setUserLanguage('en')">🇨🇦 English</a>
         </div>
-        <a href="memo.html" class="btn btn-secondary" style="width: 100%; text-align: center;">Read Memorando Ejecutivo</a>
+        <a href="memo.html" class="btn btn-secondary" style="width: 100%; text-align: center;">Leer Memorando Ejecutivo</a>
         <button class="btn btn-gold" style="width: 100%;" onclick="closeMobileMenu(); openModal('pilot');">Solicitar Acceso al Piloto</button>
       </div>
       <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-warm-gray); text-align: center; margin-top: 16px;">
@@ -137,10 +142,10 @@
       <div class="breadcrumb-nav">
         <a href="index.html">Inicio</a> <span>/</span> <span>Qué Hacemos</span>
       </div>
-      <div class="hero-eyebrow"><span>🛡️</span> Technical Topology &amp; Cryptography</div>
+      <div class="hero-eyebrow"><span>🛡️</span> Topología Técnica y Criptografía</div>
       <h1 class="section-title" style="font-size: 2.4rem; margin-bottom: 14px;">Topología Soberana en el Borde de 3 Capas.</h1>
       <p style="max-width: 780px; color: var(--text-warm-gray); font-size: 1.05rem; line-height: 1.6;">
-        A comprehensive cryptographic and topological breakdown of how Xolotl achieves mathematical powerlessness, immune to foreign subpoenas and ransomware encryptors alike.
+        Un desglose criptográfico y topológico completo de cómo Xolotl logra la impotencia matemática, inmune tanto a citaciones extranjeras como a cifradores de ransomware.
       </p>
     </div>
   </div>
@@ -162,7 +167,7 @@
           <!-- Flaw 1: Lava Lamps / Gimmick Entropy -->
           <div class="problem-tab-card active" onclick="selectProblemTab(0, this)">
             <div class="tab-header">
-              <span class="tab-index">ILLUSION 01</span>
+              <span class="tab-index">ILUSIÓN 01</span>
               <span class="tab-threat-tag">ARTIFICIOS DE ENTROPÍA DE HIPERPROVEEDORES</span>
             </div>
             <div class="tab-title">El Espejismo de la "Lámpara de Lava" vs. Roca Soberana</div>
@@ -186,7 +191,7 @@
           <!-- Flaw 2: US CLOUD Act & Physical Seizure -->
           <div class="problem-tab-card" onclick="selectProblemTab(1, this)">
             <div class="tab-header">
-              <span class="tab-index">ILLUSION 02</span>
+              <span class="tab-index">ILUSIÓN 02</span>
               <span class="tab-threat-tag">APREMIO EXTRATERRITORIAL</span>
             </div>
             <div class="tab-title">La Mentira de la "Región Local": CLOUD Act de EE. UU. y Registro Físico</div>
@@ -210,7 +215,7 @@
           <!-- Flaw 3: On-Premise Crypto Headaches -->
           <div class="problem-tab-card" onclick="selectProblemTab(2, this)">
             <div class="tab-header">
-              <span class="tab-index">ILLUSION 03</span>
+              <span class="tab-index">ILUSIÓN 03</span>
               <span class="tab-threat-tag">FRICCIÓN OPERATIVA</span>
             </div>
             <div class="tab-title">Dolores de Cabeza Criptográficos On-Premise: Fatiga de HSM y TI en las Sombras</div>
@@ -234,7 +239,7 @@
           <!-- Flaw 4: Digital Succession & Keyholder Death -->
           <div class="problem-tab-card" onclick="selectProblemTab(3, this)">
             <div class="tab-header">
-              <span class="tab-index">ILLUSION 04</span>
+              <span class="tab-index">ILUSIÓN 04</span>
               <span class="tab-threat-tag">SUCESIÓN INSTITUCIONAL</span>
             </div>
             <div class="tab-title">El Abismo de la Sucesión de Custodios: Fallecimiento, Bajas y Bóvedas Inutilizadas</div>
@@ -263,7 +268,7 @@
             <span id="matrixScenarioTag" style="color: var(--accent-gold); font-weight: 700;">● ESCENARIO 01 // DECONSTRUCCIÓN DE ENTROPÍA</span>
             <span style="color: var(--accent-sage);">DEFLEXIÓN ACTIVA</span>
           </div>
-          <img src="../assets/images/sovereign_defense_matrix.jpg" alt="Cryptographic sovereign shield deflecting extraterritorial surveillance and compulsion rays">
+          <img src="../assets/images/sovereign_defense_matrix.jpg" alt="Escudo criptográfico soberano desviando rayos de vigilancia y coacción extraterritorial">
           <div class="matrix-telemetry-caption">
             <h5 id="matrixCaptionTitle">Superando Ilusiones de Novedad con Verdadera Roca Soberana</h5>
             <p id="matrixCaptionDesc">Escudo cristalino multijurisdiccional que repele sondas de vigilancia extranjera y apremios legales. Ninguna parte, tribunal o espejo de nube posee el cuórum matemático.</p>
@@ -287,21 +292,21 @@
         <div class="non-neg-col">
           <h3>Soberano</h3>
           <p>
-            Espejo de texto cifrado alojado estrictamente en territorio canadiense (Montreal, QC). <strong>Cero fragmentos de clave custodiados por el proveedor SaaS</strong>. Sin matriz corporativa en EE. UU., sin dependencias de nubes estadounidenses y cero exposición a órdenes de registro extraterritoriales bajo 18 U.S.C. § 2713 (CLOUD Act).
+            <strong>No custodiamos ni un solo fragmento de clave, punto.</strong> El espejo de texto cifrado vive estrictamente en territorio canadiense (Montreal, QC) &mdash; sin matriz corporativa en EE. UU., sin dependencias de nubes estadounidenses, sin exposición a órdenes de registro bajo el CLOUD Act (18 U.S.C. § 2713).
           </p>
         </div>
 
         <div class="non-neg-col">
           <h3>Inmune</h3>
           <p>
-            Criptografía de umbral de doble ceremonia: DKG Pedersen combinado con <strong>firmas de umbral FROST (RFC 9591)</strong> y <strong>Descifrado ElGamal de Umbral</strong> cegado sobre Ed25519. El desbloqueo requiere cuórum concurrente a través de naciones soberanas independientes.
+            <strong>El desbloqueo exige un cuórum en vivo entre naciones soberanas independientes &mdash; nunca una sola parte.</strong> Por dentro: DKG Pedersen, firmas de umbral FROST (RFC 9591) y Descifrado ElGamal de Umbral cegado sobre Ed25519.
           </p>
         </div>
 
         <div class="non-neg-col">
           <h3>Conforme a Normativas</h3>
           <p>
-            Built from day one to satisfy <strong>Canadian PIPEDA</strong>, <strong>Quebec Law 25</strong>, <strong>EU NIS2 / GDPR Article 48</strong>, and <strong>CMMC 2.0 / ITAR</strong> export controls. Complete audit trails recorded immutably to customer-controlled Postgres schemas.
+            <strong>Cada acción queda registrada en un rastro de auditoría inmutable y controlado por el cliente.</strong> Construido desde el primer día para PIPEDA canadiense, la Ley 25 de Québec, NIS2 / Artículo 48 del RGPD de la UE, y los controles de exportación CMMC 2.0 / ITAR.
           </p>
         </div>
       </div>
@@ -311,10 +316,10 @@
 <section id="architecture" class="section-standard" style="background: var(--bg-cream-alt);">
     <div class="container">
       <div class="section-head">
-        <span class="section-eyebrow">Interactive Topology</span>
+        <span class="section-eyebrow">Topología Interactiva</span>
         <h2 class="section-heading">Simule la Inmunidad del Sistema.</h2>
         <p style="color:var(--text-warm-gray); margin-top: 10px;">
-          Observe how Xolotl’s 3-Layer Hybrid Sovereign Edge responds when subjected to foreign legal compulsion or cyber attack.
+          Observe cómo el Borde Soberano Híbrido de 3 Capas de Xolotl responde ante coacción legal extranjera o un ciberataque.
         </p>
       </div>
 
@@ -322,66 +327,66 @@
         <div class="simulator-nav">
           <div>
             <h4 style="font-size: 1.1rem; color: var(--text-dark); margin-bottom: 4px;">Simular Entorno de Amenaza:</h4>
-            <span style="font-size: 0.85rem; color: var(--text-warm-gray);">Select an adversary event to observe system guarantees:</span>
+            <span style="font-size: 0.85rem; color: var(--text-warm-gray);">Seleccione un evento adversario para observar las garantías del sistema:</span>
           </div>
 
           <div class="scenario-pill-group">
-            <button id="btnNorm" class="scenario-pill active" onclick="switchThreatMode('normal')">Standard Operation</button>
-            <button id="btnSubp" class="scenario-pill alert-mode" onclick="switchThreatMode('subpoena')">US CLOUD Act Subpoena</button>
-            <button id="btnRans" class="scenario-pill alert-mode" onclick="switchThreatMode('ransomware')">Ransomware Infection</button>
+            <button id="btnNorm" class="scenario-pill active" onclick="switchThreatMode('normal')">Operación Estándar</button>
+            <button id="btnSubp" class="scenario-pill alert-mode" onclick="switchThreatMode('subpoena')">Citación bajo la Ley CLOUD Act de EE. UU.</button>
+            <button id="btnRans" class="scenario-pill alert-mode" onclick="switchThreatMode('ransomware')">Infección de Ransomware</button>
           </div>
         </div>
 
         <div class="topology-cards">
           <!-- Card 1 -->
           <div id="cLayer1" class="topo-card">
-            <span class="topo-layer-tag">Layer 1: Sovereign Edge</span>
+            <span class="topo-layer-tag">Capa 1: Borde Soberano</span>
             <h4>Enclave On-Premises</h4>
             <ul class="topo-list">
-              <li><span class="bullet">•</span> Dockerized Postgres with Row-Level Security</li>
-              <li><span class="bullet">•</span> WireGuard Network Namespace Isolation</li>
-              <li><span class="bullet">•</span> Automated Custodian Agent (1 of 5 Shares)</li>
+              <li><span class="bullet">•</span> Postgres en Docker con Seguridad a Nivel de Fila</li>
+              <li><span class="bullet">•</span> Aislamiento de Espacio de Nombres de Red WireGuard</li>
+              <li><span class="bullet">•</span> Agente Custodio Automatizado (1 de 5 Fragmentos)</li>
             </ul>
             <div id="sBadge1" class="status-badge">
-              <span>✓ Private Mesh Operational</span>
+              <span>✓ Malla Privada Operativa</span>
             </div>
           </div>
 
           <!-- Card 2 -->
           <div id="cLayer2" class="topo-card active-layer">
-            <span class="topo-layer-tag">Layer 2: Native Desktop Engine</span>
+            <span class="topo-layer-tag">Capa 2: Motor de Escritorio Nativo</span>
             <h4>Nativo en Rust / Tauri</h4>
             <ul class="topo-list">
-              <li><span class="bullet">•</span> OS-Integrated Windows & macOS Folder Sync</li>
-              <li><span class="bullet">•</span> Trailing-Edge Debouncer (Zero Lost Edits)</li>
-              <li><span class="bullet">•</span> Ephemeral KEK: Zeroized-on-Drop in RAM</li>
+              <li><span class="bullet">•</span> Sincronización de Carpetas Integrada en Windows y macOS</li>
+              <li><span class="bullet">•</span> Debounce de Borde Diferido (Cero Ediciones Perdidas)</li>
+              <li><span class="bullet">•</span> KEK Efímera: Puesta a Cero al Liberarse en RAM</li>
             </ul>
             <div id="sBadge2" class="status-badge">
-              <span>✓ Active Sync • Plaintext in RAM Only</span>
+              <span>✓ Sincronización Activa • Texto Claro Solo en RAM</span>
             </div>
           </div>
 
           <!-- Card 3 -->
           <div id="cLayer3" class="topo-card">
-            <span class="topo-layer-tag">Layer 3: Canadian Core</span>
+            <span class="topo-layer-tag">Capa 3: Núcleo Canadiense</span>
             <h4>Almacenamiento Ciego en Montréal</h4>
             <ul class="topo-list">
-              <li><span class="bullet">•</span> Multi-Tenant MinIO S3 Cluster (Montreal, QC)</li>
-              <li><span class="bullet">•</span> 100% Blind Ciphertext — 0 Key Shards Ever</li>
-              <li><span class="bullet">•</span> 93-Day Immutable Compliance WORM Lock</li>
+              <li><span class="bullet">•</span> Clúster MinIO S3 Multiinquilino (Montreal, QC)</li>
+              <li><span class="bullet">•</span> 100% Texto Cifrado Ciego — 0 Fragmentos de Clave, Nunca</li>
+              <li><span class="bullet">•</span> Bloqueo WORM Inmutable de Cumplimiento de 93 Días</li>
             </ul>
             <div class="topo-vault-frame">
-              <img src="../assets/images/canadian_vault_bedrock.jpg" alt="Subterranean Escudo Canadiense Precambrian Bedrock S3 Vault">
-              <div class="topo-vault-badge">Precambrian Bedrock S3</div>
+              <img src="../assets/images/canadian_vault_bedrock.jpg" alt="Bóveda subterránea S3 sobre lecho rocoso precámbrico del Escudo Canadiense">
+              <div class="topo-vault-badge">Lecho Rocoso Precámbrico S3</div>
             </div>
             <div id="sBadge3" class="status-badge">
-              <span>✓ Canadian Core • WORM Active</span>
+              <span>✓ Núcleo Canadiense • WORM Activo</span>
             </div>
           </div>
         </div>
 
         <div id="simMessage" class="simulator-callout">
-          <strong>Normal Mode:</strong> In everyday operation, files save locally with zero friction, encrypt on the fly with AES-256-GCM, and stream to Montreal S3. The cloud mirror holds zero decryption authority.
+          <strong>Modo Normal:</strong> En operación cotidiana, los archivos se guardan localmente sin fricción, se cifran al vuelo con AES-256-GCM y se transmiten al S3 de Montreal. El espejo en la nube no posee ninguna autoridad de descifrado.
         </div>
       </div>
     </div>
@@ -392,10 +397,10 @@
 <section id="ransomware" class="section-standard" style="background: var(--bg-cream-alt);">
     <div class="container">
       <div class="section-head">
-        <span class="section-eyebrow">Ransomware Immunity</span>
+        <span class="section-eyebrow">Inmunidad ante Ransomware</span>
         <h2 class="section-heading">Regeneración Instantánea a Punto en el Tiempo.</h2>
         <p style="color:var(--text-warm-gray); margin-top: 10px;">
-          Like the regenerative axolotl, Xolotl restores complete directory state to any exact second prior to corruption.
+          Como el axolote regenerativo, Xolotl restaura el estado completo de un directorio a cualquier segundo exacto anterior a la corrupción.
         </p>
       </div>
 
@@ -428,11 +433,11 @@
           </div>
 
           <div style="background: #FFFFFF; border: 1px solid var(--border-light); border-radius: 6px; padding: 16px; font-size: 0.85rem;">
-            <div style="font-weight: 700; color: var(--accent-sage); margin-bottom: 6px;">🍁 Montreal WORM Vault</div>
+            <div style="font-weight: 700; color: var(--accent-sage); margin-bottom: 6px;">🍁 Bóveda WORM de Montreal</div>
             <p style="color: var(--text-warm-gray); line-height: 1.5; margin-bottom: 12px;">
-              S3 Compliance Mode rejects all delete requests. Calling <code>restore_vault_as_of()</code> repopulates disk directly from verified ciphertext.
+              El Modo de Cumplimiento S3 rechaza todas las solicitudes de eliminación. Llamar a <code>restore_vault_as_of()</code> repuebla el disco directamente desde texto cifrado verificado.
             </p>
-            <span style="font-family: var(--font-mono); font-size: 0.8rem; color: #065F46;">status: 100% restorable</span>
+            <span style="font-family: var(--font-mono); font-size: 0.8rem; color: #065F46;">estado: 100% restaurable</span>
           </div>
         </div>
       </div>

@@ -28,8 +28,13 @@
       --accent-maple: #EF4444;
       --accent-cyan: #2DD4BF;
       --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      --font-serif: Georgia, Cambria, "Times New Roman", Times, serif;
+      --font-serif: "Fraunces", Georgia, Cambria, "Times New Roman", Times, serif;
+      --font-display: "Fraunces", Georgia, Cambria, "Times New Roman", Times, serif;
       --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    h1, h2, .section-heading, .section-title, .feature-title, .mythos-title {
+      font-family: var(--font-display);
     }
 
     * {
@@ -373,7 +378,7 @@
       margin-bottom: 24px;
     }
 
-    .hero-title span.serif-light {
+    span.serif-light {
       font-family: var(--font-serif);
       font-weight: 400;
       font-style: italic;
@@ -827,6 +832,87 @@
       letter-spacing: -0.03em;
       color: var(--text-dark);
       line-height: 1.15;
+    }
+
+    /* section-header/tag/title/desc: older naming for the same section-head/eyebrow/heading pattern above */
+    .section-header {
+      margin-bottom: 50px;
+      max-width: 680px;
+    }
+
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--accent-sage);
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(2.2rem, 4vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--text-dark);
+      line-height: 1.15;
+    }
+
+    .section-desc {
+      font-size: 1.05rem;
+      color: var(--text-warm-gray);
+      line-height: 1.6;
+      margin-top: 14px;
+    }
+
+    /* Feature cards (Core Thesis / Deep-Dive Pathways bento grids) */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .feature-card {
+      background: var(--bg-glass-card);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border-glass);
+      border-radius: 12px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover {
+      border-color: var(--border-glass-gold);
+      background: var(--bg-glass-hover);
+      transform: translateY(-3px);
+    }
+
+    .feature-num {
+      font-family: var(--font-mono);
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--accent-gold);
+      opacity: 0.55;
+      margin-bottom: 10px;
+    }
+
+    .feature-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 10px;
+    }
+
+    .feature-desc {
+      font-size: 0.92rem;
+      color: var(--text-warm-gray);
+      line-height: 1.6;
     }
 
     /* Problem Section: The Four Fatal Illusions */
@@ -1856,199 +1942,6 @@
       margin-top: 16px;
     }
 
-    /* Enhanced Mobile Media Queries */
-    @media (max-width: 960px) {
-      .mobile-menu-btn {
-        display: flex;
-      }
-      .nav-links {
-        display: none;
-      }
-      .nav-memo-btn {
-        display: none;
-      }
-      .hero-grid {
-        grid-template-columns: 1fr;
-        gap: 36px;
-      }
-      .hero-media-card {
-        height: 340px;
-      }
-      .mythos-grid {
-        grid-template-columns: 1fr;
-        gap: 36px;
-      }
-      .mythos-media {
-        height: 340px;
-      }
-      .problem-grid {
-        grid-template-columns: 1fr;
-        gap: 32px;
-      }
-      .matrix-media-frame img {
-        min-height: 360px;
-        max-height: 420px;
-      }
-      .non-negotiables-grid {
-        grid-template-columns: 1fr;
-      }
-      .non-neg-col {
-        border-right: none;
-        border-bottom: 1px solid var(--border-light);
-        padding: 24px 0;
-      }
-      .topology-cards {
-        grid-template-columns: 1fr;
-      }
-      .sectors-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-      .banner-cta {
-        grid-template-columns: 1fr;
-        padding: 40px 28px;
-      }
-      .footer-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    @media (max-width: 800px) {
-      .pitr-grid {
-        grid-template-columns: 1fr;
-      }
-      .mobile-swipe-prompt {
-        display: block;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .container {
-        padding: 0 18px;
-      }
-      .hero {
-        padding: 36px 0 24px;
-      }
-      .hero-title {
-        font-size: clamp(2.1rem, 7.5vw, 2.8rem);
-        word-break: break-word;
-      }
-      .hero-desc {
-        font-size: 1.02rem;
-        margin-bottom: 24px;
-      }
-      .hero-ctas {
-        flex-direction: column;
-      }
-      .hero-ctas .btn {
-        width: 100%;
-        min-height: 48px;
-      }
-      .hero-badge-row {
-        flex-wrap: wrap;
-        gap: 6px 10px;
-        font-size: 0.75rem;
-      }
-      .hero-media-card {
-        height: 260px;
-      }
-      .trust-strip-inner {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 16px;
-      }
-      .mythos-section {
-        padding: 50px 0;
-      }
-      .mythos-media {
-        height: 260px;
-      }
-      .mythos-title {
-        font-size: clamp(1.8rem, 6vw, 2.3rem);
-      }
-      .mythos-lead {
-        font-size: 1.05rem;
-      }
-      .mythos-attributes {
-        grid-template-columns: 1fr;
-      }
-      .flaw-vs-solution {
-        grid-template-columns: 1fr;
-      }
-      .matrix-media-frame img {
-        min-height: 280px;
-        max-height: 340px;
-      }
-      .section-standard {
-        padding: 50px 0;
-      }
-      .section-heading {
-        font-size: 1.9rem;
-      }
-      .threat-simulator-box {
-        padding: 20px 16px;
-        margin-top: 24px;
-      }
-      .scenario-pill-group {
-        flex-direction: column;
-        width: 100%;
-        gap: 4px;
-      }
-      .scenario-pill {
-        width: 100%;
-        text-align: center;
-        padding: 10px;
-      }
-      .pitr-container {
-        padding: 20px 16px;
-      }
-      .sectors-grid {
-        grid-template-columns: 1fr;
-      }
-      .banner-cta {
-        padding: 32px 20px;
-        margin: 40px 0;
-      }
-      .banner-cta h2 {
-        font-size: 1.8rem;
-      }
-      .banner-cta .btn {
-        width: 100%;
-        text-align: center;
-      }
-      .footer-grid {
-        grid-template-columns: 1fr;
-        gap: 28px;
-      }
-      .cookie-banner {
-        bottom: calc(12px + env(safe-area-inset-bottom, 0px));
-        left: 12px;
-        right: 12px;
-        padding: 14px 16px;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 12px;
-      }
-      .cookie-banner .btn {
-        width: 100%;
-        text-align: center;
-      }
-      .modal-card {
-        padding: 24px 18px;
-        max-height: 88vh;
-        overflow-y: auto;
-      }
-      .news-grid,
-      .careers-grid,
-      .supplier-grid,
-      .coop-values-strip,
-      .contact-grid {
-        grid-template-columns: 1fr;
-      }
-      .top-utility-bar .utility-right {
-        display: none;
-      }
-    }
-
     /* Top Corporate Utility Banner (Deprecated - Single Header Active) */
     .top-utility-bar {
       display: none !important;
@@ -2582,6 +2475,14 @@
       .mythos-media {
         height: 340px;
       }
+      .problem-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .matrix-media-frame img {
+        min-height: 360px;
+        max-height: 420px;
+      }
       .contact-grid {
         grid-template-columns: 1fr;
         gap: 24px;
@@ -2670,6 +2571,28 @@
         grid-template-columns: 1fr 1fr;
         gap: 16px;
       }
+      .mythos-section {
+        padding: 50px 0;
+      }
+      .mythos-media {
+        height: 260px;
+      }
+      .mythos-title {
+        font-size: clamp(1.8rem, 6vw, 2.3rem);
+      }
+      .mythos-lead {
+        font-size: 1.05rem;
+      }
+      .mythos-attributes {
+        grid-template-columns: 1fr;
+      }
+      .flaw-vs-solution {
+        grid-template-columns: 1fr;
+      }
+      .matrix-media-frame img {
+        min-height: 280px;
+        max-height: 340px;
+      }
       .section-standard {
         padding: 48px 0;
       }
@@ -2711,6 +2634,23 @@
         max-height: 88vh;
         overflow-y: auto;
       }
+      .threat-simulator-box {
+        padding: 20px 16px;
+        margin-top: 24px;
+      }
+      .scenario-pill-group {
+        flex-direction: column;
+        width: 100%;
+        gap: 4px;
+      }
+      .scenario-pill {
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+      }
+      .pitr-container {
+        padding: 20px 16px;
+      }
       .banner-cta {
         padding: 30px 18px;
         margin: 32px 0;
@@ -2721,5 +2661,15 @@
       .banner-cta .btn {
         width: 100%;
         text-align: center;
+      }
+      .news-grid,
+      .careers-grid,
+      .supplier-grid,
+      .coop-values-strip,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+      .top-utility-bar .utility-right {
+        display: none;
       }
     }

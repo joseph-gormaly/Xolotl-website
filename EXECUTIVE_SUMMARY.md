@@ -1,4 +1,4 @@
-# Axolotl — Executive Summary & Investment Memorandum
+# Xolotl — Executive Summary & Investment Memorandum
 
 **Confidential — For Prospective Investors & Funding Partners**  
 **Company:** Xolotl Canadian Shield Cooperative  
@@ -10,7 +10,7 @@
 ## 1. Executive Snapshot
 
 > **The cloud has trust issues. Meet the Canadian Shield.**  
-> **One-Sentence Vision:** Axolotl is the world’s first hybrid sovereign edge file-synchronization platform, providing high-consequence institutions with a seamless "OneDrive-like" experience while ensuring that no single technical compromise and no single legal jurisdiction on Earth can compel disclosure of their plaintext data.
+> **One-Sentence Vision:** Xolotl is the world’s first hybrid sovereign edge file-synchronization platform, providing high-consequence institutions with a seamless "OneDrive-like" experience while ensuring that no single technical compromise and no single legal jurisdiction on Earth can compel disclosure of their plaintext data.
 
 | Metric / Dimension | Detail |
 |---|---|
@@ -35,9 +35,9 @@ Enterprises handling high-value intellectual property, sensitive litigation data
 
 ---
 
-## 3. The Axolotl Solution: Cryptographic & Jurisdictional Immunity
+## 3. The Xolotl Solution: Cryptographic & Jurisdictional Immunity
 
-Axolotl bridges the gap between consumer-grade cloud convenience and military-grade sovereign defense through a patent-worthy **3-Layer Hybrid Topology**:
+Xolotl bridges the gap between consumer-grade cloud convenience and military-grade sovereign defense through a patent-worthy **3-Layer Hybrid Topology**:
 
 ```
 +-----------------------------------------------------------------------------+
@@ -50,7 +50,7 @@ Axolotl bridges the gap between consumer-grade cloud convenience and military-gr
                     SigV4 S3 Streaming | Encrypted Ciphertext
                                        v
 +-----------------------------------------------------------------------------+
-| LAYER 2: Axolotl Client Engine (Rust / Tauri Desktop Application)           |
+| LAYER 2: Xolotl Client Engine (Rust / Tauri Desktop Application)           |
 | - Background filesystem watcher with trailing-edge coalescing debounce      |
 | - AES-256-GCM streaming encryption/decryption (constant 8 MiB resident RAM) |
 | - Threshold ElGamal Decryption Coordinator + Zeroize-on-drop RAM hygiene   |
@@ -70,15 +70,15 @@ Axolotl bridges the gap between consumer-grade cloud convenience and military-gr
 
 ### Cryptographic Innovations
 * **No Single Master Key:** Vault keys are never created whole. Keys are cooperatively generated via **Pedersen Distributed Key Generation (DKG)** using the audited Zcash Foundation `frost-core` and `frost-ed25519` primitives.
-* **Blinded Threshold Decryption:** To eliminate the trap of non-deterministic FROST signatures, Axolotl implemented an industrial **Threshold ElGamal Decryption** engine with Chaum-Pedersen zero-knowledge proofs and per-session coordinate blinding.
-* **Enforced Jurisdictional Diversity:** Axolotl’s `topology::enforce_topology_policy` cryptographically and programmatically rejects any unlock attempt where a single national jurisdiction provides a quorum. In a (3,5) vault topology, an adversary would need simultaneous, coordinated court orders from three separate sovereign nations (e.g., USA, Switzerland, and Iceland) within a 2-minute ephemeral signing window.
+* **Blinded Threshold Decryption:** To eliminate the trap of non-deterministic FROST signatures, Xolotl implemented an industrial **Threshold ElGamal Decryption** engine with Chaum-Pedersen zero-knowledge proofs and per-session coordinate blinding.
+* **Enforced Jurisdictional Diversity:** Xolotl’s `topology::enforce_topology_policy` cryptographically and programmatically rejects any unlock attempt where a single national jurisdiction provides a quorum. In a (3,5) vault topology, an adversary would need simultaneous, coordinated court orders from three separate sovereign nations (e.g., USA, Switzerland, and Iceland) within a 2-minute ephemeral signing window.
 * **Ransomware-Proof Disaster Recovery:** Backups pushed to the Canadian mirror are protected by **93-day immutable object locks** and Point-in-Time Recovery (`restore_vault_as_of`), rendering ransomware wiped or encrypted directories immediately restorable to any prior second.
 
 ---
 
 ## 4. Technical Validation & De-Risking (Where We Stand)
 
-Unlike early-stage concepts that present whitepapers, **Axolotl is already built and validated live**:
+Unlike early-stage concepts that present whitepapers, **Xolotl is already built and validated live**:
 
 * **Sprint 1 & Sprint 3 Live-Validated:** Edge Supabase/Postgres, Headscale WireGuard mesh networking, and MinIO S3 multi-tenant storage verified against live Docker infrastructure.
 * **Sprint 2 Crypto Engine & Network Transport Proven:** Real DKG enrollment and FROST threshold unlocks execute over actual HTTP TCP sockets—not mocked or stubs.
@@ -104,7 +104,7 @@ Unlike early-stage concepts that present whitepapers, **Axolotl is already built
 
 ## 6. Business Model & Financial Projections
 
-Axolotl captures value through a high-margin enterprise hybrid license model:
+Xolotl captures value through a high-margin enterprise hybrid license model:
 
 * **Sovereign Edge Node License:** $35,000 – $75,000 / year per institution (covers on-prem deployment, Headscale mesh coordination, and automated agent health orchestration).
 * **Seat Licensing:** $45 / user / month ($540 / user / year), minimum 50 seats.
@@ -120,7 +120,7 @@ Axolotl captures value through a high-margin enterprise hybrid license model:
 
 ## 7. The Ask & Use of Funds
 
-Axolotl is raising a **$1,250,000 Seed Round** alongside **$250,000–$400,000 in non-dilutive sovereign technology grants** (Sovereign Tech Fund, NRC IRAP, Horizon Europe).
+Xolotl is raising a **$1,250,000 Seed Round** alongside **$250,000–$400,000 in non-dilutive sovereign technology grants** (Sovereign Tech Fund, NRC IRAP, Horizon Europe).
 
 ### Allocation of Funds (18-Month Runway)
 
@@ -151,7 +151,7 @@ Axolotl is raising a **$1,250,000 Seed Round** alongside **$250,000–$400,000 i
 
 1. **Geopolitical Weaponization of Data:** The expansion of cross-border data transfer restrictions (Schrems II, EU NIS2, Swiss FADP) has made standard US hyperscalers a legal liability for international organizations.
 2. **Threshold Cryptography is Ready for Production:** Primitives like FROST (RFC 9591) and audited Rust implementations (`frost-core`) allow practical multi-party threshold ceremonies over consumer hardware with sub-second execution.
-3. **The Prototype is Already Validated:** Axolotl does not require a year of basic research. The architecture is engineered, passing live end-to-end integration tests, and positioned for immediate audit and pilot deployment.
+3. **The Prototype is Already Validated:** Xolotl does not require a year of basic research. The architecture is engineered, passing live end-to-end integration tests, and positioned for immediate audit and pilot deployment.
 
 **Contact:**  
 Joseph Gormaly / Xolotl Canadian Shield Cooperative Core Team  

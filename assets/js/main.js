@@ -149,10 +149,11 @@ function handleBackdrop(e) {
 
 function handleFormSubmit(e) {
   e.preventDefault();
+  const isEs = window.location.pathname.includes('/es/') || document.documentElement.lang === 'es';
   const org = (document.getElementById('oName')?.value || '').trim();
   const email = (document.getElementById('wEmail')?.value || '').trim();
   const sectorSelect = document.getElementById('iSector');
-  const sector = sectorSelect ? sectorSelect.options[sectorSelect.selectedIndex].text : 'General Enterprise';
+  const sector = sectorSelect ? sectorSelect.options[sectorSelect.selectedIndex].text : (isEs ? 'Empresa General' : 'General Enterprise');
   const notes = (document.getElementById('pNotes')?.value || '').trim();
   const timestamp = new Date().toUTCString();
 
@@ -163,7 +164,6 @@ function handleFormSubmit(e) {
   const rNotes = document.getElementById('rNotes');
   const rNotesRow = document.getElementById('rNotesRow');
 
-  const isEs = window.location.pathname.includes('/es/') || document.documentElement.lang === 'es';
   if (rOrg) rOrg.innerText = org || (isEs ? 'No especificado' : 'Not specified');
   if (rEmail) rEmail.innerText = email || (isEs ? 'No especificado' : 'Not specified');
   if (rSector) rSector.innerText = sector;
@@ -177,7 +177,6 @@ function handleFormSubmit(e) {
   }
 
   // Build structured email payload
-  const isEs = window.location.pathname.includes('/es/') || document.documentElement.lang === 'es';
   const subject = isEs ? `Solicitud de Piloto Institucional: ${org}` : `Institutional Pilot Application: ${org}`;
   const emailBody = 
 `INSTITUTIONAL PILOT APPLICATION // XOLOTL CANADIAN SHIELD

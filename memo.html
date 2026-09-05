@@ -5,7 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Xolotl — Executive Summary &amp; Investment Memorandum | Canadian Shield Cooperative</title>
   <meta name="description" content="Executive summary and investment memorandum for Xolotl Canadian Shield Cooperative. Zero-trust hybrid sovereign edge file-synchronization platform for high-consequence institutions.">
+  <link rel="alternate" hreflang="en" href="https://xolotl.ca/memo.html">
+  <link rel="alternate" hreflang="es" href="https://xolotl.ca/es/memo.html">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 2 L4 8 V16 C4 23.5 9.1 30 16 32 C22.9 30 28 23.5 28 16 V8 Z' fill='%23192B23' stroke='%23C89D4B' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='5' fill='%23D97706'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;0,700;0,900;1,400;1,600&display=swap">
   <link rel="stylesheet" href="assets/css/style.css">
   <style>
     .memo-wrapper {
@@ -358,7 +363,7 @@
         </div>
       </div>
 
-      <h1 class="memo-title">Axolotl — Executive Summary &amp; Investment Memorandum</h1>
+      <h1 class="memo-title">Xolotl — Executive Summary &amp; Investment Memorandum</h1>
       <div class="memo-subtitle">The world's first hybrid sovereign edge file-synchronization platform.</div>
 
       <div class="memo-meta-grid">
@@ -385,7 +390,7 @@
         <h2><span class="sec-num">1.</span> Executive Snapshot</h2>
         <div class="memo-callout">
           <strong>The cloud has trust issues. Meet the Canadian Shield.</strong><br>
-          <em>One-Sentence Vision:</em> Axolotl is the world's first hybrid sovereign edge file-synchronization platform, providing high-consequence institutions with a seamless "OneDrive-like" experience while ensuring that no single technical compromise and no single legal jurisdiction on Earth can compel disclosure of their plaintext data.
+          <em>One-Sentence Vision:</em> Xolotl is the world's first hybrid sovereign edge file-sync platform &mdash; the OneDrive-like experience institutions already use, with a guarantee they've never had: no single jurisdiction or technical compromise can compel disclosure of your plaintext.
         </div>
 
         <table class="memo-table">
@@ -436,15 +441,15 @@
           <li><strong>The Air-Gapped/On-Prem Trap:</strong> Maintaining disconnected on-premises storage eliminates cloud convenience, prevents multi-region offsite disaster recovery, breaks remote collaboration, and is notoriously vulnerable to local physical catastrophes and ransomware encryptors.</li>
         </ul>
         <div class="memo-callout">
-          <strong>The Missing Primitive:</strong> The enterprise software industry lacks a system where <em>"Adversary" is properly redefined to include a fully cooperative, uncompromised party acting under judicial or sovereign compulsion</em>.
+          <strong>The Missing Primitive:</strong> No existing product accounts for a fully compliant, uncompromised custodian being legally forced to hand over your data. Xolotl is built for exactly that adversary.
         </div>
       </section>
 
       <!-- Section 3 -->
       <section class="memo-section">
-        <h2><span class="sec-num">3.</span> The Axolotl Solution: Cryptographic &amp; Jurisdictional Immunity</h2>
+        <h2><span class="sec-num">3.</span> The Xolotl Solution: Cryptographic &amp; Jurisdictional Immunity</h2>
         <p style="color:var(--text-warm-gray); line-height: 1.65;">
-          Axolotl bridges the gap between consumer-grade cloud convenience and military-grade sovereign defense through a patent-worthy <strong>3-Layer Hybrid Topology</strong>:
+          Xolotl bridges the gap between consumer-grade cloud convenience and military-grade sovereign defense through a patent-worthy <strong>3-Layer Hybrid Topology</strong>:
         </p>
 
         <div class="diagram-terminal">
@@ -458,7 +463,7 @@
                     SigV4 S3 Streaming | Encrypted Ciphertext
                                        v
 +-----------------------------------------------------------------------------+
-| LAYER 2: Axolotl Client Engine (Rust / Tauri Desktop Application)           |
+| LAYER 2: Xolotl Client Engine (Rust / Tauri Desktop Application)           |
 | - Background filesystem watcher with trailing-edge coalescing debounce      |
 | - AES-256-GCM streaming encryption/decryption (constant 8 MiB resident RAM) |
 | - Threshold ElGamal Decryption Coordinator + Zeroize-on-drop RAM hygiene   |
@@ -479,8 +484,8 @@
         <h3 style="font-size: 1.1rem; color: #FFFFFF; margin: 24px 0 12px;">Cryptographic Innovations</h3>
         <ul class="memo-list">
           <li><strong>No Single Master Key:</strong> Vault keys are never created whole. Keys are cooperatively generated via <strong>Pedersen Distributed Key Generation (DKG)</strong> using the audited Zcash Foundation <code>frost-core</code> and <code>frost-ed25519</code> primitives.</li>
-          <li><strong>Blinded Threshold Decryption:</strong> To eliminate the trap of non-deterministic FROST signatures, Axolotl implemented an industrial <strong>Threshold ElGamal Decryption</strong> engine with Chaum-Pedersen zero-knowledge proofs and per-session coordinate blinding.</li>
-          <li><strong>Enforced Jurisdictional Diversity:</strong> Axolotl's <code>topology::enforce_topology_policy</code> cryptographically and programmatically rejects any unlock attempt where a single national jurisdiction provides a quorum. In a (3,5) vault topology, an adversary would need simultaneous, coordinated court orders from three separate sovereign nations (e.g., USA, Switzerland, and Iceland) within a 2-minute ephemeral signing window.</li>
+          <li><strong>Blinded Threshold Decryption:</strong> To eliminate the trap of non-deterministic FROST signatures, Xolotl implemented an industrial <strong>Threshold ElGamal Decryption</strong> engine with Chaum-Pedersen zero-knowledge proofs and per-session coordinate blinding.</li>
+          <li><strong>Enforced Jurisdictional Diversity:</strong> Xolotl's <code>topology::enforce_topology_policy</code> cryptographically and programmatically rejects any unlock attempt where a single national jurisdiction provides a quorum. In a (3,5) vault topology, an adversary would need simultaneous, coordinated court orders from three separate sovereign nations (e.g., USA, Switzerland, and Iceland) within a 2-minute ephemeral signing window.</li>
           <li><strong>Ransomware-Proof Disaster Recovery:</strong> Backups pushed to the Canadian mirror are protected by <strong>93-day immutable object locks</strong> and Point-in-Time Recovery (<code>restore_vault_as_of</code>), rendering ransomware wiped or encrypted directories immediately restorable to any prior second.</li>
         </ul>
       </section>
@@ -489,7 +494,7 @@
       <section class="memo-section">
         <h2><span class="sec-num">4.</span> Technical Validation &amp; De-Risking (Where We Stand)</h2>
         <p style="color:var(--text-warm-gray); line-height: 1.65;">
-          Unlike early-stage concepts that present whitepapers, <strong>Axolotl is already built and validated live</strong>:
+          Unlike early-stage concepts that present whitepapers, <strong>Xolotl is already built and validated live</strong>:
         </p>
         <ul class="memo-list">
           <li><strong>Sprint 1 &amp; Sprint 3 Live-Validated:</strong> Edge Supabase/Postgres, Headscale WireGuard mesh networking, and MinIO S3 multi-tenant storage verified against live Docker infrastructure.</li>
@@ -535,7 +540,7 @@
       <section class="memo-section">
         <h2><span class="sec-num">6.</span> Business Model &amp; Financial Projections</h2>
         <p style="color:var(--text-warm-gray); line-height: 1.65;">
-          Axolotl captures value through a high-margin enterprise hybrid license model:
+          Xolotl captures value through a high-margin enterprise hybrid license model:
         </p>
         <ul class="memo-list">
           <li><strong>Sovereign Edge Node License:</strong> $35,000 – $75,000 / year per institution (covers on-prem deployment, Headscale mesh coordination, and automated agent health orchestration).</li>
@@ -556,7 +561,7 @@
       <section class="memo-section">
         <h2><span class="sec-num">7.</span> The Ask &amp; Use of Funds</h2>
         <p style="color:var(--text-warm-gray); line-height: 1.65;">
-          Axolotl is raising a <strong>$1,250,000 Seed Round</strong> alongside <strong>$250,000–$400,000 in non-dilutive sovereign technology grants</strong> (Sovereign Tech Fund, NRC IRAP, Horizon Europe).
+          Xolotl is raising a <strong>$1,250,000 Seed Round</strong> alongside <strong>$250,000–$400,000 in non-dilutive sovereign technology grants</strong> (Sovereign Tech Fund, NRC IRAP, Horizon Europe).
         </p>
 
         <div class="fund-alloc-grid">
@@ -594,7 +599,7 @@
         <ul class="memo-list">
           <li><strong>Geopolitical Weaponization of Data:</strong> The expansion of cross-border data transfer restrictions (Schrems II, EU NIS2, Swiss FADP) has made standard US hyperscalers a legal liability for international organizations.</li>
           <li><strong>Threshold Cryptography is Ready for Production:</strong> Primitives like FROST (RFC 9591) and audited Rust implementations (<code>frost-core</code>) allow practical multi-party threshold ceremonies over consumer hardware with sub-second execution.</li>
-          <li><strong>The Prototype is Already Validated:</strong> Axolotl does not require a year of basic research. The architecture is engineered, passing live end-to-end integration tests, and positioned for immediate audit and pilot deployment.</li>
+          <li><strong>The Prototype is Already Validated:</strong> Xolotl does not require a year of basic research. The architecture is engineered, passing live end-to-end integration tests, and positioned for immediate audit and pilot deployment.</li>
         </ul>
       </section>
 

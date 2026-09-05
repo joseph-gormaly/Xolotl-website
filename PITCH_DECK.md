@@ -1,7 +1,7 @@
-# Axolotl — Investor Pitch Deck (14-Slide Script)
+# Xolotl — Investor Pitch Deck (14-Slide Script)
 
 **Confidential — For Prospective Investors & Funding Partners**  
-**Company:** Axolotl Data Sovereignty Systems  
+**Company:** Xolotl Data Sovereignty Systems  
 **Stage:** $1.25M Seed Round + $250k–$400k Sovereign Grants  
 **Format:** Slide-by-slide layout, visual cues, speaker track, and Q&A defense.
 
@@ -10,27 +10,27 @@
 ## Slide 1: Title & Hook
 
 ### Visual Layout
-* **Hero Graphic:** A dark-mode split screen. On the left, a traditional cloud icon trapped in a spiderweb of national flag borders and subpoena seals. On the right, the clean geometric Axolotl mesh topology: three independent jurisdictional nodes interlocking around a sealed vault.
+* **Hero Graphic:** A dark-mode split screen. On the left, a traditional cloud icon trapped in a spiderweb of national flag borders and subpoena seals. On the right, the clean geometric Xolotl mesh topology: three independent jurisdictional nodes interlocking around a sealed vault.
 * **Tagline:** *The World's First Hybrid Sovereign Edge Synchronization Platform.*
 * **Lead Hook:** *The cloud has trust issues. Meet the Canadian Shield.*
 * **Sub-text:** High-consequence file sync engineered for institutions that cannot afford a single point of legal compulsion.
 
 ### Slide Copy
-* **Axolotl**
+* **Xolotl**
 * True Data Sovereignty for High-Consequence Enterprise.
 * Seamless "OneDrive-like" UX • Audited Threshold Cryptography • Immunity to Extraterritorial Subpoenas.
 * Joseph Gormaly, Founder & Core Team.
 
 ### Presenter Script (Talking Track)
-> "Good morning. If you manage litigation files for a multinational law firm, classified avionics schematics for a defense subcontractor, or client registries for a Zurich private bank, you face an existential legal trap today. You are told that enterprise cloud storage is 'zero-trust' and 'encrypted at rest.' But in reality, every major cloud provider—Microsoft, Google, Box, AWS—is subject to the US CLOUD Act and foreign surveillance warrants. 
+> "Good morning. If you manage litigation files for a multinational law firm, classified schematics for a defense subcontractor, or client registries for a Zurich private bank, you're already exposed.
 >
-> If a US court, intelligence agency, or foreign court serving an MLAT issues a sealed directive, your cloud vendor will comply. Even if your data is stored in Frankfurt, Dublin, or Montreal, a single court order compelled against a single entity forces disclosure.
+> Your cloud storage is sold to you as zero-trust and encrypted at rest — but every major provider, Microsoft, Google, Box, AWS, must comply the moment a single sealed court order arrives, no matter whether your data sits in Frankfurt, Dublin, or Montreal.
 >
-> We built Axolotl to solve this fundamental flaw. Axolotl gives enterprise knowledge workers the exact, frictionless 'drop-a-file-in-a-folder' experience of OneDrive, but with a cryptographic architecture that makes it mathematically impossible for any single court, any single cloud provider, or any single technical breach to produce their plaintext."
+> We built Xolotl to close that gap: the same frictionless 'drop-a-file-in-a-folder' experience as OneDrive, backed by cryptography that makes it mathematically impossible for any single court, cloud provider, or technical breach to produce your plaintext."
 
 ### Anticipated Investor Q&A / "Trap Question"
 * **Investor:** *"Doesn't Box, OneDrive, or Tresorit already claim end-to-end encryption?"*
-* **Founder Response:** *"OneDrive and Box manage keys centrally; they hold the keys and routinely comply with CLOUD Act warrants. Tresorit and Proton offer end-to-end encryption, but their security model relies on a single master passphrase or single key pair held on the endpoint. If an administrator is served a subpoena, or an endpoint is compromised, all data is exposed. Axolotl partitions the key across independent sovereign jurisdictions via Pedersen DKG and threshold ElGamal. No single party—not even the customer's own IT admin alone—holds the key."*
+* **Founder Response:** *"OneDrive and Box manage keys centrally; they hold the keys and routinely comply with CLOUD Act warrants. Tresorit and Proton offer end-to-end encryption, but their security model relies on a single master passphrase or single key pair held on the endpoint. If an administrator is served a subpoena, or an endpoint is compromised, all data is exposed. Xolotl partitions the key across independent sovereign jurisdictions via Pedersen DKG and threshold ElGamal. No single party—not even the customer's own IT admin alone—holds the key."*
 
 ---
 
@@ -68,7 +68,7 @@
 ### Visual Layout
 * **Comparison Diagram:**
   * *Legacy Model:* Attackers = External Hackers, Malicious Insiders. Assumes legitimate authorities are benign or domestic.
-  * *Axolotl Sovereign Model:* Threat Actor includes **Uncompromised Third Parties Under Court Order**.
+  * *Xolotl Sovereign Model:* Threat Actor includes **Uncompromised Third Parties Under Court Order**.
 * **Key Cryptographic Axioms:**
   * Axiom 1: Plaintext never leaves the local desktop endpoint unencrypted.
   * Axiom 2: The master key never touches physical disk—volatile memory only, zeroized immediately.
@@ -86,7 +86,7 @@
   4. Jurisdictional Threshold: Unlocks require synchronous quorum across multiple independent sovereign borders.
 
 ### Presenter Script (Talking Track)
-> "In Axolotl's threat model, we made a radical but necessary assumption: we assume that our own cloud company, our customer's cloud providers, and even individual company executives can and will be served with lawful, coercive government court orders accompanied by gag orders.
+> "In Xolotl's threat model, we made a radical but necessary assumption: we assume that our own cloud company, our customer's cloud providers, and even individual company executives can and will be served with lawful, coercive government court orders accompanied by gag orders.
 >
 > If you engineer a system where an administrator or a vendor has the technical ability to decrypt data, they will eventually be forced to use it. 
 >
@@ -94,7 +94,7 @@
 
 ---
 
-## Slide 4: The Axolotl Architecture: 3-Layer Hybrid Sovereign Edge
+## Slide 4: The Xolotl Architecture: 3-Layer Hybrid Sovereign Edge
 
 ### Visual Layout
 * **Architectural Diagram:**
@@ -106,7 +106,7 @@
                                     ^ SigV4 Streaming AES-256-GCM
                                     v (Ephemeral STS Broker Tokens)
 +-------------------------------------------------------------------------+
-| LAYER 2: Axolotl Client Engine (Rust / Tauri Desktop Native)            |
+| LAYER 2: Xolotl Client Engine (Rust / Tauri Desktop Native)            |
 | - Trailing-edge debounce watcher • Constant 8 MiB RAM multipart sync     |
 | - Threshold ElGamal Coordinator • Ephemeral KEK zeroized on drop        |
 +-------------------------------------------------------------------------+
@@ -125,10 +125,10 @@
 * **Layer 1: Sovereign Edge Stack (Customer Controlled)**
   * Dockerized on-premises node running isolated Postgres with Row-Level Security (RLS) and Supabase GoTrue authentication.
   * Operates behind a dedicated WireGuard mesh network namespace—zero public ingress.
-* **Layer 2: Axolotl Desktop Engine (Rust / Tauri)**
+* **Layer 2: Xolotl Desktop Engine (Rust / Tauri)**
   * Ultra-lightweight native client (<30MB footprint) watching local directory trees with trailing-edge debouncing.
   * Streams encrypted files directly to core storage with fixed 8 MiB resident RAM overhead.
-* **Layer 3: Canadian Blind Core Mirror (Axolotl SaaS)**
+* **Layer 3: Canadian Blind Core Mirror (Xolotl SaaS)**
   * Multi-tenant S3-compatible MinIO cluster featuring 93-day immutable object locks.
   * Zero knowledge, zero key shares, zero plaintext exposure.
 
@@ -156,7 +156,7 @@
   * Keys are generated collaboratively via **Pedersen DKG**. At no second during setup or operation is the master key assembled in one place.
 * **Solving the FROST Trap:**
   * FROST (RFC 9591) threshold signatures are non-deterministic—deriving AES keys from signatures breaks static KEK unwrapping.
-  * Axolotl engineered a production **Threshold ElGamal Decryption** engine using Chaum-Pedersen zero-knowledge proofs over Ed25519.
+  * Xolotl engineered a production **Threshold ElGamal Decryption** engine using Chaum-Pedersen zero-knowledge proofs over Ed25519.
 * **Session Coordinate Blinding:**
   * Every unlock round blinds public points ($R' = R^\beta$), rendering any intercepted partial decryption completely useless in any other session.
 * **Zeroize RAM Protection:**
@@ -165,7 +165,7 @@
 ### Presenter Script (Talking Track)
 > "Now let's look under the hood at our cryptographic moat. Many startups claim to use multi-party computation, but they rely on theoretical whitepapers or broken implementations.
 >
-> When we engineered Axolotl, we uncovered a critical flaw in standard threshold signature designs: FROST signatures are inherently non-deterministic because they use fresh random nonces in every signing round. You cannot derive a static AES encryption key from a FROST signature without leaking the key or failing deterministic file recovery.
+> When we engineered Xolotl, we uncovered a critical flaw in standard threshold signature designs: FROST signatures are inherently non-deterministic because they use fresh random nonces in every signing round. You cannot derive a static AES encryption key from a FROST signature without leaking the key or failing deterministic file recovery.
 >
 > We solved this by designing a dedicated Threshold ElGamal Decryption scheme paired with Chaum-Pedersen zero-knowledge proofs. When an employee logs in, their client initiates an unlock ceremony. The custodians produce partial decryptions of an ephemeral coordinate. Each custodian mathematically proves its share was evaluated correctly without revealing its secret. 
 >
@@ -193,7 +193,7 @@
 ### Slide Copy
 * **The Fatal Flaw of Traditional Multi-Sig:**
   * If 3 of 3 custodians reside in the United States, a single US Federal Judge can order all three to sign simultaneously under sealed contempt of court.
-* **Axolotl's Enforced Diversity Rule:**
+* **Xolotl's Enforced Diversity Rule:**
   * Vault policy mandates that **no single jurisdiction can supply a quorum ($\ge m$)**.
   * In our standard (3,5) enterprise topology, reaching the threshold of 3 requires cooperation across at least two sovereign borders.
 * **The Adversary's Impossibility Theorem:**
@@ -202,7 +202,7 @@
 ### Presenter Script (Talking Track)
 > "Technical separation is meaningless if your legal blast radius is consolidated. If a financial institution runs three custodians, but all three are servers sitting in Northern Virginia, an NSL or a sealed grand jury subpoena served on their corporate counsel compels all three keys at once.
 >
-> Axolotl introduces what we believe is an industry first: **Cryptographically Enforced Jurisdictional Diversity**.
+> Xolotl introduces what we believe is an industry first: **Cryptographically Enforced Jurisdictional Diversity**.
 >
 > Our unlock coordinator enforces a strict mathematical topology check. If an unlock request attempts to use three custodians from the same legal jurisdiction, the client software refuses to execute the ceremony. 
 >
@@ -215,13 +215,13 @@
 ### Visual Layout
 * **Mockup of the Tauri Desktop App UI:**
   * Left: Native Windows Explorer / macOS Finder folder showing green sync checkmarks.
-  * Center: Clean Axolotl status tray showing "Sovereign Mesh: Connected (5/5 Custodians) • Sync Status: Real-time • Immutable Retention: 93 Days Active."
+  * Center: Clean Xolotl status tray showing "Sovereign Mesh: Connected (5/5 Custodians) • Sync Status: Real-time • Immutable Retention: 93 Days Active."
   * Right: Point-in-Time Recovery Slider: Dragging from "Now" back to "August 14, 2026, 03:15 PM" with instant directory rollback preview.
 
 ### Slide Copy
 * **Zero Disruption to Knowledge Workers:**
   * Native desktop sync for Windows, macOS, and Linux built in Rust & Tauri.
-  * Just drag and drop files into the local Axolotl folder—instant background synchronization.
+  * Just drag and drop files into the local Xolotl folder—instant background synchronization.
 * **Streaming Architecture:**
   * Files are chunked and encrypted in 8 MiB streaming pipelines. Handles 50GB video archives and multi-gigabyte CAD models without RAM spikes.
 * **Point-in-Time Recovery (PITR):**
@@ -232,9 +232,9 @@
 ### Presenter Script (Talking Track)
 > "Security systems fail when they are difficult to use. If an encryption tool requires command-line keys or complex manual certificate imports, employees bypass it and use personal Dropbox accounts.
 >
-> With Axolotl, the user sees a regular folder on their desktop. They save a Word document, an Excel model, or a litigation bundle, and it syncs instantly. Behind the scenes, our Rust filesystem watcher uses trailing-edge coalescing debouncing so we never lose rapid edits, chunking the data in 8 MiB streams to keep memory under 30 megabytes.
+> With Xolotl, the user sees a regular folder on their desktop. They save a Word document, an Excel model, or a litigation bundle, and it syncs instantly. Behind the scenes, our Rust filesystem watcher uses trailing-edge coalescing debouncing so we never lose rapid edits, chunking the data in 8 MiB streams to keep memory under 30 megabytes.
 >
-> If an employee accidentally deletes a folder, or if an endpoint gets hit by zero-day ransomware that encrypts their local drive, they open the Axolotl client, select our Point-in-Time Recovery slider, drag it back five minutes, and restore the uncorrupted files instantly. The Canadian mirror's 93-day object lock ensures that even if ransomware attempts to wipe the backup, the S3 storage bucket rejects the delete command."
+> If an employee accidentally deletes a folder, or if an endpoint gets hit by zero-day ransomware that encrypts their local drive, they open the Xolotl client, select our Point-in-Time Recovery slider, drag it back five minutes, and restore the uncorrupted files instantly. The Canadian mirror's 93-day object lock ensures that even if ransomware attempts to wipe the backup, the S3 storage bucket rejects the delete command."
 
 ---
 
@@ -259,7 +259,7 @@
   * Comprehensive 15-page Request for Proposal (`docs/rfp-threshold-decrypt-review.md`) prepared for independent tier-1 audit engagement (Trail of Bits / Kudelski).
 
 ### Presenter Script (Talking Track)
-> "Investors see countless cybersecurity pitches that are nothing more than slide decks and theoretical whitepapers. Axolotl is already built and working.
+> "Investors see countless cybersecurity pitches that are nothing more than slide decks and theoretical whitepapers. Xolotl is already built and working.
 >
 > Over the past four sprints, we built the entire end-to-end stack in Rust, TypeScript, and Docker. We proved multi-party DKG enrollment across real network sockets. We verified streaming SigV4 multi-part uploads to real S3 infrastructure. We wrote and verified Row-Level Security policies in Postgres that guarantee multi-tenant cryptographic isolation.
 >
@@ -292,7 +292,7 @@
 >
 > Our beachhead is cross-border corporate law firms. When a London or Frankfurt law firm advises on a multi-billion dollar hostile takeover involving US competitors, storing case files on standard cloud drives exposes them to US grand jury subpoenas and CLOUD Act discovery. That can destroy client confidentiality and violate local professional bar ethics. They are actively searching for a compliant alternative.
 >
-> Our second target is defense subcontractors who must meet CMMC 2.0 Level 2 and ITAR standards. They cannot use public clouds without costly sovereign enclave add-ons that cost millions. Axolotl gives them an on-prem sovereign edge with cloud-tier resilience at a fraction of the cost.
+> Our second target is defense subcontractors who must meet CMMC 2.0 Level 2 and ITAR standards. They cannot use public clouds without costly sovereign enclave add-ons that cost millions. Xolotl gives them an on-prem sovereign edge with cloud-tier resilience at a fraction of the cost.
 >
 > Our third segment is Swiss and European private wealth management, where disclosing client rosters to foreign agencies carries criminal penalties under Swiss law."
 
@@ -319,7 +319,7 @@
   * Enterprise budgets for sovereign cloud and compliance infrastructure are growing at 28% year-over-year.
 
 ### Presenter Script (Talking Track)
-> "The macroeconomic and geopolitical tailwinds behind Axolotl are unprecedented. Over the last three years, the concept of national data sovereignty has exploded into boardroom conversations worldwide.
+> "The macroeconomic and geopolitical tailwinds behind Xolotl are unprecedented. Over the last three years, the concept of national data sovereignty has exploded into boardroom conversations worldwide.
 >
 > The European Union's NIS2 directive and Data Act, combined with strict enforcement of GDPR Article 48, have made standard US cloud storage a massive compliance liability. European enterprise leaders are openly asking: 'How do we operate globally when our primary technology stack can be seized by a foreign subpoena?'
 >
@@ -350,7 +350,7 @@
   * Predictable expansion as legal matters, deal teams, and project enclaves scale.
 
 ### Presenter Script (Talking Track)
-> "Axolotl uses a high-margin enterprise hybrid business model that aligns directly with how institutions procure high-assurance software.
+> "Xolotl uses a high-margin enterprise hybrid business model that aligns directly with how institutions procure high-assurance software.
 >
 > We charge a base Sovereign Edge Node License of $35,000 to $75,000 annually per institution. This covers the edge orchestration, WireGuard mesh management, and automated custodian agent operations.
 >
@@ -365,7 +365,7 @@
 ### Visual Layout
 * **Feature Comparison Matrix:**
 
-| Feature / Capability | Public Cloud (OneDrive / Box) | Consumer E2EE (Tresorit / Proton) | On-Prem Enclaves (Virtru / CipherFly) | Axolotl Sovereign Edge |
+| Feature / Capability | Public Cloud (OneDrive / Box) | Consumer E2EE (Tresorit / Proton) | On-Prem Enclaves (Virtru / CipherFly) | Xolotl Sovereign Edge |
 |---|:---:|:---:|:---:|:---:|
 | **Frictionless Desktop Sync** | Yes | Yes | No (Web/Plugin) | **Yes (Rust/Tauri)** |
 | **CLOUD Act Proof** | No | No | Partial | **Yes (Mathematical)** |
@@ -379,7 +379,7 @@
   * **Hyperscalers (Microsoft / Google):** Bound by US parent jurisdiction; their corporate structure prevents them from offering true legal blindness.
   * **Traditional E2EE (Tresorit / Proton):** Single-endpoint key architecture. Vulnerable to endpoint subpoenas and administrator compromise.
   * **Legacy Hardware Appliances:** Prohibitively expensive, lack cloud disaster recovery, and require dedicated cryptographic hardware (HSMs).
-* **The Axolotl Moat:**
+* **The Xolotl Moat:**
   * Combining audited Rust threshold crypto, jurisdictional policy enforcement, and blind S3 streaming into a single, intuitive desktop client.
 
 ### Presenter Script (Talking Track)
@@ -391,7 +391,7 @@
 >
 > Hardware-based sovereign appliances are outrageously complex, cost hundreds of thousands of dollars in specialized HSM hardware, and completely ruin the modern remote work experience.
 >
-> Axolotl stands alone: we deliver the seamless native sync of OneDrive, paired with the multi-jurisdictional cryptographic protection of a defense-grade enclave."
+> Xolotl stands alone: we deliver the seamless native sync of OneDrive, paired with the multi-jurisdictional cryptographic protection of a defense-grade enclave."
 
 ---
 
@@ -414,7 +414,7 @@
   * All architectural hard problems (DKG, HTTP threshold unlock, streaming SigV4 S3, RLS policies) are solved and verified in code today.
 
 ### Presenter Script (Talking Track)
-> "We have a clear, rigorous 18-month execution plan to take Axolotl from its current validated state to General Availability and Series A scale.
+> "We have a clear, rigorous 18-month execution plan to take Xolotl from its current validated state to General Availability and Series A scale.
 >
 > In Phase 1, we deploy our Seed funding to complete our formal external cryptographic audit with a premier security firm and secure written legal opinions on our cross-border jurisdictional posture.
 >
@@ -448,7 +448,7 @@
   * **Round Size:** $1,250,000 Seed Round.
   * **Runway:** 18 Months to GA and $1.35M+ ARR.
   * **Capital Efficiency:** Augmented by $250k–$400k in non-dilutive sovereign technology grants.
-* **Why Axolotl Wins:**
+* **Why Xolotl Wins:**
   1. *A Real Cryptographic Moat:* Production Pedersen DKG + FROST + Threshold ElGamal Decryption.
   2. *True Legal Immunity:* Mathematically enforced jurisdictional diversity resistant to the US CLOUD Act.
   3. *Immediate Market Need:* Global de-hyperscalization driven by escalating geopolitical and regulatory conflict.

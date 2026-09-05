@@ -6,7 +6,10 @@
   <title>Xolotl Canadian Shield — 14-Slide Investor Deck &amp; Sovereign Architecture Briefing</title>
   <meta name="description" content="Interactive 14-slide investor presentation for Xolotl Canadian Shield Cooperative with voice narration, synchronized captions, and live video demonstrations.">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 2 L4 8 V16 C4 23.5 9.1 30 16 32 C22.9 30 28 23.5 28 16 V8 Z' fill='%23192B23' stroke='%23C89D4B' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='5' fill='%23D97706'/%3E%3C/svg%3E">
-  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;0,700;0,900;1,400;1,600&display=swap">
+
   <style>
     :root {
       --bg-granite: #0B110E;
@@ -21,7 +24,8 @@
       --accent-sage: #34D399;
       --accent-maple: #EF4444;
       --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      --font-serif: Georgia, Cambria, "Times New Roman", Times, serif;
+      --font-serif: "Fraunces", Georgia, Cambria, "Times New Roman", Times, serif;
+      --font-display: "Fraunces", Georgia, Cambria, "Times New Roman", Times, serif;
       --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
     }
 
@@ -226,8 +230,9 @@
     }
 
     .slide-heading {
+      font-family: var(--font-display);
       font-size: clamp(1.6rem, 2.8vw, 2.3rem);
-      font-weight: 800;
+      font-weight: 700;
       letter-spacing: -0.025em;
       line-height: 1.15;
       color: #FFFFFF;
@@ -846,8 +851,8 @@
           <div>
             <ul class="slide-bullets">
               <li><strong>Layer 1: Sovereign Edge Stack (Customer Controlled):</strong> Isolated on-prem Docker node running Postgres RLS and Supabase GoTrue behind a private WireGuard network namespace—zero public ingress.</li>
-              <li><strong>Layer 2: Axolotl Client Engine (Rust / Tauri):</strong> Native OS directory-tree watcher with trailing-edge debouncing; streams encrypted files in constant 8 MiB resident RAM pipelines.</li>
-              <li><strong>Layer 3: Canadian Blind Core Mirror (Axolotl SaaS):</strong> High-availability S3 cluster in Montreal featuring 93-day immutable object locks. Holds zero key shares and zero plaintext authority.</li>
+              <li><strong>Layer 2: Xolotl Client Engine (Rust / Tauri):</strong> Native OS directory-tree watcher with trailing-edge debouncing; streams encrypted files in constant 8 MiB resident RAM pipelines.</li>
+              <li><strong>Layer 3: Canadian Blind Core Mirror (Xolotl SaaS):</strong> High-availability S3 cluster in Montreal featuring 93-day immutable object locks. Holds zero key shares and zero plaintext authority.</li>
             </ul>
           </div>
           <div class="media-box">

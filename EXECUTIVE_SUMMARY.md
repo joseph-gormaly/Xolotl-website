@@ -9,6 +9,7 @@
 
 ## 1. Executive Snapshot
 
+> **The cloud has trust issues. Meet the Canadian Shield.**  
 > **One-Sentence Vision:** Axolotl is the world’s first hybrid sovereign edge file-synchronization platform, providing high-consequence institutions with a seamless "OneDrive-like" experience while ensuring that no single technical compromise and no single legal jurisdiction on Earth can compel disclosure of their plaintext data.
 
 | Metric / Dimension | Detail |

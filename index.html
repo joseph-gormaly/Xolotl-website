@@ -2079,9 +2079,9 @@
           <span>Xolotl</span>
           <span class="brand-tag">Canadian Shield</span>
         </a>
-        <button class="pronounce-chip" onclick="playPronounceAudio(event)" title="Listen to pronunciation: 'SHOW-lotl' [ˈʃoːloːtɬ]" aria-label="Listen to pronunciation: SHOW-lotl">
+        <button class="pronounce-chip" onclick="playPronounceAudio(event)" title="Listen to pronunciation: 'SHOW-lot' [ˈʃoːloːtɬ]" aria-label="Listen to pronunciation: SHOW-lot">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="speaker-svg"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
-          <span class="pronounce-text">"SHOW-lotl"</span>
+          <span class="pronounce-text">"SHOW-lot"</span>
           <span class="pronounce-ipa">/ˈʃoːloːtɬ/</span>
           <span class="sound-bars">
             <span class="bar"></span>
@@ -2161,7 +2161,7 @@
               <div class="hero-phonetic-pill">
                 <span>Pronunciation:</span>
                 <strong>/ˈʃoːloːtɬ/</strong>
-                <span style="color: #FFFFFF;">("SHOW-lotl")</span>
+                <span style="color: #FFFFFF;">("SHOW-lot")</span>
                 <button class="meta-speaker-btn" onclick="playPronounceAudio(event)" title="Hear audio pronunciation" aria-label="Hear pronunciation">
                   <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
                   <span>Hear</span>
@@ -3082,7 +3082,7 @@
               fallbackSpeechSynthesis(clearPlaying);
             });
         } else {
-          setTimeout(clearPlaying, 1850);
+          setTimeout(clearPlaying, 2200);
         }
       } catch (err) {
         console.warn("Audio exception, falling back to Web Speech:", err);
@@ -3094,17 +3094,14 @@
       if ('speechSynthesis' in window) {
         try {
           window.speechSynthesis.cancel();
-          const utter = new SpeechSynthesisUtterance("Xólotl");
+          const utter = new SpeechSynthesisUtterance("SHOW-lot");
           utter.rate = 0.85;
-          utter.pitch = 1.05;
-          utter.lang = 'es-MX';
+          utter.pitch = 1.0;
+          utter.lang = 'en-CA';
 
           const voices = window.speechSynthesis.getVoices();
           if (voices && voices.length > 0) {
-            const preferred = voices.find(v => 
-              (v.lang.includes('es-MX') || v.lang.includes('es-ES') || v.lang.startsWith('es')) &&
-              (v.name.toLowerCase().includes('female') || v.name.toLowerCase().includes('dalia') || v.name.toLowerCase().includes('sabina') || v.name.toLowerCase().includes('elena') || v.name.toLowerCase().includes('monica'))
-            ) || voices.find(v => v.lang.startsWith('es'));
+            const preferred = voices.find(v => v.lang.includes('CA') || v.lang.includes('GB') || v.lang.includes('US'));
             if (preferred) utter.voice = preferred;
           }
 

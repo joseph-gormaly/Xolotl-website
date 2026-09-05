@@ -13,7 +13,7 @@
   <meta property="og:description" content="Official releases, CLOUD Act advisories, and audit RFPs from Xolotl Canadian Shield Cooperative.">
   <meta property="og:image" content="https://xolotl.ca/assets/images/canadian_shield_twilight.jpg">
   
-  <link rel="icon" type="image/svg+xml" href="assets/images/xolotl_emblem.svg">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 2 L4 8 V16 C4 23.5 9.1 30 16 32 C22.9 30 28 23.5 28 16 V8 Z' fill='%23192B23' stroke='%23C89D4B' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='5' fill='%23D97706'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="assets/css/style.css">
   <style>
     .nav-links a.active {
@@ -52,7 +52,10 @@
       <div class="container nav-inner">
         <div style="display: flex; align-items: center; gap: 12px;">
           <a href="index.html" class="brand-logo" aria-label="Xolotl Home">
-            <img src="assets/images/xolotl_emblem.svg" alt="Xolotl Canadian Shield Emblem" class="shield-icon" width="34" height="40">
+            <svg class="shield-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16 2L4 7V15C4 22.5 9.1 29 16 31C22.9 29 28 22.5 28 15V7L16 2Z" fill="#15231C" stroke="#C89D4B" stroke-width="2"/>
+              <circle cx="16" cy="16" r="4.5" fill="#D97706"/>
+            </svg>
             <span>Xolotl</span>
             <span class="brand-tag">Canadian Shield</span>
           </a>
@@ -96,7 +99,10 @@
     <div class="mobile-drawer-inner">
       <div class="mobile-drawer-top">
         <a href="index.html" class="brand-logo" onclick="closeMobileMenu()">
-          <img src="assets/images/xolotl_emblem.svg" alt="Xolotl Canadian Shield Emblem" class="shield-icon" width="34" height="40">
+          <svg class="shield-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 2L4 7V15C4 22.5 9.1 29 16 31C22.9 29 28 22.5 28 15V7L16 2Z" fill="#15231C" stroke="#C89D4B" stroke-width="2"/>
+            <circle cx="16" cy="16" r="4.5" fill="#D97706"/>
+          </svg>
           <span>Xolotl</span>
         </a>
         <button class="modal-close-btn" onclick="closeMobileMenu()">&times;</button>
@@ -303,16 +309,15 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
-            <a href="index.html" style="text-decoration: none; display: inline-block; margin-bottom: 10px;">
-            <img src="assets/images/xolotl_logo_horizontal.svg" alt="Xolotl Canadian Shield Coop" style="height: 38px; width: auto; max-width: 100%;">
-          </a>
+            <svg style="width: 24px; height: 24px;" viewBox="0 0 32 32" fill="none">
+              <path d="M16 2 L4 8 V16 C4 23.5 9.1 30 16 32 C22.9 30 28 23.5 28 16 V8 Z" fill="#192B23" stroke="#C89D4B" stroke-width="2"/>
+              <circle cx="16" cy="16" r="4.5" fill="#D97706"/>
+            </svg>
+            <span style="font-size: 1.15rem; font-weight: 700; color: #FFFFFF;">Xolotl</span>
           </div>
           <p style="font-size: 0.84rem; line-height: 1.6; margin-bottom: 14px;">
             Canadian Shield Cooperative. Hybrid sovereign zero-trust file synchronization engineered for high-consequence institutions.
           </p>
-          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 10px;">
-            <img src="assets/images/xolotl_founded_badge.svg" alt="Founded 2026" style="height: 22px; width: auto;">
-          </div>
           <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-sage);">
             🍁 Montréal Core · 93-Day WORM Lock · PIPEDA / FADP
           </div>

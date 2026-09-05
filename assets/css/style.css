@@ -99,16 +99,10 @@
     }
 
     .shield-icon {
-      width: 34px;
-      height: 40px;
+      width: 32px;
+      height: 32px;
       flex-shrink: 0;
-      object-fit: contain;
-      filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.35));
-      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .brand-logo:hover .shield-icon {
-      transform: scale(1.08) translateY(-1px);
+      filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.3));
     }
 
     .brand-tag {

@@ -337,17 +337,17 @@ function switchThreatMode(mode) {
       if (s3) {
         s3.className = 'status-badge';
         s3.innerHTML = pick({
-          en: '<span>✓ Canadian Core • WORM Active</span>',
-          fr: '<span>✓ Noyau Canadien • WORM Actif</span>',
-          es: '<span>✓ Núcleo Canadiense • WORM Activo</span>',
+          en: '<span>✓ Canadian Core • WORM Vault Active</span>',
+          fr: '<span>✓ Noyau Canadien • Coffre-Fort WORM Actif</span>',
+          es: '<span>✓ Núcleo Canadiense • Bóveda WORM Activa</span>',
         });
       }
       if (simMessage) {
         simMessage.style.borderLeftColor = 'var(--accent-sage)';
         simMessage.innerHTML = pick({
           en: '<strong>Normal Mode:</strong> In everyday operation, files save locally with zero friction, encrypt on the fly with AES-256-GCM, and stream to Montreal S3. The cloud mirror holds zero decryption authority.',
-          fr: '<strong>Mode Normal :</strong> En fonctionnement quotidien, les fichiers s\'enregistrent localement sans friction, se chiffrent à la volée avec AES-256-GCM et sont transmis en continu vers le S3 de Montréal. Le miroir infonuagique ne détient aucune autorité de déchiffrement.',
-          es: '<strong>Modo Normal:</strong> En operación cotidiana, los archivos se guardan localmente sin fricción, se cifran al vuelo con AES-256-GCM y se transmiten al S3 de Montreal. El espejo en la nube no posee ninguna autoridad de descifrado.',
+          fr: '<strong>Mode Standard :</strong> Le moteur client chiffre chaque fichier à la volée en AES-256-GCM et diffuse le flux vers le Coffre-Fort WORM de Montréal. Le miroir infonuagique détient 0 clé et demeure mathématiquement impuissant à déchiffrer.',
+          es: '<strong>Modo Estándar:</strong> En operación cotidiana, los archivos se guardan localmente sin fricción, se cifran al vuelo con AES-256-GCM y se transmiten a la Bóveda WORM de Montreal. El espejo en la nube custodia 0 claves y permanece matemáticamente impotente para descifrar.',
         });
       }
     } else if (mode === 'subpoena' || mode === 'cloudact') {
@@ -407,17 +407,17 @@ function switchThreatMode(mode) {
       if (s3) {
         s3.className = 'status-badge';
         s3.innerHTML = pick({
-          en: '<span>✓ S3 WORM: Historical Versions 100% Immutable</span>',
-          fr: '<span>✓ S3 WORM : Versions historiques 100 % immuables</span>',
-          es: '<span>✓ S3 WORM: Versiones históricas 100% inmutables</span>',
+          en: '<span>✓ WORM Vault: Historical Versions 100% Immutable</span>',
+          fr: '<span>✓ Coffre-Fort WORM : Versions historiques 100 % immuables</span>',
+          es: '<span>✓ Bóveda WORM: Versiones históricas 100% inmutables</span>',
         });
       }
       if (simMessage) {
         simMessage.style.borderLeftColor = 'var(--accent-gold)';
         simMessage.innerHTML = pick({
-          en: '<strong>Ransomware Attack Result:</strong> Ransomware encrypts local drives, but cannot modify past S3 versions protected by 93-day compliance WORM locks. Administrator triggers <code>restore_vault_as_of()</code> and restores all files uncorrupted.',
-          fr: '<strong>Résultat de l\'attaque par rançongiciel :</strong> Le rançongiciel chiffre les disques locaux, mais ne peut pas modifier les versions antérieures sur S3, protégées par des verrous de conformité WORM de 93 jours. L\'administrateur déclenche <code>restore_vault_as_of()</code> et restaure tous les fichiers sans corruption.',
-          es: '<strong>Resultado del Ataque de Ransomware:</strong> El ransomware cifra los discos locales, pero no puede modificar las versiones anteriores en S3 protegidas por bloqueos de cumplimiento WORM de 93 días. El administrador activa <code>restore_vault_as_of()</code> y restaura todos los archivos sin corrupción.',
+          en: '<strong>Ransomware Attack Result:</strong> Ransomware encrypts local drives, but cannot modify past S3 versions protected by 93-day compliance WORM Vault locks. Administrator triggers <code>restore_vault_as_of()</code> and restores all files uncorrupted.',
+          fr: '<strong>Résultat de l\'attaque par rançongiciel :</strong> Le rançongiciel chiffre les disques locaux, mais ne peut pas modifier les versions antérieures sur S3, protégées par des verrous de conformité de Coffre-Fort WORM de 93 jours. L\'administrateur déclenche <code>restore_vault_as_of()</code> et restaure tous les fichiers sans corruption.',
+          es: '<strong>Resultado del Ataque de Ransomware:</strong> El ransomware cifra los discos locales, pero no puede modificar las versiones anteriores en S3 protegidas por bloqueos de cumplimiento de Bóveda WORM de 93 días. El administrador activa <code>restore_vault_as_of()</code> y restaura todos los archivos sin corrupción.',
         });
       }
     }
@@ -449,9 +449,9 @@ function switchThreatMode(mode) {
       });
       msg.style.borderLeftColor = 'var(--accent-sage)';
       msg.innerHTML = pick({
-        en: '<strong>Standard Workflow:</strong> Files are chunked and encrypted on the client before leaving the OS kernel. Montreal core stores only high-entropy ciphertext with 93-day object lock.',
-        fr: '<strong>Flux de travail standard :</strong> Les fichiers sont fragmentés et chiffrés côté client avant de quitter le noyau du système d\'exploitation. Le noyau de Montréal ne stocke que du texte chiffré à haute entropie, protégé par un verrouillage d\'objet immuable de 93 jours.',
-        es: '<strong>Flujo de Trabajo Estándar:</strong> Los archivos se fragmentan y cifran en el cliente antes de abandonar el núcleo del SO. El núcleo en Montreal almacena exclusivamente texto cifrado de alta entropía con bloqueo inmutable de objetos por 93 días.',
+        en: '<strong>Standard Workflow:</strong> Files are chunked and encrypted on the client before leaving the OS kernel. Montreal core stores only high-entropy ciphertext with 93-day WORM Vault object lock.',
+        fr: '<strong>Flux de travail standard :</strong> Les fichiers sont fragmentés et chiffrés côté client avant de quitter le noyau du système d\'exploitation. Le noyau de Montréal ne stocke que du texte chiffré à haute entropie, protégé par un verrouillage d\'objet immuable de Coffre-Fort WORM de 93 jours.',
+        es: '<strong>Flujo de Trabajo Estándar:</strong> Los archivos se fragmentan y cifran en el cliente antes de abandonar el núcleo del SO. El núcleo en Montreal almacena exclusivamente texto cifrado de alta entropía con bloqueo inmutable de objetos por Bóveda WORM de 93 días.',
       });
     } else if (mode === 'cloudact' || mode === 'subpoena') {
       if (bCloud) bCloud.className = 'btn btn-gold';
@@ -487,9 +487,9 @@ function switchThreatMode(mode) {
       });
       msg.style.borderLeftColor = 'var(--accent-gold)';
       msg.innerHTML = pick({
-        en: '<strong>Ransomware Attack Result:</strong> Ransomware encrypts local drives, but cannot modify past S3 versions protected by 93-day compliance WORM locks. Administrator triggers <code>restore_vault_as_of()</code> and restores all files uncorrupted.',
-        fr: '<strong>Résultat de l\'attaque par rançongiciel :</strong> Le rançongiciel chiffre les disques locaux, mais ne peut pas modifier les versions antérieures sur S3, protégées par des verrous de conformité WORM de 93 jours. L\'administrateur déclenche <code>restore_vault_as_of()</code> et restaure tous les fichiers sans corruption.',
-        es: '<strong>Resultado del Ataque de Ransomware:</strong> El ransomware cifra los discos locales, pero no puede modificar las versiones anteriores en S3 protegidas por bloqueos de cumplimiento WORM de 93 días. El administrador activa <code>restore_vault_as_of()</code> y restaura todos los archivos sin corrupción.',
+        en: '<strong>Ransomware Attack Result:</strong> Ransomware encrypts local drives, but cannot modify past S3 versions protected by 93-day compliance WORM Vault locks. Administrator triggers <code>restore_vault_as_of()</code> and restores all files uncorrupted.',
+        fr: '<strong>Résultat de l\'attaque par rançongiciel :</strong> Le rançongiciel chiffre les disques locaux, mais ne peut pas modifier les versions antérieures sur S3, protégées par des verrous de conformité de Coffre-Fort WORM de 93 jours. L\'administrateur déclenche <code>restore_vault_as_of()</code> et restaure tous les fichiers sans corruption.',
+        es: '<strong>Resultado del Ataque de Ransomware:</strong> El ransomware cifra los discos locales, pero no puede modificar las versiones anteriores en S3 protegidas por bloqueos de cumplimiento de Bóveda WORM de 93 días. El administrador activa <code>restore_vault_as_of()</code> y restaura todos los archivos sin corrupción.',
       });
     }
   }

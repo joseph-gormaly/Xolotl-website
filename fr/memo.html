@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Xolotl — Résumé Exécutif et Mémorandum d'Investissement | Coopérative Bouclier Canadien</title>
+  <meta name="description" content="Résumé exécutif et mémorandum d'investissement pour Xolotl Canadian Shield Cooperative. Plateforme de synchronisation de fichiers en périphérie souveraine hybride à confiance zéro pour les institutions à forte criticité.">
+  <link rel="alternate" hreflang="en" href="https://xolotl.ca/memo.html">
+  <link rel="alternate" hreflang="fr" href="https://xolotl.ca/fr/memo.html">
+  <link rel="alternate" hreflang="es" href="https://xolotl.ca/es/memo.html">
+  <link rel="alternate" hreflang="x-default" href="https://xolotl.ca/memo.html">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 2 L4 8 V16 C4 23.5 9.1 30 16 32 C22.9 30 28 23.5 28 16 V8 Z' fill='%23192B23' stroke='%23C89D4B' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='5' fill='%23D97706'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;0,700;0,900;1,400;1,600&display=swap">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .memo-wrapper {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
+    }
+    .memo-paper {
+      background: rgba(16, 25, 20, 0.78);
+      border: 1px solid var(--border-glass-emerald);
+      border-radius: 12px;
+      padding: 48px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+    }
+    .memo-header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 16px;
+      border-bottom: 1px solid var(--border-light);
+      padding-bottom: 24px;
+      margin-bottom: 32px;
+    }
+    .memo-badge-confidential {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 4px;
+      background: rgba(220, 38, 38, 0.15);
+      border: 1px solid rgba(220, 38, 38, 0.35);
+      color: #F87171;
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .memo-actions-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .memo-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      line-height: 1.25;
+      margin-bottom: 8px;
+    }
+    .memo-subtitle {
+      font-size: 1.1rem;
+      color: var(--accent-gold);
+      font-family: var(--font-serif);
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+    .memo-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin-bottom: 36px;
+    }
+    .memo-meta-item h6 {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent-sage);
+      margin-bottom: 4px;
+    }
+    .memo-meta-item p {
+      font-size: 0.88rem;
+      color: #FFFFFF;
+      font-weight: 500;
+      margin: 0;
+    }
+    .memo-section {
+      margin-bottom: 40px;
+    }
+    .memo-section h2 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .memo-section h2 .sec-num {
+      color: var(--accent-gold);
+      font-family: var(--font-mono);
+    }
+    .memo-callout {
+      background: rgba(212, 175, 55, 0.08);
+      border-left: 3px solid var(--accent-gold);
+      border-radius: 0 6px 6px 0;
+      padding: 16px 20px;
+      margin: 20px 0;
+      font-size: 0.96rem;
+      line-height: 1.6;
+      color: #F3F4F6;
+    }
+    .memo-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 0.88rem;
+    }
+    .memo-table th, .memo-table td {
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .memo-table th {
+      background: rgba(0, 0, 0, 0.4);
+      color: var(--accent-gold-light);
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .memo-table td {
+      color: var(--text-warm-gray);
+    }
+    .memo-table tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+      color: #FFFFFF;
+    }
+    .diagram-terminal {
+      background: #050806;
+      border: 1px solid var(--border-glass-emerald);
+      border-radius: 8px;
+      padding: 20px;
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      line-height: 1.45;
+      color: var(--accent-sage);
+      overflow-x: auto;
+      margin: 24px 0;
+      box-shadow: inset 0 2px 12px rgba(0, 0, 0, 0.8);
+    }
+    .memo-list {
+      margin: 16px 0 20px 24px;
+      color: var(--text-warm-gray);
+      line-height: 1.65;
+    }
+    .memo-list li {
+      margin-bottom: 10px;
+    }
+    .memo-list strong {
+      color: #FFFFFF;
+    }
+    .fund-alloc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin: 24px 0;
+    }
+    .fund-card {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      padding: 16px;
+    }
+    .fund-card h5 {
+      font-size: 0.9rem;
+      color: #FFFFFF;
+      margin-bottom: 6px;
+    }
+    .fund-card .fund-pct {
+      font-family: var(--font-mono);
+      font-size: 1.15rem;
+      color: var(--accent-gold);
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .fund-card p {
+      font-size: 0.8rem;
+      color: var(--text-warm-gray);
+      margin: 0;
+    }
+    .memo-signoff {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-light);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    @media (max-width: 640px) {
+      .memo-paper {
+        padding: 24px 16px;
+      }
+      .memo-title {
+        font-size: 1.65rem;
+      }
+    }
+    @media print {
+      .site-header, .navbar, .mobile-drawer, footer, .memo-actions-bar, .breadcrumb-nav {
+        display: none !important;
+      }
+      body {
+        background: #FFFFFF !important;
+        color: #111827 !important;
+      }
+      .memo-paper {
+        background: #FFFFFF !important;
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        color: #111827 !important;
+      }
+      .memo-title, .memo-section h2, .memo-list strong {
+        color: #111827 !important;
+      }
+      .memo-table th {
+        background: #F3F4F6 !important;
+        color: #111827 !important;
+      }
+      .memo-table td {
+        color: #374151 !important;
+      }
+      .diagram-terminal {
+        background: #F9FAFB !important;
+        color: #111827 !important;
+        border: 1px solid #D1D5DB !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Unified Header -->
+  <header class="site-header">
+    <nav class="navbar">
+      <div class="container nav-inner">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <a href="index.html" class="brand-logo" aria-label="Accueil Xolotl">
+            <svg class="shield-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16 2L4 7V15C4 22.5 9.1 29 16 31C22.9 29 28 22.5 28 15V7L16 2Z" fill="#15231C" stroke="#C89D4B" stroke-width="2"/>
+              <circle cx="16" cy="16" r="4.5" fill="#D97706"/>
+            </svg>
+            <span>Xolotl</span>
+            <span class="brand-tag">Bouclier Canadien</span>
+          </a>
+          <button class="pronounce-chip" onclick="playPronounceAudio(event)" title="Écouter l'audio : 'SHOW-lot' · Bouclier Canadien" aria-label="Écouter l'audio : SHOW-lot · Bouclier Canadien">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="speaker-svg"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+            <span class="pronounce-text">"SHOW-lot"</span>
+            <span class="pronounce-ipa">/ˈʃoːloːtɬ/</span>
+            <span class="sound-bars">
+              <span class="bar"></span>
+              <span class="bar"></span>
+              <span class="bar"></span>
+            </span>
+          </button>
+        </div>
+
+        <ul class="nav-links">
+          <li><a href="about.html">À Propos</a></li>
+          <li><a href="architecture.html">Architecture</a></li>
+          <li><a href="deck.html">Présentation ↗</a></li>
+          <li><a href="news.html">Nouvelles</a></li>
+          <li><a href="careers.html">Carrières</a></li>
+          <li><a href="suppliers.html">Fournisseurs</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <div class="lang-switch-group">
+            <a href="../memo.html" class="lang-switch-btn" title="View in English" onclick="setUserLanguage('en')">🇨🇦 EN</a>
+            <a href="memo.html" class="lang-switch-btn active" aria-current="page" onclick="setUserLanguage('fr')">🇫🇷 FR</a>
+            <a href="../es/memo.html" class="lang-switch-btn" title="Ver en Español" onclick="setUserLanguage('es')">🇲🇽 ES</a>
+          </div>
+          <a href="memo.html" class="btn btn-secondary nav-memo-btn active">Mémo</a>
+          <button class="btn btn-gold" onclick="openModal('pilot')">Rejoindre le Pilote</button>
+          <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Basculer le menu de navigation" onclick="toggleMobileMenu()">
+            <span class="menu-bar"></span>
+            <span class="menu-bar"></span>
+            <span class="menu-bar"></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="mobile-drawer-inner">
+      <div class="mobile-drawer-top">
+        <a href="index.html" class="brand-logo" onclick="closeMobileMenu()">
+          <svg class="shield-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 2L4 7V15C4 22.5 9.1 29 16 31C22.9 29 28 22.5 28 15V7L16 2Z" fill="#15231C" stroke="#C89D4B" stroke-width="2"/>
+            <circle cx="16" cy="16" r="4.5" fill="#D97706"/>
+          </svg>
+          <span>Xolotl</span>
+        </a>
+        <button class="modal-close-btn" onclick="closeMobileMenu()">&times;</button>
+      </div>
+      <ul class="mobile-nav-list">
+        <li><a href="about.html" onclick="closeMobileMenu()">À Propos</a></li>
+        <li><a href="architecture.html" onclick="closeMobileMenu()">Architecture</a></li>
+        <li><a href="deck.html" onclick="closeMobileMenu()">Présentation Interactive de 14 Diapositives ↗</a></li>
+        <li><a href="news.html" onclick="closeMobileMenu()">Nouvelles et Presse</a></li>
+        <li><a href="careers.html" onclick="closeMobileMenu()">Carrières</a></li>
+        <li><a href="suppliers.html" onclick="closeMobileMenu()">Fournisseurs</a></li>
+        <li><a href="contact.html" onclick="closeMobileMenu()">Contact et Pilote</a></li>
+      </ul>
+      <div style="padding: 20px 24px; display: flex; flex-direction: column; gap: 12px;">
+        <div style="margin-bottom: 4px;">
+          <div style="font-family: var(--font-mono); font-size: 0.76rem; color: var(--text-warm-gray); margin-bottom: 8px;">Language / Langue / Idioma:</div>
+          <div class="lang-switch-group" style="width: 100%;">
+            <a href="../memo.html" class="lang-switch-btn" style="flex:1; justify-content:center;" onclick="setUserLanguage('en')">🇨🇦 EN</a>
+            <a href="memo.html" class="lang-switch-btn active" style="flex:1; justify-content:center;" onclick="setUserLanguage('fr')">🇫🇷 FR</a>
+            <a href="../es/memo.html" class="lang-switch-btn" style="flex:1; justify-content:center;" onclick="setUserLanguage('es')">🇲🇽 ES</a>
+          </div>
+        </div>
+        <a href="memo.html" class="btn btn-secondary active" style="width: 100%; text-align: center;">Mémo Exécutif</a>
+        <button class="btn btn-gold" style="width: 100%;" onclick="closeMobileMenu(); openModal('pilot');">Demander l'Accès au Pilote</button>
+      </div>
+      <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-warm-gray); text-align: center; margin-top: 16px;">
+        🍁 CA · QC · Socle Souverain LPRPDE
+      </div>
+    </div>
+  </div>
+
+  <main class="memo-wrapper">
+    <div class="breadcrumb-nav" style="margin-bottom: 24px;">
+      <a href="index.html">Accueil</a> <span>/</span> <span>Mémorandum Exécutif</span>
+    </div>
+
+    <article class="memo-paper">
+      <div class="memo-header-top">
+        <div>
+          <span class="memo-badge-confidential">🔒 Confidentiel · Investisseurs et Partenaires Prospectifs</span>
+          <div style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--accent-sage); margin-top: 8px;">
+            Xolotl Canadian Shield Cooperative · Montréal, QC
+          </div>
+        </div>
+        <div class="memo-actions-bar">
+          <button class="btn btn-secondary" onclick="window.print()" title="Imprimer ou enregistrer en PDF">
+            🖨️ Imprimer / PDF
+          </button>
+          <button class="btn btn-gold" onclick="openModal('pilot')">
+            Demander l'Accès au Pilote &rarr;
+          </button>
+        </div>
+      </div>
+
+      <h1 class="memo-title">Xolotl — Résumé Exécutif et Mémorandum d'Investissement</h1>
+      <div class="memo-subtitle">La première plateforme de synchronisation de fichiers en périphérie souveraine hybride au monde.</div>
+
+      <div class="memo-meta-grid">
+        <div class="memo-meta-item">
+          <h6>Structure de l'Entreprise</h6>
+          <p>Xolotl Canadian Shield Coop</p>
+        </div>
+        <div class="memo-meta-item">
+          <h6>Financement Actuel</h6>
+          <p>1,25 M$ d'Amorçage + 250 k$–400 k$ de Subventions</p>
+        </div>
+        <div class="memo-meta-item">
+          <h6>Évaluation du Noyau</h6>
+          <p>Dépôt sous accord de confidentialité institutionnel</p>
+        </div>
+        <div class="memo-meta-item">
+          <h6>Demandes Directes</h6>
+          <p><a href="mailto:cooperate@xolotl.ca" style="color:var(--accent-gold); text-decoration:underline;">cooperate@xolotl.ca</a></p>
+        </div>
+      </div>
+
+      <!-- Section 1 -->
+      <section class="memo-section">
+        <h2><span class="sec-num">1.</span> Aperçu Exécutif</h2>
+        <div class="memo-callout">
+          <strong>Le nuage a des problèmes de confiance. Voici le Bouclier Canadien.</strong><br>
+          <em>Vision en une phrase :</em> Xolotl est la première plateforme de synchronisation de fichiers en périphérie souveraine hybride au monde &mdash; l'expérience de type OneDrive que les institutions utilisent déjà, avec une garantie qu'elles n'ont jamais eue : aucune juridiction unique ni aucun compromis technique ne peut contraindre la divulgation de votre texte en clair.
+        </div>
+
+        <table class="memo-table">
+          <thead>
+            <tr>
+              <th style="width: 25%;">Métrique / Dimension</th>
+              <th>Détail et Garantie Institutionnelle</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Avantage Concurrentiel Central</strong></td>
+              <td>GDK de Pedersen audité + Signatures de Seuil FROST + Déchiffrement ElGamal de Seuil Aveuglé avec diversité juridictionnelle appliquée cryptographiquement.</td>
+            </tr>
+            <tr>
+              <td><strong>Architecture</strong></td>
+              <td>Hybride à 3 Couches : Périphérie Sur Site (Couche 1) + Client de Bureau Rust/Tauri (Couche 2) + Miroir Nuage Aveugle Canadien (Couche 3) sur maillage WireGuard.</td>
+            </tr>
+            <tr>
+              <td><strong>Stade Actuel</strong></td>
+              <td>Prototype de travail pleinement fonctionnel et testé en direct sur les trois couches; remédiations de sécurité pré-audit complétées; appel d'offres prêt pour un audit cryptographique de premier plan.</td>
+            </tr>
+            <tr>
+              <td><strong>Clientèle Cible</strong></td>
+              <td>Cabinets juridiques transfrontaliers, fonds souverains, sous-traitants de la défense (CMMC/ITAR), banque privée européenne/suisse, infrastructures critiques et organismes de recherche gouvernementaux.</td>
+            </tr>
+            <tr>
+              <td><strong>Modèle d'Affaires</strong></td>
+              <td>Logiciel d'entreprise à forte valeur contractuelle : abonnement annuel par poste (360 $–600 $/poste/an) + licence de nœud de périphérie souveraine (25 k$–100 k$/institution/an) + bande passante/stockage du miroir S3 aveugle.</td>
+            </tr>
+            <tr>
+              <td><strong>Demande de Financement</strong></td>
+              <td><strong>Ronde d'Amorçage de 1,25 M$</strong> (18 mois de piste de croissance jusqu'à la disponibilité générale, un audit cryptographique indépendant, un client multi-appareils en disponibilité générale, et 1,2 M$ de RRA sur 12 à 15 contrats pilotes d'entreprise).</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Section 2 -->
+      <section class="memo-section">
+        <h2><span class="sec-num">2.</span> Le Problème Central : L'Effondrement de la « Souveraineté du Nuage »</h2>
+        <p style="color:var(--text-warm-gray); line-height: 1.65; margin-bottom: 16px;">
+          Les entreprises qui manipulent une propriété intellectuelle de grande valeur, des données de litige sensibles, des transactions transfrontalières et des actifs de défense nationale font face à un dilemme impossible :
+        </p>
+        <ul class="memo-list">
+          <li><strong>Le Filet Juridique Extraterritorial :</strong> En vertu du <em>US CLOUD Act</em>, des lettres de sécurité nationale (NSL) et de l'article 702 de la FISA, les fournisseurs infonuagiques américains (Microsoft OneDrive, Google Drive, Box, AWS) peuvent être légalement contraints, en secret, de produire les données de leurs clients &mdash; même si ces données sont stockées dans des centres de données européens, canadiens ou asiatiques.</li>
+          <li><strong>Le Mythe de la « Connaissance Nulle » :</strong> Les systèmes de sauvegarde d'entreprise existants dits « à connaissance nulle » reposent sur des systèmes de gestion de clés (KMS) centralisés ou des phrases de passe à dépositaire unique. Une seule brèche interne, une campagne d'hameçonnage sophistiquée ou une assignation nationale visant l'administrateur informatique local suffit à produire le texte en clair complet.</li>
+          <li><strong>Le Piège du Sur Site Isolé :</strong> Maintenir un stockage sur site déconnecté élimine la commodité du nuage, empêche la reprise après sinistre multirégionale hors site, brise la collaboration à distance et demeure notoirement vulnérable aux catastrophes physiques locales et aux rançongiciels chiffreurs.</li>
+        </ul>
+        <div class="memo-callout">
+          <strong>La Primitive Manquante :</strong> Aucun produit existant ne tient compte d'un dépositaire pleinement conforme et non compromis qui serait légalement contraint de remettre vos données. Xolotl est conçu précisément pour cet adversaire.
+        </div>
+      </section>
+
+      <!-- Section 3 -->
+      <section class="memo-section">
+        <h2><span class="sec-num">3.</span> La Solution Xolotl : Immunité Cryptographique et Juridictionnelle</h2>
+        <p style="color:var(--text-warm-gray); line-height: 1.65;">
+          Xolotl comble l'écart entre la commodité du nuage grand public et la défense souveraine de calibre militaire grâce à une <strong>topologie hybride à 3 couches</strong> digne d'un brevet :
+        </p>
+
+        <div class="diagram-terminal">
++-----------------------------------------------------------------------------+
+| COUCHE 3 : Miroir Central Canadien (SaaS de Stockage Aveugle)               |
+| - Grappe S3 MinIO multilocataire avec verrouillage d'objets de 93 jours     |
+| - Ne contient QUE du texte chiffré authentifié (AES-256-GCM); ZÉRO fragment |
+| - Juridiquement aveugle et impuissant : ne peut se conformer à une          |
+|   assignation même sur ordonnance                                          |
++-----------------------------------------------------------------------------+
+                                       ^
+                    Flux SigV4 S3     | Texte Chiffré
+                                       v
++-----------------------------------------------------------------------------+
+| COUCHE 2 : Moteur Client Xolotl (Application de Bureau Rust / Tauri)        |
+| - Surveillance du système de fichiers en arrière-plan avec anti-rebond en   |
+|   front descendant                                                          |
+| - Chiffrement/déchiffrement en continu AES-256-GCM (RAM résidente constante |
+|   de 8 Mio)                                                                 |
+| - Coordinateur de déchiffrement ElGamal de seuil + hygiène RAM Zeroize-on-  |
+|   drop                                                                      |
+| - Clé de chiffrement de clé (KEK) éphémère : ne touche JAMAIS le disque     |
++-----------------------------------------------------------------------------+
+         |                                                 |
+         | Maillage WireGuard (Headscale)                  | Maillage WireGuard
+         v                                                 v
++------------------------------------+   +------------------------------------+
+| COUCHE 1 : Pile de Périphérie      |   | DÉPOSITAIRES DISTANTS INDÉPENDANTS |
+| Souveraine                         |   | - Dépositaire 2 : Portail Manuel   |
+| - Postgres Dockerisé sur site + RLS|   |   d'un Officier                    |
+| - Authentification GoTrue Supabase |   | - Dépositaire 4 : Suisse           |
+|   par utilisateur                  |   | - Dépositaire 5 : Islande / UE     |
+| - Agent Dépositaire 3 (Automatisé) |   | - Diversité Juridictionnelle       |
+| - Espace réseau WireGuard          |   |   Appliquée                        |
+|   uniquement                       |   |                                     |
++------------------------------------+   +------------------------------------+
+        </div>
+
+        <h3 style="font-size: 1.1rem; color: #FFFFFF; margin: 24px 0 12px;">Innovations Cryptographiques</h3>
+        <ul class="memo-list">
+          <li><strong>Aucune Clé Maîtresse Unique :</strong> Les clés de coffre ne sont jamais créées en entier. Elles sont générées de façon coopérative via la <strong>Génération Distribuée de Clés (GDK) de Pedersen</strong>, utilisant les primitives auditées <code>frost-core</code> et <code>frost-ed25519</code> de la Fondation Zcash.</li>
+          <li><strong>Déchiffrement de Seuil Aveuglé :</strong> Pour éliminer le piège des signatures FROST non déterministes, Xolotl a mis en œuvre un moteur industriel de <strong>Déchiffrement ElGamal de Seuil</strong> avec preuves à divulgation nulle de connaissance de Chaum-Pedersen et aveuglement de coordonnées par session.</li>
+          <li><strong>Diversité Juridictionnelle Appliquée :</strong> Le module <code>topology::enforce_topology_policy</code> de Xolotl rejette cryptographiquement et de façon programmatique toute tentative de déverrouillage où une seule juridiction nationale fournirait un quorum. Dans une topologie de coffre (3,5), un adversaire aurait besoin d'ordonnances judiciaires simultanées et coordonnées de trois nations souveraines distinctes (p. ex., les États-Unis, la Suisse et l'Islande) dans une fenêtre de signature éphémère de 2 minutes.</li>
+          <li><strong>Reprise Après Sinistre à l'Épreuve des Rançongiciels :</strong> Les sauvegardes poussées vers le miroir canadien sont protégées par des <strong>verrous d'objets immuables de 93 jours</strong> et une restauration ponctuelle (<code>restore_vault_as_of</code>), rendant les répertoires effacés ou chiffrés par un rançongiciel immédiatement restaurables à toute seconde antérieure.</li>
+        </ul>
+      </section>
+
+      <!-- Section 4 -->
+      <section class="memo-section">
+        <h2><span class="sec-num">4.</span> Validation Technique et Réduction du Risque (Où Nous en Sommes)</h2>
+        <p style="color:var(--text-warm-gray); line-height: 1.65;">
+          Contrairement aux concepts à un stade précoce qui présentent des livres blancs, <strong>Xolotl est déjà construit et validé en direct</strong> :
+        </p>
+        <ul class="memo-list">
+          <li><strong>Sprints 1 et 3 Validés en Direct :</strong> Supabase/Postgres de périphérie, réseau maillé WireGuard Headscale et stockage S3 multilocataire MinIO vérifiés contre une infrastructure Docker en direct.</li>
+          <li><strong>Moteur Cryptographique et Transport Réseau du Sprint 2 Prouvés :</strong> L'inscription GDK réelle et les déverrouillages de seuil FROST s'exécutent sur de véritables sockets TCP HTTP &mdash; sans simulation ni substitut.</li>
+          <li><strong>Synchronisation et Restauration en Continu de Bout en Bout :</strong> Téléversement en continu AES-256-GCM avec signature S3 multipartie SigV4 et anti-rebond en front descendant confirmés contre MinIO en direct.</li>
+          <li><strong>Remédiations de Sécurité Pré-Audit Complétées :</strong> Une revue cryptographique par IA (Claude Opus 5) a analysé le pipeline de déchiffrement de seuil; tous les éléments critiques et hautement prioritaires (C-1, C-2, H-1, H-2, M-1 à M-3) ont été corrigés avec des tests de régression négative réussis.</li>
+          <li><strong>Prêt pour l'Audit :</strong> Un appel d'offres complet (<code>docs/rfp-threshold-decrypt-review.md</code>) est finalisé pour un engagement avec des cabinets d'audit de premier plan (Trail of Bits, NCC Group, Kudelski).</li>
+        </ul>
+      </section>
+
+      <!-- Section 5 -->
+      <section class="memo-section">
+        <h2><span class="sec-num">5.</span> Opportunité de Marché et Profil Client Idéal</h2>
+        <table class="memo-table">
+          <thead>
+            <tr>
+              <th>Portée du Marché</th>
+              <th>Valeur et Croissance Projetées</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Marché Total Adressable (TAM)</strong></td>
+              <td>Marché mondial du nuage souverain et de la protection des données : projeté à <strong>plus de 120 G$ d'ici 2030</strong> (TCAC de 24,5 %).</td>
+            </tr>
+            <tr>
+              <td><strong>Marché Obtenable Desservable (SOM)</strong></td>
+              <td><strong>3,8 G$</strong> pour la synchronisation de données institutionnelles à haute assurance en Amérique du Nord, dans l'UE et en Suisse.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 style="font-size: 1.1rem; color: #FFFFFF; margin: 20px 0 10px;">Profils de Clientèle Idéale</h3>
+        <ul class="memo-list">
+          <li><strong>Cabinets Juridiques de Premier Rang et F&amp;A Transfrontalières :</strong> Traitant des transactions multijuridictionnelles où la découverte au titre du US CLOUD Act violerait le secret professionnel dans des procédures étrangères.</li>
+          <li><strong>Sous-traitants de la Défense et de l'Aérospatiale :</strong> Conformité avec le CMMC 2.0, l'ITAR et les mandats d'enclave souveraine de l'OTAN.</li>
+          <li><strong>Gestion de Patrimoine Privé et Family Offices Suisses :</strong> Protection des registres de clients à valeur nette ultra-élevée contre les ingérences gouvernementales étrangères.</li>
+          <li><strong>Infrastructures Critiques et Services Municipaux :</strong> Résistance aux perturbations cybernétiques parrainées par des États grâce à une récupération immuable verrouillée sur 93 jours.</li>
+        </ul>
+      </section>
+
+      <!-- Section 6 -->
+      <section class="memo-section">
+        <h2><span class="sec-num">6.</span> Modèle d'Affaires et Projections Financières</h2>
+        <p style="color:var(--text-warm-gray); line-height: 1.65;">
+          Xolotl capte de la valeur grâce à un modèle de licence hybride d'entreprise à marge élevée :
+        </p>
+        <ul class="memo-list">
+          <li><strong>Licence de Nœud de Périphérie Souveraine :</strong> 35 000 $ – 75 000 $ / an par institution (couvre le déploiement sur site, la coordination du maillage Headscale et l'orchestration automatisée de la santé des agents).</li>
+          <li><strong>Licence par Poste :</strong> 45 $ / utilisateur / mois (540 $ / utilisateur / an), minimum 50 postes.</li>
+          <li><strong>Capacité Dédiée du Miroir Central :</strong> 0,035 $ / Go / mois pour un stockage d'objets S3 canadien souverain et audité, avec verrouillage d'objets immuable automatisé de 93 jours.</li>
+          <li><strong>Valeur Contractuelle Initiale Moyenne (ACV) :</strong> <strong>75 000 $ – 150 000 $ / an</strong>.</li>
+        </ul>
+
+        <div style="background: rgba(0,0,0,0.3); border-radius: 8px; padding: 18px 24px; border: 1px solid var(--border-light); margin-top: 20px;">
+          <h4 style="font-size: 1rem; color: var(--accent-gold); margin-bottom: 10px;">Trajectoire Projetée (Post-Amorçage)</h4>
+          <p style="font-size: 0.88rem; color: #E2E8F0; margin-bottom: 6px;"><strong>Mois 6 :</strong> Compléter l'audit cryptographique agréé; lancer le client de bureau multi-appareils en disponibilité générale.</p>
+          <p style="font-size: 0.88rem; color: #E2E8F0; margin-bottom: 6px;"><strong>Mois 12 :</strong> 6 déploiements pilotes d'entreprise payants; <strong>450 k$ de RRA</strong>.</p>
+          <p style="font-size: 0.88rem; color: #E2E8F0; margin: 0;"><strong>Mois 18 :</strong> 18 déploiements d'entreprise en production; <strong>1,35 M$ de RRA</strong>; prêt pour la Série A.</p>
+        </div>
+      </section>
+
+      <!-- Section 7 -->
+      <section class="memo-section">
+        <h2><span class="sec-num">7.</span> La Demande et l'Utilisation des Fonds</h2>
+        <p style="color:var(--text-warm-gray); line-height: 1.65;">
+          Xolotl amasse une <strong>ronde d'amorçage de 1 250 000 $</strong>, ainsi que <strong>250 000 $ – 400 000 $ en subventions technologiques souveraines non dilutives</strong> (Sovereign Tech Fund, PARI-CNRC, Horizon Europe).
+        </p>
+
+        <div class="fund-alloc-grid">
+          <div class="fund-card">
+            <h5>Expansion de l'Ingénierie</h5>
+            <div class="fund-pct">825 000 $ (66 %)</div>
+            <p>2 ingénieurs système Rust seniors, 1 ingénieur pleine pile Tauri, 1 responsable SecOps/SRE.</p>
+          </div>
+          <div class="fund-card">
+            <h5>Pilotes d'Entreprise et Infrastructure</h5>
+            <div class="fund-pct">175 000 $ (14 %)</div>
+            <p>Grappe centrale S3 canadienne, nœuds de périphérie suisses/islandais, préparations SOC 2 Type 1.</p>
+          </div>
+          <div class="fund-card">
+            <h5>Fonds de Roulement</h5>
+            <div class="fund-pct">125 000 $ (10 %)</div>
+            <p>Coussin opérationnel de 18 mois, sortie infonuagique, opérations de sécurité administratives.</p>
+          </div>
+          <div class="fund-card">
+            <h5>Audit et Vérification Cryptographique</h5>
+            <div class="fund-pct">75 000 $ (6 %)</div>
+            <p>Engagement avec Trail of Bits / NCC Group / Kudelski pour un audit complet du code.</p>
+          </div>
+          <div class="fund-card">
+            <h5>Conseil Juridique Transfrontalier</h5>
+            <div class="fund-pct">50 000 $ (4 %)</div>
+            <p>Avis juridiques sur le CLOUD Act, les TEJ, et l'immunité juridictionnelle suisse/européenne.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 8 -->
+      <section class="memo-section">
+        <h2><span class="sec-num">8.</span> Pourquoi Maintenant?</h2>
+        <ul class="memo-list">
+          <li><strong>Militarisation Géopolitique des Données :</strong> L'expansion des restrictions sur les transferts de données transfrontaliers (Schrems II, NIS2 de l'UE, LPD suisse) a fait des hyperscalers américains standards un risque juridique pour les organisations internationales.</li>
+          <li><strong>La Cryptographie de Seuil est Prête pour la Production :</strong> Des primitives comme FROST (RFC 9591) et des implémentations Rust auditées (<code>frost-core</code>) permettent des cérémonies pratiques de seuil multipartie sur du matériel grand public avec une exécution inférieure à la seconde.</li>
+          <li><strong>Le Prototype est Déjà Validé :</strong> Xolotl n'a pas besoin d'une année de recherche fondamentale. L'architecture est conçue, réussit des tests d'intégration de bout en bout en direct, et est prête pour un audit et un déploiement pilote immédiats.</li>
+        </ul>
+      </section>
+
+      <!-- Institutional Sign-Off -->
+      <div class="memo-signoff">
+        <div>
+          <h4 style="color:#FFFFFF; font-size: 1.05rem; margin-bottom: 4px;">Joseph Gormaly</h4>
+          <p style="font-size: 0.84rem; color: var(--accent-sage); margin-bottom: 2px;">Noyau de l'Équipe, Xolotl Canadian Shield Cooperative</p>
+          <p style="font-size: 0.84rem; color: var(--text-warm-gray); margin: 0;">Demandes Institutionnelles : <a href="mailto:cooperate@xolotl.ca" style="color:var(--accent-gold); text-decoration:underline;">cooperate@xolotl.ca</a></p>
+        </div>
+        <div style="display: flex; gap: 10px;">
+          <button class="btn btn-gold" onclick="openModal('pilot')">Demander un Pilote Institutionnel &rarr;</button>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+            <svg style="width: 24px; height: 24px;" viewBox="0 0 32 32" fill="none">
+              <path d="M16 2 L4 8 V16 C4 23.5 9.1 30 16 32 C22.9 30 28 23.5 28 16 V8 Z" fill="#192B23" stroke="#C89D4B" stroke-width="2"/>
+              <circle cx="16" cy="16" r="4.5" fill="#D97706"/>
+            </svg>
+            <span style="font-size: 1.15rem; font-weight: 700; color: #FFFFFF;">Xolotl</span>
+          </div>
+          <p style="font-size: 0.84rem; line-height: 1.6; margin-bottom: 14px;">
+            Coopérative Bouclier Canadien. Synchronisation de fichiers souveraine hybride à confiance zéro, conçue pour les institutions à forte criticité.
+          </p>
+          <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-sage);">
+            🍁 Noyau de Montréal · Verrou WORM de 93 jours · LPRPDE / LPD
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h5>Plateforme et Aperçu</h5>
+          <ul>
+            <li><a href="about.html">Qui Nous Sommes</a></li>
+            <li><a href="architecture.html">Ce Que Nous Faisons</a></li>
+            <li><a href="deck.html">Présentation aux Investisseurs (14 Diapositives)</a></li>
+            <li><a href="memo.html">Mémo Exécutif</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Coopérative et Confiance</h5>
+          <ul>
+            <li><a href="news.html">Nouvelles et Bulletins Souverains</a></li>
+            <li><a href="careers.html">Carrières (Recherche)</a></li>
+            <li><a href="suppliers.html">Fournisseurs et Infrastructure</a></li>
+            <li><a href="contact.html">Contact Institutionnel</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Gouvernance et Aspects Juridiques</h5>
+          <ul>
+            <li><a href="mailto:cooperate@xolotl.ca">cooperate@xolotl.ca</a></li>
+            <li><a href="contact.html#pgp">Clés PGP Institutionnelles</a></li>
+            <li><a href="architecture.html#crypto">Normes FROST RFC 9591</a></li>
+            <li><a href="about.html#governance">Statuts de la Coopérative Québécoise</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-bottom-row">
+          <div class="footer-copy">
+            &copy; 2026 Xolotl Canadian Shield Cooperative. Tous droits souverains réservés.
+          </div>
+          <div class="footer-links">
+            <a href="memo.html">Mémo Exécutif Confidentiel</a>
+            <a href="contact.html">Accès au Pilote Institutionnel</a>
+            <a href="contact.html#pgp">Identifiant de Clé PGP : 0x9F4C2A1E</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Pilot Request Modal -->
+  <div id="pilotModal" class="modal-backdrop" onclick="handleBackdrop(event)">
+    <div class="modal-card">
+      <button class="modal-close-btn" onclick="closeModal()">&times;</button>
+      <h3 style="font-size: 1.35rem; color: #FFFFFF; margin-bottom: 6px;">Intégration au Pilote Institutionnel</h3>
+      <p style="font-size: 0.88rem; color: var(--text-warm-gray); margin-bottom: 20px;">
+        Déployez un nœud dédié en périphérie souveraine avec stockage miroir S3 canadien et enclaves de dépositaires transfrontalières. Contact exécutif direct : <a href="mailto:cooperate@xolotl.ca" style="color: var(--accent-gold); font-weight: 600;">cooperate@xolotl.ca</a>.
+      </p>
+
+      <form id="pForm" onsubmit="handleFormSubmit(event)">
+        <label class="form-label" for="oName">Nom de l'Organisation</label>
+        <input type="text" id="oName" class="form-input" placeholder="ex. Sterling &amp; Cross LLP" required>
+
+        <label class="form-label" for="wEmail">Courriel Professionnel</label>
+        <input type="email" id="wEmail" class="form-input" placeholder="ciso@firm.com" required>
+
+        <label class="form-label" for="iSector">Secteur Institutionnel</label>
+        <select id="iSector" class="form-input">
+          <option value="legal">Juridique Transfrontalier / F&amp;A</option>
+          <option value="finance">Banque Privée / Gestion de Patrimoine</option>
+          <option value="defense">Défense / CMMC / Sous-traitant ITAR</option>
+          <option value="infra">Infrastructure Critique / Énergie</option>
+          <option value="research">Gouvernement / Institution de Recherche</option>
+          <option value="other">Autre Secteur à Forte Criticité</option>
+        </select>
+
+        <label class="form-label" for="nSeats">Nombre Estimé de Postes</label>
+        <select id="nSeats" class="form-input">
+          <option value="50-250">50 – 250 Postes (Pilote de Niveau 1)</option>
+          <option value="250-1000">250 – 1 000 Postes (Entreprise)</option>
+          <option value="1000+">1 000+ Postes (Enclave Souveraine)</option>
+        </select>
+
+        <label class="form-label" for="nJurisdiction">Mandat Juridictionnel Principal</label>
+        <select id="nJurisdiction" class="form-input">
+          <option value="ca">Canada (LPRPDE / Loi 25)</option>
+          <option value="eu">Union Européenne (RGPD / NIS2)</option>
+          <option value="ch">Suisse (LPD)</option>
+          <option value="multinational">Hybride Multijuridictionnel</option>
+        </select>
+
+        <button type="submit" class="btn btn-gold" style="width: 100%; margin-top: 16px; padding: 12px;">Soumettre la Demande de Pilote &rarr;</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

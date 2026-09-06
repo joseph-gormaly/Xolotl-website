@@ -7,7 +7,9 @@
   <meta name="description" content="Connect with Xolotl Canadian Shield Cooperative at cooperate@xolotl.ca or request a dedicated pilot node.">
   <meta name="keywords" content="Data Sovereignty, Canadian Shield, Sovereign Cloud, CLOUD Act Resistance, FROST, Threshold ElGamal, Zero-Trust Sync, CMMC, ITAR, PIPEDA, WireGuard, Rust Tauri, Xolotl, Nahuatl Deity">
   <link rel="alternate" hreflang="en" href="https://xolotl.ca/contact.html">
+  <link rel="alternate" hreflang="fr" href="https://xolotl.ca/fr/contact.html">
   <link rel="alternate" hreflang="es" href="https://xolotl.ca/es/contact.html">
+  <link rel="alternate" hreflang="x-default" href="https://xolotl.ca/contact.html">
   
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://xolotl.ca/">
@@ -87,7 +89,11 @@
         </ul>
 
         <div class="nav-actions">
-          <a href="es/contact.html" class="lang-switch-btn" title="Ver en Español" onclick="setUserLanguage('es')">🇲🇽 ES</a>
+          <div class="lang-switch-group">
+            <a href="contact.html" class="lang-switch-btn active" aria-current="page" onclick="setUserLanguage('en')">🇨🇦 EN</a>
+            <a href="fr/contact.html" class="lang-switch-btn" title="Voir en français" onclick="setUserLanguage('fr')">🇫🇷 FR</a>
+            <a href="es/contact.html" class="lang-switch-btn" title="Ver en Español" onclick="setUserLanguage('es')">🇲🇽 ES</a>
+          </div>
           <a href="memo.html" class="btn btn-secondary nav-memo-btn">Memo</a>
           <button class="btn btn-gold" onclick="openModal('pilot')">Join Pilot</button>
           <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu" onclick="toggleMobileMenu()">
@@ -123,9 +129,13 @@
         <li><a href="contact.html" onclick="closeMobileMenu()">Contact & Pilot</a></li>
       </ul>
       <div style="padding: 20px 24px; display: flex; flex-direction: column; gap: 12px;">
-        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px;">
-          <span style="font-family: var(--font-mono); font-size: 0.76rem; color: var(--text-warm-gray);">Idioma / Language:</span>
-          <a href="es/contact.html" class="lang-switch-btn" onclick="setUserLanguage('es')">🇲🇽 Español</a>
+        <div style="margin-bottom: 4px;">
+          <div style="font-family: var(--font-mono); font-size: 0.76rem; color: var(--text-warm-gray); margin-bottom: 8px;">Language / Langue / Idioma:</div>
+          <div class="lang-switch-group" style="width: 100%;">
+            <a href="contact.html" class="lang-switch-btn active" style="flex:1; justify-content:center;" onclick="setUserLanguage('en')">🇨🇦 EN</a>
+            <a href="fr/contact.html" class="lang-switch-btn" style="flex:1; justify-content:center;" onclick="setUserLanguage('fr')">🇫🇷 FR</a>
+            <a href="es/contact.html" class="lang-switch-btn" style="flex:1; justify-content:center;" onclick="setUserLanguage('es')">🇲🇽 ES</a>
+          </div>
         </div>
         <a href="memo.html" class="btn btn-secondary" style="width: 100%; text-align: center;">Read Executive Memo</a>
         <button class="btn btn-gold" style="width: 100%;" onclick="closeMobileMenu(); openModal('pilot');">Request Pilot Access</button>

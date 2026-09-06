@@ -7,7 +7,9 @@
   <meta name="description" content="Topología soberana de 3 capas, ElGamal de umbral, DKG de Pedersen y recuperación por punto en el tiempo.">
   <meta name="keywords" content="Data Sovereignty, Escudo Canadiense, Sovereign Cloud, CLOUD Act Resistance, FROST, Threshold ElGamal, Zero-Trust Sync, CMMC, ITAR, PIPEDA, WireGuard, Rust Tauri, Xolotl, Nahuatl Deity">
   <link rel="alternate" hreflang="en" href="https://xolotl.ca/architecture.html">
+  <link rel="alternate" hreflang="fr" href="https://xolotl.ca/fr/architecture.html">
   <link rel="alternate" hreflang="es" href="https://xolotl.ca/es/architecture.html">
+  <link rel="alternate" hreflang="x-default" href="https://xolotl.ca/architecture.html">
   
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://xolotl.ca/">
@@ -87,7 +89,11 @@
         </ul>
 
         <div class="nav-actions">
-          <a href="../architecture.html" class="lang-switch-btn" title="View in English" onclick="setUserLanguage('en')">🇨🇦 EN</a>
+          <div class="lang-switch-group">
+            <a href="../architecture.html" class="lang-switch-btn" title="View in English" onclick="setUserLanguage('en')">🇨🇦 EN</a>
+            <a href="../fr/architecture.html" class="lang-switch-btn" title="Voir en français" onclick="setUserLanguage('fr')">🇫🇷 FR</a>
+            <a href="architecture.html" class="lang-switch-btn active" aria-current="page" onclick="setUserLanguage('es')">🇲🇽 ES</a>
+          </div>
           <a href="memo.html" class="btn btn-secondary nav-memo-btn">Memo</a>
           <button class="btn btn-gold" onclick="openModal('pilot')">Unirse al Piloto</button>
           <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Alternar menú de navegación" onclick="toggleMobileMenu()">
@@ -123,9 +129,13 @@
         <li><a href="contact.html" onclick="closeMobileMenu()">Contacto y Piloto</a></li>
       </ul>
       <div style="padding: 20px 24px; display: flex; flex-direction: column; gap: 12px;">
-        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px;">
-          <span style="font-family: var(--font-mono); font-size: 0.76rem; color: var(--text-warm-gray);">Idioma / Language:</span>
-          <a href="../architecture.html" class="lang-switch-btn" onclick="setUserLanguage('en')">🇨🇦 English</a>
+        <div style="margin-bottom: 4px;">
+          <div style="font-family: var(--font-mono); font-size: 0.76rem; color: var(--text-warm-gray); margin-bottom: 8px;">Language / Langue / Idioma:</div>
+          <div class="lang-switch-group" style="width: 100%;">
+            <a href="../architecture.html" class="lang-switch-btn" style="flex:1; justify-content:center;" onclick="setUserLanguage('en')">🇨🇦 EN</a>
+            <a href="../fr/architecture.html" class="lang-switch-btn" style="flex:1; justify-content:center;" onclick="setUserLanguage('fr')">🇫🇷 FR</a>
+            <a href="architecture.html" class="lang-switch-btn active" style="flex:1; justify-content:center;" onclick="setUserLanguage('es')">🇲🇽 ES</a>
+          </div>
         </div>
         <a href="memo.html" class="btn btn-secondary" style="width: 100%; text-align: center;">Leer Memorando Ejecutivo</a>
         <button class="btn btn-gold" style="width: 100%;" onclick="closeMobileMenu(); openModal('pilot');">Solicitar Acceso al Piloto</button>

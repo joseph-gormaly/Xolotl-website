@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Xolotl Canadian Shield — 14-Slide Investor Deck &amp; Sovereign Architecture Briefing</title>
   <meta name="description" content="Interactive 14-slide investor presentation for Xolotl Canadian Shield Cooperative with voice narration, synchronized captions, and live video demonstrations.">
+  <link rel="alternate" hreflang="en" href="https://xolotl.ca/deck.html">
+  <link rel="alternate" hreflang="fr" href="https://xolotl.ca/fr/deck.html">
+  <link rel="alternate" hreflang="es" href="https://xolotl.ca/es/deck.html">
+  <link rel="alternate" hreflang="x-default" href="https://xolotl.ca/deck.html">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 2 L4 8 V16 C4 23.5 9.1 30 16 32 C22.9 30 28 23.5 28 16 V8 Z' fill='%23192B23' stroke='%23C89D4B' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='5' fill='%23D97706'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -152,6 +156,22 @@
       background: rgba(52, 211, 153, 0.22);
       border-color: rgba(52, 211, 153, 0.5);
       color: #A7F3D0;
+    }
+
+    /* Compact Deck Language Switcher */
+    .deck-lang-switch {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .deck-lang-switch .btn {
+      padding: 5px 10px;
+      font-size: 0.76rem;
     }
 
     /* Main Deck Stage */
@@ -677,6 +697,12 @@
     </a>
 
     <div class="header-controls">
+      <div class="deck-lang-switch" role="group" aria-label="Language / Langue / Idioma">
+        <a href="deck.html" class="btn btn-secondary active" aria-current="page">EN</a>
+        <a href="fr/deck.html" class="btn btn-secondary" title="Voir en français">FR</a>
+        <a href="es/deck.html" class="btn btn-secondary" title="Ver en Español">ES</a>
+      </div>
+
       <!-- Narration Audio Controls -->
       <button id="narrateBtn" class="btn btn-gold" onclick="toggleNarration()" title="Start/Pause Voice Narration">
         <span id="narrateIcon">▶</span>

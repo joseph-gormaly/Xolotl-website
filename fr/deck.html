@@ -1,0 +1,1764 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Xolotl Canadian Shield — Présentation aux Investisseurs de 14 Diapositives et Séance sur l'Architecture Souveraine</title>
+  <meta name="description" content="Présentation interactive de 14 diapositives pour les investisseurs de Xolotl Canadian Shield Cooperative, avec narration vocale, sous-titres synchronisés et démonstrations vidéo en direct.">
+  <link rel="alternate" hreflang="en" href="https://xolotl.ca/deck.html">
+  <link rel="alternate" hreflang="fr" href="https://xolotl.ca/fr/deck.html">
+  <link rel="alternate" hreflang="es" href="https://xolotl.ca/es/deck.html">
+  <link rel="alternate" hreflang="x-default" href="https://xolotl.ca/deck.html">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 2 L4 8 V16 C4 23.5 9.1 30 16 32 C22.9 30 28 23.5 28 16 V8 Z' fill='%23192B23' stroke='%23C89D4B' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='5' fill='%23D97706'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;0,700;0,900;1,400;1,600&display=swap">
+
+  <style>
+    :root {
+      --bg-granite: #0B110E;
+      --bg-glass: rgba(16, 25, 21, 0.72);
+      --bg-glass-elevated: rgba(22, 35, 28, 0.88);
+      --border-glass: rgba(255, 255, 255, 0.12);
+      --border-gold: rgba(212, 175, 55, 0.4);
+      --text-white: #F8FAF9;
+      --text-muted: #A0B2A8;
+      --accent-gold: #D4AF37;
+      --accent-gold-light: #F5D074;
+      --accent-sage: #34D399;
+      --accent-maple: #EF4444;
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --font-serif: "Fraunces", Georgia, Cambria, "Times New Roman", Times, serif;
+      --font-display: "Fraunces", Georgia, Cambria, "Times New Roman", Times, serif;
+      --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-granite);
+      background-image:
+        radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.12) 0%, transparent 60%),
+        radial-gradient(circle at 85% 20%, rgba(52, 211, 153, 0.08) 0%, transparent 45%),
+        linear-gradient(to bottom, rgba(11, 17, 14, 0.88), rgba(7, 11, 9, 0.95)),
+        url('../assets/images/canadian_granite_texture.jpg');
+      background-attachment: fixed;
+      background-size: cover;
+      background-position: center;
+      color: var(--text-white);
+      font-family: var(--font-sans);
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Header Bar */
+    .deck-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(11, 17, 14, 0.82);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid var(--border-glass);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #FFFFFF;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+
+    .brand-badge {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      background: rgba(52, 211, 153, 0.12);
+      color: var(--accent-sage);
+      border: 1px solid rgba(52, 211, 153, 0.3);
+      padding: 2px 7px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    /* Glass Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 7px 14px;
+      border-radius: 6px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid transparent;
+      text-decoration: none !important;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      color: var(--text-white);
+    }
+
+    .btn:active {
+      transform: scale(0.97);
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.32) 0%, rgba(180, 130, 30, 0.16) 100%);
+      color: #FFF3C4;
+      border-color: rgba(245, 208, 116, 0.45);
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.4), 0 2px 8px rgba(212, 175, 55, 0.2);
+    }
+
+    .btn-gold:hover {
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.46) 0%, rgba(180, 130, 30, 0.26) 100%);
+      color: #FFFFFF;
+      border-color: rgba(255, 225, 140, 0.7);
+      box-shadow: 0 4px 16px rgba(212, 175, 55, 0.35);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text-white);
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .btn.active {
+      background: rgba(52, 211, 153, 0.22);
+      border-color: rgba(52, 211, 153, 0.5);
+      color: #A7F3D0;
+    }
+
+    /* Compact Deck Language Switcher */
+    .deck-lang-switch {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .deck-lang-switch .btn {
+      padding: 5px 10px;
+      font-size: 0.76rem;
+    }
+
+    /* Main Deck Stage */
+    .deck-stage {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      max-width: 1280px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .slide-viewport {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      max-height: 720px;
+      background: rgba(14, 22, 18, 0.78);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 12px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Slide Content Structure */
+    .slide-pane {
+      display: none;
+      height: 100%;
+      padding: 40px 48px;
+      flex-direction: column;
+      justify-content: space-between;
+      animation: fadeIn 0.3s ease;
+      overflow-y: auto;
+    }
+
+    .slide-pane.active {
+      display: flex;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .slide-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .slide-number-badge {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--accent-gold-light);
+      background: rgba(212, 175, 55, 0.12);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      padding: 3px 10px;
+      border-radius: 4px;
+    }
+
+    .slide-category {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent-sage);
+    }
+
+    .slide-heading {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 2.8vw, 2.3rem);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+      color: #FFFFFF;
+      margin-bottom: 20px;
+    }
+
+    .slide-heading span.serif {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 400;
+      color: var(--accent-gold-light);
+    }
+
+    /* Slide Body Grid */
+    .slide-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 32px;
+      align-items: center;
+      flex: 1;
+    }
+
+    .slide-grid.single-col {
+      grid-template-columns: 1fr;
+    }
+
+    .slide-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .slide-bullets li {
+      position: relative;
+      padding-left: 22px;
+      font-size: 0.96rem;
+      line-height: 1.55;
+      color: #E2E8F0;
+    }
+
+    .slide-bullets li::before {
+      content: "•";
+      position: absolute;
+      left: 4px;
+      color: var(--accent-gold);
+      font-size: 1.3rem;
+      line-height: 1;
+    }
+
+    .slide-bullets strong {
+      color: #FFFFFF;
+    }
+
+    /* Media Box (Video / Graphic container) */
+    .media-box {
+      background: rgba(0, 0, 0, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .media-box video {
+      width: 100%;
+      height: 100%;
+      max-height: 280px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .media-box img {
+      width: 100%;
+      height: 100%;
+      max-height: 280px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .media-caption {
+      padding: 8px 14px;
+      background: rgba(10, 16, 13, 0.85);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--accent-gold-light);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Visual Metrics Cards */
+    .metric-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .metric-card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 6px;
+      padding: 14px 16px;
+      backdrop-filter: blur(8px);
+    }
+
+    .metric-val {
+      font-family: var(--font-mono);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--accent-gold-light);
+      margin-bottom: 4px;
+    }
+
+    .metric-desc {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* Comparison Table in Slide */
+    .slide-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.8rem;
+      background: rgba(0, 0, 0, 0.35);
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .slide-table th, .slide-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      text-align: left;
+    }
+
+    .slide-table th {
+      background: rgba(255, 255, 255, 0.06);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-white);
+    }
+
+    .slide-table td.col-win {
+      color: var(--accent-sage);
+      font-weight: 700;
+      background: rgba(52, 211, 153, 0.06);
+      border-left: 1px solid rgba(52, 211, 153, 0.2);
+    }
+
+    /* Closed Captions Live Banner */
+    .caption-banner {
+      position: absolute;
+      bottom: 16px;
+      left: 24px;
+      right: 24px;
+      background: rgba(8, 12, 10, 0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border-gold);
+      border-radius: 8px;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
+      z-index: 50;
+      transition: all 0.3s ease;
+    }
+
+    .caption-banner.hidden {
+      opacity: 0;
+      transform: translateY(12px);
+      pointer-events: none;
+    }
+
+    .caption-badge {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      background: var(--accent-gold);
+      color: #121815;
+      font-weight: 800;
+      padding: 2px 6px;
+      border-radius: 4px;
+      flex-shrink: 0;
+      text-transform: uppercase;
+    }
+
+    .caption-text {
+      font-size: 0.92rem;
+      color: #FFFFFF;
+      line-height: 1.45;
+      flex: 1;
+      font-family: var(--font-sans);
+    }
+
+    .caption-text span.active-sentence {
+      color: var(--accent-gold-light);
+      font-weight: 600;
+    }
+
+    /* Waveform Animation */
+    .voice-wave {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      height: 18px;
+      flex-shrink: 0;
+    }
+
+    .voice-bar {
+      width: 3px;
+      height: 6px;
+      background: var(--accent-sage);
+      border-radius: 1px;
+      transition: height 0.15s ease;
+    }
+
+    .voice-wave.speaking .voice-bar:nth-child(1) { animation: wave 0.8s infinite 0.1s; }
+    .voice-wave.speaking .voice-bar:nth-child(2) { animation: wave 0.8s infinite 0.3s; }
+    .voice-wave.speaking .voice-bar:nth-child(3) { animation: wave 0.8s infinite 0.2s; }
+    .voice-wave.speaking .voice-bar:nth-child(4) { animation: wave 0.8s infinite 0.4s; }
+
+    @keyframes wave {
+      0%, 100% { height: 4px; }
+      50% { height: 18px; }
+    }
+
+    /* Bottom Controller Dock */
+    .deck-controller {
+      width: 100%;
+      margin-top: 18px;
+      background: rgba(14, 22, 18, 0.72);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border-glass);
+      border-radius: 10px;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .progress-track {
+      flex: 1;
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .progress-segment {
+      flex: 1;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 2px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .progress-segment:hover {
+      background: rgba(255, 255, 255, 0.35);
+      height: 6px;
+    }
+
+    .progress-segment.viewed {
+      background: var(--accent-gold);
+    }
+
+    .progress-segment.current {
+      background: var(--accent-sage);
+      box-shadow: 0 0 10px var(--accent-sage);
+    }
+
+    /* Presenter Notes Modal */
+    .notes-drawer {
+      display: none;
+      position: fixed;
+      right: 0;
+      top: 60px;
+      bottom: 0;
+      width: 440px;
+      max-width: 90vw;
+      background: rgba(11, 17, 14, 0.96);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-left: 1px solid var(--border-glass);
+      padding: 24px;
+      z-index: 99;
+      overflow-y: auto;
+      box-shadow: -12px 0 36px rgba(0, 0, 0, 0.6);
+    }
+
+    .notes-drawer.open {
+      display: block;
+    }
+
+    .notes-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--border-glass);
+      padding-bottom: 12px;
+    }
+
+    .notes-body h4 {
+      font-size: 0.88rem;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent-gold-light);
+      margin: 16px 0 8px;
+    }
+
+    .notes-body p {
+      font-size: 0.92rem;
+      line-height: 1.6;
+      color: #CBD5E1;
+      margin-bottom: 16px;
+    }
+
+    .notes-qna {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-glass);
+      border-radius: 6px;
+      padding: 14px;
+      margin-top: 12px;
+    }
+
+    .notes-qna strong {
+      color: var(--accent-gold);
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    /* Thumbnail Overview Modal */
+    .grid-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(7, 12, 9, 0.85);
+      backdrop-filter: blur(20px);
+      z-index: 150;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .grid-modal.open {
+      display: flex;
+    }
+
+    .grid-content {
+      background: rgba(14, 22, 18, 0.96);
+      border: 1px solid var(--border-glass);
+      border-radius: 12px;
+      max-width: 1040px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 28px;
+    }
+
+    .thumbs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .thumb-card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-glass);
+      border-radius: 6px;
+      padding: 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .thumb-card:hover, .thumb-card.active {
+      border-color: var(--accent-gold);
+      background: rgba(212, 175, 55, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .thumb-num {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--accent-gold-light);
+      margin-bottom: 4px;
+    }
+
+    .thumb-title {
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: #FFFFFF;
+      line-height: 1.3;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .slide-viewport {
+        aspect-ratio: auto;
+        min-height: 520px;
+      }
+      .slide-pane {
+        padding: 24px 20px;
+      }
+      .slide-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .media-box video, .media-box img {
+        max-height: 180px;
+      }
+      .metric-row {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Barre d'En-tête -->
+  <header class="deck-header">
+    <a href="index.html" class="brand-link" title="Retour à la page d'accueil xolotl.ca">
+      <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M16 2L4 7V15C4 22.5 9.1 29 16 31C22.9 29 28 22.5 28 15V7L16 2Z" fill="#15231C" stroke="#C89D4B" stroke-width="2"/>
+        <circle cx="16" cy="16" r="4.5" fill="#D97706"/>
+      </svg>
+      <span>Xolotl Coopérative</span>
+      <span class="brand-badge">Présentation Souveraine</span>
+    </a>
+
+    <div class="header-controls">
+      <div class="deck-lang-switch" role="group" aria-label="Language / Langue / Idioma">
+        <a href="../deck.html" class="btn btn-secondary" title="View in English">EN</a>
+        <a href="deck.html" class="btn btn-secondary active" aria-current="page">FR</a>
+        <a href="../es/deck.html" class="btn btn-secondary" title="Ver en Español">ES</a>
+      </div>
+
+      <!-- Contrôles Audio de Narration -->
+      <button id="narrateBtn" class="btn btn-gold" onclick="toggleNarration()" title="Démarrer/Mettre en Pause la Narration Vocale">
+        <span id="narrateIcon">▶</span>
+        <span id="narrateLabel">Piste Audio</span>
+      </button>
+
+      <button id="ccBtn" class="btn btn-secondary active" onclick="toggleCaptions()" title="Basculer les Sous-titres">
+        <span>[ST]</span>
+      </button>
+
+      <button id="autoAdvanceBtn" class="btn btn-secondary" onclick="toggleAutoAdvance()" title="Passer automatiquement à la diapositive suivante une fois la narration terminée">
+        <span>Lecture Auto : <strong id="autoStatus">Désactivée</strong></span>
+      </button>
+
+      <button id="thumbsBtn" class="btn btn-secondary" onclick="toggleThumbModal()" title="Voir les 14 vignettes de diapositives">
+        <span>Diapositives</span>
+      </button>
+
+      <button id="notesBtn" class="btn btn-secondary" onclick="toggleNotesDrawer()" title="Voir les Notes du Présentateur et la FAQ">
+        <span>Notes</span>
+      </button>
+
+      <button id="fsBtn" class="btn btn-secondary" onclick="toggleFullScreen()" title="Basculer le Plein Écran (F)">
+        <span>⛶</span>
+      </button>
+
+      <a href="index.html" class="btn btn-secondary" title="Quitter vers la Page d'Accueil">
+        <span>Quitter ✕</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Scène de Présentation -->
+  <main class="deck-stage">
+    <div id="slideViewport" class="slide-viewport">
+
+      <!-- Diapositive 1 : Titre et Accroche -->
+      <section class="slide-pane active" data-slide="1" data-category="Vision Exécutive">
+        <div class="slide-meta">
+          <span class="slide-number-badge">01 / 14</span>
+          <span class="slide-category">Vision Exécutive</span>
+        </div>
+        <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-gold); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px;">
+          // Le nuage a des problèmes de confiance. Voici le Bouclier Canadien.
+        </div>
+        <h2 class="slide-heading">
+          La Première Plateforme Mondiale de Synchronisation de Fichiers <br>
+          <span class="serif">en Périphérie Souveraine Hybride.</span>
+        </h2>
+        <div class="slide-grid">
+          <div>
+            <ul class="slide-bullets">
+              <li><strong>Le Dilemme Souverain :</strong> Les institutions réglementées se voient légalement interdire la synchronisation infonuagique non chiffrée par le US CLOUD Act, alors que les serveurs sur site isolés tombent proie aux rançongiciels.</li>
+              <li><strong>Expérience de Bureau Transparente :</strong> Offre l'expérience familière « déposer un fichier dans un dossier » de OneDrive via des clients de bureau natifs Rust et Tauri (surcharge RAM &lt;30 Mo).</li>
+              <li><strong>Immunité Mathématique :</strong> La cryptographie de seuil auditée (GDK de Pedersen + ElGamal de Seuil) garantit qu'<em>aucune ordonnance judiciaire unique, aucun fournisseur infonuagique, ni aucune compromission d'administrateur racine</em> ne peut produire le texte en clair.</li>
+            </ul>
+            <div class="metric-row">
+              <div class="metric-card">
+                <div class="metric-val">1,25 M$</div>
+                <div class="metric-desc">Ronde de Capital d'Amorçage pour 18 Mois de Piste vers la Disponibilité Générale</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-val">3 sur 5</div>
+                <div class="metric-desc">Quorum Juridictionnel Transfrontalier Requis</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-val">0 Clé</div>
+                <div class="metric-desc">Détenue par le Miroir de Sauvegarde Infonuagique S3 Canadien</div>
+              </div>
+            </div>
+          </div>
+          <div class="media-box">
+            <video autoplay loop muted playsinline src="../assets/videos/sovereign_mesh_radar.mp4"></video>
+            <div class="media-caption">
+              <span>TOPOLOGIE CENTRALE DU BOUCLIER CANADIEN</span>
+              <span>RADAR MAILLÉ EN DIRECT</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Diapositive 2 : Le Problème Central -->
+      <section class="slide-pane" data-slide="2" data-category="La Faille du Marché">
+        <div class="slide-meta">
+          <span class="slide-number-badge">02 / 14</span>
+          <span class="slide-category">La Faille du Marché</span>
+        </div>
+        <h2 class="slide-heading">
+          L'Effondrement de la « Souveraineté du Nuage » : <br>
+          <span class="serif">Le Piège du US CLOUD Act.</span>
+        </h2>
+        <div class="slide-grid">
+          <div>
+            <ul class="slide-bullets">
+              <li><strong>Juridiction Extraterritoriale :</strong> En vertu du US CLOUD Act de 2018, les fournisseurs domestiques américains doivent divulguer les données stockées n'importe où dans le monde — rendant l'hébergement géographique à Francfort ou à Montréal juridiquement sans effet.</li>
+              <li><strong>Séquestre de Clés Centralisé :</strong> Les solutions KMS d'entreprise (AWS KMS, Azure Key Vault) conservent le contrôle de la clé maîtresse. Une seule assignation signifiée au fournisseur force la divulgation complète du texte en clair.</li>
+              <li><strong>Le Piège du Silo Rançongiciel :</strong> Les configurations NAS/SAN sur site entièrement isolées perturbent les flux de travail distribués et manquent d'une reprise après sinistre hors site continue et immuable contre les chiffreurs modernes.</li>
+              <li><strong>La Crise Institutionnelle :</strong> Plus de 120 G$ de données d'entreprise doivent se conformer à Schrems II, NIS2 et la LPD suisse, laissant les DSI pris au piège entre des silos inutilisables et des nuages juridiquement compromis.</li>
+            </ul>
+          </div>
+          <div class="media-box">
+            <img src="../assets/images/canadian_shield_twilight.jpg" alt="Granite atmosphérique du Bouclier canadien au crépuscule">
+            <div class="media-caption">
+              <span>JURISPRUDENCE JURIDICTIONNELLE</span>
+              <span>SCHREMS II · LPRPDE</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Diapositive 3 : Recadrage du Modèle de Menace -->
+      <section class="slide-pane" data-slide="3" data-category="Modélisation des Menaces">
+        <div class="slide-meta">
+          <span class="slide-number-badge">03 / 14</span>
+          <span class="slide-category">Modélisation des Menaces</span>
+        </div>
+        <h2 class="slide-heading">
+          Redéfinir l'Adversaire : <br>
+          <span class="serif">La Contrainte Légale est Indissociable d'une Brèche.</span>
+        </h2>
+        <div class="slide-grid single-col">
+          <table class="slide-table">
+            <thead>
+              <tr>
+                <th>Axiome de Menace</th>
+                <th>Nuage d'Entreprise Traditionnel (OneDrive / Box)</th>
+                <th>Architecture Souveraine Xolotl</th>
+                <th>Preuve Cryptographique</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Axiome 1 : Sortie du Texte en Clair</strong></td>
+                <td>Le texte en clair atteint le nuage pour l'indexation / l'analyse DLP</td>
+                <td class="col-win">Texte en clair strictement isolé en RAM volatile</td>
+                <td>Découpage en continu AES-256-GCM</td>
+              </tr>
+              <tr>
+                <td><strong>Axiome 2 : Persistance des Clés</strong></td>
+                <td>Les clés maîtresses sont conservées en permanence dans des HSM centralisés</td>
+                <td class="col-win">La clé maîtresse ne touche jamais le disque persistant</td>
+                <td>Zeroize-on-Drop en mémoire</td>
+              </tr>
+              <tr>
+                <td><strong>Axiome 3 : Autorité du Miroir de Sauvegarde</strong></td>
+                <td>Le fournisseur infonuagique possède l'autorité complète de déchiffrement</td>
+                <td class="col-win">Le miroir infonuagique détient 0 fragment de clé (100 % aveugle)</td>
+                <td>Impuissance Mathématique</td>
+              </tr>
+              <tr>
+                <td><strong>Axiome 4 : Contrainte Légale</strong></td>
+                <td>Une seule ordonnance judiciaire américaine force la divulgation secrète</td>
+                <td class="col-win">Nécessite un quorum simultané transfrontalier</td>
+                <td>ElGamal de Seuil (3, 5)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Diapositive 4 : Architecture à 3 Couches -->
+      <section class="slide-pane" data-slide="4" data-category="Architecture Système">
+        <div class="slide-meta">
+          <span class="slide-number-badge">04 / 14</span>
+          <span class="slide-category">Architecture Système</span>
+        </div>
+        <h2 class="slide-heading">
+          La Périphérie Souveraine Hybride à 3 Couches : <br>
+          <span class="serif">Maillage Privé, Moteur Natif, Stockage Aveugle.</span>
+        </h2>
+        <div class="slide-grid">
+          <div>
+            <ul class="slide-bullets">
+              <li><strong>Couche 1 — Pile de Périphérie Souveraine (Contrôlée par le Client) :</strong> Nœud Docker sur site isolé exécutant Postgres RLS et Supabase GoTrue derrière un espace réseau WireGuard privé — aucun accès public entrant.</li>
+              <li><strong>Couche 2 — Moteur Client Xolotl (Rust / Tauri) :</strong> Surveillance native de l'arborescence de répertoires avec anti-rebond en front descendant; diffuse les fichiers chiffrés en continu dans des pipelines RAM résidents constants de 8 Mio.</li>
+              <li><strong>Couche 3 — Miroir Central Aveugle Canadien (SaaS Xolotl) :</strong> Grappe S3 à haute disponibilité à Montréal dotée de verrous d'objets immuables de 93 jours. Ne détient aucun fragment de clé ni aucune autorité sur le texte en clair.</li>
+            </ul>
+          </div>
+          <div class="media-box">
+            <video autoplay loop muted playsinline src="../assets/videos/sovereign_mesh_radar.mp4"></video>
+            <div class="media-caption">
+              <span>TOPOLOGIE MAILLÉE DES COUCHES 1-3</span>
+              <span>MIROIR S3 DE MONTRÉAL</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Diapositive 5 : Avantage Cryptographique -->
+      <section class="slide-pane" data-slide="5" data-category="Avantage Cryptographique">
+        <div class="slide-meta">
+          <span class="slide-number-badge">05 / 14</span>
+          <span class="slide-category">Avantage Cryptographique</span>
+        </div>
+        <h2 class="slide-heading">
+          Résoudre le Piège du Non-Déterminisme de FROST : <br>
+          <span class="serif">GDK de Pedersen + ElGamal de Seuil.</span>
+        </h2>
+        <div class="slide-grid">
+          <div>
+            <ul class="slide-bullets">
+              <li><strong>Le Problème du Nonce de Signature :</strong> Les signatures FROST standard (RFC 9591) produisent des nonces aléatoires à chaque ronde, rendant impossible la dérivation déterministe de Clés de Chiffrement de Clés (KEK) AES statiques sans fuite de clé.</li>
+              <li><strong>Déchiffrement ElGamal de Seuil :</strong> Xolotl associe la Génération Distribuée de Clés de Pedersen à des preuves à divulgation nulle de connaissance de Chaum-Pedersen sur Ed25519 pour le déballage déterministe des KEK.</li>
+              <li><strong>Aveuglement de Coordonnées par Session :</strong> Chaque demande de déverrouillage aveugle les points publics ($R' = R^\beta$). Les déchiffrements partiels interceptés sont mathématiquement sans valeur dans toute session future.</li>
+              <li><strong>Fondation Auditée :</strong> Construit sur les bibliothèques éprouvées <code>frost-core</code> et <code>curve25519-dalek</code> avec une protection RAM stricte <code>ZeroizeOnDrop</code>.</li>
+            </ul>
+          </div>
+          <div class="media-box">
+            <video autoplay loop muted playsinline src="../assets/videos/threshold_ceremony.mp4"></video>
+            <div class="media-caption">
+              <span>CÉRÉMONIE GDK DE PEDERSEN</span>
+              <span>PREUVE ZK DE CHAUM-PEDERSEN</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Diapositive 6 : Diversité Juridictionnelle -->
+      <section class="slide-pane" data-slide="6" data-category="Défense Juridictionnelle">
+        <div class="slide-meta">
+          <span class="slide-number-badge">06 / 14</span>
+          <span class="slide-category">Défense Juridictionnelle</span>
+        </div>
+        <h2 class="slide-heading">
+          Diversité Juridictionnelle Appliquée Cryptographiquement : <br>
+          <span class="serif">Briser l'Économie des Assignations Massives.</span>
+        </h2>
+        <div class="slide-grid">
+          <div>
+            <ul class="slide-bullets">
+              <li><strong>Le Mythe Multi-Signature :</strong> Si tous les détenteurs de clés résident dans un seul pays, une seule ordonnance judiciaire nationale contraint l'ensemble du quorum simultanément sous peine d'outrage au tribunal scellé.</li>
+              <li><strong>Politique de Topologie Appliquée par le Code :</strong> Le coordinateur de déverrouillage rejette mathématiquement tout quorum composé de dépositaires d'une seule juridiction nationale.</li>
+              <li><strong>Répartition Standard des Enclaves (3, 5) :</strong>
+                <br>• Nœud 1 : Poste de Travail de Bureau (Local)
+                <br>• Nœud 2 : Enclave du Directeur de la Conformité (Local)
+                <br>• Nœud 3 : Passerelle de Périphérie Souveraine (Siège Social)
+                <br>• Nœud 4 : Enclave Indépendante (Zurich, Suisse)
+                <br>• Nœud 5 : Enclave Indépendante (Reykjavik, Islande)
+              </li>
+              <li><strong>Impossibilité pour l'Adversaire :</strong> Nécessite des ordonnances judiciaires simultanées de trois nations non alignées, exécutées dans une fenêtre de signature de 120 secondes.</li>
+            </ul>
+          </div>
+          <div class="media-box">
+            <video autoplay loop muted playsinline src="../assets/videos/sovereign_mesh_radar.mp4"></video>
+            <div class="media-caption">
+              <span>MAILLAGE MULTIJURIDICTIONNEL (3, 5)</span>
+              <span>ENCLAVES CA · CH · IS</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Diapositive 7 : Expérience Utilisateur et WORM Anti-Rançongiciel -->
+      <section class="slide-pane" data-slide="7" data-category="Expérience Utilisateur">
+        <div class="slide-meta">
+          <span class="slide-number-badge">07 / 14</span>
+          <span class="slide-category">Expérience Utilisateur</span>
+        </div>
+        <h2 class="slide-heading">
+          Ergonomie de OneDrive, Immunité d'Enclave : <br>
+          <span class="serif">Récupération Ponctuelle contre les Rançongiciels Zero-Day.</span>
+        </h2>
+        <div class="slide-grid">
+          <div>
+            <ul class="slide-bullets">
+              <li><strong>Aucune Friction Comportementale :</strong> Les utilisateurs interagissent avec des dossiers Explorer/Finder standard. Les fichiers s'enregistrent, se chiffrent et se synchronisent de façon transparente en arrière-plan.</li>
+              <li><strong>Diffusion en Continu à Mémoire Constante :</strong> Des pipelines découpés en blocs de 8 Mio traitent d'imposantes archives vidéo de 50 Go et des modèles CAO de plusieurs gigaoctets sans pics de RAM sur le poste de travail.</li>
+              <li><strong>Récupération Ponctuelle (PITR) :</strong> Lorsqu'un rançongiciel chiffre les postes de travail locaux, les administrateurs sélectionnent n'importe quelle seconde des 93 derniers jours sur notre curseur PITR et reconstituent immédiatement des données saines.</li>
+              <li><strong>Verrou d'Objet S3 Immuable :</strong> Les compartiments de stockage du noyau canadien appliquent des verrous WORM en mode conformité — rejetant toute demande de suppression ou d'écrasement, même provenant d'identifiants administrateur compromis.</li>
+            </ul>
+          </div>
+          <div class="media-box">
+            <video autoplay loop muted playsinline src="../assets/videos/immutable_worm_rollback.mp4"></video>
+            <div class="media-caption">
+              <span>WORM DE CONFORMITÉ DE 93 JOURS</span>
+              <span>RESTAURATION PONCTUELLE</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Diapositive 8 : Validation Technique en Direct -->
+      <section class="slide-pane" data-slide="8" data-category="Base de Code Dérisquée">
+        <div class="slide-meta">
+          <span class="slide-number-badge">08 / 14</span>
+          <span class="slide-category">Base de Code Dérisquée</span>
+        </div>
+        <h2 class="slide-heading">
+          Code de Production, Pas un Livre Blanc Fantôme : <br>
+          <span class="serif">Architecture Système Rust Vérifiée.</span>
+        </h2>
+        <div class="slide-grid">
+          <div>
+            <ul class="slide-bullets">
+              <li><strong>Monorepo Fonctionnel de Bout en Bout :</strong> Les 3 couches sont implémentées et réussissent des suites continues de tests unitaires, d'intégration et de régression de sécurité.</li>
+              <li><strong>Véritables Sockets Réseau :</strong> Les cérémonies d'inscription GDK et les échanges de déchiffrement partiel de seuil s'exécutent sur de véritables sockets TCP en direct — sans simulation ni substituts en mémoire.</li>
+              <li><strong>Durcissement Pré-Audit Complété :</strong> Une revue exhaustive de sécurité cryptographique a été complétée. L'aveuglement de coordonnées par session, les portes de limitation de débit et les vérifications d'autorisation des dépositaires ont été corrigés.</li>
+              <li><strong>Prêt pour l'Engagement d'Audit :</strong> Un appel d'offres complet de 15 pages pour la revue cryptographique est prêt pour un engagement d'audit indépendant de premier plan (Trail of Bits / Kudelski).</li>
+            </ul>
+            <div class="metric-row">
+              <div class="metric-card">
+                <div class="metric-val">14 / 14</div>
+                <div class="metric-desc">Suites de Tests Cryptographiques Réussies</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-val">8 Mio</div>
+                <div class="metric-desc">RAM de Diffusion en Blocs Fixes</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-val">100 %</div>
+                <div class="metric-desc">Éléments Pré-Audit Corrigés</div>
+              </div>
+            </div>
+          </div>
+          <div class="media-box">
+            <video autoplay loop muted playsinline src="../assets/videos/threshold_ceremony.mp4"></video>
+            <div class="media-caption">
+              <span>SUITE DE RÉGRESSION D'INTÉGRATION</span>
+              <span>CI/CD RÉUSSIE</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Diapositive 9 : Marché Cible et Profil Client -->
+      <section class="slide-pane" data-slide="9" data-category="Mise en Marché">
+        <div class="slide-meta">
+          <span class="slide-number-badge">09 / 14</span>
+          <span class="slide-category">Mise en Marché</span>
+        </div>
+        <h2 class="slide-heading">
+          Clientèle Institutionnelle Cible : <br>
+          <span class="serif">Contrainte Légale Aiguë et ACV Élevée.</span>
+        </h2>
+        <div class="slide-grid single-col">
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+            <div class="metric-card" style="padding: 20px;">
+              <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-sage); margin-bottom: 6px;">TÊTE DE PONT · JURIDIQUE</div>
+              <h4 style="font-size: 1.1rem; color: #FFFFFF; margin-bottom: 10px;">F&amp;A Transfrontalières et Droit du Litige</h4>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 14px;">La découverte américaine dans des poursuites étrangères peut percer le secret professionnel; les associés directeurs font face à des sanctions personnelles du barreau.</p>
+              <div class="metric-val" style="font-size: 1.15rem;">75 k$ – 150 k$</div>
+              <div class="metric-desc">Valeur Contractuelle Annuelle (ACV)</div>
+            </div>
+            <div class="metric-card" style="padding: 20px;">
+              <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-gold); margin-bottom: 6px;">EXPANSION · DÉFENSE</div>
+              <h4 style="font-size: 1.1rem; color: #FFFFFF; margin-bottom: 10px;">Sous-traitants de la Défense (CMMC / ITAR)</h4>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 14px;">Interdit l'exposition extraterritoriale d'Informations Non Classifiées Contrôlées (CUI) soumises au contrôle des exportations.</p>
+              <div class="metric-val" style="font-size: 1.15rem;">120 k$ – 250 k$</div>
+              <div class="metric-desc">Valeur Contractuelle Annuelle (ACV)</div>
+            </div>
+            <div class="metric-card" style="padding: 20px;">
+              <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-sage); margin-bottom: 6px;">EXPANSION · FINANCE</div>
+              <h4 style="font-size: 1.1rem; color: #FFFFFF; margin-bottom: 10px;">Gestion de Patrimoine Privé Suisse et Family Offices</h4>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 14px;">La Loi bancaire suisse et l'article 48 du RGPD font de la divulgation des registres de clients à des agences étrangères un acte criminel.</p>
+              <div class="metric-val" style="font-size: 1.15rem;">100 k$ – 300 k$</div>
+              <div class="metric-desc">Valeur Contractuelle Annuelle (ACV)</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Diapositive 10 : Taille du Marché et Vents Géopolitiques -->
+      <section class="slide-pane" data-slide="10" data-category="Opportunité de Marché">
+        <div class="slide-meta">
+          <span class="slide-number-badge">10 / 14</span>
+          <span class="slide-category">Opportunité de Marché</span>
+        </div>
+        <h2 class="slide-heading">
+          Vents Favorables de 120 G$ pour le Nuage Souverain : <br>
+          <span class="serif">La Dé-Hyperscalisation Mondiale.</span>
+        </h2>
+        <div class="slide-grid">
+          <div>
+            <ul class="slide-bullets">
+              <li><strong>TAM (120 G$) :</strong> Marché mondial du nuage souverain et de la synchronisation de fichiers d'entreprise d'ici 2030 (TCAC de 24,5 %).</li>
+              <li><strong>SAM (18,5 G$) :</strong> Stockage de données institutionnelles réglementées à forte criticité (juridique, défense, bancaire, enclaves gouvernementales critiques).</li>
+              <li><strong>SOM (3,8 G$) :</strong> Entreprises transfrontalières nord-américaines et européennes exigeant une immunité vérifiable contre les assignations extraterritoriales.</li>
+              <li><strong>Moteur Géopolitique de Conseil d'Administration :</strong> L'escalade des tensions de la guerre froide technologique et les mandats du Data Act européen forcent les conseils d'administration à éliminer les dépendances envers un fournisseur unique de nuage américain.</li>
+            </ul>
+          </div>
+          <div class="metric-row" style="grid-template-columns: 1fr; gap: 14px;">
+            <div class="metric-card">
+              <div class="metric-val">120 Milliards $</div>
+              <div class="metric-desc">Marché Total Adressable d'ici 2030</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-val">18,5 Milliards $</div>
+              <div class="metric-desc">Marché Adressable Desservable (Réglementé à Forte Criticité)</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-val">3,8 Milliards $</div>
+              <div class="metric-desc">Marché Obtenable Desservable (Tête de Pont Transfrontalière Immédiate)</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Diapositive 11 : Modèle d'Affaires et Économie Unitaire -->
+      <section class="slide-pane" data-slide="11" data-category="Moteur Financier">
+        <div class="slide-meta">
+          <span class="slide-number-badge">11 / 14</span>
+          <span class="slide-category">Moteur Financier</span>
+        </div>
+        <h2 class="slide-heading">
+          Économie SaaS Hybride d'Entreprise : <br>
+          <span class="serif">Marges Brutes de 82 %, Rétention Nette Élevée.</span>
+        </h2>
+        <div class="slide-grid single-col">
+          <table class="slide-table">
+            <thead>
+              <tr>
+                <th>Flux de Revenus</th>
+                <th>Structure de Tarification</th>
+                <th>Métrique Client Cible</th>
+                <th>Marge Brute Unitaire</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>1. Licence de Nœud de Périphérie Souveraine</strong></td>
+                <td>Frais de base de 35 000 $ – 75 000 $ / an</td>
+                <td>Par organisation (orchestration Docker et maillage WireGuard)</td>
+                <td class="col-win">94 %</td>
+              </tr>
+              <tr>
+                <td><strong>2. Abonnement par Poste d'Entreprise</strong></td>
+                <td>45 $ / utilisateur / mois (540 $/an)</td>
+                <td>Min. 50 postes (plancher de 27 000 $/an)</td>
+                <td class="col-win">88 %</td>
+              </tr>
+              <tr>
+                <td><strong>3. Capacité du Miroir Central S3 Aveugle</strong></td>
+                <td>0,035 $ / Go / mois</td>
+                <td>Consommation de stockage WORM de conformité sur 93 jours</td>
+                <td class="col-win">65 %</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="metric-row" style="margin-top: 20px;">
+            <div class="metric-card">
+              <div class="metric-val">5,2x</div>
+              <div class="metric-desc">Ratio LTV / CAC Projeté</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-val">125 %</div>
+              <div class="metric-desc">Rétention Nette des Revenus Cible</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-val">62 000 $</div>
+              <div class="metric-desc">Plancher Contractuel Initial Minimum</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Diapositive 12 : Paysage Concurrentiel -->
+      <section class="slide-pane" data-slide="12" data-category="Avantage Concurrentiel">
+        <div class="slide-meta">
+          <span class="slide-number-badge">12 / 14</span>
+          <span class="slide-category">Avantage Concurrentiel</span>
+        </div>
+        <h2 class="slide-heading">
+          Positionnement Concurrentiel : <br>
+          <span class="serif">La Seule Architecture Résistant au CLOUD Act.</span>
+        </h2>
+        <div class="slide-grid single-col">
+          <table class="slide-table">
+            <thead>
+              <tr>
+                <th>Matrice de Capacités</th>
+                <th>Hyperscalers (OneDrive / Box)</th>
+                <th>Chiffrement E2EE Grand Public (Tresorit / Proton)</th>
+                <th>Enclaves Matérielles (Virtru / HSM)</th>
+                <th>Xolotl Sovereign Cooperative</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Synchronisation de Bureau Sans Friction</strong></td>
+                <td>Oui</td>
+                <td>Oui</td>
+                <td>Non (Portail Web / Plugiciel)</td>
+                <td class="col-win">Oui (Natif Rust / Tauri)</td>
+              </tr>
+              <tr>
+                <td><strong>Immunité au US CLOUD Act</strong></td>
+                <td>Non (Légalement Lié)</td>
+                <td>Non (Point Terminal Vulnérable)</td>
+                <td>Partielle (Constitution Américaine)</td>
+                <td class="col-win">Oui (Immunité Mathématique)</td>
+              </tr>
+              <tr>
+                <td><strong>Séquestre de Clés à Seuil</strong></td>
+                <td>Non (KMS Centralisé)</td>
+                <td>Non (Phrase de Passe Unique)</td>
+                <td>Non (HSM Central)</td>
+                <td class="col-win">Oui (GDK de Pedersen (3,5))</td>
+              </tr>
+              <tr>
+                <td><strong>Politique de Diversité Appliquée</strong></td>
+                <td>Non</td>
+                <td>Non</td>
+                <td>Non</td>
+                <td class="col-win">Oui (Quorum Multi-Nation)</td>
+              </tr>
+              <tr>
+                <td><strong>WORM Immuable de 93 Jours</strong></td>
+                <td>Module Complémentaire Seulement</td>
+                <td>Non</td>
+                <td>Variable</td>
+                <td class="col-win">Natif (Verrou d'Objet S3)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Diapositive 13 : Feuille de Route vers la Disponibilité Générale -->
+      <section class="slide-pane" data-slide="13" data-category="Feuille de Route d'Exécution">
+        <div class="slide-meta">
+          <span class="slide-number-badge">13 / 14</span>
+          <span class="slide-category">Feuille de Route d'Exécution</span>
+        </div>
+        <h2 class="slide-heading">
+          Feuille de Route de 18 Mois vers la Disponibilité Générale : <br>
+          <span class="serif">Du Monorepo Validé à l'Échelle de la Série A.</span>
+        </h2>
+        <div class="slide-grid">
+          <div>
+            <ul class="slide-bullets">
+              <li><strong>Phase 1 (M1 – M4) — Audit Formel et Avis Juridiques :</strong> Exécuter l'appel d'offres d'audit cryptographique de 75 k$ avec Trail of Bits / Kudelski; déposer des avis juridiques transfrontaliers en Suisse et au Canada.</li>
+              <li><strong>Phase 2 (M5 – M8) — Client de Bureau Multiplateforme en Disponibilité Générale :</strong> Livrer des clients natifs Tauri raffinés pour macOS, Windows et Linux avec inscription automatisée des dépositaires; SOC 2 Type 1.</li>
+              <li><strong>Phase 3 (M9 – M12) — 6 Pilotes d'Entreprise Payants (450 k$ de RRA) :</strong> Convertir le pipeline de partenaires de conception; atteindre un flux de trésorerie net positif sur les opérations pilotes; débloquer les jalons de subvention du Sovereign Tech Fund.</li>
+              <li><strong>Phase 4 (M13 – M18) — Passage à l'Échelle vers la Série A (1,35 M$+ de RRA) :</strong> Étendre à 18 déploiements d'entreprise dans les secteurs juridique et de la défense; déclencher la Série A à une évaluation de 12 M$–15 M$.</li>
+            </ul>
+          </div>
+          <div class="metric-row" style="grid-template-columns: 1fr; gap: 14px;">
+            <div class="metric-card">
+              <div class="metric-val">Mois 4</div>
+              <div class="metric-desc">Approbation Formelle de l'Audit Cryptographique Externe</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-val">Mois 12</div>
+              <div class="metric-desc">6 Contrats d'Entreprise Payants (450 000 $ de RRA)</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-val">Mois 18</div>
+              <div class="metric-desc">18 Déploiements d'Entreprise (1,35 M$+ de RRA) et Série A</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Diapositive 14 : La Demande et le Résumé -->
+      <section class="slide-pane" data-slide="14" data-category="Résumé de l'Investissement">
+        <div class="slide-meta">
+          <span class="slide-number-badge">14 / 14</span>
+          <span class="slide-category">Résumé de l'Investissement</span>
+        </div>
+        <h2 class="slide-heading">
+          La Demande et l'Allocation du Capital : <br>
+          <span class="serif">Bâtir le Socle des Données Souveraines.</span>
+        </h2>
+        <div class="slide-grid">
+          <div>
+            <ul class="slide-bullets">
+              <li><strong>Ronde de Financement d'Amorçage :</strong> Levée de <strong>1 250 000 $</strong> (Capitaux propres / SAFE) offrant 18 mois de piste vers la disponibilité générale et plus de 1,35 M$ de RRA.</li>
+              <li><strong>Effet de Levier des Subventions Non Dilutives :</strong> Augmenté de <strong>250 000 $ – 400 000 $</strong> provenant de fonds d'innovation souverains canadiens et européens (PARI-CNRC, Sovereign Tech Fund, NLnet).</li>
+              <li><strong>Allocation du Capital :</strong>
+                <br>• <strong>66 % Équipe d'Ingénierie :</strong> 2 ingénieurs système Rust seniors, 1 ingénieur de bureau Tauri, 1 spécialiste SecOps.
+                <br>• <strong>14 % Pilotes d'Entreprise :</strong> Infrastructure infonuagique souveraine et nœuds de dépositaires.
+                <br>• <strong>10 % Fonds de Roulement :</strong> Réserve opérationnelle et outillage de conformité.
+                <br>• <strong>6 % Audit Externe :</strong> Audit cryptographique formel de premier plan.
+                <br>• <strong>4 % Avis Juridiques :</strong> Avis de barreaux transfrontaliers suisses/canadiens.
+              </li>
+              <li><strong>Contact du Fondateur :</strong> Joseph Gormaly • <a href="mailto:cooperate@xolotl.ca" style="color: var(--accent-gold);">cooperate@xolotl.ca</a> • <code>xolotl.ca</code></li>
+            </ul>
+          </div>
+          <div class="media-box" style="padding: 24px; background: rgba(18, 28, 23, 0.7); display: flex; flex-direction: column; justify-content: center; gap: 14px;">
+            <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-gold-light); text-transform: uppercase;">POINTS SAILLANTS DE L'INVESTISSEMENT</div>
+            <h3 style="font-size: 1.3rem; color: #FFFFFF;">Pourquoi Xolotl l'Emporte :</h3>
+            <p style="font-size: 0.88rem; color: #CBD5E1; line-height: 1.5;">1. Véritable Avantage Cryptographique (GDK + FROST).<br>2. Véritable Immunité Extraterritoriale au CLOUD Act.<br>3. Vents Favorables Géopolitiques Séculaires de Dé-Hyperscalisation.<br>4. Base de Code Fonctionnelle et Testée, Prête Aujourd'hui.</p>
+            <a href="index.html" class="btn btn-gold" style="width: 100%; margin-top: 8px;">Explorer le Prototype en Direct &nbsp;→</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Superposition HUD des Sous-titres -->
+      <div id="captionBanner" class="caption-banner">
+        <span class="caption-badge">ST</span>
+        <div class="voice-wave" id="voiceWave">
+          <div class="voice-bar"></div>
+          <div class="voice-bar"></div>
+          <div class="voice-bar"></div>
+          <div class="voice-bar"></div>
+        </div>
+        <div id="captionText" class="caption-text">
+          <span>Cliquez sur <strong>Piste Audio ▶</strong> pour écouter la narration synchronisée du fondateur pour cette diapositive.</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Ancrage du Contrôleur Inférieur -->
+    <div class="deck-controller">
+      <button class="btn btn-secondary" onclick="prevSlide()" title="Diapositive Précédente (Flèche Gauche)">
+        <span>← Préc.</span>
+      </button>
+
+      <div class="progress-track" id="progressTrack">
+        <!-- 14 pastilles de progression générées via JS -->
+      </div>
+
+      <div style="font-family: var(--font-mono); font-size: 0.82rem; color: var(--accent-gold-light); min-width: 75px; text-align: center;">
+        <span id="slideCounter">01 / 14</span>
+      </div>
+
+      <button class="btn btn-gold" onclick="nextSlide()" title="Diapositive Suivante (Flèche Droite ou Espace)">
+        <span>Suivant →</span>
+      </button>
+    </div>
+  </main>
+
+  <!-- Tiroir des Notes du Présentateur -->
+  <aside id="notesDrawer" class="notes-drawer">
+    <div class="notes-head">
+      <h3 style="font-size: 1.1rem; color: #FFFFFF;">Script du Présentateur et FAQ</h3>
+      <button class="btn btn-secondary" onclick="toggleNotesDrawer()" style="padding: 4px 8px;">✕</button>
+    </div>
+    <div class="notes-body" id="notesBody">
+      <!-- Injecté par diapositive -->
+    </div>
+  </aside>
+
+  <!-- Fenêtre Modale de Vignettes -->
+  <div id="gridModal" class="grid-modal" onclick="handleModalBackdrop(event)">
+    <div class="grid-content">
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-glass); padding-bottom: 12px;">
+        <h3 style="font-size: 1.2rem; color: #FFFFFF;">Index de la Présentation de 14 Diapositives</h3>
+        <button class="btn btn-secondary" onclick="toggleThumbModal()" style="padding: 4px 8px;">✕ Fermer</button>
+      </div>
+      <div class="thumbs-grid" id="thumbsGrid">
+        <!-- Injecté via JS -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Narrations des Diapositives (textes officiels du fondateur, adaptés de PITCH_DECK.md)
+    const slideScripts = {
+      1: "Bonjour. Si vous gérez les dossiers de litige d'un cabinet juridique multinational, les schémas avioniques classifiés d'un sous-traitant de la défense, ou les registres de clients d'une banque privée zurichoise, vous êtes aujourd'hui confronté à un piège juridique existentiel. On vous dit que le stockage infonuagique d'entreprise est à confiance zéro et chiffré au repos. Mais en réalité, chaque grand fournisseur infonuagique — Microsoft, Google, Box, AWS — est assujetti au US CLOUD Act et aux mandats de surveillance étrangers. Si un tribunal américain émet une directive scellée, votre fournisseur infonuagique s'y conformera. Nous avons construit Xolotl pour résoudre cette faille fondamentale. Xolotl offre aux travailleurs du savoir en entreprise l'expérience exacte et sans friction de « déposer un fichier dans un dossier » de OneDrive, soutenue par une architecture cryptographique qui rend mathématiquement impossible pour un seul tribunal, un seul fournisseur infonuagique ou une seule brèche technique de produire leur texte en clair.",
+      2: "Soyons précis sur ce qui a changé. En 2018, les États-Unis ont adopté le CLOUD Act. Il a rendu la résidence géographique des données obsolète. Peu importe que votre instance OneDrive soit physiquement hébergée à Francfort ou à Calgary. Si l'entité corporative qui exploite ce serveur est assujettie à la juridiction américaine, elle est légalement contrainte de remettre les données en secret. Les autorités européennes de protection des données ont reconnu ce fait dans Schrems II et NIS2. Pendant ce temps, les DSI qui fuient vers des serveurs de fichiers sur site isolés se font frapper par des rançongiciels, car les isolements physiques manquent d'une réplication continue, hors site et immuable. L'entreprise d'aujourd'hui est coincée entre une commodité qui fuit vers des tribunaux étrangers et des silos isolés qui sont détruits par des rançongiciels.",
+      3: "Dans le modèle de menace de Xolotl, nous avons fait une hypothèse radicale mais nécessaire : nous supposons que notre propre entreprise infonuagique, les fournisseurs infonuagiques de nos clients, et même certains dirigeants d'entreprise peuvent et seront un jour visés par des ordonnances judiciaires gouvernementales licites et coercitives, accompagnées d'ordonnances de non-divulgation. Si vous concevez un système où un administrateur ou un fournisseur a la capacité technique de déchiffrer des données, il sera éventuellement contraint de l'utiliser. La véritable souveraineté exige donc ce que nous appelons l'impuissance mathématique. Notre miroir de sauvegarde canadien ne reçoit que du texte chiffré AES-256-GCM. Il ne détient aucun fragment de clé. Si des agents fédéraux entrent dans notre centre de données avec un mandat de perquisition, tout ce qu'ils recevront est du bruit à haute entropie. Ils ne peuvent déchiffrer un seul octet, car nous n'avons pas, n'avons jamais eu, et ne pouvons reconstruire les clés.",
+      4: "À quoi cela ressemble-t-il en pratique? Nous divisons le système en trois couches distinctes. À la Couche 1, le client exécute une Pile de Périphérie Souveraine légère sur ses propres locaux ou son VPC privé. Celle-ci contient les métadonnées du répertoire utilisateur et exécute l'Agent Dépositaire 3 à l'intérieur d'un espace réseau maillé WireGuard isolé. À la Couche 2 se trouve notre application de bureau native, écrite en Rust avec Tauri. Elle ressemble exactement à Dropbox ou OneDrive. Lorsqu'un avocat enregistre un mémoire ou qu'un ingénieur enregistre un dessin CAO, notre moteur en arrière-plan capte l'événement, chiffre le fichier à la volée à l'aide d'AES-256-GCM en blocs continus de 8 Mio, et l'expédie directement. À la Couche 3 se trouve notre Miroir Central Canadien situé à Montréal, offrant une reprise après sinistre multilocataire avec un verrouillage d'objet immuable de 93 jours.",
+      5: "Voyons maintenant sous le capot de notre avantage cryptographique. En concevant Xolotl, nous avons découvert une faille critique dans les conceptions standard de signature de seuil : les signatures FROST sont intrinsèquement non déterministes, car elles utilisent des nonces aléatoires fraîches à chaque ronde de signature. On ne peut dériver une clé de chiffrement AES statique à partir d'une signature FROST sans fuite de clé ou échec de récupération déterministe des fichiers. Nous avons résolu ce problème en concevant un schéma dédié de Déchiffrement ElGamal de Seuil, associé à des preuves à divulgation nulle de connaissance de Chaum-Pedersen. Lorsqu'un employé se connecte, son client déclenche une cérémonie de déverrouillage. Les dépositaires produisent des déchiffrements partiels d'une coordonnée éphémère. Chaque dépositaire prouve mathématiquement que sa part a été évaluée correctement sans révéler son secret.",
+      6: "La séparation technique ne veut rien dire si votre rayon d'impact juridique est concentré. Si une institution financière exploite trois dépositaires, mais que les trois sont des serveurs situés en Virginie du Nord, une seule assignation contraint les trois clés à la fois. Xolotl introduit une diversité juridictionnelle appliquée cryptographiquement. Notre coordinateur de déverrouillage applique une vérification de topologie mathématique stricte. Si une demande de déverrouillage tente d'utiliser trois dépositaires de la même juridiction légale, le logiciel client refuse d'exécuter la cérémonie. Dans notre architecture par défaut (3,5), les dépositaires sont répartis entre le bureau du client, l'appareil physique d'un responsable de la conformité, et des enclaves indépendantes en Suisse et en Islande.",
+      7: "Les systèmes de sécurité échouent lorsqu'ils sont difficiles à utiliser. Avec Xolotl, l'utilisateur voit un dossier ordinaire sur son bureau. Il enregistre un document Word, un modèle Excel ou un dossier de litige, et celui-ci se synchronise instantanément. Si un employé supprime accidentellement un dossier, ou si un poste de travail est frappé par un rançongiciel zero-day qui chiffre son disque local, il ouvre le client Xolotl, sélectionne notre curseur de Récupération Ponctuelle, le fait reculer de cinq minutes, et restaure instantanément les fichiers intacts. Le verrou d'objet de 93 jours du miroir canadien garantit que même si un rançongiciel tente d'effacer la sauvegarde, le compartiment de stockage S3 rejette la commande de suppression.",
+      8: "Les investisseurs voient d'innombrables présentations en cybersécurité qui ne sont rien de plus que des jeux de diapositives et des livres blancs théoriques. Xolotl est déjà construit et fonctionnel. Au cours des quatre derniers sprints, nous avons construit l'ensemble de la pile de bout en bout en Rust, TypeScript et Docker. Nous avons prouvé l'inscription GDK multipartie sur de véritables sockets réseau. Nous avons vérifié les téléversements multiparties en continu SigV4 vers une véritable infrastructure S3. Nous avons écrit et vérifié des politiques de sécurité au niveau des lignes dans Postgres qui garantissent l'isolation cryptographique multilocataire. Le code de notre dépôt est pleinement fonctionnel, clairement documenté et prêt pour une vérification formelle.",
+      9: "Où allons-nous d'abord sur le marché? Nous nous concentrons sur les clients qui ressentent une douleur juridique aiguë aujourd'hui. Notre tête de pont est constituée des cabinets juridiques transfrontaliers. Lorsqu'un cabinet londonien ou francfortois conseille sur une prise de contrôle hostile de plusieurs milliards de dollars impliquant des concurrents américains, stocker les dossiers sur des lecteurs infonuagiques standard les expose à des assignations de grand jury américain et à la découverte au titre du CLOUD Act. Cela peut détruire la confidentialité client et violer l'éthique professionnelle locale du barreau. Notre deuxième cible est constituée des sous-traitants de la défense qui doivent se conformer aux normes CMMC 2.0 Niveau 2 et ITAR. Notre troisième segment est la gestion de patrimoine privé suisse et européenne, où la divulgation des registres de clients à des agences étrangères entraîne des peines criminelles.",
+      10: "Les vents favorables macroéconomiques et géopolitiques derrière Xolotl sont sans précédent. Au cours des trois dernières années, le concept de souveraineté nationale des données a explosé dans les conversations de conseils d'administration à travers le monde. La directive NIS2 et le Data Act de l'Union européenne, combinés à une application stricte de l'article 48 du RGPD, ont fait du stockage infonuagique américain standard un passif de conformité massif. Le marché du nuage souverain devrait dépasser 120 milliards de dollars d'ici 2030. Au sein de ce marché, notre marché obtenable desservable — constitué des institutions transfrontalières juridiques, de défense et de banque privée — représente une opportunité immédiate de 3,8 milliards de dollars.",
+      11: "Xolotl utilise un modèle d'affaires hybride d'entreprise à marge élevée qui s'aligne directement sur la façon dont les institutions se procurent des logiciels à haute assurance. Nous facturons une Licence de Nœud de Périphérie Souveraine de base de 35 000 $ à 75 000 $ annuellement par institution. En plus de cela, nous facturons 45 $ par poste par mois, vendu avec un minimum de 50 postes. Cela garantit que la taille minimale de notre transaction d'entrée est d'environ 62 000 $, avec des contrats d'entreprise typiques se situant entre 75 000 $ et 150 000 $ la première année. Enfin, nous facturons le stockage aveugle dédié et la bande passante de diffusion sur notre miroir S3 canadien à 0,035 $ par gigaoctet par mois, générant des marges brutes supérieures à 80 %.",
+      12: "Lorsque vous examinez le paysage concurrentiel, les outils existants occupent des extrêmes du spectre sans résoudre le vrai problème. Les hyperscalers — OneDrive et Box — offrent une ergonomie de bureau de calibre mondial, mais leur modèle d'affaires et leur constitution américaine les rendent fondamentalement incapables de résister au CLOUD Act. Les lecteurs chiffrés grand public comme Tresorit ou Proton reposent sur une seule clé maîtresse stockée sur le point terminal local. Les appareils souverains basés sur le matériel sont extrêmement complexes et coûtent des centaines de milliers de dollars en matériel HSM spécialisé. Xolotl se distingue seul : nous offrons la synchronisation native transparente de OneDrive, jumelée à la protection cryptographique multijuridictionnelle d'une enclave de calibre défense.",
+      13: "Nous avons un plan d'exécution rigoureux et clair de 18 mois pour faire passer Xolotl de son état actuel validé à la disponibilité générale et à l'échelle de la Série A. Dans la Phase 1, nous déployons notre financement d'amorçage pour compléter notre audit cryptographique externe formel avec une firme de sécurité de premier plan et obtenir des avis juridiques écrits sur notre posture juridictionnelle transfrontalière. Dans la Phase 2, nous peaufinons notre client de bureau multi-appareils pour macOS, Windows et Linux. Dans la Phase 3, nous convertissons notre pipeline initial de partenaires de conception en six contrats d'entreprise payants, générant 450 000 $ de RRA. D'ici le mois 18, nous passerons à l'échelle avec 18 déploiements de production d'entreprise, dépasserons 1,35 million de dollars de RRA, et serons prêts pour une Série A dominante.",
+      14: "Pour exécuter cette vision, nous levons une ronde d'amorçage de 1,25 million de dollars, que nous jumelons à 250 000 $ à 400 000 $ en subventions d'innovation souveraine non dilutives provenant de programmes canadiens et européens. Les deux tiers de ce capital sont directement investis dans l'ingénierie système d'élite : l'embauche de deux ingénieurs système Rust seniors, d'un ingénieur de bureau Tauri et d'un spécialiste SecOps pour mettre à l'échelle nos nœuds souverains. Le reste finance notre audit cryptographique formel, notre conseil juridique souverain et nos déploiements pilotes d'entreprise. L'ère du stockage infonuagique d'entreprise naïf est révolue. Nous vous invitons à vous joindre à nous pour bâtir le socle souverain des données d'entreprise mondiales. Merci, et j'ai hâte de répondre à vos questions."
+    };
+
+    const investorQnA = {
+      1: { q: "Box, OneDrive ou Tresorit ne prétendent-ils pas déjà offrir un chiffrement de bout en bout?", a: "OneDrive et Box gèrent les clés de façon centralisée et se conforment systématiquement aux mandats du CLOUD Act. Tresorit et Proton reposent sur une seule clé maîtresse sur le point terminal. Si un administrateur reçoit une assignation, toutes les données sont exposées. Xolotl partitionne les clés entre des frontières souveraines indépendantes via la GDK de Pedersen; aucune entité unique ne détient la clé seule." },
+      2: { q: "Les clients d'entreprise ne peuvent-ils pas simplement utiliser le chiffrement côté client dans Google Workspace ou Microsoft Purview?", a: "Ces solutions reposent toujours sur une infrastructure KMS centralisée ou des API d'entreprise. En cas de contrainte, un seul déversement de clé API descelle tous les documents. De plus, elles manquent de diversité juridictionnelle appliquée cryptographiquement : toutes les clés demeurent sous un seul régime juridique national." },
+      5: { q: "Écrire sa propre cryptographie est notoirement dangereux. Pourquoi faire confiance à votre implémentation cryptographique?", a: "Nous avons bâti sur les bibliothèques éprouvées et révisées par les pairs frost-core et curve25519-dalek, maintenues par la Fondation Zcash et les équipes de Dalek Cryptography. Nous avons mené des revues pré-audit, mis en œuvre des régressions négatives, et budgété 75 000 $ pour un audit formel indépendant par des firmes comme Trail of Bits." },
+      11: { q: "Comment justifiez-vous 45 $/utilisateur/mois alors que OneDrive standard coûte 15 $?", a: "OneDrive standard n'offre aucune immunité au CLOUD Act ni résistance aux assignations. Une seule brèche privilégiée dans un litige transfrontalier ou des CUI de défense coûte des dizaines de millions. Les clients remplacent des appareils matériels spécialisés de 150 k$ et des enclaves privées par Xolotl." }
+    };
+
+    let currentSlide = 1;
+    const totalSlides = 14;
+    let isSpeaking = false;
+    let autoAdvance = false;
+    let captionsVisible = true;
+    let synth = window.speechSynthesis;
+    let currentUtterance = null;
+    let currentAudio = null;
+    let captionInterval = null;
+
+    // Initialisation de l'interface
+    function init() {
+      buildProgressTrack();
+      buildThumbnails();
+      updateSlideView();
+
+      // Mettre en pause les vidéos hors de la diapositive active
+      controlVideoPlayback();
+
+      // Navigation au clavier
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+          e.preventDefault();
+          nextSlide();
+        } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+          e.preventDefault();
+          prevSlide();
+        } else if (e.key.toLowerCase() === 'c') {
+          toggleCaptions();
+        } else if (e.key.toLowerCase() === 'n') {
+          toggleNarration();
+        } else if (e.key.toLowerCase() === 'f') {
+          toggleFullScreen();
+        } else if (e.key === 'Escape') {
+          document.getElementById('gridModal').classList.remove('open');
+          document.getElementById('notesDrawer').classList.remove('open');
+        }
+      });
+    }
+
+    function buildProgressTrack() {
+      const track = document.getElementById('progressTrack');
+      track.innerHTML = '';
+      for (let i = 1; i <= totalSlides; i++) {
+        const seg = document.createElement('div');
+        seg.className = 'progress-segment' + (i === 1 ? ' current' : '');
+        seg.title = `Aller à la diapositive ${i}`;
+        seg.onclick = () => goToSlide(i);
+        track.appendChild(seg);
+      }
+    }
+
+    function buildThumbnails() {
+      const grid = document.getElementById('thumbsGrid');
+      grid.innerHTML = '';
+      const panes = document.querySelectorAll('.slide-pane');
+      panes.forEach((pane, idx) => {
+        const slideNum = idx + 1;
+        const heading = pane.querySelector('.slide-heading').innerText.split('\n')[0];
+        const cat = pane.getAttribute('data-category');
+        const card = document.createElement('div');
+        card.className = 'thumb-card' + (slideNum === 1 ? ' active' : '');
+        card.onclick = () => {
+          goToSlide(slideNum);
+          toggleThumbModal();
+        };
+        card.innerHTML = `
+          <div class="thumb-num">DIAPOSITIVE ${String(slideNum).padStart(2, '0')} · ${cat}</div>
+          <div class="thumb-title">${heading}</div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function updateSlideView() {
+      // Basculer la visibilité des diapositives
+      document.querySelectorAll('.slide-pane').forEach((p, idx) => {
+        p.classList.toggle('active', (idx + 1) === currentSlide);
+      });
+
+      // Mettre à jour le compteur
+      document.getElementById('slideCounter').innerText = `${String(currentSlide).padStart(2, '0')} / ${totalSlides}`;
+
+      // Mettre à jour les segments de progression
+      const segs = document.querySelectorAll('.progress-segment');
+      segs.forEach((s, idx) => {
+        const num = idx + 1;
+        s.className = 'progress-segment';
+        if (num < currentSlide) s.classList.add('viewed');
+        if (num === currentSlide) s.classList.add('current');
+      });
+
+      // Mettre à jour l'état actif des vignettes
+      document.querySelectorAll('.thumb-card').forEach((tc, idx) => {
+        tc.classList.toggle('active', (idx + 1) === currentSlide);
+      });
+
+      // Mettre à jour le contenu du tiroir de notes
+      updateNotesContent();
+
+      // Gérer les vidéos de la diapositive active
+      controlVideoPlayback();
+
+      // Réinitialiser le texte des sous-titres
+      const captionBox = document.getElementById('captionText');
+      if (isSpeaking) {
+        stopNarration();
+        startNarration();
+      } else {
+        const scriptPreview = slideScripts[currentSlide].substring(0, 140) + '...';
+        captionBox.innerHTML = `<span>${scriptPreview} <em style="color:var(--accent-gold-light); cursor:pointer;" onclick="startNarration()">[Lire l'Audio ▶]</em></span>`;
+      }
+    }
+
+    function controlVideoPlayback() {
+      document.querySelectorAll('video').forEach(v => {
+        const pane = v.closest('.slide-pane');
+        if (pane && pane.classList.contains('active')) {
+          v.play().catch(() => {});
+        } else {
+          v.pause();
+        }
+      });
+    }
+
+    function updateNotesContent() {
+      const body = document.getElementById('notesBody');
+      const script = slideScripts[currentSlide] || 'Aucune note du présentateur disponible.';
+      const qna = investorQnA[currentSlide];
+
+      let html = `
+        <h4>Texte du Présentateur (Diapositive ${currentSlide})</h4>
+        <p>${script}</p>
+      `;
+
+      if (qna) {
+        html += `
+          <h4>FAQ Anticipée des Investisseurs</h4>
+          <div class="notes-qna">
+            <strong>Piège Investisseur : « ${qna.q} »</strong>
+            <p style="margin-bottom:0;">${qna.a}</p>
+          </div>
+        `;
+      }
+
+      body.innerHTML = html;
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides) {
+        currentSlide++;
+        updateSlideView();
+      } else if (autoAdvance) {
+        stopNarration();
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 1) {
+        currentSlide--;
+        updateSlideView();
+      }
+    }
+
+    function goToSlide(n) {
+      if (n >= 1 && n <= totalSlides) {
+        currentSlide = n;
+        updateSlideView();
+      }
+    }
+
+    // Système de Narration Vocale
+    // Système de Narration Vocale (synthèse vocale du navigateur en français — aucun enregistrement studio français pour le moment)
+    function toggleNarration() {
+      if (isSpeaking) {
+        stopNarration();
+      } else {
+        startNarration();
+      }
+    }
+
+    function startNarration() {
+      stopNarration();
+
+      const text = slideScripts[currentSlide];
+      if (!text) return;
+
+      const wave = document.getElementById('voiceWave');
+      const captionText = document.getElementById('captionText');
+      const narrateBtn = document.getElementById('narrateBtn');
+      const narrateIcon = document.getElementById('narrateIcon');
+      const narrateLabel = document.getElementById('narrateLabel');
+
+      const sentences = text.match(/[^.!?]+[.!?]+/g) || [text];
+
+      // Tentative de lecture d'un fichier audio studio (non disponible en français pour l'instant);
+      // repli automatique sur la synthèse vocale du navigateur en cas d'échec
+      const audioSrc = `../assets/audio/narration/slide_${currentSlide}_fr.mp3`;
+      currentAudio = new Audio(audioSrc);
+
+      const onAudioStart = () => {
+        isSpeaking = true;
+        wave.classList.add('speaking');
+        narrateBtn.classList.add('active');
+        narrateIcon.innerText = '⏸';
+        narrateLabel.innerText = 'Pause';
+        captionText.innerHTML = `<span class="active-sentence">${sentences[0].trim()}</span>`;
+      };
+
+      currentAudio.addEventListener('play', onAudioStart);
+
+      currentAudio.addEventListener('timeupdate', () => {
+        if (!currentAudio || !currentAudio.duration) return;
+        const progress = currentAudio.currentTime / currentAudio.duration;
+        const activeIdx = Math.min(sentences.length - 1, Math.floor(progress * sentences.length));
+        if (sentences[activeIdx]) {
+          captionText.innerHTML = `<span class="active-sentence">${sentences[activeIdx].trim()}</span>`;
+        }
+      });
+
+      currentAudio.addEventListener('ended', () => {
+        stopNarrationState();
+        currentAudio = null;
+        captionText.innerHTML = `<span style="color:var(--accent-sage);">✓ Narration terminée pour la diapositive ${currentSlide}.</span>`;
+        if (autoAdvance && currentSlide < totalSlides) {
+          setTimeout(() => {
+            nextSlide();
+            startNarration();
+          }, 1200);
+        }
+      });
+
+      currentAudio.addEventListener('error', (err) => {
+        console.warn("Aucun audio studio disponible en français, activation du repli de synthèse vocale :", err);
+        fallbackSpeechNarration(text, sentences);
+      });
+
+      const playPromise = currentAudio.play();
+      if (playPromise !== undefined) {
+        playPromise.catch((err) => {
+          console.warn("Restriction de lecture automatique audio, utilisation de la synthèse vocale :", err);
+          fallbackSpeechNarration(text, sentences);
+        });
+      }
+    }
+
+    function fallbackSpeechNarration(text, sentences) {
+      if (!('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+
+      // Prononciation phonétique pour la synthèse vocale
+      const spoken = text.replace(/\bXolotl\'s\b/g, "Show-lot's").replace(/\bXolotl\b/g, "Show-lot");
+      currentUtterance = new SpeechSynthesisUtterance(spoken);
+      currentUtterance.rate = 0.96;
+      currentUtterance.pitch = 1.0;
+
+      // Préférer une voix française (québécoise en priorité, puis française de France)
+      const voices = synth.getVoices();
+      const preferred = voices.find(v => v.lang.includes('fr-CA') && v.name.toLowerCase().includes('female')) ||
+                        voices.find(v => v.lang.includes('fr-CA')) ||
+                        voices.find(v => v.lang.includes('fr-FR') && v.name.toLowerCase().includes('female')) ||
+                        voices.find(v => v.lang.includes('fr-FR')) ||
+                        voices.find(v => v.lang.startsWith('fr'));
+      if (preferred) currentUtterance.voice = preferred;
+      currentUtterance.lang = 'fr-CA';
+
+      const wave = document.getElementById('voiceWave');
+      const captionText = document.getElementById('captionText');
+      const narrateBtn = document.getElementById('narrateBtn');
+      const narrateIcon = document.getElementById('narrateIcon');
+      const narrateLabel = document.getElementById('narrateLabel');
+
+      let sentenceIndex = 0;
+
+      currentUtterance.onstart = () => {
+        isSpeaking = true;
+        wave.classList.add('speaking');
+        narrateBtn.classList.add('active');
+        narrateIcon.innerText = '⏸';
+        narrateLabel.innerText = 'Pause';
+        captionText.innerHTML = `<span class="active-sentence">${sentences[0].trim()}</span>`;
+      };
+
+      currentUtterance.onboundary = (event) => {
+        if (event.name === 'sentence' || event.name === 'word') {
+          const charIndex = event.charIndex;
+          let cumulative = 0;
+          for (let i = 0; i < sentences.length; i++) {
+            cumulative += sentences[i].length;
+            if (charIndex < cumulative) {
+              sentenceIndex = i;
+              break;
+            }
+          }
+          captionText.innerHTML = `<span class="active-sentence">${sentences[sentenceIndex].trim()}</span>`;
+        }
+      };
+
+      currentUtterance.onend = () => {
+        stopNarrationState();
+        captionText.innerHTML = `<span style="color:var(--accent-sage);">✓ Narration terminée pour la diapositive ${currentSlide}.</span>`;
+        if (autoAdvance && currentSlide < totalSlides) {
+          setTimeout(() => {
+            nextSlide();
+            startNarration();
+          }, 1200);
+        }
+      };
+
+      currentUtterance.onerror = () => {
+        stopNarrationState();
+      };
+
+      synth.speak(currentUtterance);
+    }
+
+    function stopNarration() {
+      if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+        currentAudio = null;
+      }
+      if (synth) {
+        synth.cancel();
+      }
+      stopNarrationState();
+    }
+
+    function stopNarrationState() {
+      isSpeaking = false;
+      document.getElementById('voiceWave').classList.remove('speaking');
+      const narrateBtn = document.getElementById('narrateBtn');
+      narrateBtn.classList.remove('active');
+      document.getElementById('narrateIcon').innerText = '▶';
+      document.getElementById('narrateLabel').innerText = 'Piste Audio';
+    }
+
+    function toggleCaptions() {
+      captionsVisible = !captionsVisible;
+      const banner = document.getElementById('captionBanner');
+      const btn = document.getElementById('ccBtn');
+      banner.classList.toggle('hidden', !captionsVisible);
+      btn.classList.toggle('active', captionsVisible);
+    }
+
+    function toggleAutoAdvance() {
+      autoAdvance = !autoAdvance;
+      const btn = document.getElementById('autoAdvanceBtn');
+      const status = document.getElementById('autoStatus');
+      btn.classList.toggle('active', autoAdvance);
+      status.innerText = autoAdvance ? 'Activée' : 'Désactivée';
+      if (autoAdvance && !isSpeaking) {
+        startNarration();
+      }
+    }
+
+    function toggleNotesDrawer() {
+      const drawer = document.getElementById('notesDrawer');
+      drawer.classList.toggle('open');
+    }
+
+    function toggleThumbModal() {
+      const modal = document.getElementById('gridModal');
+      modal.classList.toggle('open');
+    }
+
+    function handleModalBackdrop(e) {
+      if (e.target.id === 'gridModal') {
+        toggleThumbModal();
+      }
+    }
+
+    function toggleFullScreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        }
+      }
+    }
+
+    window.addEventListener('load', init);
+  </script>
+</body>
+</html>

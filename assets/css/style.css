@@ -2624,7 +2624,12 @@
       word-break: break-all;
     }
 
-    /* Language Switcher */
+    /* Language Switcher (EN / FR / ES — all three shown with equal prominence on every page) */
+    .lang-switch-group {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
     .lang-switch-btn {
       display: inline-flex;
       align-items: center;
@@ -2647,6 +2652,12 @@
       border-color: var(--accent-gold);
       color: var(--accent-gold-light);
       transform: translateY(-1px);
+    }
+    .lang-switch-btn.active {
+      background: rgba(212, 175, 55, 0.15);
+      border-color: var(--accent-gold);
+      color: var(--accent-gold-light);
+      cursor: default;
     }
 
     /* ==========================================================================

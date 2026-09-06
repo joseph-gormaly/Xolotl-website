@@ -3,6 +3,25 @@
  * Handles Navigation, Audio Pronunciation, Modal Dialogs, Telemetry & Mailto Transmission
  */
 
+// --- Language Helpers (EN / FR / ES) ---
+const LANGS = {
+  en: { dir: '' },
+  fr: { dir: 'fr/' },
+  es: { dir: 'es/' },
+};
+
+function getCurrentLang() {
+  const path = window.location.pathname;
+  if (path.includes('/fr/') || path.endsWith('/fr') || path.endsWith('/fr/')) return 'fr';
+  if (path.includes('/es/') || path.endsWith('/es') || path.endsWith('/es/')) return 'es';
+  return 'en';
+}
+
+function pick(strings) {
+  const lang = getCurrentLang();
+  return strings[lang] !== undefined ? strings[lang] : strings.en;
+}
+
 // --- Audio Playback (Calibrated Female Spanish Voice with Canadian Shield Ambience) ---
 let pronounceAudio = null;
 
@@ -21,7 +40,7 @@ function playPronounceAudio(e) {
 
   try {
     if (!pronounceAudio) {
-      const audioPath = window.location.pathname.includes('/es/') ? '../assets/audio/xolotl_pronunciation.mp3' : 'assets/audio/xolotl_pronunciation.mp3';
+      const audioPath = getCurrentLang() === 'en' ? 'assets/audio/xolotl_pronunciation.mp3' : '../assets/audio/xolotl_pronunciation.mp3';
       pronounceAudio = new Audio(audioPath);
       pronounceAudio.preload = 'auto';
     }
@@ -149,11 +168,10 @@ function handleBackdrop(e) {
 
 function handleFormSubmit(e) {
   e.preventDefault();
-  const isEs = window.location.pathname.includes('/es/') || document.documentElement.lang === 'es';
   const org = (document.getElementById('oName')?.value || '').trim();
   const email = (document.getElementById('wEmail')?.value || '').trim();
   const sectorSelect = document.getElementById('iSector');
-  const sector = sectorSelect ? sectorSelect.options[sectorSelect.selectedIndex].text : (isEs ? 'Empresa General' : 'General Enterprise');
+  const sector = sectorSelect ? sectorSelect.options[sectorSelect.selectedIndex].text : pick({ en: 'General Enterprise', fr: 'Entreprise Générale', es: 'Empresa General' });
   const notes = (document.getElementById('pNotes')?.value || '').trim();
   const timestamp = new Date().toUTCString();
 
@@ -164,8 +182,9 @@ function handleFormSubmit(e) {
   const rNotes = document.getElementById('rNotes');
   const rNotesRow = document.getElementById('rNotesRow');
 
-  if (rOrg) rOrg.innerText = org || (isEs ? 'No especificado' : 'Not specified');
-  if (rEmail) rEmail.innerText = email || (isEs ? 'No especificado' : 'Not specified');
+  const notSpecified = pick({ en: 'Not specified', fr: 'Non spécifié', es: 'No especificado' });
+  if (rOrg) rOrg.innerText = org || notSpecified;
+  if (rEmail) rEmail.innerText = email || notSpecified;
   if (rSector) rSector.innerText = sector;
   if (rNotesRow && rNotes) {
     if (notes) {
@@ -177,7 +196,11 @@ function handleFormSubmit(e) {
   }
 
   // Build structured email payload
-  const subject = isEs ? `Solicitud de Piloto Institucional: ${org}` : `Institutional Pilot Application: ${org}`;
+  const subject = pick({
+    en: `Institutional Pilot Application: ${org}`,
+    fr: `Demande de Pilote Institutionnel : ${org}`,
+    es: `Solicitud de Piloto Institucional: ${org}`,
+  });
   const emailBody = 
 `INSTITUTIONAL PILOT APPLICATION // XOLOTL CANADIAN SHIELD
 =========================================================
@@ -237,8 +260,7 @@ function copyApplicationDetails() {
     const btn = document.getElementById('pCopyBtn');
     if (btn) {
       const origText = btn.innerHTML;
-      const isEs = window.location.pathname.includes('/es/') || document.documentElement.lang === 'es';
-      btn.innerHTML = isEs ? '✓ ¡Copiado al Portapapeles!' : '✓ Copied to Clipboard!';
+      btn.innerHTML = pick({ en: '✓ Copied to Clipboard!', fr: '✓ Copié dans le presse-papiers !', es: '✓ ¡Copiado al Portapapeles!' });
       btn.style.borderColor = 'var(--accent-sage)';
       btn.style.color = 'var(--accent-sage)';
       setTimeout(() => {
@@ -283,45 +305,67 @@ function switchThreatMode(mode) {
   const flow = document.getElementById('simFlow');
   if (!msg || !badge || !flow) return;
 
-  const isEs = window.location.pathname.includes('/es/') || document.documentElement.lang === 'es';
-
   if (bNorm) bNorm.className = 'btn btn-secondary';
   if (bCloud) bCloud.className = 'btn btn-secondary';
   if (bRansom) bRansom.className = 'btn btn-secondary';
 
   if (mode === 'normal') {
     if (bNorm) bNorm.className = 'btn btn-gold';
-    badge.innerText = isEs ? 'ESTADO: OPERACIÓN NORMAL (CONFIANZA CERO)' : 'STATUS: NORMAL OPERATION (ZERO-TRUST)';
+    badge.innerText = pick({
+      en: 'STATUS: NORMAL OPERATION (ZERO-TRUST)',
+      fr: 'ÉTAT : OPÉRATION NORMALE (CONFIANCE ZÉRO)',
+      es: 'ESTADO: OPERACIÓN NORMAL (CONFIANZA CERO)',
+    });
     badge.style.color = 'var(--accent-sage)';
-    flow.innerHTML = isEs 
-      ? 'Nodo en el Borde (AES-256 Local) ──▶ Malla WireGuard ──▶ S3 Escudo Canadiense (Cifrado)'
-      : 'Edge Node (Local AES-256) ──▶ WireGuard Mesh ──▶ S3 Canadian Shield (Encrypted)';
+    flow.innerHTML = pick({
+      en: 'Edge Node (Local AES-256) ──▶ WireGuard Mesh ──▶ S3 Canadian Shield (Encrypted)',
+      fr: 'Nœud en périphérie (AES-256 local) ──▶ Maillage WireGuard ──▶ S3 Bouclier Canadien (chiffré)',
+      es: 'Nodo en el Borde (AES-256 Local) ──▶ Malla WireGuard ──▶ S3 Escudo Canadiense (Cifrado)',
+    });
     msg.style.borderLeftColor = 'var(--accent-sage)';
-    msg.innerHTML = isEs
-      ? '<strong>Flujo de Trabajo Estándar:</strong> Los archivos se fragmentan y cifran en el cliente antes de abandonar el núcleo del SO. El núcleo en Montreal almacena exclusivamente texto cifrado de alta entropía con bloqueo inmutable de objetos por 93 días.'
-      : '<strong>Standard Workflow:</strong> Files are chunked and encrypted on the client before leaving the OS kernel. Montreal core stores only high-entropy ciphertext with 93-day object lock.';
+    msg.innerHTML = pick({
+      en: '<strong>Standard Workflow:</strong> Files are chunked and encrypted on the client before leaving the OS kernel. Montreal core stores only high-entropy ciphertext with 93-day object lock.',
+      fr: '<strong>Flux de travail standard :</strong> Les fichiers sont fragmentés et chiffrés côté client avant de quitter le noyau du système d\'exploitation. Le noyau de Montréal ne stocke que du texte chiffré à haute entropie, protégé par un verrouillage d\'objet immuable de 93 jours.',
+      es: '<strong>Flujo de Trabajo Estándar:</strong> Los archivos se fragmentan y cifran en el cliente antes de abandonar el núcleo del SO. El núcleo en Montreal almacena exclusivamente texto cifrado de alta entropía con bloqueo inmutable de objetos por 93 días.',
+    });
   } else if (mode === 'cloudact') {
     if (bCloud) bCloud.className = 'btn btn-gold';
-    badge.innerText = isEs ? 'SIMULACIÓN: CITACIÓN JUDICIAL BAJO EL CLOUD ACT DE EE. UU.' : 'SIMULATION: US CLOUD ACT SUBPOENA SERVED';
+    badge.innerText = pick({
+      en: 'SIMULATION: US CLOUD ACT SUBPOENA SERVED',
+      fr: 'SIMULATION : CITATION À COMPARAÎTRE EN VERTU DU CLOUD ACT AMÉRICAIN',
+      es: 'SIMULACIÓN: CITACIÓN JUDICIAL BAJO EL CLOUD ACT DE EE. UU.',
+    });
     badge.style.color = '#F59E0B';
-    flow.innerHTML = isEs
-      ? 'Tribunal de EE. UU. ──[Citación]──▶ Entidad de EE. UU. ──[BLOQUEADO: 0 Fragmentos]──▶ <strong>SIN TEXTO EN CLARO</strong>'
-      : 'US Court ──[Subpoena]──▶ US Entity ──[BLOCKED: 0 Shares]──▶ <strong>NO PLAINTEXT</strong>';
+    flow.innerHTML = pick({
+      en: 'US Court ──[Subpoena]──▶ US Entity ──[BLOCKED: 0 Shares]──▶ <strong>NO PLAINTEXT</strong>',
+      fr: 'Tribunal américain ──[Citation]──▶ Entité américaine ──[BLOQUÉ : 0 fragment]──▶ <strong>AUCUN TEXTE EN CLAIR</strong>',
+      es: 'Tribunal de EE. UU. ──[Citación]──▶ Entidad de EE. UU. ──[BLOQUEADO: 0 Fragmentos]──▶ <strong>SIN TEXTO EN CLARO</strong>',
+    });
     msg.style.borderLeftColor = '#F59E0B';
-    msg.innerHTML = isEs
-      ? '<strong>Resultado de la Citación:</strong> La orden judicial notificada a proveedores de nube o filiales estadounidenses arroja cero fragmentos de descifrado. El cuórum requiere custodios independientes canadienses y europeos. La recuperación de texto en claro es matemáticamente imposible.'
-      : '<strong>Subpoena Result:</strong> Court order served on cloud providers or US affiliates yields zero decryption shares. Quorum requires independent Canadian and European custodians. Plaintext recovery is mathematically impossible.';
+    msg.innerHTML = pick({
+      en: '<strong>Subpoena Result:</strong> Court order served on cloud providers or US affiliates yields zero decryption shares. Quorum requires independent Canadian and European custodians. Plaintext recovery is mathematically impossible.',
+      fr: '<strong>Résultat de la citation :</strong> Une ordonnance judiciaire signifiée à des fournisseurs infonuagiques ou à des filiales américaines ne produit aucun fragment de déchiffrement. Le quorum exige des dépositaires indépendants canadiens et européens. La récupération du texte en clair est mathématiquement impossible.',
+      es: '<strong>Resultado de la Citación:</strong> La orden judicial notificada a proveedores de nube o filiales estadounidenses arroja cero fragmentos de descifrado. El cuórum requiere custodios independientes canadienses y europeos. La recuperación de texto en claro es matemáticamente imposible.',
+    });
   } else if (mode === 'ransomware') {
     if (bRansom) bRansom.className = 'btn btn-gold';
-    badge.innerText = isEs ? 'SIMULACIÓN: ATAQUE DE RANSOMWARE DÍA CERO' : 'SIMULATION: ZERO-DAY RANSOMWARE ATTACK';
+    badge.innerText = pick({
+      en: 'SIMULATION: ZERO-DAY RANSOMWARE ATTACK',
+      fr: 'SIMULATION : ATTAQUE DE RANÇONGICIEL JOUR ZÉRO',
+      es: 'SIMULACIÓN: ATAQUE DE RANSOMWARE DÍA CERO',
+    });
     badge.style.color = 'var(--accent-gold)';
-    flow.innerHTML = isEs
-      ? 'Punto Final Cifrado ──▶ Reversión a Punto en el Tiempo ──▶ <strong>100% de Archivos Intactos Restaurados</strong>'
-      : 'Endpoint Encrypted ──▶ Point-in-Time Rollback ──▶ <strong>100% Uncorrupted Files Restored</strong>';
+    flow.innerHTML = pick({
+      en: 'Endpoint Encrypted ──▶ Point-in-Time Rollback ──▶ <strong>100% Uncorrupted Files Restored</strong>',
+      fr: 'Point de terminaison chiffré ──▶ Retour à un point dans le temps ──▶ <strong>100 % des fichiers intacts restaurés</strong>',
+      es: 'Punto Final Cifrado ──▶ Reversión a Punto en el Tiempo ──▶ <strong>100% de Archivos Intactos Restaurados</strong>',
+    });
     msg.style.borderLeftColor = 'var(--accent-gold)';
-    msg.innerHTML = isEs
-      ? '<strong>Resultado del Ataque de Ransomware:</strong> El ransomware cifra los discos locales, pero no puede modificar las versiones anteriores en S3 protegidas por bloqueos de cumplimiento WORM de 93 días. El administrador activa <code>restore_vault_as_of()</code> y restaura todos los archivos sin corrupción.'
-      : '<strong>Ransomware Attack Result:</strong> Ransomware encrypts local drives, but cannot modify past S3 versions protected by 93-day compliance WORM locks. Administrator triggers <code>restore_vault_as_of()</code> and restores all files uncorrupted.';
+    msg.innerHTML = pick({
+      en: '<strong>Ransomware Attack Result:</strong> Ransomware encrypts local drives, but cannot modify past S3 versions protected by 93-day compliance WORM locks. Administrator triggers <code>restore_vault_as_of()</code> and restores all files uncorrupted.',
+      fr: '<strong>Résultat de l\'attaque par rançongiciel :</strong> Le rançongiciel chiffre les disques locaux, mais ne peut pas modifier les versions antérieures sur S3, protégées par des verrous de conformité WORM de 93 jours. L\'administrateur déclenche <code>restore_vault_as_of()</code> et restaure tous les fichiers sans corruption.',
+      es: '<strong>Resultado del Ataque de Ransomware:</strong> El ransomware cifra los discos locales, pero no puede modificar las versiones anteriores en S3 protegidas por bloqueos de cumplimiento WORM de 93 días. El administrador activa <code>restore_vault_as_of()</code> y restaura todos los archivos sin corrupción.',
+    });
   }
 }
 
@@ -336,60 +380,76 @@ function scrubTimeline(val) {
   const f3s = document.getElementById('f3s');
   if (!pTime || !f1 || !f2 || !f3 || !f1s || !f2s || !f3s) return;
 
-  const isEs = window.location.pathname.includes('/es/') || document.documentElement.lang === 'es';
+  const encryptedLabel = pick({ en: 'Ransomware Encrypted', fr: 'Chiffré par rançongiciel', es: 'Cifrado por Ransomware' });
 
   if (val > 80) {
-    pTime.innerText = isEs ? "T-0: Momento Actual (Comprometido)" : "T-0: Present Time (Compromised)";
+    pTime.innerText = pick({ en: 'T-0: Present Time (Compromised)', fr: 'T-0 : Moment présent (compromis)', es: 'T-0: Momento Actual (Comprometido)' });
     f1.className = "file-row corrupted";
     f1.querySelector('span:first-child').innerText = "📄 Turbine_Telemetry_Final.cad.locked";
-    f1s.innerText = isEs ? "Cifrado por Ransomware" : "Ransomware Encrypted";
+    f1s.innerText = encryptedLabel;
     f2.className = "file-row corrupted";
     f2.querySelector('span:first-child').innerText = "📊 Stress_Testing_Log_Q3.xlsx.locked";
-    f2s.innerText = isEs ? "Cifrado por Ransomware" : "Ransomware Encrypted";
+    f2s.innerText = encryptedLabel;
     f3.className = "file-row corrupted";
     f3.querySelector('span:first-child').innerText = "📑 Export_Compliance_ITAR.pdf.locked";
-    f3s.innerText = isEs ? "Cifrado por Ransomware" : "Ransomware Encrypted";
+    f3s.innerText = encryptedLabel;
   } else {
     const mins = Math.round((100 - val) / 5) + 1;
-    pTime.innerText = isEs ? `Reversión: T - ${mins} minutos atrás` : `Rollback: T - ${mins} minutes ago`;
+    pTime.innerText = pick({
+      en: `Rollback: T - ${mins} minutes ago`,
+      fr: `Retour en arrière : T - ${mins} minutes`,
+      es: `Reversión: T - ${mins} minutos atrás`,
+    });
+    const verified = (n) => pick({ en: `Restored & Verified (v${n})`, fr: `Restauré et vérifié (v${n})`, es: `Restaurado y Verificado (v${n})` });
     f1.className = "file-row good";
     f1.querySelector('span:first-child').innerText = "📄 Turbine_Telemetry_Final.cad";
-    f1s.innerText = isEs ? "Restaurado y Verificado (v4)" : "Restored & Verified (v4)";
+    f1s.innerText = verified(4);
     f2.className = "file-row good";
     f2.querySelector('span:first-child').innerText = "📊 Stress_Testing_Log_Q3.xlsx";
-    f2s.innerText = isEs ? "Restaurado y Verificado (v2)" : "Restored & Verified (v2)";
+    f2s.innerText = verified(2);
     f3.className = "file-row good";
     f3.querySelector('span:first-child').innerText = "📑 Export_Compliance_ITAR.pdf";
-    f3s.innerText = isEs ? "Restaurado y Verificado (v7)" : "Restored & Verified (v7)";
+    f3s.innerText = verified(7);
   }
 }
 
-// --- Multi-Language & Geo-Location Detection (Auto-Serve Spanish for Mexico / Latin America / Spain) ---
+// --- Multi-Language & Geo-Location Detection ---
+// Spanish: auto-served for Mexico / Latin America / Spain (browser language, timezone, geo-IP).
+// French: auto-served only on an explicit browser-language signal (fr, fr-CA, fr-FR, ...).
+// Quebec cannot be reliably distinguished from the rest of Canada by timezone (IANA has no
+// separate Montreal zone; it is aliased to America/Toronto, shared with English Ontario) or by
+// geo-IP country code alone, so neither is used to trigger French — guessing would misfire on
+// English-speaking Canadians as often as it would correctly reach Francophones. The always-visible
+// three-way switcher (not passive detection) is what keeps French genuinely offered and equally
+// prominent for visitors detection can't identify.
 function initLanguageRouting() {
-  const path = window.location.pathname;
-  const isSpanishPage = path.includes('/es/') || path.endsWith('/es') || path.endsWith('/es/');
-  
+  const currentLang = getCurrentLang();
+
   // 1. If user explicitly chose a language, respect their preference permanently
   const storedLang = localStorage.getItem('xolotl_user_lang');
   if (storedLang) {
-    if (storedLang === 'es' && !isSpanishPage) {
-      redirectToSpanish();
-    } else if (storedLang === 'en' && isSpanishPage) {
-      redirectToEnglish();
+    if (storedLang !== currentLang && LANGS[storedLang]) {
+      redirectToLang(storedLang);
     }
     return;
   }
 
-  // If already on Spanish page, do not redirect
-  if (isSpanishPage) {
+  // If already on a non-English page, do not auto-redirect further
+  if (currentLang !== 'en') {
     return;
   }
 
   // 2. Instant Zero-Latency Heuristics (Language & Timezone)
-  let isSpanishUser = false;
-
-  // Browser language check
   const browserLangs = navigator.languages || [navigator.language || navigator.userLanguage || ''];
+
+  for (const l of browserLangs) {
+    if (l && l.toLowerCase().startsWith('fr')) {
+      redirectToLang('fr');
+      return;
+    }
+  }
+
+  let isSpanishUser = false;
   for (const l of browserLangs) {
     if (l && l.toLowerCase().startsWith('es')) {
       isSpanishUser = true;
@@ -401,9 +461,9 @@ function initLanguageRouting() {
   try {
     const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
     const spanishTzPrefixes = [
-      'Mexico', 'Cancun', 'Merida', 'Monterrey', 'Mazatlan', 'Chihuahua', 
+      'Mexico', 'Cancun', 'Merida', 'Monterrey', 'Mazatlan', 'Chihuahua',
       'Hermosillo', 'Tijuana', 'Matamoros', 'Bahia_Banderas', 'Ojinaga',
-      'Bogota', 'Buenos_Aires', 'Santiago', 'Lima', 'Caracas', 'Guatemala', 
+      'Bogota', 'Buenos_Aires', 'Santiago', 'Lima', 'Caracas', 'Guatemala',
       'Costa_Rica', 'Panama', 'Montevideo', 'Madrid', 'Asuncion', 'La_Paz',
       'El_Salvador', 'Tegucigalpa', 'Managua', 'Santo_Domingo', 'Havana'
     ];
@@ -415,7 +475,7 @@ function initLanguageRouting() {
   }
 
   if (isSpanishUser) {
-    redirectToSpanish();
+    redirectToLang('es');
     return;
   }
 
@@ -429,26 +489,22 @@ function initLanguageRouting() {
         clearTimeout(timeoutId);
         const spanishCountries = ['MX', 'ES', 'AR', 'CO', 'CL', 'PE', 'VE', 'GT', 'EC', 'CU', 'BO', 'DO', 'HN', 'PY', 'SV', 'NI', 'CR', 'PA', 'UY', 'PR'];
         if (data && data.country && spanishCountries.includes(data.country.toUpperCase())) {
-          redirectToSpanish();
+          redirectToLang('es');
         }
       })
       .catch(() => {});
   } catch (e) {}
 }
 
-function redirectToSpanish() {
+function redirectToLang(lang) {
+  if (!LANGS[lang]) return;
   const currentPath = window.location.pathname;
-  if (currentPath.includes('/es/')) return;
+  const currentLang = getCurrentLang();
+  if (currentLang === lang) return;
   const fileName = currentPath.substring(currentPath.lastIndexOf('/') + 1) || 'index.html';
-  const target = 'es/' + (fileName.endsWith('.html') ? fileName : 'index.html');
-  window.location.replace(target);
-}
-
-function redirectToEnglish() {
-  const currentPath = window.location.pathname;
-  if (!currentPath.includes('/es/')) return;
-  const fileName = currentPath.substring(currentPath.lastIndexOf('/') + 1) || 'index.html';
-  const target = '../' + (fileName.endsWith('.html') ? fileName : 'index.html');
+  const safeFile = fileName.endsWith('.html') ? fileName : 'index.html';
+  const prefix = currentLang === 'en' ? '' : '../';
+  const target = prefix + LANGS[lang].dir + safeFile;
   window.location.replace(target);
 }
 

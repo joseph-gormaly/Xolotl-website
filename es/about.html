@@ -57,45 +57,31 @@
   <header class="site-header">
     <nav class="navbar">
       <div class="container nav-inner">
-        <div style="display: flex; align-items: center; gap: 12px;">
-          <a href="../assets/images/canadian-shield.png" class="brand-logo" aria-label="Xolotl Inicio">
+        <a href="../assets/images/canadian-shield.png" class="brand-logo" aria-label="Xolotl Inicio">
             <img src="../assets/images/canadian-shield.png" alt="Escudo Canadiense" class="shield-icon">
             <span>Xolotl</span>
             <span class="brand-tag">Escudo Canadiense</span>
           </a>
-          <button class="pronounce-chip" onclick="playPronounceAudio(event)" title="Listen to audio: 'SHOW-lot' · Escudo Canadiense" aria-label="Listen to audio: SHOW-lot · Escudo Canadiense">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="speaker-svg"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
-            <span class="pronounce-text">"SHOW-lot"</span>
-            <span class="pronounce-ipa">/ˈʃoːloːtɬ/</span>
-            <span class="sound-bars">
-              <span class="bar"></span>
-              <span class="bar"></span>
-              <span class="bar"></span>
-            </span>
-          </button>
-        </div>
 
         <ul class="nav-links">
           <li><a href="about.html" class="active">Quiénes Somos</a></li>
           <li><a href="architecture.html">Qué Hacemos</a></li>
           <li><a href="deck.html">Presentación ↗</a></li>
           <li><a href="news.html">Noticias</a></li>
-          <li><a href="careers.html">Investigación <span class="hiring-pill" style="background:rgba(212,175,55,0.15); color:var(--accent-gold); border-color:rgba(212,175,55,0.35);">Research</span></a></li>
-          <li><a href="suppliers.html">Proveedores</a></li>
           <li><a href="contact.html">Contacto</a></li>
         </ul>
 
         <div class="nav-actions">
+          <div class="lang-selector-group">
+            <a href="../about.html" class="lang-switch-btn" title="View in English" onclick="setUserLanguage('en')">EN</a>
+            <a href="../fr/about.html" class="lang-switch-btn" title="Voir en français" onclick="setUserLanguage('fr')">FR</a>
+            <a href="about.html" class="lang-switch-btn active" aria-current="page" onclick="setUserLanguage('es')">ES</a>
+          </div>
+          <a href="memo.html" class="btn btn-secondary nav-memo-btn">Media</a>
+          <button class="btn btn-gold" onclick="openModal('pilot')">Unirse al Piloto</button>
           <div class="nav-xolo-container" title="Emblema Xoloitzcuintle">
             <img src="../assets/images/Xoloitzcuintle_logo_v0.png" alt="Xoloitzcuintle" class="nav-xolo-img">
           </div>
-          <div class="lang-switch-group">
-            <a href="../about.html" class="lang-switch-btn" title="View in English" onclick="setUserLanguage('en')">🇨🇦 EN</a>
-            <a href="../fr/about.html" class="lang-switch-btn" title="Voir en français" onclick="setUserLanguage('fr')">🇨🇦 FR</a>
-            <a href="about.html" class="lang-switch-btn active" aria-current="page" onclick="setUserLanguage('es')">🇲🇽 ES</a>
-          </div>
-          <a href="memo.html" class="btn btn-secondary nav-memo-btn">Memo</a>
-          <button class="btn btn-gold" onclick="openModal('pilot')">Unirse al Piloto</button>
           <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Alternar menú de navegación" onclick="toggleMobileMenu()">
             <span class="menu-bar"></span>
             <span class="menu-bar"></span>
@@ -124,17 +110,15 @@
         <li><a href="architecture.html" onclick="closeMobileMenu()">Qué Hacemos</a></li>
         <li><a href="deck.html" onclick="closeMobileMenu()">Presentación Interactiva de 14 Diapositivas ↗</a></li>
         <li><a href="news.html" onclick="closeMobileMenu()">Noticias y Comunicados</a></li>
-        <li><a href="careers.html" onclick="closeMobileMenu()">Investigación y Becas</a></li>
-        <li><a href="suppliers.html" onclick="closeMobileMenu()">Proveedores</a></li>
         <li><a href="contact.html" onclick="closeMobileMenu()">Contacto y Piloto</a></li>
       </ul>
       <div style="padding: 20px 24px; display: flex; flex-direction: column; gap: 12px;">
         <div style="margin-bottom: 4px;">
           <div style="font-family: var(--font-mono); font-size: 0.76rem; color: var(--text-warm-gray); margin-bottom: 8px;">Language / Langue / Idioma:</div>
-          <div class="lang-switch-group" style="width: 100%;">
-            <a href="../about.html" class="lang-switch-btn" style="flex:1; justify-content:center;" onclick="setUserLanguage('en')">🇨🇦 EN</a>
-            <a href="../fr/about.html" class="lang-switch-btn" style="flex:1; justify-content:center;" onclick="setUserLanguage('fr')">🇨🇦 FR</a>
-            <a href="about.html" class="lang-switch-btn active" style="flex:1; justify-content:center;" onclick="setUserLanguage('es')">🇲🇽 ES</a>
+          <div class="lang-selector-group" style="width: 100%;">
+            <a href="../about.html" class="lang-switch-btn" style="flex:1; justify-content:center;" onclick="setUserLanguage('en')">EN</a>
+            <a href="../fr/about.html" class="lang-switch-btn" style="flex:1; justify-content:center;" onclick="setUserLanguage('fr')">FR</a>
+            <a href="about.html" class="lang-switch-btn active" style="flex:1; justify-content:center;" onclick="setUserLanguage('es')">ES</a>
           </div>
         </div>
         <a href="memo.html" class="btn btn-secondary" style="width: 100%; text-align: center;">Leer Memorando Ejecutivo</a>

@@ -33,7 +33,7 @@
       --accent-maple: #EF4444;
       --accent-cyan: #2DD4BF;
       --tracking-wide: 0.05em;
-      --tracking-wider: 0.08em;
+      --tracking-wider: 0.12em;
       --tracking-widest: 0.15em;
       --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       --font-serif: "Fraunces", Georgia, Cambria, "Times New Roman", Times, serif;
@@ -71,7 +71,11 @@
       letter-spacing: var(--tracking-wide, 0.05em) !important;
     }
     .tracking-wider {
-      letter-spacing: var(--tracking-wider, 0.08em) !important;
+      letter-spacing: 0.12em !important;
+      letter-spacing: var(--tracking-wider, 0.12em) !important;
+    }
+    .section-eyebrow.tracking-wider {
+      letter-spacing: 0.12em !important;
     }
     .tracking-widest {
       letter-spacing: var(--tracking-widest, 0.15em) !important;

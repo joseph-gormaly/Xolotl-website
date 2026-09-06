@@ -330,24 +330,24 @@
 <section id="architecture" class="section-standard" style="background: var(--bg-cream-alt);">
     <div class="container">
       <div class="section-head">
-        <span class="section-eyebrow">Topología Interactiva</span>
-        <h2 class="section-heading">Simule la Inmunidad del Sistema.</h2>
+        <span class="section-eyebrow tracking-wider">Topología Interactiva</span>
+        <h2 class="section-heading">Simulación de Inmunidad del Sistema.</h2>
         <p style="color:var(--text-warm-gray); margin-top: 10px;">
-          Observe cómo el Borde Soberano Híbrido de 3 Capas de Xolotl responde ante coacción legal extranjera o un ciberataque.
+          Observe cómo responde el Borde Soberano Híbrido de 3 capas de Xolotl al ser sometido a una coacción legal extranjera o a operaciones ciberadversas.
         </p>
       </div>
 
       <div class="threat-simulator-box">
         <div class="simulator-nav">
           <div>
-            <h4 style="font-size: 1.1rem; color: var(--text-dark); margin-bottom: 4px;">Simular Entorno de Amenaza:</h4>
+            <h4 style="font-size: 1.1rem; color: var(--text-dark); margin-bottom: 4px;">Entorno de Amenazas Simulado :</h4>
             <span style="font-size: 0.85rem; color: var(--text-warm-gray);">Seleccione un evento adversario para observar las garantías del sistema:</span>
           </div>
 
           <div class="scenario-pill-group">
             <button id="btnNorm" class="scenario-pill active" onclick="switchThreatMode('normal')">Operación Estándar</button>
-            <button id="btnSubp" class="scenario-pill alert-mode" onclick="switchThreatMode('subpoena')">Citación bajo la Ley CLOUD Act de EE. UU.</button>
-            <button id="btnRans" class="scenario-pill alert-mode" onclick="switchThreatMode('ransomware')">Infección de Ransomware</button>
+            <button id="btnSubp" class="scenario-pill alert-mode" onclick="switchThreatMode('subpoena')">Citación de la Ley CLOUD (EE. UU.)</button>
+            <button id="btnRans" class="scenario-pill alert-mode" onclick="switchThreatMode('ransomware')">Infección por Ransomware</button>
           </div>
         </div>
 
@@ -411,20 +411,20 @@
 <section id="ransomware" class="section-standard" style="background: var(--bg-cream-alt);">
     <div class="container">
       <div class="section-head">
-        <span class="section-eyebrow">Inmunidad ante Ransomware</span>
-        <h2 class="section-heading">Regeneración Instantánea a Punto en el Tiempo.</h2>
+        <span class="section-eyebrow tracking-wider">INMUNIDAD CONTRA RANSOMWARE</span>
+        <h2 class="section-heading">Regeneración Inmediata en un Punto en el Tiempo.</h2>
         <p style="color:var(--text-warm-gray); margin-top: 10px;">
-          Como el axolote regenerativo, Xolotl restaura el estado completo de un directorio a cualquier segundo exacto anterior a la corrupción.
+          Al igual que el axolote regenerativo, Xolotl restaure el estado completo de su directorio a cualquier segundo exacto previo a la corrupción.
         </p>
       </div>
 
       <div class="pitr-container">
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
           <div>
-            <h4 style="font-size: 1.15rem; color: var(--text-dark);">Control de Estado del Directorio:</h4>
-            <span style="font-size: 0.85rem; color: var(--text-warm-gray);">Drag timeline backward to roll back local ransomware encryption:</span>
+            <h4 style="font-size: 1.15rem; color: var(--text-dark);">Depurador de Estado de Directorio :</h4>
+            <span style="font-size: 0.85rem; color: var(--text-warm-gray);">Desplace la línea de tiempo hacia atrás para revertir el cifrado local de ransomware.</span>
           </div>
-          <div id="pTime" class="pitr-time-pill">T-0: Present Time (Compromised)</div>
+          <div id="pTime" class="pitr-time-pill">T-0: Tiempo Presente (Comprometido)</div>
         </div>
 
         <input type="range" id="pSlider" class="pitr-slider" min="0" max="100" value="100" oninput="scrubTimeline(this.value)">
@@ -434,15 +434,15 @@
             <div style="font-weight: 700; color: var(--text-warm-gray); margin-bottom: 10px;">📁 /Enclave_Vault_2026/Aerospace_Schematics/</div>
             <div id="f1" class="file-row corrupted">
               <span>📄 Turbine_Telemetry_Final.cad.locked</span>
-              <span id="f1s">Ransomware Encrypted</span>
+              <span id="f1s">Cifrado por Ransomware</span>
             </div>
             <div id="f2" class="file-row corrupted">
               <span>📊 Stress_Testing_Log_Q3.xlsx.locked</span>
-              <span id="f2s">Ransomware Encrypted</span>
+              <span id="f2s">Cifrado por Ransomware</span>
             </div>
             <div id="f3" class="file-row corrupted">
               <span>📑 Export_Compliance_ITAR.pdf.locked</span>
-              <span id="f3s">Ransomware Encrypted</span>
+              <span id="f3s">Cifrado por Ransomware</span>
             </div>
           </div>
 
@@ -608,7 +608,7 @@
           <ul>
             <li><a href="about.html#philosophy">Filosofía del Guardián</a></li>
             <li><a href="architecture.html#problem">Las Cuatro Ilusiones Fatales</a></li>
-            <li><a href="architecture.html#ransomware">Depurador de Punto en el Tiempo</a></li>
+            <li><a href="architecture.html#ransomware">Depurador de Estado de Directorio</a></li>
             <li><a href="about.html#faq">Preguntas de Diligencia Debida</a></li>
             <li><a href="suppliers.html">Procedencia de Hardware</a></li>
           </ul>

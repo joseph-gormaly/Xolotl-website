@@ -2174,6 +2174,45 @@
       gap: 14px;
     }
 
+    /* Footer Colophon Credit */
+    .footer-credit {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-warm-gray, #8F9994);
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.25s ease;
+      vertical-align: middle;
+    }
+
+    .footer-credit:hover {
+      color: #00ff66;
+      border-color: rgba(0, 255, 102, 0.4);
+      background: rgba(0, 255, 102, 0.08);
+      box-shadow: 0 0 10px rgba(0, 255, 102, 0.2);
+    }
+
+    .footer-credit-img {
+      height: 14px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      opacity: 0.82;
+      transition: opacity 0.25s ease, filter 0.25s ease;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .footer-credit:hover .footer-credit-img {
+      opacity: 1;
+      filter: brightness(0) invert(1) drop-shadow(0 0 6px rgba(0, 255, 102, 0.6));
+    }
+
     /* Mobile Navigation & Drawer */
     .mobile-menu-btn {
       display: none;

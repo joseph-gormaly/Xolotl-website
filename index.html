@@ -262,11 +262,11 @@
       </div>
       <h2 style="font-size: 2rem; color: #FFFFFF; margin-bottom: 14px;">Deploy the Sovereign Shield.</h2>
       <p style="max-width: 620px; margin: 0 auto 28px; color: var(--text-warm-gray); font-size: 0.98rem; line-height: 1.6;">
-        Start a pilot: direct executive contact, cryptographically isolated enclaves, and Canadian S3 compliance WORM Vault storage.
+        Request clearance: direct executive contact, cryptographically isolated enclaves, and Canadian S3 compliance WORM Vault storage.
       </p>
       <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
         <button class="btn btn-gold" onclick="openModal('pilot')" style="font-size: 1rem; padding: 14px 28px;">
-          Request Institutional Pilot &nbsp;→
+          Request Clearance &nbsp;→
         </button>
         <a href="architecture.html" class="btn btn-secondary" style="font-size: 1rem; padding: 14px 28px;">
           Review Cryptographic Blueprints &nbsp;→
@@ -289,9 +289,9 @@
   <div id="pilotModal" class="modal-backdrop" onclick="handleBackdrop(event)">
     <div class="modal-card">
       <button class="modal-close-btn" onclick="closeModal()">&times;</button>
-      <h3 style="font-size: 1.35rem; color: #FFFFFF; margin-bottom: 6px;">Institutional Pilot Onboarding</h3>
+      <h3 style="font-size: 1.35rem; color: #FFFFFF; margin-bottom: 6px;">Secure Clearance Registry</h3>
       <p style="font-size: 0.88rem; color: var(--text-warm-gray); margin-bottom: 20px;">
-        Deploy a dedicated Sovereign Edge node with Canadian S3 core mirror WORM Vault storage and cross-border custodian enclaves. Direct executive contact: <a href="mailto:cooperate@xolotl.ca" style="color: var(--accent-gold); font-weight: 600;">cooperate@xolotl.ca</a>.
+        You are requesting clearance to enter the perimeter: a dedicated Sovereign Edge node, Canadian S3 core mirror WORM Vault storage, and cross-border custodian enclaves. Direct executive contact: <a href="mailto:cooperate@xolotl.ca" style="color: var(--accent-gold); font-weight: 600;">cooperate@xolotl.ca</a>.
       </p>
 
       <form id="pForm" onsubmit="handleFormSubmit(event)">
@@ -313,7 +313,7 @@
         <label class="form-label" for="pNotes">Topology or Residency Requirements</label>
         <textarea id="pNotes" class="form-input" rows="3" placeholder="Anticipated seat count, current cloud stack, or custodian placement preferences..."></textarea>
 
-        <button type="submit" class="btn btn-gold" style="width: 100%; justify-content: center;">Submit Pilot Application</button>
+        <button type="submit" class="btn btn-gold" style="width: 100%; justify-content: center;">Submit Clearance Request</button>
         <div style="text-align: center; margin-top: 10px; font-size: 0.82rem; color: var(--text-warm-gray);">
           Prefer direct email? Contact us at <a href="mailto:cooperate@xolotl.ca" style="color: var(--accent-sage); font-weight: 600;">cooperate@xolotl.ca</a>
         </div>
@@ -323,18 +323,18 @@
         <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
           <div style="width: 34px; height: 34px; border-radius: 50%; background: rgba(94, 180, 137, 0.18); border: 1px solid var(--accent-sage); display: flex; align-items: center; justify-content: center; color: var(--accent-sage); font-weight: bold; flex-shrink: 0;">✓</div>
           <div>
-            <h4 style="font-size: 1.15rem; color: #FFFFFF; margin: 0;">Application Dispatched</h4>
+            <h4 style="font-size: 1.15rem; color: #FFFFFF; margin: 0;">Clearance Request Filed</h4>
             <span style="font-size: 0.78rem; font-family: var(--font-mono); color: var(--accent-sage);">ROUTED TO: cooperate@xolotl.ca</span>
           </div>
         </div>
 
         <p style="font-size: 0.86rem; color: var(--text-warm-gray); margin-bottom: 14px; line-height: 1.5;">
-          Your pilot onboarding package has been generated. If your email application did not launch automatically, click below to transmit directly or copy your application receipt:
+          Your clearance request package has been generated. If your email application did not launch automatically, click below to transmit directly or copy your request receipt:
         </p>
 
         <!-- Receipt Box -->
         <div id="pReceiptBox" style="background: rgba(0, 0, 0, 0.55); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 8px; padding: 14px; font-size: 0.82rem; margin-bottom: 16px; font-family: var(--font-mono); color: #D1D5DB; line-height: 1.6;">
-          <div style="color: var(--accent-gold); font-weight: 600; margin-bottom: 6px; font-size: 0.75rem; letter-spacing: 0.05em;">// ENCRYPTED ONBOARDING DISPATCH</div>
+          <div style="color: var(--accent-gold); font-weight: 600; margin-bottom: 6px; font-size: 0.75rem; letter-spacing: 0.05em;">// ENCRYPTED CLEARANCE DISPATCH</div>
           <div><span style="color: #9CA3AF;">Organization:</span> <strong style="color: #FFFFFF;" id="rOrg">—</strong></div>
           <div><span style="color: #9CA3AF;">Work Email:</span> <strong style="color: #FFFFFF;" id="rEmail">—</strong></div>
           <div><span style="color: #9CA3AF;">Sector:</span> <strong style="color: #FFFFFF;" id="rSector">—</strong></div>
@@ -346,7 +346,7 @@
             Open Email Client (cooperate@xolotl.ca) ↗
           </a>
           <button type="button" class="btn btn-secondary" onclick="copyApplicationDetails()" id="pCopyBtn" style="width: 100%; justify-content: center;">
-            📋 Copy Application Details
+            📋 Copy Request Details
           </button>
           <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 6px;">
             <button type="button" onclick="editApplicationDetails()" style="background: none; border: none; color: var(--accent-gold); font-size: 0.8rem; cursor: pointer; text-decoration: underline; padding: 0;">

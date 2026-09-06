@@ -262,11 +262,11 @@
       </div>
       <h2 style="font-size: 2rem; color: #FFFFFF; margin-bottom: 14px;">Despliegue el Escudo Soberano.</h2>
       <p style="max-width: 620px; margin: 0 auto 28px; color: var(--text-warm-gray); font-size: 0.98rem; line-height: 1.6;">
-        Active un piloto institucional: contacto ejecutivo directo, enclaves aislados criptográficamente y almacenamiento inmutable en Bóveda WORM S3 en Canadá.
+        Solicite una habilitación: contacto ejecutivo directo, enclaves aislados criptográficamente y almacenamiento inmutable en Bóveda WORM S3 en Canadá.
       </p>
       <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
         <button class="btn btn-gold" onclick="openModal('pilot')" style="font-size: 1rem; padding: 14px 28px;">
-          Solicitar Piloto Institucional &nbsp;→
+          Solicitar Habilitación &nbsp;→
         </button>
         <a href="architecture.html" class="btn btn-secondary" style="font-size: 1rem; padding: 14px 28px;">
           Revisar los Planos Criptográficos &nbsp;→
@@ -289,9 +289,9 @@
   <div id="pilotModal" class="modal-backdrop" onclick="handleBackdrop(event)">
     <div class="modal-card">
       <button class="modal-close-btn" onclick="closeModal()">&times;</button>
-      <h3 style="font-size: 1.35rem; color: #FFFFFF; margin-bottom: 6px;">Incorporación al Piloto Institucional</h3>
+      <h3 style="font-size: 1.35rem; color: #FFFFFF; margin-bottom: 6px;">Registro de Habilitación de Seguridad</h3>
       <p style="font-size: 0.88rem; color: var(--text-warm-gray); margin-bottom: 20px;">
-        Despliegue un nodo de Borde Soberano dedicado con almacenamiento espejo en Bóveda WORM S3 canadiense y enclaves de custodia transfronterizos. Contacto ejecutivo directo: <a href="mailto:cooperate@xolotl.ca" style="color: var(--accent-gold); font-weight: 600;">cooperate@xolotl.ca</a>.
+        Está solicitando habilitación para ingresar al perímetro: un nodo de Borde Soberano dedicado, almacenamiento espejo en Bóveda WORM S3 canadiense y enclaves de custodia transfronterizos. Contacto ejecutivo directo: <a href="mailto:cooperate@xolotl.ca" style="color: var(--accent-gold); font-weight: 600;">cooperate@xolotl.ca</a>.
       </p>
 
       <form id="pForm" onsubmit="handleFormSubmit(event)">
@@ -313,7 +313,7 @@
         <label class="form-label" for="pNotes">Requisitos de Topología o Residencia de Datos</label>
         <textarea id="pNotes" class="form-input" rows="3" placeholder="Número estimado de asientos, infraestructura de nube actual o preferencias de ubicación de custodios..."></textarea>
 
-        <button type="submit" class="btn btn-gold" style="width: 100%; justify-content: center;">Enviar Solicitud de Piloto</button>
+        <button type="submit" class="btn btn-gold" style="width: 100%; justify-content: center;">Enviar Solicitud de Habilitación</button>
         <div style="text-align: center; margin-top: 10px; font-size: 0.82rem; color: var(--text-warm-gray);">
           ¿Prefiere correo directo? Escríbanos a <a href="mailto:cooperate@xolotl.ca" style="color: var(--accent-sage); font-weight: 600;">cooperate@xolotl.ca</a>
         </div>
@@ -323,18 +323,18 @@
         <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
           <div style="width: 34px; height: 34px; border-radius: 50%; background: rgba(94, 180, 137, 0.18); border: 1px solid var(--accent-sage); display: flex; align-items: center; justify-content: center; color: var(--accent-sage); font-weight: bold; flex-shrink: 0;">✓</div>
           <div>
-            <h4 style="font-size: 1.15rem; color: #FFFFFF; margin: 0;">Solicitud Enviada</h4>
+            <h4 style="font-size: 1.15rem; color: #FFFFFF; margin: 0;">Solicitud de Habilitación Registrada</h4>
             <span style="font-size: 0.78rem; font-family: var(--font-mono); color: var(--accent-sage);">ENVIADO A: cooperate@xolotl.ca</span>
           </div>
         </div>
 
         <p style="font-size: 0.86rem; color: var(--text-warm-gray); margin-bottom: 14px; line-height: 1.5;">
-          Su paquete de incorporación al piloto ha sido generado. Si su aplicación de correo no se abrió automáticamente, haga clic a continuación para transmitir directamente o copie el comprobante:
+          Su paquete de solicitud de habilitación ha sido generado. Si su aplicación de correo no se abrió automáticamente, haga clic a continuación para transmitir directamente o copie su comprobante de solicitud:
         </p>
 
         <!-- Receipt Box -->
         <div id="pReceiptBox" style="background: rgba(0, 0, 0, 0.55); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 8px; padding: 14px; font-size: 0.82rem; margin-bottom: 16px; font-family: var(--font-mono); color: #D1D5DB; line-height: 1.6;">
-          <div style="color: var(--accent-gold); font-weight: 600; margin-bottom: 6px; font-size: 0.75rem; letter-spacing: 0.05em;">// ENVÍO DE INCORPORACIÓN CIFRADO</div>
+          <div style="color: var(--accent-gold); font-weight: 600; margin-bottom: 6px; font-size: 0.75rem; letter-spacing: 0.05em;">// ENVÍO DE HABILITACIÓN CIFRADO</div>
           <div><span style="color: #9CA3AF;">Organización:</span> <strong style="color: #FFFFFF;" id="rOrg">—</strong></div>
           <div><span style="color: #9CA3AF;">Correo Electrónico Corporativo:</span> <strong style="color: #FFFFFF;" id="rEmail">—</strong></div>
           <div><span style="color: #9CA3AF;">Sector:</span> <strong style="color: #FFFFFF;" id="rSector">—</strong></div>

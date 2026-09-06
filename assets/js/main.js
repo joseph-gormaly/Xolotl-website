@@ -380,9 +380,9 @@ function switchThreatMode(mode) {
       if (simMessage) {
         simMessage.style.borderLeftColor = 'var(--accent-maple)';
         simMessage.innerHTML = pick({
-          en: '<strong>Subpoena Compulsion Result:</strong> Federal court orders served on the S3 provider yield only high-entropy AES-256-GCM ciphertext. The provider holds 0 key shards and is mathematically powerless to comply. Subpoena defused without breach.',
-          fr: '<strong>Résultat de la Citation :</strong> Les ordonnances d\'un tribunal fédéral signifiées au fournisseur S3 ne donnent que du texte chiffré AES-256-GCM à haute entropie. Le fournisseur détient 0 fragment de clé et est mathématiquement impuissant à obtempérer. Citation désamorcée sans violation.',
-          es: '<strong>Resultado de la Citación:</strong> Las órdenes judiciales federales notificadas al proveedor S3 sólo arrojan texto cifrado AES-256-GCM de alta entropía. El proveedor tiene 0 fragmentos de clave y es matemáticamente incapaz de cumplir. Citación desactivada sin filtración.',
+          en: '<strong>Subpoena Compulsion Result:</strong> This is the exact threat from our homepage, made concrete. Federal court orders served on the S3 provider yield only high-entropy AES-256-GCM ciphertext. The provider holds 0 key shards and is mathematically powerless to comply. Subpoena defused without breach.',
+          fr: '<strong>Résultat de la Citation :</strong> Voici la menace exacte de notre page d\'accueil, rendue concrète. Les ordonnances d\'un tribunal fédéral signifiées au fournisseur S3 ne donnent que du texte chiffré AES-256-GCM à haute entropie. Le fournisseur détient 0 fragment de clé et est mathématiquement impuissant à obtempérer. Citation désamorcée sans violation.',
+          es: '<strong>Resultado de la Citación:</strong> Esta es la amenaza exacta de nuestra página de inicio, hecha concreta. Las órdenes judiciales federales notificadas al proveedor S3 sólo arrojan texto cifrado AES-256-GCM de alta entropía. El proveedor tiene 0 fragmentos de clave y es matemáticamente incapaz de cumplir. Citación desactivada sin filtración.',
         });
       }
     } else if (mode === 'ransomware') {
@@ -415,9 +415,9 @@ function switchThreatMode(mode) {
       if (simMessage) {
         simMessage.style.borderLeftColor = 'var(--accent-gold)';
         simMessage.innerHTML = pick({
-          en: '<strong>Ransomware Attack Result:</strong> Ransomware encrypts local drives, but cannot modify past S3 versions protected by 93-day compliance WORM Vault locks. Administrator triggers <code>restore_vault_as_of()</code> and restores all files uncorrupted.',
-          fr: '<strong>Résultat de l\'attaque par rançongiciel :</strong> Le rançongiciel chiffre les disques locaux, mais ne peut pas modifier les versions antérieures sur S3, protégées par des verrous de conformité de Coffre-Fort WORM de 93 jours. L\'administrateur déclenche <code>restore_vault_as_of()</code> et restaure tous les fichiers sans corruption.',
-          es: '<strong>Resultado del Ataque de Ransomware:</strong> El ransomware cifra los discos locales, pero no puede modificar las versiones anteriores en S3 protegidas por bloqueos de cumplimiento de Bóveda WORM de 93 días. El administrador activa <code>restore_vault_as_of()</code> y restaura todos los archivos sin corrupción.',
+          en: '<strong>Ransomware Attack Result:</strong> This is Biological Resilience in practice. Ransomware encrypts local drives, but cannot modify past S3 versions protected by 93-day compliance WORM Vault locks. Administrator triggers <code>restore_vault_as_of()</code> and restores all files uncorrupted &mdash; the system regenerates rather than resists.',
+          fr: '<strong>Résultat de l\'attaque par rançongiciel :</strong> Voici la Résilience Biologique à l\'œuvre. Le rançongiciel chiffre les disques locaux, mais ne peut pas modifier les versions antérieures sur S3, protégées par des verrous de conformité de Coffre-Fort WORM de 93 jours. L\'administrateur déclenche <code>restore_vault_as_of()</code> et restaure tous les fichiers sans corruption &mdash; le système se régénère au lieu de résister.',
+          es: '<strong>Resultado del Ataque de Ransomware:</strong> Esto es la Resiliencia Biológica en acción. El ransomware cifra los discos locales, pero no puede modificar las versiones anteriores en S3 protegidas por bloqueos de cumplimiento de Bóveda WORM de 93 días. El administrador activa <code>restore_vault_as_of()</code> y restaura todos los archivos sin corrupción &mdash; el sistema se regenera en lugar de resistir.',
         });
       }
     }

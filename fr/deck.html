@@ -96,6 +96,48 @@
       text-transform: uppercase;
       letter-spacing: 0.08em;
     }
+    .shield-icon {
+      width: 26px;
+      height: 26px;
+      object-fit: contain;
+      flex-shrink: 0;
+      filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.3));
+    }
+
+    /* 50px Balanced Circular Container for Xoloitzcuintle Emblem */
+    .nav-xolo-container {
+      width: 50px;
+      height: 50px;
+      min-width: 50px;
+      min-height: 50px;
+      border-radius: 50%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(13, 17, 15, 0.85);
+      border: 1px solid rgba(212, 175, 55, 0.45);
+      box-shadow: 0 0 12px rgba(212, 175, 55, 0.2), inset 0 0 10px rgba(0, 0, 0, 0.5);
+      transition: all 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    .nav-xolo-container:hover {
+      border-color: #00ff66;
+      box-shadow: 0 0 18px rgba(0, 255, 102, 0.45), inset 0 0 12px rgba(0, 255, 102, 0.2);
+      transform: scale(1.05);
+    }
+
+    .nav-xolo-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 4px;
+      filter: invert(1);
+      mix-blend-mode: screen;
+      display: block;
+    }
+
 
     .header-controls {
       display: flex;
@@ -687,16 +729,16 @@
 
   <!-- Barre d'En-tête -->
   <header class="deck-header">
-    <a href="index.html" class="brand-link" title="Retour à la page d'accueil xolotl.ca">
-      <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M16 2L4 7V15C4 22.5 9.1 29 16 31C22.9 29 28 22.5 28 15V7L16 2Z" fill="#15231C" stroke="#C89D4B" stroke-width="2"/>
-        <circle cx="16" cy="16" r="4.5" fill="#D97706"/>
-      </svg>
+    <a href="../assets/images/canadian-shield.svg" class="brand-link" title="Retour à la page d'accueil xolotl.ca">
+      <img src="../assets/images/canadian-shield.svg" alt="Bouclier Canadien" class="shield-icon">
       <span>Xolotl Coopérative</span>
       <span class="brand-badge">Présentation Souveraine</span>
     </a>
 
     <div class="header-controls">
+      <div class="nav-xolo-container" title="Emblème Xoloitzcuintle">
+        <img src="../assets/images/Xoloitzcuintle_logo_v0.png" alt="Xoloitzcuintle" class="nav-xolo-img">
+      </div>
       <div class="deck-lang-switch" role="group" aria-label="Language / Langue / Idioma">
         <a href="../deck.html" class="btn btn-secondary" title="View in English">EN</a>
         <a href="deck.html" class="btn btn-secondary active" aria-current="page">FR</a>

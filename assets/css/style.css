@@ -2343,6 +2343,19 @@
       filter: brightness(0) invert(1) drop-shadow(0 0 8px rgba(0, 255, 102, 0.65));
     }
 
+    /* Team Signature Graphic */
+    img[src*="bearcubmedia.beauty.png"] {
+      filter: brightness(0) invert(1);
+      opacity: 0.85;
+      transition: all 0.25s ease;
+    }
+
+    a:hover img[src*="bearcubmedia.beauty.png"] {
+      opacity: 1;
+      filter: brightness(0) invert(1) drop-shadow(0 0 10px rgba(0, 255, 102, 0.7));
+      transform: translateY(-1px);
+    }
+
     /* Mobile Navigation & Drawer */
     .mobile-menu-btn {
       display: none;

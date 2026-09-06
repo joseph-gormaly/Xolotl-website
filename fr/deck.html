@@ -110,38 +110,29 @@
       transform: scale(1.04);
     }
 
-    /* 50px Balanced Circular Container for Xoloitzcuintle Emblem */
+    /* Symmetrical Right Shield (Xoloitzcuintle Logo) */
     .nav-xolo-container {
-      width: 50px;
-      height: 50px;
-      min-width: 50px;
-      min-height: 50px;
-      border-radius: 50%;
-      overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: rgba(13, 17, 15, 0.85);
-      border: 1px solid rgba(212, 175, 55, 0.45);
-      box-shadow: 0 0 12px rgba(212, 175, 55, 0.2), inset 0 0 10px rgba(0, 0, 0, 0.5);
-      transition: all 0.3s ease;
       flex-shrink: 0;
-    }
-
-    .nav-xolo-container:hover {
-      border-color: #00ff66;
-      box-shadow: 0 0 18px rgba(0, 255, 102, 0.45), inset 0 0 12px rgba(0, 255, 102, 0.2);
-      transform: scale(1.05);
+      text-decoration: none;
+      transition: all 0.25s ease;
     }
 
     .nav-xolo-img {
-      width: 100%;
-      height: 100%;
+      width: auto;
+      height: 44px;
+      max-width: 44px;
       object-fit: contain;
-      padding: 4px;
-      filter: invert(1);
-      mix-blend-mode: screen;
+      filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.4));
+      transition: all 0.25s ease;
       display: block;
+    }
+
+    .nav-xolo-container:hover .nav-xolo-img {
+      filter: drop-shadow(0 0 14px rgba(0, 255, 102, 0.6));
+      transform: scale(1.04);
     }
 
 
@@ -735,7 +726,7 @@
 
   <!-- Barre d'En-tête -->
   <header class="deck-header">
-    <a href="../assets/images/canadian-shield.png" class="brand-link" title="Retour à la page d'accueil xolotl.ca">
+    <a href="index.html" class="brand-link" title="Retour à la page d'accueil xolotl.ca">
       <img src="../assets/images/canadian-shield.png" alt="Bouclier Canadien" class="shield-icon">
       <span>Xolotl Coopérative</span>
       <span class="brand-badge">Présentation Souveraine</span>
@@ -777,9 +768,9 @@
       <a href="index.html" class="btn btn-secondary" title="Quitter vers la Page d'Accueil">
         <span>Quitter ✕</span>
       </a>
-      <div class="nav-xolo-container" title="Emblème Xoloitzcuintle">
+      <a href="index.html" class="nav-xolo-container" title="Emblème Xoloitzcuintle" aria-label="Xolotl Home">
         <img src="../assets/images/Xoloitzcuintle_logo_v0.png" alt="Xoloitzcuintle" class="nav-xolo-img">
-      </div>
+      </a>
     </div>
   </header>
 

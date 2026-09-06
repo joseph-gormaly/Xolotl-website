@@ -97,11 +97,17 @@
       letter-spacing: 0.08em;
     }
     .shield-icon {
-      width: 26px;
-      height: 26px;
+      width: auto;
+      height: 44px;
+      max-width: 44px;
       object-fit: contain;
       flex-shrink: 0;
-      filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.3));
+      filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.4));
+      transition: all 0.25s ease;
+    }
+    .brand-link:hover .shield-icon {
+      filter: drop-shadow(0 0 14px rgba(0, 255, 102, 0.6));
+      transform: scale(1.04);
     }
 
     /* 50px Balanced Circular Container for Xoloitzcuintle Emblem */
@@ -729,8 +735,8 @@
 
   <!-- Header Bar -->
   <header class="deck-header">
-    <a href="assets/images/canadian-shield.svg" class="brand-link" title="Return to xolotl.ca homepage">
-      <img src="assets/images/canadian-shield.svg" alt="Canadian Shield" class="shield-icon">
+    <a href="assets/images/canadian-shield.png" class="brand-link" title="Return to xolotl.ca homepage">
+      <img src="assets/images/canadian-shield.png" alt="Canadian Shield" class="shield-icon">
       <span>Xolotl Cooperative</span>
       <span class="brand-badge">Sovereign Deck</span>
     </a>

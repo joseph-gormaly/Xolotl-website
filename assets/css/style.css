@@ -146,11 +146,18 @@
     }
 
     .shield-icon {
-      width: 32px;
-      height: 32px;
+      width: auto;
+      height: 48px;
+      max-width: 48px;
       flex-shrink: 0;
       object-fit: contain;
-      filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.3));
+      filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.4));
+      transition: all 0.25s ease;
+    }
+
+    .brand-logo:hover .shield-icon {
+      filter: drop-shadow(0 0 14px rgba(0, 255, 102, 0.6));
+      transform: scale(1.04);
     }
 
     /* 50px Balanced Circular Container for Xoloitzcuintle Logo */
@@ -3247,6 +3254,10 @@
       }
       .brand-tag {
         display: none;
+      }
+      .shield-icon {
+        height: 38px;
+        max-width: 38px;
       }
       .pronounce-chip .pronounce-ipa {
         display: none;

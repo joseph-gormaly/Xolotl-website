@@ -149,7 +149,7 @@
     .shield-icon {
       width: auto;
       height: 48px;
-      max-width: 48px;
+      max-width: 86px;
       flex-shrink: 0;
       object-fit: contain;
       filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.4));
@@ -3287,16 +3287,11 @@
       }
       .shield-icon {
         height: 38px;
+        max-width: 68px;
+      }
+      .nav-xolo-img {
+        height: 36px;
         max-width: 38px;
-      }
-      .pronounce-chip .pronounce-ipa {
-        display: none;
-      }
-      .nav-xolo-container {
-        width: 38px;
-        height: 38px;
-        min-width: 38px;
-        min-height: 38px;
       }
       .footer-credit {
         gap: 8px;

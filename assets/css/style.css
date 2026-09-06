@@ -671,6 +671,131 @@
       border-radius: 4px;
     }
 
+    /* Secondary Pages Hero & Tactical Sidebar Layout */
+    .page-hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .page-hero-content {
+      min-width: 0;
+    }
+
+    .page-hero-sidebar {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    .tactical-logo-frame {
+      width: 100%;
+      max-width: 280px;
+      background: rgba(13, 17, 15, 0.9);
+      border: 1px solid #00ff66;
+      border-radius: 12px;
+      box-shadow: 0 0 24px rgba(0, 255, 102, 0.18), inset 0 0 16px rgba(0, 255, 102, 0.05);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .tactical-logo-frame:hover {
+      box-shadow: 0 0 32px rgba(0, 255, 102, 0.35), inset 0 0 20px rgba(0, 255, 102, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .tactical-frame-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 10px 14px;
+      background: rgba(0, 255, 102, 0.05);
+      border-bottom: 1px solid rgba(0, 255, 102, 0.2);
+      font-family: var(--font-mono);
+      font-size: 0.66rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .tactical-status-indicator {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #00ff66;
+      box-shadow: 0 0 8px #00ff66;
+      animation: tacticalPulse 2s infinite ease-in-out;
+      flex-shrink: 0;
+    }
+
+    @keyframes tacticalPulse {
+      0%, 100% { opacity: 0.4; transform: scale(0.85); }
+      50% { opacity: 1; transform: scale(1.2); }
+    }
+
+    .tactical-frame-title {
+      color: #00ff66;
+      font-weight: 600;
+      flex: 1;
+      margin-left: 4px;
+    }
+
+    .tactical-frame-code {
+      color: var(--accent-gold);
+      font-size: 0.62rem;
+    }
+
+    .tactical-frame-body {
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at center, rgba(0, 255, 102, 0.05) 0%, transparent 70%);
+    }
+
+    .tactical-logo-img {
+      width: 100%;
+      height: auto;
+      max-height: 175px;
+      object-fit: contain;
+      filter: invert(1);
+      mix-blend-mode: screen;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .tactical-logo-frame:hover .tactical-logo-img {
+      transform: scale(1.03);
+    }
+
+    .tactical-frame-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 8px 14px;
+      background: rgba(0, 0, 0, 0.45);
+      border-top: 1px solid rgba(0, 255, 102, 0.15);
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      color: var(--text-warm-gray);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .tactical-spec-tag {
+      color: var(--accent-gold);
+      background: rgba(212, 175, 55, 0.12);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      padding: 1px 5px;
+      border-radius: 3px;
+    }
+
     /* Trust / Ticker Strip */
     .trust-strip {
       border-top: 1px solid var(--border-light);
@@ -2921,6 +3046,19 @@
       }
       .nav-memo-btn {
         display: none;
+      }
+      .page-hero-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .page-hero-sidebar {
+        justify-content: flex-start;
+      }
+      .tactical-logo-frame {
+        max-width: 250px;
+      }
+      .tactical-logo-img {
+        max-height: 140px;
       }
       .hero-grid {
         grid-template-columns: 1fr;

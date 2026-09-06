@@ -2178,31 +2178,36 @@
     .footer-credit {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 12px;
       text-decoration: none;
       font-family: var(--font-mono);
-      font-size: 0.72rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
       color: var(--text-warm-gray, #8F9994);
-      padding: 3px 8px;
-      border-radius: 4px;
+      padding: 6px 14px;
+      border-radius: 6px;
       background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       transition: all 0.25s ease;
       vertical-align: middle;
+      max-width: 100%;
     }
 
     .footer-credit:hover {
       color: #00ff66;
-      border-color: rgba(0, 255, 102, 0.4);
+      border-color: rgba(0, 255, 102, 0.45);
       background: rgba(0, 255, 102, 0.08);
-      box-shadow: 0 0 10px rgba(0, 255, 102, 0.2);
+      box-shadow: 0 0 16px rgba(0, 255, 102, 0.25);
+      transform: translateY(-1px);
     }
 
     .footer-credit-img {
-      height: 14px;
+      height: clamp(24px, 4.5vw, 42px);
       width: auto;
+      max-width: 100%;
+      object-fit: contain;
       filter: brightness(0) invert(1);
-      opacity: 0.82;
+      opacity: 0.88;
       transition: opacity 0.25s ease, filter 0.25s ease;
       display: inline-block;
       vertical-align: middle;
@@ -2210,7 +2215,7 @@
 
     .footer-credit:hover .footer-credit-img {
       opacity: 1;
-      filter: brightness(0) invert(1) drop-shadow(0 0 6px rgba(0, 255, 102, 0.6));
+      filter: brightness(0) invert(1) drop-shadow(0 0 8px rgba(0, 255, 102, 0.65));
     }
 
     /* Mobile Navigation & Drawer */
@@ -3100,6 +3105,14 @@
         height: 42px;
         min-width: 42px;
         min-height: 42px;
+      }
+      .footer-credit {
+        gap: 8px;
+        padding: 5px 10px;
+        font-size: 0.72rem;
+      }
+      .footer-credit-img {
+        height: 22px;
       }
       .cookie-banner {
         bottom: calc(12px + env(safe-area-inset-bottom, 0px));

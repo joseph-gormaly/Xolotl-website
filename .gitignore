@@ -4,6 +4,9 @@ research/
 scratch/
 *.py
 
+# Marketing planning docs (not part of the deployed site)
+INSTAGRAM_CAPTIONS.md
+
 # System files
 .DS_Store
 Thumbs.db

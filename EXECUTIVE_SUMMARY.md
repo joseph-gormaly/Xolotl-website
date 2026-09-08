@@ -10,7 +10,7 @@
 ## 1. Executive Snapshot
 
 > **The cloud has trust issues. Meet the Canadian Shield.**  
-> **One-Sentence Vision:** Xolotl is the world’s first hybrid sovereign edge file-synchronization platform, providing high-consequence institutions with a seamless "OneDrive-like" experience while ensuring that no single technical compromise and no single legal jurisdiction on Earth can compel disclosure of their plaintext data.
+> **One-Sentence Vision:** Xolotl is the **Virtual Iron Spine** for high-consequence institutional data—the world’s first hybrid sovereign edge file-synchronization platform, providing regulated enterprises with a seamless "OneDrive-like" experience while ensuring that no single technical compromise and no single legal jurisdiction on Earth can compel disclosure of their plaintext data.
 
 | Metric / Dimension | Detail |
 |---|---|
@@ -30,6 +30,7 @@ Enterprises handling high-value intellectual property, sensitive litigation data
 1. **The Extraterritorial Legal Dragnet:** Under the **US CLOUD Act**, National Security Letters (NSLs), and Section 702 of FISA, US cloud providers (Microsoft OneDrive, Google Drive, Box, AWS) can be legally compelled in secret to produce customer data—even if that data is stored in European, Canadian, or Asian data centers.
 2. **The "Zero-Knowledge" Fallacy:** Existing "zero-knowledge" enterprise backup systems rely on centralized Key Management Systems (KMS) or single-custodian passphrases. A single insider breach, sophisticated phishing campaign, or domestic subpoena directed at the local IT administrator yields full plaintext.
 3. **The Air-Gapped/On-Prem Trap:** Maintaining disconnected on-premises storage eliminates cloud convenience, prevents multi-region offsite disaster recovery, breaks remote collaboration, and is notoriously vulnerable to local physical catastrophes and ransomware encryptors.
+4. **The Dependency Trap vs. True Partnership:** When institutions rely entirely on foreign hyperscalers, institutional memory and proprietary IP become structural geopolitical leverage. Under extraterritorial legal regimes, customer data can be seized in secret. True sovereignty requires **Plan A resilience**—ensuring no single outside authority or court can hold operations hostage.
 
 **The Missing Primitive:** The industry lacks a system where **"Adversary" is properly redefined to include a fully cooperative, uncompromised party acting under judicial or sovereign compulsion**. 
 
@@ -37,7 +38,7 @@ Enterprises handling high-value intellectual property, sensitive litigation data
 
 ## 3. The Xolotl Solution: Cryptographic & Jurisdictional Immunity
 
-Xolotl bridges the gap between consumer-grade cloud convenience and military-grade sovereign defense through a patent-worthy **3-Layer Hybrid Topology**:
+Xolotl operationalizes Canada’s **Virtual Iron Spine**—bridging consumer-grade cloud convenience with military-grade sovereign defense through a patent-worthy **3-Layer Hybrid Topology**:
 
 ```
 +-----------------------------------------------------------------------------+
@@ -149,9 +150,11 @@ Xolotl is raising a **$1,250,000 Seed Round** alongside **$250,000–$400,000 in
 
 ## 8. Why Now?
 
-1. **Geopolitical Weaponization of Data:** The expansion of cross-border data transfer restrictions (Schrems II, EU NIS2, Swiss FADP) has made standard US hyperscalers a legal liability for international organizations.
-2. **Threshold Cryptography is Ready for Production:** Primitives like FROST (RFC 9591) and audited Rust implementations (`frost-core`) allow practical multi-party threshold ceremonies over consumer hardware with sub-second execution.
-3. **The Prototype is Already Validated:** Xolotl does not require a year of basic research. The architecture is engineered, passing live end-to-end integration tests, and positioned for immediate audit and pilot deployment.
+1. **The National Pivot to Sovereign Virtual Infrastructure:** As recognized in emerging Canadian economic doctrine, maintaining and protecting institutional sovereignty in technology, data, and virtual corridors is just as vital to national resilience as physical energy grids, transport lines, and defense corridors. Regulated enterprises and critical infrastructure are actively pivoting from naive foreign cloud dependence to sovereign self-reliance ("Plan A").
+2. **Geopolitical Weaponization of Data:** The expansion of cross-border data transfer restrictions (Schrems II, EU NIS2, Swiss FADP) alongside aggressive US CLOUD Act enforcement has made standard US hyperscalers a legal liability for international organizations.
+3. **Threshold Cryptography is Ready for Production:** Primitives like FROST (RFC 9591) and audited Rust implementations (`frost-core`) allow practical multi-party threshold ceremonies over consumer hardware with sub-second execution.
+4. **The Prototype is Already Validated:** Xolotl does not require a year of basic research. The architecture is engineered, passing live end-to-end integration tests, and positioned for immediate audit and pilot deployment.
+5. **Direct Federal Grant Tailwinds:** The federal and European mandate to capitalize domestic sovereign technology directly supports Xolotl’s non-dilutive capital roadmap ($250,000–$400,000 via NRC IRAP, Sovereign Tech Fund, and allied European programs like SAFE).
 
 **Contact:**  
 Joseph Gormaly / Xolotl Canadian Shield Cooperative Core Team  

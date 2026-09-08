@@ -11,14 +11,14 @@
 
 ### Visual Layout
 * **Hero Graphic:** A dark-mode split screen. On the left, a traditional cloud icon trapped in a spiderweb of national flag borders and subpoena seals. On the right, the clean geometric Xolotl mesh topology: three independent jurisdictional nodes interlocking around a sealed vault.
-* **Tagline:** *The World's First Hybrid Sovereign Edge Synchronization Platform.*
+* **Tagline:** *The Virtual Iron Spine for High-Consequence Institutional Data.*
 * **Lead Hook:** *The cloud has trust issues. Meet the Canadian Shield.*
 * **Sub-text:** High-consequence file sync engineered for institutions that cannot afford a single point of legal compulsion.
 
 ### Slide Copy
 * **Xolotl**
 * True Data Sovereignty for High-Consequence Enterprise.
-* Seamless "OneDrive-like" UX • Audited Threshold Cryptography • Immunity to Extraterritorial Subpoenas.
+* The Virtual Iron Spine • Seamless "OneDrive-like" UX • Audited Threshold Cryptography.
 * Joseph Gormaly, Founder & Core Team.
 
 ### Presenter Script (Talking Track)
@@ -26,7 +26,7 @@
 >
 > Your cloud storage is sold to you as zero-trust and encrypted at rest — but every major provider, Microsoft, Google, Box, AWS, must comply the moment a single sealed court order arrives, no matter whether your data sits in Frankfurt, Dublin, or Montreal.
 >
-> We built Xolotl to close that gap: the same frictionless 'drop-a-file-in-a-folder' experience as OneDrive, backed by cryptography that makes it mathematically impossible for any single court, cloud provider, or technical breach to produce your plaintext."
+> That isn't an economic partnership; it's structural dependency. We built Xolotl to close that gap: Canada's Virtual Iron Spine. The same frictionless 'drop-a-file-in-a-folder' experience as OneDrive, backed by threshold cryptography that makes it mathematically impossible for any single court, cloud provider, or technical breach to produce your plaintext."
 
 ### Anticipated Investor Q&A / "Trap Question"
 * **Investor:** *"Doesn't Box, OneDrive, or Tresorit already claim end-to-end encryption?"*
@@ -41,7 +41,7 @@
   1. *US CLOUD Act & FISA 702:* Extraterritorial long-arm reach across EU/global subsidiaries.
   2. *The Centralized KMS Myth:* AWS KMS / Azure Key Vault holding master keys behind administrative sub-accounts.
   3. *The Air-Gapped Failure:* On-prem NAS/SAN silos suffering ransomware attacks and lacking off-site disaster recovery.
-* **Callout Box:** *"Adversary is redefined: It is no longer just a hacker in a hoodie. An adversary is a fully cooperative, uncompromised entity acting under sovereign legal compulsion."*
+* **Callout Box:** *"Adversary is redefined: An adversary is no longer just a hacker in a hoodie. An adversary is a fully cooperative, uncompromised entity acting under sovereign legal compulsion. Structural dependency is not a partnership; sovereignty must be Plan A."*
 
 ### Slide Copy
 * **The Sovereign Enterprise Dilemma:**
@@ -55,7 +55,7 @@
 >
 > European data protection authorities recognized this in Schrems II and NIS2. Cross-border law firms handling multi-billion dollar M&A now risk catastrophic client privilege violations if opposing counsel subpoenas their cloud provider.
 >
-> Meanwhile, CIOs who flee to on-premises air-gapped file servers get hit by ransomware. Why? Because air-gapped setups lack continuous, offsite, immutable object-lock replication. Today's enterprise is stuck choosing between convenience that leaks to foreign courts, and air-gapped silos that get destroyed by ransomware."
+> Meanwhile, CIOs who flee to on-premises air-gapped file servers get hit by ransomware. Why? Because air-gapped setups lack continuous, offsite, immutable object-lock replication. Today's enterprise is stuck choosing between convenience that leaks to foreign courts, and air-gapped silos that get destroyed by ransomware. We reject that false choice. Sovereignty cannot be an emergency Plan B—it must be Plan A by design."
 
 ### Anticipated Investor Q&A / "Trap Question"
 * **Investor:** *"Can't enterprise customers just use Client-Side Encryption (CSE) in Google Workspace or Microsoft Purview Customer Key?"*
@@ -94,7 +94,7 @@
 
 ---
 
-## Slide 4: The Xolotl Architecture: 3-Layer Hybrid Sovereign Edge
+## Slide 4: The Xolotl Architecture: The 3-Layer Virtual Iron Spine
 
 ### Visual Layout
 * **Architectural Diagram:**
@@ -133,7 +133,7 @@
   * Zero knowledge, zero key shares, zero plaintext exposure.
 
 ### Presenter Script (Talking Track)
-> "How does this look in practice? We divide the system into three distinct layers.
+> "How does this look in practice? We operationalize Canada's Virtual Iron Spine across three distinct layers.
 >
 > At Layer 1, the customer runs a lightweight Sovereign Edge Stack on their own premises or private VPC. This holds user directory metadata and runs Custodian Agent 3 inside an isolated WireGuard mesh. It never exposes open ports to the public internet.
 >
@@ -307,21 +307,24 @@
   * **SOM ($3.8B):** North American & European Cross-Border Firms Requiring Extraterritorial Immunity.
 * **Geopolitical Drivers:**
   * Schrems II & EU Data Act invalidating standard US cloud transfers.
-  * US CLOUD Act expansion causing defensive European sovereign initiatives (Gaia-X).
+  * US CLOUD Act expansion causing defensive European and Canadian sovereign mandates.
+  * Emerging national doctrine: Protecting technological and virtual sovereignty is equal in consequence to physical energy and defense infrastructure.
   * Escalating state-sponsored ransomware targeting critical infrastructure.
 
 ### Slide Copy
 * **Massive Secular Tailwinds:**
   * Data residency regulations are hardening worldwide. Over 120 countries now have data sovereignty mandates.
-  * European governments and enterprises are actively mandating "de-hyperscalization"—removing single-vendor dependencies on US cloud giants.
+  * Governments and enterprises are actively mandating "de-hyperscalization"—removing single-vendor dependencies on foreign cloud giants.
 * **High Willingness to Pay:**
-  * For our target customers, a data leak or compelled disclosure is not a minor PR issue—it is a business-terminating event.
+  * For our target customers, a data leak or compelled foreign disclosure is a business-terminating event.
   * Enterprise budgets for sovereign cloud and compliance infrastructure are growing at 28% year-over-year.
 
 ### Presenter Script (Talking Track)
-> "The macroeconomic and geopolitical tailwinds behind Xolotl are unprecedented. Over the last three years, the concept of national data sovereignty has exploded into boardroom conversations worldwide.
+> "The macroeconomic and geopolitical tailwinds behind Xolotl are unprecedented. Over the last three years, data sovereignty has moved from an IT afterthought directly into the national security agenda.
 >
-> The European Union's NIS2 directive and Data Act, combined with strict enforcement of GDPR Article 48, have made standard US cloud storage a massive compliance liability. European enterprise leaders are openly asking: 'How do we operate globally when our primary technology stack can be seized by a foreign subpoena?'
+> As Canadian and European economic leaders have underscored, maintaining our sovereignty in virtual corridors, data, and technology is just as vital to our future as physical infrastructure like pipelines or rail. When trade and legal pressures escalate, relying on foreign hyperscalers creates an untenable dependency trap where institutional memory can be held hostage.
+>
+> The European Union's NIS2 directive and Data Act, combined with strict enforcement of GDPR Article 48 and Canadian PIPEDA/Law 25 standards, have made standard US cloud storage a massive compliance liability. 
 >
 > The sovereign cloud market is projected to surpass $120 billion by 2030. Within that, our serviceable obtainable market of cross-border legal, defense, and private banking institutions represents an immediate $3.8 billion opportunity. These institutions don't need convincing—they are actively seeking solutions that provide mathematical certainty."
 
@@ -447,7 +450,7 @@
 * **The Investment Opportunity:**
   * **Round Size:** $1,250,000 Seed Round.
   * **Runway:** 18 Months to GA and $1.35M+ ARR.
-  * **Capital Efficiency:** Augmented by $250k–$400k in non-dilutive sovereign technology grants.
+  * **Capital Efficiency:** Augmented by $250k–$400k in non-dilutive sovereign technology grants (NRC IRAP, Sovereign Tech Fund, European SAFE/allied defense programs).
 * **Why Xolotl Wins:**
   1. *A Real Cryptographic Moat:* Production Pedersen DKG + FROST + Threshold ElGamal Decryption.
   2. *True Legal Immunity:* Mathematically enforced jurisdictional diversity resistant to the US CLOUD Act.
@@ -455,7 +458,7 @@
   4. *Validated Codebase:* Passing live end-to-end integration tests right now.
 
 ### Presenter Script (Talking Track)
-> "To execute this vision, we are raising a $1.25 million Seed round, which we are pairing with $250,000 to $400,000 in non-dilutive sovereign innovation grants from Canadian and European programs.
+> "To execute this vision, we are raising a $1.25 million Seed round, which we are pairing with $250,000 to $400,000 in non-dilutive sovereign innovation grants from Canadian and European programs directly aligned with this national technology mandate.
 >
 > Two-thirds of this capital goes directly into elite systems engineering: hiring two senior Rust systems engineers, a Tauri desktop engineer, and a SecOps specialist to scale our sovereign nodes. The remainder funds our formal cryptographic audit, sovereign legal counsel, and enterprise pilot deployments.
 >

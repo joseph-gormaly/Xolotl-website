@@ -78,6 +78,7 @@
             <a href="index.html" class="lang-switch-btn active" aria-current="page" onclick="setUserLanguage('es')">ES</a>
           </div>
           <a href="memo.html" class="btn btn-secondary nav-memo-btn">Invertir</a>
+          <button class="btn btn-aurora" onclick="openModal('beta')">Unirse a la Beta</button>
           <button class="btn btn-gold" onclick="openModal('pilot')">Unirse al Piloto</button>
           <a href="https://still.bz/" target="_blank" rel="noopener noreferrer" class="nav-xolo-container" title="Still — still.bz" aria-label="Still">
             <img src="../assets/images/Xoloitzcuintle_logo_v0.png" alt="Xoloitzcuintle" class="nav-xolo-img">
@@ -122,6 +123,7 @@
           </div>
         </div>
         <a href="memo.html" class="btn btn-secondary" style="width: 100%; text-align: center;">Leer Memorando Ejecutivo</a>
+        <button class="btn btn-aurora" style="width: 100%;" onclick="closeMobileMenu(); openModal('beta');">Unirse a la Beta Soberana</button>
         <button class="btn btn-gold" style="width: 100%;" onclick="closeMobileMenu(); openModal('pilot');">Solicitar Acceso al Piloto</button>
       </div>
       <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-warm-gray); text-align: center; margin-top: 16px;">
@@ -166,6 +168,16 @@
             </div>
             <span class="hero-meta-h">Difícil de pronunciar. Imposible de coaccionar.</span>
           </div>
+        </div>
+
+        <!-- Hero CTAs -->
+        <div style="display: flex; gap: 14px; align-items: center; flex-wrap: wrap; margin-top: 24px;">
+          <button class="btn btn-aurora" onclick="openModal('beta')" style="font-size: 1.02rem; padding: 14px 30px;">
+            Unirse a la Beta Soberana &nbsp;→
+          </button>
+          <button class="btn btn-secondary" onclick="openModal('pilot')" style="font-size: 0.98rem; padding: 14px 24px;">
+            Piloto Institucional &nbsp;↗
+          </button>
         </div>
       </div>
     </div>
@@ -265,14 +277,14 @@
         Solicite una habilitación: contacto ejecutivo directo, enclaves aislados criptográficamente y almacenamiento inmutable en Bóveda WORM S3 en Canadá.
       </p>
       <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+        <button class="btn btn-aurora" onclick="openModal('beta')" style="font-size: 1rem; padding: 14px 28px;">
+          Unirse a la Beta &nbsp;→
+        </button>
         <button class="btn btn-gold" onclick="openModal('pilot')" style="font-size: 1rem; padding: 14px 28px;">
           Solicitar Habilitación &nbsp;→
         </button>
         <a href="architecture.html" class="btn btn-secondary" style="font-size: 1rem; padding: 14px 28px;">
           Revisar los Planos Criptográficos &nbsp;→
-        </a>
-        <a href="deck.html" class="btn btn-secondary" style="font-size: 1rem; padding: 14px 28px;">
-          Presentación de 14 Diapositivas ↗
         </a>
       </div>
       <div style="margin-top: 22px; font-size: 0.95rem; color: var(--text-warm-gray);">
@@ -283,6 +295,109 @@
       </div>
     </div>
   </section>
+
+
+  <!-- Sovereign Beta Waitlist Modal -->
+  <div id="betaModal" class="modal-backdrop" onclick="handleBackdrop(event)">
+    <div class="modal-card">
+      <button class="modal-close-btn" onclick="closeModal()">&times;</button>
+      <h3 style="font-size: 1.35rem; color: #FFFFFF; margin-bottom: 6px;">Unirse a la Beta Soberana</h3>
+      <p style="font-size: 0.88rem; color: var(--text-warm-gray); margin-bottom: 18px;">
+        Aliste su nodo en la malla del Escudo Canadiense. Cero telemetría, cero jurisdicción de nube estadounidense y custodia 100% soberana sobre roca madre canadiense.
+      </p>
+
+      <form id="bForm" onsubmit="handleBetaFormSubmit(event)">
+        <label class="form-label" for="bName">Nombre del Operador o Alias</label>
+        <input type="text" id="bName" class="form-input" placeholder="ej. Alex Tremblay o Nodo-7" required>
+
+        <label class="form-label" for="bEmail">Correo Electrónico de Contacto</label>
+        <input type="email" id="bEmail" class="form-input" placeholder="operador@proton.me o usted@dominio.ca" required>
+
+        <label class="form-label" for="bPlatform">Arquitectura Principal del Dispositivo</label>
+        <select id="bPlatform" class="form-input">
+          <option value="macos_arm">macOS (Apple Silicon M1/M2/M3/M4)</option>
+          <option value="macos_intel">macOS (Intel)</option>
+          <option value="windows">Windows 10 / 11 (x64 / ARM)</option>
+          <option value="linux_x86">Linux (x86_64 Debian/Ubuntu/Fedora/Arch)</option>
+          <option value="linux_arm">Linux (ARM64 / Raspberry Pi / Nodo de Borde)</option>
+          <option value="ios_android">Móvil (iOS / Android)</option>
+          <option value="all">Múltiple / Homelab / Clúster Empresarial</option>
+        </select>
+
+        <label class="form-label" for="bInterest">Rol / Enfoque de Despliegue</label>
+        <select id="bInterest" class="form-input">
+          <option value="individual">Defensor de la Privacidad &amp; Individuo Soberano</option>
+          <option value="developer">Desarrollador / Operador de Nodo Custodio DKG</option>
+          <option value="legal">Legal Transfronterizo / Custodia Financiera</option>
+          <option value="defense">Defensa, CMMC, Infraestructura Crítica</option>
+          <option value="enterprise">Equipo Institucional / Empresarial</option>
+        </select>
+
+        <label class="form-label" for="bLocation">Nodo Regional / Ubicación (Aproximada)</label>
+        <input type="text" id="bLocation" class="form-input" placeholder="ej. Montreal, QC, Canadá">
+        <div class="geo-detect-wrap">
+          <span id="bGeoStatus" class="geo-status-indicator"></span>
+          <button type="button" class="btn-detect-loc" onclick="detectExactGPSLocation()">📍 Verificar Coordenadas del Dispositivo</button>
+        </div>
+
+        <label class="form-label" for="bNotes">Lo que la soberanía de datos significa para usted (Opcional)</label>
+        <textarea id="bNotes" class="form-input" rows="2" placeholder="Cuéntenos sobre su entorno, inquietudes con respecto a la CLOUD Act..."></textarea>
+
+        <button type="submit" id="bSubmitBtn" class="btn btn-aurora" style="width: 100%; justify-content: center; font-size: 1rem; padding: 12px 24px;">Alistarse en la Beta Soberana &nbsp;→</button>
+        <div style="text-align: center; margin-top: 10px; font-size: 0.8rem; color: var(--text-warm-gray);">
+          Nunca vendemos datos, no ejecutamos rastreadores de terceros ni registramos coordenadas sin cifrar. Telemetría puramente soberana.
+        </div>
+      </form>
+
+      <div id="bSuccess" style="display:none; text-align: left; padding: 6px 0;">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 14px;">
+          <div style="width: 36px; height: 36px; border-radius: 50%; background: rgba(0, 255, 102, 0.15); border: 1px solid #00ff66; display: flex; align-items: center; justify-content: center; color: #00ff66; font-weight: bold; flex-shrink: 0; font-size: 1.1rem;">✓</div>
+          <div>
+            <h4 style="font-size: 1.18rem; color: #FFFFFF; margin: 0;">Habilitación Beta Registrada</h4>
+            <span style="font-size: 0.78rem; font-family: var(--font-mono); color: #00ff66;">NODO REGISTRADO EN LA MALLA SOBERANA</span>
+          </div>
+        </div>
+
+        <p style="font-size: 0.88rem; color: var(--text-warm-gray); margin-bottom: 14px;">
+          El perfil de despliegue de su nodo ha sido catalogado criptográficamente. A medida que las olas de despliegue se activen en los clústeres del Escudo Canadiense, recibirá sus credenciales de invitación directamente.
+        </p>
+
+        <div class="node-badge-card">
+          <div class="node-badge-header">
+            <span class="node-badge-tag">🍁 NODO SOBERANO DEL ESCUDO CANADIENSE</span>
+            <span id="bBadgeId" class="node-badge-id">NODE-CA-000000</span>
+          </div>
+          <div class="node-badge-grid">
+            <div>
+              <span class="node-badge-label">Operador</span>
+              <span id="bBadgeName" class="node-badge-val">—</span>
+            </div>
+            <div>
+              <span class="node-badge-label">Región / Nodo</span>
+              <span id="bBadgeLoc" class="node-badge-val">—</span>
+            </div>
+            <div>
+              <span class="node-badge-label">Arquitectura</span>
+              <span id="bBadgePlatform" class="node-badge-val">—</span>
+            </div>
+            <div>
+              <span class="node-badge-label">Fecha de Registro</span>
+              <span id="bBadgeTime" class="node-badge-val">—</span>
+            </div>
+          </div>
+          <div style="margin-top: 14px; padding-top: 10px; border-top: 1px dashed rgba(255, 255, 255, 0.12); font-family: var(--font-mono); font-size: 0.72rem; color: #8fa398;">
+            PROTOCOLO: DKG DE PEDERSEN &bull; UMBRAL FROST &bull; CERO JURISDICCIÓN EE. UU.
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px;">
+          <button id="bCopyBtn" class="btn btn-secondary" onclick="copyBetaNodeCertificate()" style="flex: 1; font-size: 0.84rem; padding: 10px 14px;">📋 Copiar Certificado</button>
+          <button class="btn btn-secondary" onclick="shareBetaNode('twitter')" style="font-size: 0.84rem; padding: 10px 14px;">Compartir en 𝕏</button>
+          <button class="btn btn-secondary" onclick="shareBetaNode('linkedin')" style="font-size: 0.84rem; padding: 10px 14px;">LinkedIn</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
   <!-- Pilot Request Modal -->

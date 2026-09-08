@@ -78,6 +78,7 @@
             <a href="../es/index.html" class="lang-switch-btn" title="Ver en Español" onclick="setUserLanguage('es')">ES</a>
           </div>
           <a href="memo.html" class="btn btn-secondary nav-memo-btn">Investir</a>
+          <button class="btn btn-aurora" onclick="openModal('beta')">Rejoindre la Bêta</button>
           <button class="btn btn-gold" onclick="openModal('pilot')">Rejoindre le Pilote</button>
           <a href="https://still.bz/" target="_blank" rel="noopener noreferrer" class="nav-xolo-container" title="Still — still.bz" aria-label="Still">
             <img src="../assets/images/Xoloitzcuintle_logo_v0.png" alt="Xoloitzcuintle" class="nav-xolo-img">
@@ -122,6 +123,7 @@
           </div>
         </div>
         <a href="memo.html" class="btn btn-secondary" style="width: 100%; text-align: center;">Mémorandum d'Investissement</a>
+        <button class="btn btn-aurora" style="width: 100%;" onclick="closeMobileMenu(); openModal('beta');">Rejoindre la Bêta Souveraine</button>
         <button class="btn btn-gold" style="width: 100%;" onclick="closeMobileMenu(); openModal('pilot');">Demander l'Accès au Pilote</button>
       </div>
       <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-warm-gray); text-align: center; margin-top: 16px;">
@@ -166,6 +168,16 @@
             </div>
             <span class="hero-meta-h">Difficile à épeler. Impossible à contraindre.</span>
           </div>
+        </div>
+
+        <!-- Hero CTAs -->
+        <div style="display: flex; gap: 14px; align-items: center; flex-wrap: wrap; margin-top: 24px;">
+          <button class="btn btn-aurora" onclick="openModal('beta')" style="font-size: 1.02rem; padding: 14px 30px;">
+            Rejoindre la Bêta Souveraine &nbsp;→
+          </button>
+          <button class="btn btn-secondary" onclick="openModal('pilot')" style="font-size: 0.98rem; padding: 14px 24px;">
+            Pilote Institutionnel &nbsp;↗
+          </button>
         </div>
       </div>
     </div>
@@ -265,14 +277,14 @@
         Demandez une habilitation : contact exécutif direct, enclaves cryptographiquement isolées et stockage immuable en Coffre-Fort WORM S3 canadien.
       </p>
       <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+        <button class="btn btn-aurora" onclick="openModal('beta')" style="font-size: 1rem; padding: 14px 28px;">
+          Rejoindre la Bêta &nbsp;→
+        </button>
         <button class="btn btn-gold" onclick="openModal('pilot')" style="font-size: 1rem; padding: 14px 28px;">
           Demander une Habilitation &nbsp;→
         </button>
         <a href="architecture.html" class="btn btn-secondary" style="font-size: 1rem; padding: 14px 28px;">
           Consulter les Schémas Cryptographiques &nbsp;→
-        </a>
-        <a href="deck.html" class="btn btn-secondary" style="font-size: 1rem; padding: 14px 28px;">
-          Présentation de 14 Diapositives ↗
         </a>
       </div>
       <div style="margin-top: 22px; font-size: 0.95rem; color: var(--text-warm-gray);">
@@ -283,6 +295,109 @@
       </div>
     </div>
   </section>
+
+
+  <!-- Sovereign Beta Waitlist Modal -->
+  <div id="betaModal" class="modal-backdrop" onclick="handleBackdrop(event)">
+    <div class="modal-card">
+      <button class="modal-close-btn" onclick="closeModal()">&times;</button>
+      <h3 style="font-size: 1.35rem; color: #FFFFFF; margin-bottom: 6px;">Rejoindre la Bêta Souveraine</h3>
+      <p style="font-size: 0.88rem; color: var(--text-warm-gray); margin-bottom: 18px;">
+        Enrôlez votre nœud dans le maillage du Bouclier Canadien. Zéro télémétrie, zéro juridiction infonuagique américaine et garde 100 % souveraine sur le socle canadien.
+      </p>
+
+      <form id="bForm" onsubmit="handleBetaFormSubmit(event)">
+        <label class="form-label" for="bName">Nom de l'Opérateur ou Alias</label>
+        <input type="text" id="bName" class="form-input" placeholder="ex. Alex Tremblay ou Node-7" required>
+
+        <label class="form-label" for="bEmail">Courriel de Contact</label>
+        <input type="email" id="bEmail" class="form-input" placeholder="operateur@proton.me ou vous@domaine.ca" required>
+
+        <label class="form-label" for="bPlatform">Architecture Principale de l'Appareil</label>
+        <select id="bPlatform" class="form-input">
+          <option value="macos_arm">macOS (Apple Silicon M1/M2/M3/M4)</option>
+          <option value="macos_intel">macOS (Intel)</option>
+          <option value="windows">Windows 10 / 11 (x64 / ARM)</option>
+          <option value="linux_x86">Linux (x86_64 Debian/Ubuntu/Fedora/Arch)</option>
+          <option value="linux_arm">Linux (ARM64 / Raspberry Pi / Nœud Périphérique)</option>
+          <option value="ios_android">Mobile (iOS / Android)</option>
+          <option value="all">Multiple / Homelab / Grappe d'Entreprise</option>
+        </select>
+
+        <label class="form-label" for="bInterest">Rôle / Priorité de Déploiement</label>
+        <select id="bInterest" class="form-input">
+          <option value="individual">Défenseur de la Vie Privée &amp; Individu Souverain</option>
+          <option value="developer">Développeur / Opérateur de Nœud Dépositaire DKG</option>
+          <option value="legal">Juridique Transfrontalier / Garde Financière</option>
+          <option value="defense">Défense, CMMC, Infrastructure Critique</option>
+          <option value="enterprise">Équipe Institutionnelle / Entreprise</option>
+        </select>
+
+        <label class="form-label" for="bLocation">Nœud Régional / Emplacement (Approximatif)</label>
+        <input type="text" id="bLocation" class="form-input" placeholder="ex. Montréal, QC, Canada">
+        <div class="geo-detect-wrap">
+          <span id="bGeoStatus" class="geo-status-indicator"></span>
+          <button type="button" class="btn-detect-loc" onclick="detectExactGPSLocation()">📍 Vérifier Coordonnées de l'Appareil</button>
+        </div>
+
+        <label class="form-label" for="bNotes">Ce que la souveraineté des données signifie pour vous (Optionnel)</label>
+        <textarea id="bNotes" class="form-input" rows="2" placeholder="Parlez-nous de votre environnement, vos préoccupations face au CLOUD Act..."></textarea>
+
+        <button type="submit" id="bSubmitBtn" class="btn btn-aurora" style="width: 100%; justify-content: center; font-size: 1rem; padding: 12px 24px;">S'enrôler dans la Bêta Souveraine &nbsp;→</button>
+        <div style="text-align: center; margin-top: 10px; font-size: 0.8rem; color: var(--text-warm-gray);">
+          Nous ne vendons jamais de données, n'intégrons aucun traceur tiers et ne stockons aucune coordonnée non chiffrée. Télémétrie purement souveraine.
+        </div>
+      </form>
+
+      <div id="bSuccess" style="display:none; text-align: left; padding: 6px 0;">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 14px;">
+          <div style="width: 36px; height: 36px; border-radius: 50%; background: rgba(0, 255, 102, 0.15); border: 1px solid #00ff66; display: flex; align-items: center; justify-content: center; color: #00ff66; font-weight: bold; flex-shrink: 0; font-size: 1.1rem;">✓</div>
+          <div>
+            <h4 style="font-size: 1.18rem; color: #FFFFFF; margin: 0;">Habilitation Bêta Enregistrée</h4>
+            <span style="font-size: 0.78rem; font-family: var(--font-mono); color: #00ff66;">NŒUD ENRÔLÉ DANS LE MAILLAGE SOUVERAIN</span>
+          </div>
+        </div>
+
+        <p style="font-size: 0.88rem; color: var(--text-warm-gray); margin-bottom: 14px;">
+          Le profil de déploiement de votre nœud a été catalogué cryptographiquement. À mesure que les vagues de déploiement s'activeront sur les grappes du Bouclier Canadien, vous recevrez directement vos identifiants d'invitation.
+        </p>
+
+        <div class="node-badge-card">
+          <div class="node-badge-header">
+            <span class="node-badge-tag">🍁 NŒUD SOUVERAIN DU BOUCLIER CANADIEN</span>
+            <span id="bBadgeId" class="node-badge-id">NODE-CA-000000</span>
+          </div>
+          <div class="node-badge-grid">
+            <div>
+              <span class="node-badge-label">Opérateur</span>
+              <span id="bBadgeName" class="node-badge-val">—</span>
+            </div>
+            <div>
+              <span class="node-badge-label">Région / Nœud</span>
+              <span id="bBadgeLoc" class="node-badge-val">—</span>
+            </div>
+            <div>
+              <span class="node-badge-label">Architecture</span>
+              <span id="bBadgePlatform" class="node-badge-val">—</span>
+            </div>
+            <div>
+              <span class="node-badge-label">Date d'Enrôlement</span>
+              <span id="bBadgeTime" class="node-badge-val">—</span>
+            </div>
+          </div>
+          <div style="margin-top: 14px; padding-top: 10px; border-top: 1px dashed rgba(255, 255, 255, 0.12); font-family: var(--font-mono); font-size: 0.72rem; color: #8fa398;">
+            PROTOCOLE : PEDERSEN DKG &bull; SEUIL FROST &bull; ZÉRO JURIDICTION ÉTATS-UNIS
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px;">
+          <button id="bCopyBtn" class="btn btn-secondary" onclick="copyBetaNodeCertificate()" style="flex: 1; font-size: 0.84rem; padding: 10px 14px;">📋 Copier le Certificat</button>
+          <button class="btn btn-secondary" onclick="shareBetaNode('twitter')" style="font-size: 0.84rem; padding: 10px 14px;">Partager sur 𝕏</button>
+          <button class="btn btn-secondary" onclick="shareBetaNode('linkedin')" style="font-size: 0.84rem; padding: 10px 14px;">LinkedIn</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
   <!-- Pilot Request Modal -->

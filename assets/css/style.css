@@ -330,9 +330,10 @@
       white-space: nowrap;
     }
 
-    .nav-actions .btn-gold {
-      padding: 8px 18px;
-      font-size: 0.88rem;
+    .nav-actions .btn-gold,
+    .nav-actions .btn-aurora {
+      padding: 8px 16px;
+      font-size: 0.86rem;
       white-space: nowrap;
     }
 
@@ -396,6 +397,28 @@
       transform: translateY(-2px);
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7),
                   0 10px 36px rgba(212, 175, 55, 0.6),
+                  0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Boreal Aurora Green Tactical Button (Beta Action) */
+    .btn-aurora {
+      background: linear-gradient(135deg, #00FF66 0%, #00CC52 55%, #00993D 100%);
+      color: #04140A;
+      font-weight: 700;
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6),
+                  0 6px 26px rgba(0, 255, 102, 0.42),
+                  0 2px 8px rgba(0, 0, 0, 0.35);
+      text-shadow: none;
+    }
+
+    .btn-aurora:hover {
+      background: linear-gradient(135deg, #33FF85 0%, #00E65C 55%, #00B347 100%);
+      border-color: #FFFFFF;
+      color: #021006;
+      transform: translateY(-2px);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8),
+                  0 10px 36px rgba(0, 255, 102, 0.65),
                   0 4px 12px rgba(0, 0, 0, 0.4);
     }
 
@@ -2319,6 +2342,115 @@
       border-color: var(--accent-gold);
       background: rgba(0, 0, 0, 0.65);
       box-shadow: 0 0 12px rgba(212, 175, 55, 0.25);
+    }
+
+    /* Location Detection Widget */
+    .geo-detect-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: -10px;
+      margin-bottom: 16px;
+    }
+
+    .btn-detect-loc {
+      background: rgba(0, 255, 102, 0.08);
+      border: 1px solid rgba(0, 255, 102, 0.35);
+      color: #00ff66;
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      padding: 5px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-detect-loc:hover {
+      background: rgba(0, 255, 102, 0.2);
+      border-color: #00ff66;
+      box-shadow: 0 0 12px rgba(0, 255, 102, 0.3);
+      transform: translateY(-1px);
+    }
+
+    .geo-status-indicator {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      color: #8fa398;
+    }
+
+    /* Sovereign Node Certificate / Badge Card */
+    .node-badge-card {
+      background: linear-gradient(135deg, rgba(14, 25, 19, 0.95) 0%, rgba(7, 14, 10, 0.98) 100%);
+      border: 1px solid rgba(0, 255, 102, 0.45);
+      border-radius: 12px;
+      padding: 22px;
+      margin: 18px 0;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 25px rgba(0, 255, 102, 0.15);
+      text-align: left;
+    }
+
+    .node-badge-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #00ff66, #d4af37, transparent);
+    }
+
+    .node-badge-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 10px;
+    }
+
+    .node-badge-tag {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--accent-gold);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .node-badge-id {
+      font-family: var(--font-mono);
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #00ff66;
+      letter-spacing: 0.08em;
+      text-shadow: 0 0 10px rgba(0, 255, 102, 0.5);
+    }
+
+    .node-badge-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+    }
+
+    .node-badge-label {
+      color: #7d9487;
+      display: block;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+
+    .node-badge-val {
+      color: #FFFFFF;
+      font-weight: 600;
     }
 
     /* Footer (Augure Styled Editorial Footer) */

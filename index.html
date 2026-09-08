@@ -78,6 +78,7 @@
             <a href="es/index.html" class="lang-switch-btn" title="Ver en Español" onclick="setUserLanguage('es')">ES</a>
           </div>
           <a href="memo.html" class="btn btn-secondary nav-memo-btn">Invest</a>
+          <button class="btn btn-aurora" onclick="openModal('beta')">Join Beta</button>
           <button class="btn btn-gold" onclick="openModal('pilot')">Join Pilot</button>
           <a href="https://still.bz/" target="_blank" rel="noopener noreferrer" class="nav-xolo-container" title="Still — still.bz" aria-label="Still">
             <img src="assets/images/Xoloitzcuintle_logo_v0.png" alt="Xoloitzcuintle" class="nav-xolo-img">
@@ -122,6 +123,7 @@
           </div>
         </div>
         <a href="memo.html" class="btn btn-secondary" style="width: 100%; text-align: center;">Investment Memo</a>
+        <button class="btn btn-aurora" style="width: 100%;" onclick="closeMobileMenu(); openModal('beta');">Join the Sovereign Beta</button>
         <button class="btn btn-gold" style="width: 100%;" onclick="closeMobileMenu(); openModal('pilot');">Request Pilot Access</button>
       </div>
       <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-warm-gray); text-align: center; margin-top: 16px;">
@@ -166,6 +168,14 @@
             </div>
             <span class="hero-meta-h">Hard to spell. Impossible to compel.</span>
           </div>
+        <!-- Hero CTAs -->
+        <div style="display: flex; gap: 14px; align-items: center; flex-wrap: wrap; margin-top: 24px;">
+          <button class="btn btn-aurora" onclick="openModal('beta')" style="font-size: 1.02rem; padding: 14px 30px;">
+            Join the Sovereign Beta &nbsp;→
+          </button>
+          <button class="btn btn-secondary" onclick="openModal('pilot')" style="font-size: 0.98rem; padding: 14px 24px;">
+            Institutional Pilot &nbsp;↗
+          </button>
         </div>
       </div>
     </div>
@@ -265,14 +275,14 @@
         Request clearance: direct executive contact, cryptographically isolated enclaves, and Canadian S3 compliance WORM Vault storage.
       </p>
       <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+        <button class="btn btn-aurora" onclick="openModal('beta')" style="font-size: 1rem; padding: 14px 28px;">
+          Join the Beta &nbsp;→
+        </button>
         <button class="btn btn-gold" onclick="openModal('pilot')" style="font-size: 1rem; padding: 14px 28px;">
           Request Clearance &nbsp;→
         </button>
         <a href="architecture.html" class="btn btn-secondary" style="font-size: 1rem; padding: 14px 28px;">
           Review Cryptographic Blueprints &nbsp;→
-        </a>
-        <a href="deck.html" class="btn btn-secondary" style="font-size: 1rem; padding: 14px 28px;">
-          14-Slide Presentation ↗
         </a>
       </div>
       <div style="margin-top: 22px; font-size: 0.95rem; color: var(--text-warm-gray);">
@@ -283,6 +293,109 @@
       </div>
     </div>
   </section>
+
+
+  <!-- Sovereign Beta Waitlist Modal -->
+  <div id="betaModal" class="modal-backdrop" onclick="handleBackdrop(event)">
+    <div class="modal-card">
+      <button class="modal-close-btn" onclick="closeModal()">&times;</button>
+      <h3 style="font-size: 1.35rem; color: #FFFFFF; margin-bottom: 6px;">Join the Sovereign Beta</h3>
+      <p style="font-size: 0.88rem; color: var(--text-warm-gray); margin-bottom: 18px;">
+        Enlist your node in the Canadian Shield mesh. Zero telemetry, zero US cloud jurisdiction, and 100% sovereign Canadian custody.
+      </p>
+
+      <form id="bForm" onsubmit="handleBetaFormSubmit(event)">
+        <label class="form-label" for="bName">Operator Name or Alias</label>
+        <input type="text" id="bName" class="form-input" placeholder="e.g. Alex Tremblay or Node-7" required>
+
+        <label class="form-label" for="bEmail">Contact Email</label>
+        <input type="email" id="bEmail" class="form-input" placeholder="operator@proton.me or you@domain.ca" required>
+
+        <label class="form-label" for="bPlatform">Primary Device Architecture</label>
+        <select id="bPlatform" class="form-input">
+          <option value="macos_arm">macOS (Apple Silicon M1/M2/M3/M4)</option>
+          <option value="macos_intel">macOS (Intel)</option>
+          <option value="windows">Windows 10 / 11 (x64 / ARM)</option>
+          <option value="linux_x86">Linux (x86_64 Debian/Ubuntu/Fedora/Arch)</option>
+          <option value="linux_arm">Linux (ARM64 / Raspberry Pi / Edge Node)</option>
+          <option value="ios_android">Mobile (iOS / Android)</option>
+          <option value="all">Multiple / Homelab / Enterprise Cluster</option>
+        </select>
+
+        <label class="form-label" for="bInterest">Role / Deployment Focus</label>
+        <select id="bInterest" class="form-input">
+          <option value="individual">Privacy Advocate &amp; Sovereign Individual</option>
+          <option value="developer">Developer / DKG Custodian Node Operator</option>
+          <option value="legal">Cross-Border Legal / Financial Custody</option>
+          <option value="defense">Defense, CMMC, Critical Infrastructure</option>
+          <option value="enterprise">Institutional / Enterprise Team</option>
+        </select>
+
+        <label class="form-label" for="bLocation">Regional Node / Location (Coarse)</label>
+        <input type="text" id="bLocation" class="form-input" placeholder="e.g. Montreal, QC, Canada">
+        <div class="geo-detect-wrap">
+          <span id="bGeoStatus" class="geo-status-indicator"></span>
+          <button type="button" class="btn-detect-loc" onclick="detectExactGPSLocation()">📍 Verify Device Coordinates</button>
+        </div>
+
+        <label class="form-label" for="bNotes">What Data Sovereignty Means to You (Optional)</label>
+        <textarea id="bNotes" class="form-input" rows="2" placeholder="Tell us about your setup, concerns with CLOUD Act, or sovereign requirements..."></textarea>
+
+        <button type="submit" id="bSubmitBtn" class="btn btn-aurora" style="width: 100%; justify-content: center; font-size: 1rem; padding: 12px 24px;">Enlist in the Sovereign Beta &nbsp;→</button>
+        <div style="text-align: center; margin-top: 10px; font-size: 0.8rem; color: var(--text-warm-gray);">
+          We never sell data, run third-party trackers, or log unencrypted locations. Pure sovereign telemetry.
+        </div>
+      </form>
+
+      <div id="bSuccess" style="display:none; text-align: left; padding: 6px 0;">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 14px;">
+          <div style="width: 36px; height: 36px; border-radius: 50%; background: rgba(0, 255, 102, 0.15); border: 1px solid #00ff66; display: flex; align-items: center; justify-content: center; color: #00ff66; font-weight: bold; flex-shrink: 0; font-size: 1.1rem;">✓</div>
+          <div>
+            <h4 style="font-size: 1.18rem; color: #FFFFFF; margin: 0;">Beta Clearance Enlisted</h4>
+            <span style="font-size: 0.78rem; font-family: var(--font-mono); color: #00ff66;">NODE REGISTERED TO SOVEREIGN MESH</span>
+          </div>
+        </div>
+
+        <p style="font-size: 0.88rem; color: var(--text-warm-gray); margin-bottom: 14px;">
+          Your node deployment profile has been cryptographically cataloged. As rollout waves activate across Canadian Shield clusters, you will receive invitation credentials directly.
+        </p>
+
+        <div class="node-badge-card">
+          <div class="node-badge-header">
+            <span class="node-badge-tag">🍁 CANADIAN SHIELD SOVEREIGN NODE</span>
+            <span id="bBadgeId" class="node-badge-id">NODE-CA-000000</span>
+          </div>
+          <div class="node-badge-grid">
+            <div>
+              <span class="node-badge-label">Operator</span>
+              <span id="bBadgeName" class="node-badge-val">—</span>
+            </div>
+            <div>
+              <span class="node-badge-label">Region / Node</span>
+              <span id="bBadgeLoc" class="node-badge-val">—</span>
+            </div>
+            <div>
+              <span class="node-badge-label">Architecture</span>
+              <span id="bBadgePlatform" class="node-badge-val">—</span>
+            </div>
+            <div>
+              <span class="node-badge-label">Enlisted Date</span>
+              <span id="bBadgeTime" class="node-badge-val">—</span>
+            </div>
+          </div>
+          <div style="margin-top: 14px; padding-top: 10px; border-top: 1px dashed rgba(255, 255, 255, 0.12); font-family: var(--font-mono); font-size: 0.72rem; color: #8fa398;">
+            PROTOCOL: PEDERSEN DKG &bull; FROST THRESHOLD &bull; ZERO US JURISDICTION
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px;">
+          <button id="bCopyBtn" class="btn btn-secondary" onclick="copyBetaNodeCertificate()" style="flex: 1; font-size: 0.84rem; padding: 10px 14px;">📋 Copy Certificate</button>
+          <button class="btn btn-secondary" onclick="shareBetaNode('twitter')" style="font-size: 0.84rem; padding: 10px 14px;">Share on 𝕏</button>
+          <button class="btn btn-secondary" onclick="shareBetaNode('linkedin')" style="font-size: 0.84rem; padding: 10px 14px;">LinkedIn</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
   <!-- Pilot Request Modal -->

@@ -132,6 +132,12 @@ function openModal(type) {
   if (type === 'privacy') {
     const modal = document.getElementById('privacyModal');
     if (modal) modal.classList.add('active');
+  } else if (type === 'beta') {
+    const modal = document.getElementById('betaModal');
+    if (modal) {
+      modal.classList.add('active');
+      initBetaLocationDetection();
+    }
   } else {
     const modal = document.getElementById('pilotModal');
     if (modal) {
@@ -156,12 +162,14 @@ function openModal(type) {
 function closeModal() {
   const pilot = document.getElementById('pilotModal');
   const priv = document.getElementById('privacyModal');
+  const beta = document.getElementById('betaModal');
   if (pilot) pilot.classList.remove('active');
   if (priv) priv.classList.remove('active');
+  if (beta) beta.classList.remove('active');
 }
 
 function handleBackdrop(e) {
-  if (e && (e.target.id === 'pilotModal' || e.target.id === 'privacyModal')) {
+  if (e && (e.target.id === 'pilotModal' || e.target.id === 'privacyModal' || e.target.id === 'betaModal')) {
     closeModal();
   }
 }
@@ -279,6 +287,348 @@ function editApplicationDetails() {
   const pSuccess = document.getElementById('pSuccess');
   if (pSuccess) pSuccess.style.display = 'none';
   if (pForm) pForm.style.display = 'block';
+}
+
+// --- Supabase & Sovereign Beta Waitlist Integration ---
+const XOLOTL_SUPABASE = {
+  url: (window.XOLOTL_SUPABASE_CONFIG && window.XOLOTL_SUPABASE_CONFIG.url) || 'https://xolotl-sovereign.supabase.co',
+  anonKey: (window.XOLOTL_SUPABASE_CONFIG && window.XOLOTL_SUPABASE_CONFIG.anonKey) || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.public-anon-key',
+  tableName: 'beta_signups'
+};
+
+let detectedGeo = {
+  city: '',
+  region: '',
+  country: '',
+  countryCode: '',
+  latitude: null,
+  longitude: null,
+  timezone: '',
+  isCoarse: true
+};
+
+let currentBetaBadgeText = '';
+
+function initBetaLocationDetection() {
+  // 1. Passive Timezone Detection (zero-permission, privacy-respecting)
+  try {
+    detectedGeo.timezone = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+  } catch (e) {}
+
+  const locInput = document.getElementById('bLocation');
+  const geoStatus = document.getElementById('bGeoStatus');
+
+  if (locInput && locInput.value.trim().length > 0) return;
+
+  if (geoStatus) {
+    geoStatus.innerText = pick({
+      en: 'Detecting regional node...',
+      fr: 'Détection du nœud régional...',
+      es: 'Detectando nodo regional...'
+    });
+  }
+
+  // 2. Coarse IP-based reverse geo lookup (privacy-friendly, non-invasive)
+  fetch('https://freeipapi.com/api/json')
+    .then(res => {
+      if (!res.ok) throw new Error('Geo API failed');
+      return res.json();
+    })
+    .then(data => {
+      if (data && data.cityName) {
+        detectedGeo.city = data.cityName || '';
+        detectedGeo.region = data.regionName || '';
+        detectedGeo.country = data.countryName || '';
+        detectedGeo.countryCode = data.countryCode || '';
+        if (data.latitude && data.longitude) {
+          detectedGeo.latitude = Number(Number(data.latitude).toFixed(3));
+          detectedGeo.longitude = Number(Number(data.longitude).toFixed(3));
+        }
+
+        const formatted = [detectedGeo.city, detectedGeo.region, detectedGeo.country].filter(Boolean).join(', ');
+        if (locInput && !locInput.value) {
+          locInput.value = formatted + (detectedGeo.countryCode === 'CA' ? ' 🍁' : '');
+        }
+
+        if (geoStatus) {
+          geoStatus.innerHTML = pick({
+            en: `✓ Node Region: <strong>${detectedGeo.city || detectedGeo.country}</strong>`,
+            fr: `✓ Région du Nœud : <strong>${detectedGeo.city || detectedGeo.country}</strong>`,
+            es: `✓ Región del Nodo: <strong>${detectedGeo.city || detectedGeo.country}</strong>`
+          });
+        }
+      }
+    })
+    .catch(() => {
+      fetch('https://ipapi.co/json/')
+        .then(res => res.json())
+        .then(data => {
+          if (data && data.city) {
+            detectedGeo.city = data.city || '';
+            detectedGeo.region = data.region || '';
+            detectedGeo.country = data.country_name || '';
+            detectedGeo.countryCode = data.country_code || '';
+            if (data.latitude && data.longitude) {
+              detectedGeo.latitude = Number(Number(data.latitude).toFixed(3));
+              detectedGeo.longitude = Number(Number(data.longitude).toFixed(3));
+            }
+            const formatted = [detectedGeo.city, detectedGeo.region, detectedGeo.country].filter(Boolean).join(', ');
+            if (locInput && !locInput.value) {
+              locInput.value = formatted + (detectedGeo.countryCode === 'CA' ? ' 🍁' : '');
+            }
+            if (geoStatus) {
+              geoStatus.innerHTML = `✓ Node Region: <strong>${detectedGeo.city || detectedGeo.country}</strong>`;
+            }
+          } else {
+            if (geoStatus) geoStatus.innerText = detectedGeo.timezone ? `Timezone: ${detectedGeo.timezone}` : '';
+          }
+        })
+        .catch(() => {
+          if (geoStatus) {
+            geoStatus.innerText = detectedGeo.timezone ? `Zone: ${detectedGeo.timezone}` : '';
+          }
+        });
+    });
+}
+
+function detectExactGPSLocation() {
+  const geoStatus = document.getElementById('bGeoStatus');
+  const locInput = document.getElementById('bLocation');
+
+  if (!navigator.geolocation) {
+    alert(pick({
+      en: 'Geolocation is not supported by your browser.',
+      fr: 'La géolocalisation n\'est pas prise en charge par votre navigateur.',
+      es: 'La geolocalización no es compatible con su navegador.'
+    }));
+    return;
+  }
+
+  if (geoStatus) {
+    geoStatus.innerText = pick({
+      en: 'Requesting device node coordinates...',
+      fr: 'Demande des coordonnées de l\'appareil...',
+      es: 'Solicitando coordenadas del dispositivo...'
+    });
+  }
+
+  navigator.geolocation.getCurrentPosition(
+    pos => {
+      detectedGeo.latitude = Number(pos.coords.latitude.toFixed(3));
+      detectedGeo.longitude = Number(pos.coords.longitude.toFixed(3));
+      detectedGeo.isCoarse = false;
+
+      fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${detectedGeo.latitude}&lon=${detectedGeo.longitude}`)
+        .then(res => res.json())
+        .then(data => {
+          const addr = data.address || {};
+          const city = addr.city || addr.town || addr.municipality || addr.village || '';
+          const state = addr.state || addr.province || '';
+          const country = addr.country || '';
+          detectedGeo.city = city;
+          detectedGeo.region = state;
+          detectedGeo.country = country;
+          detectedGeo.countryCode = (addr.country_code || '').toUpperCase();
+
+          const formatted = [city, state, country].filter(Boolean).join(', ');
+          if (locInput) locInput.value = formatted + (detectedGeo.countryCode === 'CA' ? ' 🍁' : '');
+          if (geoStatus) {
+            geoStatus.innerHTML = pick({
+              en: `✓ Node Verified: <strong>${city || country}</strong> [${detectedGeo.latitude}, ${detectedGeo.longitude}]`,
+              fr: `✓ Nœud Vérifié : <strong>${city || country}</strong> [${detectedGeo.latitude}, ${detectedGeo.longitude}]`,
+              es: `✓ Nodo Verificado: <strong>${city || country}</strong> [${detectedGeo.latitude}, ${detectedGeo.longitude}]`
+            });
+          }
+        })
+        .catch(() => {
+          if (locInput && !locInput.value) {
+            locInput.value = `Lat: ${detectedGeo.latitude}, Lon: ${detectedGeo.longitude}`;
+          }
+          if (geoStatus) {
+            geoStatus.innerHTML = `✓ Coordinates Captured [${detectedGeo.latitude}, ${detectedGeo.longitude}]`;
+          }
+        });
+    },
+    err => {
+      console.warn('Geolocation permission denied or timed out:', err);
+      if (geoStatus) {
+        geoStatus.innerText = pick({
+          en: 'Device location skipped. Regional timezone retained.',
+          fr: 'Localisation de l\'appareil ignorée. Fuseau horaire conservé.',
+          es: 'Ubicación omitida. Zona horaria conservada.'
+        });
+      }
+    },
+    { timeout: 8000, maximumAge: 60000 }
+  );
+}
+
+function generateNodeId(countryCode) {
+  const code = (countryCode || 'CA').toUpperCase().substring(0, 2);
+  const randHex = Math.floor(Math.random() * 0xFFFFFF).toString(16).toUpperCase().padStart(6, '0');
+  return `NODE-${code}-${randHex}`;
+}
+
+async function handleBetaFormSubmit(e) {
+  e.preventDefault();
+  const submitBtn = document.getElementById('bSubmitBtn');
+  if (submitBtn) {
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = pick({
+      en: 'Enlisting Node...',
+      fr: 'Enrôlement du nœud...',
+      es: 'Alistando nodo...'
+    });
+  }
+
+  const fullName = (document.getElementById('bName')?.value || '').trim();
+  const email = (document.getElementById('bEmail')?.value || '').trim();
+  const platform = document.getElementById('bPlatform')?.value || 'all';
+  const interestType = document.getElementById('bInterest')?.value || 'individual';
+  const locationText = (document.getElementById('bLocation')?.value || '').trim();
+  const notes = (document.getElementById('bNotes')?.value || '').trim();
+  const lang = getCurrentLang();
+
+  let locCity = detectedGeo.city;
+  let locRegion = detectedGeo.region;
+  let locCountry = detectedGeo.country;
+  let locCountryCode = detectedGeo.countryCode;
+
+  if (locationText && locationText !== `${locCity}, ${locRegion}, ${locCountry}`) {
+    const parts = locationText.replace('🍁', '').split(',').map(s => s.trim());
+    if (parts.length >= 2) {
+      locCity = parts[0];
+      locCountry = parts[parts.length - 1];
+    } else if (parts.length === 1) {
+      locCity = parts[0];
+    }
+  }
+
+  const nodeId = generateNodeId(locCountryCode || 'CA');
+  const timestamp = new Date().toISOString();
+
+  const payload = {
+    full_name: fullName,
+    email: email,
+    platform: platform,
+    interest_type: interestType,
+    city: locCity || locationText,
+    region: locRegion,
+    country: locCountry,
+    country_code: locCountryCode,
+    latitude: detectedGeo.latitude,
+    longitude: detectedGeo.longitude,
+    detected_timezone: detectedGeo.timezone,
+    language: lang,
+    notes: notes,
+    node_badge_id: nodeId,
+    status: 'waitlist'
+  };
+
+  // 1. Post to Supabase REST API
+  let supabaseSuccess = false;
+  try {
+    const supabaseEndpoint = `${XOLOTL_SUPABASE.url}/rest/v1/${XOLOTL_SUPABASE.tableName}`;
+    const res = await fetch(supabaseEndpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': XOLOTL_SUPABASE.anonKey,
+        'Authorization': `Bearer ${XOLOTL_SUPABASE.anonKey}`,
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify(payload)
+    });
+    if (res.ok || res.status === 201) {
+      supabaseSuccess = true;
+    } else {
+      console.warn('Supabase post response non-200:', res.status);
+    }
+  } catch (err) {
+    console.warn('Supabase connection deferred or not configured:', err);
+  }
+
+  // 2. Persist locally to guarantee zero data loss
+  try {
+    const existing = JSON.parse(localStorage.getItem('xolotl_beta_signups') || '[]');
+    existing.push({ ...payload, submitted_at: timestamp, synced_to_supabase: supabaseSuccess });
+    localStorage.setItem('xolotl_beta_signups', JSON.stringify(existing));
+  } catch (err) {
+    console.warn('LocalStorage save error:', err);
+  }
+
+  // 3. Render Visual Node Certificate / Badge
+  const bBadgeId = document.getElementById('bBadgeId');
+  const bBadgeName = document.getElementById('bBadgeName');
+  const bBadgeLoc = document.getElementById('bBadgeLoc');
+  const bBadgePlatform = document.getElementById('bBadgePlatform');
+  const bBadgeTime = document.getElementById('bBadgeTime');
+
+  if (bBadgeId) bBadgeId.innerText = nodeId;
+  if (bBadgeName) bBadgeName.innerText = fullName;
+  if (bBadgeLoc) bBadgeLoc.innerText = locationText || `${locCity || 'Bedrock'}, ${locCountry || 'Canada'}`;
+  if (bBadgePlatform) bBadgePlatform.innerText = platform.toUpperCase();
+  if (bBadgeTime) bBadgeTime.innerText = new Date().toLocaleDateString(lang, { month: 'short', day: 'numeric', year: 'numeric' });
+
+  currentBetaBadgeText = 
+`🛡️ XOLOTL CANADIAN SHIELD — SOVEREIGN BETA NODE
+===================================================
+Node Registry ID:   ${nodeId}
+Enlisted Operator:  ${fullName}
+Deployment Region:  ${locationText || locCity || 'Canadian Shield Bedrock'}
+Client Platform:    ${platform}
+Verification:       Pedersen DKG / FROST Threshold Mesh
+Sovereign Network:  https://xolotl.ca
+===================================================
+The cloud has trust issues. Meet the Canadian Shield.`;
+
+  // 4. Toggle UI views
+  const bForm = document.getElementById('bForm');
+  const bSuccess = document.getElementById('bSuccess');
+  if (bForm) bForm.style.display = 'none';
+  if (bSuccess) bSuccess.style.display = 'block';
+
+  if (submitBtn) {
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = pick({
+      en: 'Enlist in the Sovereign Beta →',
+      fr: 'S\'enrôler dans la Bêta Souveraine →',
+      es: 'Alistarse en la Beta Soberana →'
+    });
+  }
+}
+
+function copyBetaNodeCertificate() {
+  if (!currentBetaBadgeText) return;
+  navigator.clipboard.writeText(currentBetaBadgeText).then(() => {
+    const btn = document.getElementById('bCopyBtn');
+    if (btn) {
+      const orig = btn.innerHTML;
+      btn.innerHTML = pick({
+        en: '✓ Certificate Copied!',
+        fr: '✓ Certificat Copié !',
+        es: '✓ ¡Certificado Copiado!'
+      });
+      btn.style.color = '#00ff66';
+      btn.style.borderColor = '#00ff66';
+      setTimeout(() => {
+        btn.innerHTML = orig;
+        btn.style.color = '';
+        btn.style.borderColor = '';
+      }, 2500);
+    }
+  }).catch(() => {
+    alert(currentBetaBadgeText);
+  });
+}
+
+function shareBetaNode(platform) {
+  const text = encodeURIComponent("I just enlisted my node on the Xolotl Sovereign Beta. The cloud has trust issues. Meet the Canadian Shield: https://xolotl.ca");
+  if (platform === 'twitter') {
+    window.open(`https://twitter.com/intent/tweet?text=${text}`, '_blank', 'noopener,noreferrer');
+  } else if (platform === 'linkedin') {
+    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=https://xolotl.ca`, '_blank', 'noopener,noreferrer');
+  }
 }
 
 // --- Cookie Consent Notice ---

@@ -133,26 +133,27 @@
       gap: 16px;
     }
 
+    /* Masterbrand Crest Lockup (Shield + XOLOTL + CANADIAN SHIELD unified) */
     .brand-logo {
-      display: flex;
+      display: inline-grid;
+      grid-template-columns: auto auto;
+      grid-template-rows: auto auto;
       align-items: center;
-      gap: 12px;
-      font-weight: 700;
-      font-size: 1.15rem;
-      letter-spacing: var(--tracking-wide, 0.05em);
-      color: #FFFFFF;
+      column-gap: 12px;
+      row-gap: 2px;
       text-decoration: none;
       transition: all 0.25s ease;
     }
 
     .brand-logo:hover {
-      opacity: 0.95;
-      text-shadow: 0 0 16px rgba(0, 255, 102, 0.5);
+      opacity: 0.98;
     }
 
     .shield-icon {
+      grid-row: 1 / span 2;
+      grid-column: 1;
       width: auto;
-      height: 48px;
+      height: 44px;
       max-width: 86px;
       flex-shrink: 0;
       object-fit: contain;
@@ -163,6 +164,23 @@
     .brand-logo:hover .shield-icon {
       filter: drop-shadow(0 0 14px rgba(0, 255, 102, 0.6));
       transform: scale(1.04);
+    }
+
+    .brand-logo span:not(.brand-tag):not(.brand-sub) {
+      grid-row: 1;
+      grid-column: 2;
+      font-size: 1.18rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: #FFFFFF;
+      line-height: 1.1;
+      text-transform: uppercase;
+      transition: color 0.25s ease, text-shadow 0.25s ease;
+    }
+
+    .brand-logo:hover span:not(.brand-tag):not(.brand-sub) {
+      color: #FFFFFF;
+      text-shadow: 0 0 14px rgba(0, 255, 102, 0.5);
     }
 
     /* Symmetrical Right Shield (Xoloitzcuintle Logo) */
@@ -190,19 +208,28 @@
       transform: scale(1.04);
     }
 
-
     .brand-tag {
+      grid-row: 2;
+      grid-column: 2;
       font-family: var(--font-mono);
-      font-size: 0.72rem;
-      background: rgba(0, 255, 102, 0.12);
-      color: var(--accent-aurora, #00ff66);
-      border: 1px solid rgba(0, 255, 102, 0.35);
-      padding: 2px 8px;
-      border-radius: 4px;
-      font-weight: 600;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      color: var(--accent-gold-light, #F5D074);
       text-transform: uppercase;
-      letter-spacing: var(--tracking-wider, 0.08em);
-      box-shadow: 0 0 12px rgba(0, 255, 102, 0.2);
+      line-height: 1;
+      background: none;
+      border: none;
+      box-shadow: none;
+      padding: 0;
+      margin: 0;
+      border-radius: 0;
+      transition: color 0.25s ease, letter-spacing 0.25s ease;
+    }
+
+    .brand-logo:hover .brand-tag {
+      color: #fef08a;
+      letter-spacing: 0.18em;
     }
 
     /* Pronunciation Chip & Audio Trigger */
@@ -3540,12 +3567,18 @@
         grid-template-columns: 1fr;
         gap: 28px;
       }
-      .brand-tag {
-        display: none;
-      }
       .shield-icon {
         height: 38px;
         max-width: 68px;
+      }
+      .brand-logo span:not(.brand-tag):not(.brand-sub) {
+        font-size: 1.05rem;
+        letter-spacing: 0.06em;
+      }
+      .brand-tag {
+        display: block;
+        font-size: 0.56rem;
+        letter-spacing: 0.12em;
       }
       .nav-xolo-img {
         height: 36px;

@@ -316,11 +316,11 @@
     <div class="container">
       <div class="section-header" style="max-width: 820px; margin: 0 auto 40px; text-align: center;">
         <div class="section-tag" style="justify-content: center;">
-          <span class="live-pulse-dot"></span> TÉLÉMÉTRIE DU MAILLAGE SOUVERAIN EN DIRECT
+          <span class="live-pulse-dot"></span> TÉLÉMESURE DU RÉSEAU EN DIRECT
         </div>
-        <h2 class="section-title">Carte des Nœuds Enrôlés : Infrastructure du Bouclier Actif</h2>
+        <h2 class="section-title">Enclaves Actives : Distribution des Nœuds en Temps Réel</h2>
         <p style="color: var(--text-warm-gray); font-size: 1.05rem; line-height: 1.6; margin-top: 14px;">
-          Télémesure en temps réel des nœuds participants coopératifs, des coffres-forts dans la roche et des enclaves souveraines alliées ancrées dans le granit canadien. Zéro intrusion infonuagique étrangère.
+          Télémesure en temps réel des nœuds participants coopératifs et des enclaves cryptographiques souveraines. Zéro dépendance infonuagique étrangère.
         </p>
       </div>
 
@@ -329,20 +329,20 @@
         <!-- Barre de Métriques Supérieure -->
         <div class="telemetry-metrics-bar">
           <div class="telemetry-metric">
-            <span class="telemetry-metric-label">Nœuds Enrôlés</span>
+            <span class="telemetry-metric-label">Nœuds Actifs</span>
             <span class="telemetry-metric-val" id="telemetryNodeCount">--</span>
           </div>
           <div class="telemetry-metric">
-            <span class="telemetry-metric-label">Grappes du Bouclier</span>
+            <span class="telemetry-metric-label">Enclaves Municipales</span>
             <span class="telemetry-metric-val" id="telemetryClusterCount">--</span>
           </div>
           <div class="telemetry-metric">
-            <span class="telemetry-metric-label">État du Bouclier</span>
-            <span class="telemetry-metric-val status-secure">EN LIGNE ● 100% SÉCURISÉ</span>
+            <span class="telemetry-metric-label">État du Réseau</span>
+            <span class="telemetry-metric-val status-secure">EN LIGNE ● NOMINAL</span>
           </div>
           <div class="telemetry-metric">
-            <span class="telemetry-metric-label">Ingérence CLOUD Act</span>
-            <span class="telemetry-metric-val status-zero">0,00% (INCOERCIBLE)</span>
+            <span class="telemetry-metric-label">Juridiction</span>
+            <span class="telemetry-metric-val status-zero">COOPÉRATIVE CANADIENNE (SANS CLOUD ACT)</span>
           </div>
         </div>
 
@@ -354,21 +354,16 @@
 
             <!-- Commandes et Badges HUD -->
             <div class="map-hud-overlay top-left">
-              <span class="map-hud-badge">MAILLAGE COOPÉRATIF DU BOUCLIER CANADIEN</span>
-              <span class="map-hud-coords" id="radarReticleCoords">BALAYAGE RADAR : 360° ACTIF</span>
+              <span class="map-hud-badge">TOPOLOGIE DE TRANSIT XOLOTL</span>
+              <span class="map-hud-coords" id="radarReticleCoords">RÉTICULE DU RÉSEAU : ACTIF</span>
             </div>
 
             <div class="map-hud-overlay top-right">
               <div class="map-legend-items">
-                <span class="legend-item"><span class="legend-dot shield"></span> Nœud du Bouclier</span>
+                <span class="legend-item"><span class="legend-dot shield"></span> Enclave Canadienne</span>
                 <span class="legend-item"><span class="legend-dot allied"></span> Ancre d'Origine (Gales Point)</span>
                 <span class="legend-item"><span class="legend-dot new-join"></span> Dernier Nœud Enrôlé</span>
               </div>
-            </div>
-
-            <!-- Badge d'Appel Lac Ontario -->
-            <div class="map-hud-overlay lake-ontario-tag">
-              <span class="tag-lake">LAC ONTARIO [SOCLE ROCHEUX SOUVERAIN CANADIEN 🍁]</span>
             </div>
 
             <!-- Infobulle Interactive -->
@@ -384,7 +379,7 @@
                 </div>
                 <div class="tooltip-row">
                   <span class="label">Juridiction :</span>
-                  <span id="tooltipJurisdiction" class="val">Socle Rocheux Canadien</span>
+                  <span id="tooltipJurisdiction" class="val">Enclave Coopérative Canadienne</span>
                 </div>
                 <div class="tooltip-row">
                   <span class="label">Coordonnées :</span>
@@ -397,7 +392,7 @@
           <!-- Barre Latérale : Flux en Direct & Enrôlement -->
           <div class="telemetry-sidebar">
             <div class="telemetry-sidebar-header">
-              <h4>Flux des Enrôlements</h4>
+              <h4>Flux des Nœuds en Direct</h4>
               <span class="feed-pulse-text">FLUX EN TEMPS RÉEL</span>
             </div>
 
@@ -407,7 +402,7 @@
 
             <div class="telemetry-sidebar-cta">
               <button type="button" class="btn btn-aurora" onclick="openModal('beta')" style="width: 100%; justify-content: center; padding: 12px 18px; font-size: 0.92rem;">
-                + Enrôler Votre Nœud dans le Maillage &nbsp;→
+                + Enrôler Votre Nœud dans la Coopérative &nbsp;→
               </button>
               <div class="telemetry-cta-subtext">
                 Rejoindre la liste &bull; Aucun traceur &bull; Garde canadienne

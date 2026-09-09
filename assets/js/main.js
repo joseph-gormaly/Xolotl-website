@@ -1071,29 +1071,106 @@ const SOVEREIGN_FOUNDING_ANCHORS = [
 
 let meshNodes = [...SOVEREIGN_FOUNDING_ANCHORS];
 
-// Simplified Canadian Shield Bedrock Polygon (Lat, Lon coordinates)
-const CANADIAN_SHIELD_GEO_COORDS = [
-  { lat: 62.0, lon: -108.0 },
-  { lat: 59.5, lon: -100.0 },
-  { lat: 57.0, lon: -94.0 },
-  { lat: 54.0, lon: -88.0 },
-  { lat: 50.0, lon: -84.0 },
-  { lat: 47.5, lon: -81.0 },
-  { lat: 45.8, lon: -78.0 },
-  { lat: 45.2, lon: -74.5 },
-  { lat: 47.5, lon: -70.5 },
-  { lat: 50.0, lon: -65.0 },
-  { lat: 53.5, lon: -60.0 },
-  { lat: 57.0, lon: -62.0 },
-  { lat: 60.5, lon: -65.0 },
-  { lat: 62.5, lon: -75.0 },
-  { lat: 63.5, lon: -86.0 },
-  { lat: 63.0, lon: -96.0 }
+// Simplified Vector Outlines for Professional Transit Topology (North/Central America, Caribbean, Europe)
+const CONTINENTAL_COASTLINE_COORDS = [
+  { lat: 68.0, lon: -136.0 },
+  { lat: 60.0, lon: -136.0 },
+  { lat: 54.5, lon: -130.5 },
+  { lat: 51.0, lon: -128.0 },
+  { lat: 49.0, lon: -123.5 },
+  { lat: 46.0, lon: -124.0 },
+  { lat: 42.0, lon: -124.2 },
+  { lat: 38.0, lon: -123.0 },
+  { lat: 34.0, lon: -119.0 },
+  { lat: 32.5, lon: -117.0 },
+  { lat: 28.0, lon: -114.5 },
+  { lat: 23.0, lon: -110.0 },
+  { lat: 24.5, lon: -110.5 },
+  { lat: 31.5, lon: -114.5 },
+  { lat: 20.5, lon: -105.0 },
+  { lat: 17.0, lon: -100.0 },
+  { lat: 16.0, lon: -97.0 },
+  { lat: 14.5, lon: -92.5 },
+  { lat: 13.5, lon: -89.0 },
+  { lat: 11.0, lon: -85.5 },
+  { lat: 11.0, lon: -83.5 },
+  { lat: 14.0, lon: -83.5 },
+  { lat: 16.0, lon: -87.5 },
+  { lat: 17.2, lon: -88.3 }, // Belize (Gales Point)
+  { lat: 18.5, lon: -88.2 },
+  { lat: 21.5, lon: -87.0 },
+  { lat: 20.0, lon: -90.5 },
+  { lat: 19.0, lon: -92.0 },
+  { lat: 19.0, lon: -96.0 },
+  { lat: 22.5, lon: -97.8 },
+  { lat: 26.0, lon: -97.2 },
+  { lat: 29.5, lon: -95.0 },
+  { lat: 30.0, lon: -90.0 },
+  { lat: 30.5, lon: -87.0 },
+  { lat: 28.5, lon: -82.8 },
+  { lat: 25.0, lon: -81.0 },
+  { lat: 25.8, lon: -80.0 },
+  { lat: 28.5, lon: -80.5 },
+  { lat: 30.5, lon: -81.5 },
+  { lat: 32.5, lon: -80.0 },
+  { lat: 35.5, lon: -75.5 },
+  { lat: 37.0, lon: -76.0 },
+  { lat: 39.0, lon: -74.5 },
+  { lat: 40.7, lon: -74.0 },
+  { lat: 42.3, lon: -71.0 },
+  { lat: 44.5, lon: -67.0 },
+  { lat: 45.0, lon: -66.0 },
+  { lat: 44.5, lon: -63.5 },
+  { lat: 46.5, lon: -60.5 },
+  { lat: 48.0, lon: -64.5 },
+  { lat: 48.5, lon: -68.5 },
+  { lat: 50.5, lon: -66.0 },
+  { lat: 53.5, lon: -56.0 },
+  { lat: 58.5, lon: -62.5 },
+  { lat: 60.5, lon: -64.5 },
+  { lat: 62.2, lon: -75.0 },
+  { lat: 58.0, lon: -78.5 },
+  { lat: 54.0, lon: -80.0 },
+  { lat: 56.0, lon: -88.0 },
+  { lat: 58.8, lon: -94.0 },
+  { lat: 64.0, lon: -90.0 },
+  { lat: 66.0, lon: -110.0 },
+  { lat: 69.0, lon: -136.0 }
+];
+
+const NEWFOUNDLAND_COORDS = [
+  { lat: 47.5, lon: -53.5 },
+  { lat: 46.8, lon: -55.5 },
+  { lat: 48.0, lon: -59.0 },
+  { lat: 51.4, lon: -55.5 }
+];
+
+const WEST_EUROPE_COAST_COORDS = [
+  { lat: 36.0, lon: -5.5 },
+  { lat: 37.0, lon: -9.0 },
+  { lat: 41.0, lon: -8.7 },
+  { lat: 43.5, lon: -9.0 },
+  { lat: 43.5, lon: -1.8 },
+  { lat: 47.5, lon: -3.0 },
+  { lat: 49.5, lon: -1.5 },
+  { lat: 51.0, lon: 2.5 },
+  { lat: 53.5, lon: 7.5 },
+  { lat: 57.5, lon: 8.5 },
+  { lat: 59.0, lon: 5.5 },
+  { lat: 64.0, lon: 10.0 }
+];
+
+const BRITISH_ISLES_COORDS = [
+  { lat: 50.2, lon: -5.3 },
+  { lat: 51.0, lon: 1.4 },
+  { lat: 53.0, lon: 0.3 },
+  { lat: 58.5, lon: -3.5 },
+  { lat: 56.0, lon: -5.5 },
+  { lat: 51.5, lon: -3.5 }
 ];
 
 let meshAnimFrameId = null;
 let meshIsVisible = true;
-let radarSweepAngle = 0;
 let hoveredMeshNode = null;
 
 function projectGeoToCanvas(lat, lon, w, h) {
@@ -1154,7 +1231,7 @@ function initMeshRadarTelemetry() {
     resizeTimer = setTimeout(resizeCanvas, 100);
   });
 
-  // 3. Mouse Interaction on Radar
+  // 3. Mouse Interaction on Topology Map
   const tooltip = document.getElementById('radarNodeTooltip');
   const reticleCoords = document.getElementById('radarReticleCoords');
 
@@ -1163,17 +1240,17 @@ function initMeshRadarTelemetry() {
     const mouseX = e.clientX - rect.left;
     const mouseY = e.clientY - rect.top;
 
-    // Display simulated target reticle coords
+    // Display coordinates under reticle
     if (reticleCoords) {
       const geo = projectCanvasToGeo(mouseX, mouseY, rect.width, rect.height);
       if (geo.lat >= 10 && geo.lat <= 72 && geo.lon >= -145 && geo.lon <= 25) {
         const latStr = `${Math.abs(geo.lat).toFixed(2)}°${geo.lat >= 0 ? 'N' : 'S'}`;
         const lonStr = `${Math.abs(geo.lon).toFixed(2)}°${geo.lon >= 0 ? 'E' : 'W'}`;
-        reticleCoords.innerText = `RADAR RETICLE: ${latStr}, ${lonStr}`;
+        reticleCoords.innerText = `TOPOLOGY RETICLE: ${latStr}, ${lonStr}`;
       }
     }
 
-    // Hit-testing node blips (threshold ~20px)
+    // Hit-testing node points (threshold ~24px)
     let found = null;
     let minDist = 24;
     meshNodes.forEach(node => {
@@ -1197,10 +1274,10 @@ function initMeshRadarTelemetry() {
         const bCoords = document.getElementById('tooltipCoords');
 
         if (bId) bId.innerText = n.id || 'NODE-CA-ENLISTED';
-        if (bStatus) bStatus.innerText = (n.status || 'VERIFIED ENCLAVE').toUpperCase();
+        if (bStatus) bStatus.innerText = (n.status || 'ACTIVE ENCLAVE').toUpperCase();
         if (bLoc) bLoc.innerText = [n.city, n.region, n.country].filter(Boolean).join(', ');
         if (bJur) {
-          bJur.innerText = n.countryCode === 'CA' ? 'Canadian Shield Bedrock 🍁' : `${n.country || 'Sovereign'} Enclave`;
+          bJur.innerText = n.countryCode === 'CA' ? 'Canadian Cooperative Enclave' : `${n.country || 'Sovereign'} Enclave`;
         }
         if (bCoords) {
           bCoords.innerText = `${Math.abs(n.lat).toFixed(2)}°N, ${Math.abs(n.lon).toFixed(2)}°W`;
@@ -1219,7 +1296,7 @@ function initMeshRadarTelemetry() {
   canvas.addEventListener('mouseleave', () => {
     hoveredMeshNode = null;
     if (tooltip) tooltip.style.display = 'none';
-    if (reticleCoords) reticleCoords.innerText = 'RADAR SWEEP: 360° ACTIVE';
+    if (reticleCoords) reticleCoords.innerText = 'TOPOLOGY RETICLE: ACTIVE';
   });
 
   // 4. Pause animation loop when out of view
@@ -1247,16 +1324,11 @@ function renderRadarLoop() {
   const ctx = canvas.getContext('2d');
 
   ctx.clearRect(0, 0, w, h);
-
   const now = performance.now();
-  radarSweepAngle = (now * 0.00075) % (Math.PI * 2);
 
-  // Center of the Canadian Shield radar sweep (Winnipeg area)
-  const centerPt = projectGeoToCanvas(49.895, -97.138, w, h);
-
-  // --- Layer 1: Background Tactical Grid & Range Circles ---
-  ctx.strokeStyle = 'rgba(0, 255, 102, 0.07)';
-  ctx.lineWidth = 1;
+  // --- Layer 1: Background Geographic Graticule Grid ---
+  ctx.strokeStyle = 'rgba(255, 255, 255, 0.035)';
+  ctx.lineWidth = 0.8;
 
   // Latitude Parallels
   [20, 30, 40, 50, 60].forEach(lat => {
@@ -1267,7 +1339,7 @@ function renderRadarLoop() {
     ctx.lineTo(pt2.x, pt2.y);
     ctx.stroke();
 
-    ctx.fillStyle = 'rgba(143, 163, 152, 0.35)';
+    ctx.fillStyle = 'rgba(148, 163, 184, 0.25)';
     ctx.font = '9px monospace';
     ctx.fillText(`${lat}°N`, pt1.x + 4, pt1.y - 3);
   });
@@ -1281,207 +1353,202 @@ function renderRadarLoop() {
     ctx.lineTo(pt2.x, pt2.y);
     ctx.stroke();
 
-    ctx.fillStyle = 'rgba(143, 163, 152, 0.35)';
+    ctx.fillStyle = 'rgba(148, 163, 184, 0.25)';
     ctx.font = '9px monospace';
     ctx.fillText(`${Math.abs(lon)}°W`, pt2.x + 3, h - 8);
   });
 
-  // Concentric Radar Range Rings from Winnipeg
-  [w * 0.12, w * 0.24, w * 0.38, w * 0.54].forEach((radius, idx) => {
-    ctx.strokeStyle = 'rgba(0, 255, 102, 0.08)';
+  // --- Layer 2: Subtle Continental Coastlines ---
+  const drawPath = (coords, closePath = true) => {
     ctx.beginPath();
-    ctx.arc(centerPt.x, centerPt.y, radius, 0, Math.PI * 2);
-    ctx.stroke();
+    coords.forEach((coord, i) => {
+      const pt = projectGeoToCanvas(coord.lat, coord.lon, w, h);
+      if (i === 0) ctx.moveTo(pt.x, pt.y);
+      else ctx.lineTo(pt.x, pt.y);
+    });
+    if (closePath) ctx.closePath();
+  };
 
-    ctx.fillStyle = 'rgba(0, 255, 102, 0.35)';
-    ctx.font = '8px monospace';
-    const distLabels = ['500 KM', '1200 KM', '2200 KM', '3500 KM'];
-    ctx.fillText(distLabels[idx] || '', centerPt.x + radius + 4, centerPt.y - 3);
-  });
-
-  // --- Layer 2: Canadian Shield Bedrock Zone (Shaded Granite Area) ---
-  ctx.beginPath();
-  CANADIAN_SHIELD_GEO_COORDS.forEach((coord, i) => {
-    const pt = projectGeoToCanvas(coord.lat, coord.lon, w, h);
-    if (i === 0) ctx.moveTo(pt.x, pt.y);
-    else ctx.lineTo(pt.x, pt.y);
-  });
-  ctx.closePath();
-  ctx.fillStyle = 'rgba(0, 255, 102, 0.04)';
+  // North America Mainland
+  drawPath(CONTINENTAL_COASTLINE_COORDS, true);
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.012)';
   ctx.fill();
-  ctx.strokeStyle = 'rgba(0, 255, 102, 0.22)';
-  ctx.lineWidth = 1.2;
-  ctx.setLineDash([4, 4]);
+  ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
+  ctx.lineWidth = 1;
   ctx.stroke();
-  ctx.setLineDash([]);
 
-  // Bedrock Zone Label
-  const shieldLabelPt = projectGeoToCanvas(54.0, -82.0, w, h);
-  ctx.fillStyle = 'rgba(0, 255, 102, 0.45)';
-  ctx.font = '9px monospace';
-  ctx.letterSpacing = '1px';
-  ctx.fillText('CANADIAN SHIELD GRANITE BEDROCK', shieldLabelPt.x - 70, shieldLabelPt.y);
-
-  // --- Layer 3: Great Lakes & Lake Ontario Highlight ---
-  const ontarioPt = projectGeoToCanvas(43.65, -77.8, w, h);
-  ctx.beginPath();
-  ctx.ellipse(ontarioPt.x, ontarioPt.y, 14, 7, -0.2, 0, Math.PI * 2);
-  ctx.fillStyle = 'rgba(45, 212, 191, 0.22)';
+  // Newfoundland
+  drawPath(NEWFOUNDLAND_COORDS, true);
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.012)';
   ctx.fill();
-  ctx.strokeStyle = '#2dd4bf';
-  ctx.lineWidth = 1.2;
+  ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
   ctx.stroke();
 
-  // Lake Ontario Reticle Pointer
-  ctx.beginPath();
-  ctx.moveTo(ontarioPt.x + 14, ontarioPt.y);
-  ctx.lineTo(ontarioPt.x + 28, ontarioPt.y - 8);
-  ctx.strokeStyle = 'rgba(45, 212, 191, 0.6)';
+  // West Europe Coastline
+  drawPath(WEST_EUROPE_COAST_COORDS, false);
+  ctx.strokeStyle = 'rgba(255, 255, 255, 0.06)';
   ctx.stroke();
 
-  ctx.fillStyle = '#2dd4bf';
-  ctx.font = '8px monospace';
-  ctx.fillText('LAKE ONTARIO [CA BEDROCK]', ontarioPt.x + 32, ontarioPt.y - 6);
+  // British Isles
+  drawPath(BRITISH_ISLES_COORDS, true);
+  ctx.stroke();
 
-  // Other Great Lakes contours
+  // --- Layer 3: Great Lakes & Lake Ontario Detail ---
+  ctx.fillStyle = 'rgba(45, 212, 191, 0.05)';
+  ctx.strokeStyle = 'rgba(45, 212, 191, 0.22)';
+  ctx.lineWidth = 1;
+
+  // Lake Superior
   const superiorPt = projectGeoToCanvas(47.7, -87.5, w, h);
   ctx.beginPath();
   ctx.ellipse(superiorPt.x, superiorPt.y, 22, 10, -0.1, 0, Math.PI * 2);
-  ctx.strokeStyle = 'rgba(45, 212, 191, 0.25)';
+  ctx.fill();
   ctx.stroke();
 
-  const huronPt = projectGeoToCanvas(44.8, -82.4, w, h);
+  // Lake Michigan
+  const michiganPt = projectGeoToCanvas(43.5, -87.0, w, h);
+  ctx.beginPath();
+  ctx.ellipse(michiganPt.x, michiganPt.y, 8, 17, 0.05, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.stroke();
+
+  // Lake Huron
+  const huronPt = projectGeoToCanvas(44.8, -82.0, w, h);
   ctx.beginPath();
   ctx.ellipse(huronPt.x, huronPt.y, 13, 14, 0.3, 0, Math.PI * 2);
-  ctx.strokeStyle = 'rgba(45, 212, 191, 0.2)';
+  ctx.fill();
   ctx.stroke();
 
-  // --- Layer 4: Inter-Node Sovereign Mesh Edges (Virtual Iron Spine) ---
+  // Lake Erie
+  const eriePt = projectGeoToCanvas(42.0, -81.2, w, h);
+  ctx.beginPath();
+  ctx.ellipse(eriePt.x, eriePt.y, 14, 6, 0.35, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.stroke();
+
+  // Lake Ontario
+  const ontarioPt = projectGeoToCanvas(43.65, -77.8, w, h);
+  ctx.beginPath();
+  ctx.ellipse(ontarioPt.x, ontarioPt.y, 13, 7, -0.2, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.stroke();
+
+  // Quiet Lake Ontario label
+  ctx.fillStyle = 'rgba(148, 163, 184, 0.45)';
+  ctx.font = '8px monospace';
+  ctx.fillText('Lake Ontario', ontarioPt.x + 16, ontarioPt.y + 3);
+
+  // --- Layer 4: Inter-Node Transit Backbone (Network Mesh Arcs) ---
   const nodeMap = {};
   meshNodes.forEach(n => { nodeMap[n.city] = n; });
 
-  // Dynamically generate genuine mesh connection corridors:
   const meshConnections = [];
   const activeCities = meshNodes.map(n => n.city);
 
-  // 1. Founding Corridor: Gales Point Manatee (Origin) <-> Winnipeg (Red River Engineering Core)
-  if (activeCities.includes('Gales Point Manatee') && activeCities.includes('Winnipeg')) {
-    meshConnections.push(['Gales Point Manatee', 'Winnipeg']);
-  } else if (activeCities.includes('Gales Point Manatee') && meshNodes.length > 1) {
-    const firstOther = meshNodes.find(n => n.city !== 'Gales Point Manatee');
-    if (firstOther) meshConnections.push(['Gales Point Manatee', firstOther.city]);
-  }
-
-  // 2. Canadian Shield Bedrock links between all real active nodes
-  const shieldNodes = meshNodes.filter(n => n.city !== 'Gales Point Manatee');
-  for (let i = 0; i < shieldNodes.length; i++) {
-    for (let j = i + 1; j < shieldNodes.length; j++) {
-      meshConnections.push([shieldNodes[i].city, shieldNodes[j].city]);
+  // 1. Origin Anchor Links (Gales Point <-> Canadian Hubs)
+  if (activeCities.includes('Gales Point Manatee')) {
+    if (activeCities.includes('Winnipeg')) {
+      meshConnections.push(['Gales Point Manatee', 'Winnipeg']);
+    }
+    if (activeCities.includes('Toronto')) {
+      meshConnections.push(['Gales Point Manatee', 'Toronto']);
+    }
+    if (!activeCities.includes('Winnipeg') && !activeCities.includes('Toronto') && meshNodes.length > 1) {
+      const firstOther = meshNodes.find(n => n.city !== 'Gales Point Manatee');
+      if (firstOther) meshConnections.push(['Gales Point Manatee', firstOther.city]);
     }
   }
 
-  meshConnections.forEach(([cityA, cityB]) => {
+  // 2. Domestic Canadian Enclave Mesh Connections
+  const canadianNodes = meshNodes.filter(n => n.city !== 'Gales Point Manatee');
+  for (let i = 0; i < canadianNodes.length; i++) {
+    for (let j = i + 1; j < canadianNodes.length; j++) {
+      meshConnections.push([canadianNodes[i].city, canadianNodes[j].city]);
+    }
+  }
+
+  meshConnections.forEach(([cityA, cityB], connIdx) => {
     const nA = nodeMap[cityA];
     const nB = nodeMap[cityB];
     if (nA && nB) {
       const ptA = projectGeoToCanvas(nA.lat, nA.lon, w, h);
       const ptB = projectGeoToCanvas(nB.lat, nB.lon, w, h);
 
+      // Curved transit arc
+      const midX = (ptA.x + ptB.x) / 2;
+      const dist = Math.hypot(ptB.x - ptA.x, ptB.y - ptA.y);
+      const curveLift = Math.min(26, dist * 0.07);
+      const midY = (ptA.y + ptB.y) / 2 - curveLift;
+
+      const isOriginLink = (nA.tier === 'allied' || nB.tier === 'allied');
+
       ctx.beginPath();
       ctx.moveTo(ptA.x, ptA.y);
-      ctx.lineTo(ptB.x, ptB.y);
-      ctx.strokeStyle = (nA.tier === 'shield' && nB.tier === 'shield') ? 'rgba(0, 255, 102, 0.25)' : 'rgba(212, 175, 55, 0.25)';
+      ctx.quadraticCurveTo(midX, midY, ptB.x, ptB.y);
+      ctx.strokeStyle = isOriginLink ? 'rgba(212, 175, 55, 0.28)' : 'rgba(16, 185, 129, 0.28)';
       ctx.lineWidth = 1.2;
       ctx.stroke();
 
-      // Traveling Light Pulse (cryptographic packet shard simulation)
-      const pulseT = ((now * 0.0006) + (ptA.x + ptB.y) * 0.001) % 1;
-      const pulseX = ptA.x + (ptB.x - ptA.x) * pulseT;
-      const pulseY = ptA.y + (ptB.y - ptA.y) * pulseT;
+      // Traveling cryptographic data packet
+      const packetT = ((now * 0.00032) + connIdx * 0.35) % 1;
+      const px = (1 - packetT) * (1 - packetT) * ptA.x + 2 * (1 - packetT) * packetT * midX + packetT * packetT * ptB.x;
+      const py = (1 - packetT) * (1 - packetT) * ptA.y + 2 * (1 - packetT) * packetT * midY + packetT * packetT * ptB.y;
 
       ctx.beginPath();
-      ctx.arc(pulseX, pulseY, 2.2, 0, Math.PI * 2);
-      ctx.fillStyle = (nA.tier === 'shield' && nB.tier === 'shield') ? '#00ff66' : '#f5d074';
+      ctx.arc(px, py, 2.2, 0, Math.PI * 2);
+      ctx.fillStyle = isOriginLink ? '#f5d074' : '#10b981';
       ctx.shadowColor = ctx.fillStyle;
-      ctx.shadowBlur = 6;
+      ctx.shadowBlur = 5;
       ctx.fill();
       ctx.shadowBlur = 0;
     }
   });
 
-  // --- Layer 5: Rotating Radar Sweep Beam ---
-  const sweepRadius = Math.hypot(w, h);
-  ctx.save();
-  ctx.translate(centerPt.x, centerPt.y);
-  ctx.rotate(radarSweepAngle);
-
-  // Gradient Sector Beam
-  const sweepGrad = ctx.createRadialGradient(0, 0, 10, 0, 0, sweepRadius);
-  sweepGrad.addColorStop(0, 'rgba(0, 255, 102, 0.18)');
-  sweepGrad.addColorStop(0.6, 'rgba(0, 255, 102, 0.06)');
-  sweepGrad.addColorStop(1, 'rgba(0, 255, 102, 0)');
-
-  ctx.beginPath();
-  ctx.moveTo(0, 0);
-  ctx.arc(0, 0, sweepRadius, 0, Math.PI * 0.18);
-  ctx.closePath();
-  ctx.fillStyle = sweepGrad;
-  ctx.fill();
-
-  // Leading Sweep Line
-  ctx.beginPath();
-  ctx.moveTo(0, 0);
-  ctx.lineTo(sweepRadius, 0);
-  ctx.strokeStyle = 'rgba(0, 255, 102, 0.65)';
-  ctx.lineWidth = 1.5;
-  ctx.shadowColor = '#00ff66';
-  ctx.shadowBlur = 10;
-  ctx.stroke();
-  ctx.shadowBlur = 0;
-  ctx.restore();
-
-  // --- Layer 6: Node Beacon Blips & Concentric Sonar Rings ---
+  // --- Layer 5: Node Enclaves (Calm Breathing Halo & Precision Blips) ---
   meshNodes.forEach((node, idx) => {
     const pt = projectGeoToCanvas(node.lat, node.lon, w, h);
     const isHovered = (hoveredMeshNode && hoveredMeshNode.id === node.id);
     const isNew = !!node.isNew;
+    const isOrigin = (node.tier === 'allied' || node.id === 'NODE-BZ-ORIGIN');
 
-    let blipColor = '#00ff66';
-    if (node.tier === 'allied') blipColor = '#d4af37';
-    if (isNew) blipColor = '#2dd4bf';
+    let blipColor = '#10b981'; // Canadian cooperative nodes
+    if (isOrigin) blipColor = '#d4af37'; // Founding origin anchor
+    if (isNew) blipColor = '#2dd4bf'; // Fresh enlistment
 
-    // Concentric Sonar Pulse
-    const pulsePhase = ((now * 0.0012) + idx * 0.25) % 1;
-    const pulseRadius = 5 + pulsePhase * (isNew ? 28 : 20);
-    const pulseAlpha = Math.max(0, 1 - pulsePhase);
-
+    // Gentle breathing halo (restrained, professional pulse)
+    const breathe = Math.sin(now * 0.0025 + idx * 1.5) * 1.5;
+    const haloRadius = (isNew ? 8.5 : (isOrigin ? 7.5 : 6.5)) + breathe;
     ctx.beginPath();
-    ctx.arc(pt.x, pt.y, pulseRadius, 0, Math.PI * 2);
-    ctx.strokeStyle = isNew ? `rgba(45, 212, 191, ${pulseAlpha})` : `rgba(0, 255, 102, ${pulseAlpha * 0.8})`;
-    ctx.lineWidth = isNew ? 1.8 : 1;
+    ctx.arc(pt.x, pt.y, haloRadius, 0, Math.PI * 2);
+    ctx.strokeStyle = isNew
+      ? 'rgba(45, 212, 191, 0.35)'
+      : (isOrigin ? 'rgba(212, 175, 55, 0.32)' : 'rgba(16, 185, 129, 0.32)');
+    ctx.lineWidth = 1;
     ctx.stroke();
 
-    // Core Blip
+    // Node Core Dot
     ctx.beginPath();
-    ctx.arc(pt.x, pt.y, isHovered ? 6 : (isNew ? 5 : 4), 0, Math.PI * 2);
+    ctx.arc(pt.x, pt.y, isHovered ? 5.5 : (isNew ? 4.5 : 3.8), 0, Math.PI * 2);
     ctx.fillStyle = blipColor;
     ctx.shadowColor = blipColor;
-    ctx.shadowBlur = isHovered ? 14 : 8;
+    ctx.shadowBlur = isHovered ? 12 : 6;
     ctx.fill();
     ctx.shadowBlur = 0;
 
     // White Center Core
     ctx.beginPath();
-    ctx.arc(pt.x, pt.y, 1.5, 0, Math.PI * 2);
+    ctx.arc(pt.x, pt.y, 1.4, 0, Math.PI * 2);
     ctx.fillStyle = '#FFFFFF';
     ctx.fill();
 
-    // City Label
-    ctx.fillStyle = isHovered ? '#FFFFFF' : 'rgba(255, 255, 255, 0.75)';
-    ctx.font = `${isHovered ? 'bold ' : ''}9px monospace`;
-    ctx.shadowColor = 'rgba(0, 0, 0, 0.8)';
+    // Clean Typography City Label
+    const countSuffix = (node.totalNodes && node.totalNodes > 1) ? ` (${node.totalNodes})` : '';
+    const label = `${node.city}${countSuffix}`;
+    ctx.fillStyle = isHovered ? '#FFFFFF' : 'rgba(241, 245, 249, 0.85)';
+    ctx.font = `${isHovered ? '600 ' : '500 '}10px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, monospace`;
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.85)';
     ctx.shadowBlur = 4;
-    ctx.fillText(node.city, pt.x + 8, pt.y + 3);
+    ctx.fillText(label, pt.x + 8, pt.y + 3.5);
     ctx.shadowBlur = 0;
   });
 
@@ -1596,7 +1663,7 @@ async function loadMeshTelemetryData() {
         countryCode: signup.country_code || 'CA',
         lat: coords.lat,
         lon: coords.lon,
-        role: signup.interest_type === 'developer' ? 'DKG Custodian Node' : (signup.interest_type === 'enterprise' ? 'Institutional Enclave' : 'Citizen Privacy Shield'),
+        role: signup.interest_type === 'developer' ? 'DKG Custodian Node' : (signup.interest_type === 'enterprise' ? 'Institutional Enclave' : 'Citizen Privacy Node'),
         tier: 'shield',
         status: 'Newly Enlisted',
         isNew: true
@@ -1670,7 +1737,7 @@ function populateTelemetryFeedList(localSignups, remoteClusters) {
   const dbFeeds = (remoteClusters || []).map(c => ({
     id: `NODE-${(c.country_code || 'CA').toUpperCase()}-${(c.city || 'CA').substring(0, 3).toUpperCase()}`,
     loc: [c.city, c.region, c.country_code].filter(Boolean).join(', '),
-    role: `Verified Bedrock Enclave (${c.total_nodes} node${c.total_nodes > 1 ? 's' : ''})`,
+    role: `Verified Cooperative Enclave (${c.total_nodes} node${c.total_nodes > 1 ? 's' : ''})`,
     time: formatRelativeTime(c.latest_node_enlisted),
     isNew: false,
     isLiveDb: true
@@ -1681,7 +1748,7 @@ function populateTelemetryFeedList(localSignups, remoteClusters) {
     ...(localSignups || []).slice(-3).reverse().map(s => ({
       id: s.node_badge_id || 'NODE-CA-NEW',
       loc: [s.city, s.region, s.country_code].filter(Boolean).join(', '),
-      role: s.interest_type === 'developer' ? 'DKG Custodian' : (s.interest_type === 'enterprise' ? 'Institutional Enclave' : 'Citizen Privacy Shield'),
+      role: s.interest_type === 'developer' ? 'DKG Custodian' : (s.interest_type === 'enterprise' ? 'Institutional Enclave' : 'Citizen Privacy Node'),
       time: 'Just now',
       isNew: true
     })),
@@ -1729,10 +1796,10 @@ function addLiveNodeToMesh(nodeData) {
     div.innerHTML = `
       <div class="feed-item-top">
         <span class="feed-item-id">${nodeData.id}</span>
-        <span class="feed-item-time" style="color:#00ff66;">ACTIVE NOW</span>
+        <span class="feed-item-time" style="color:#10b981;">ACTIVE NOW</span>
       </div>
-      <div class="feed-item-loc">${[nodeData.city, nodeData.region, nodeData.countryCode].filter(Boolean).join(', ')} 🍁</div>
-      <div class="feed-item-role">${nodeData.role || 'Sovereign Beta Node'}</div>
+      <div class="feed-item-loc">${[nodeData.city, nodeData.region, nodeData.countryCode].filter(Boolean).join(', ')}</div>
+      <div class="feed-item-role">${nodeData.role || 'Cooperative Node'}</div>
     `;
     feedList.insertBefore(div, feedList.firstChild);
   }

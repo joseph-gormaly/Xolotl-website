@@ -1051,20 +1051,25 @@ document.addEventListener('DOMContentLoaded', () => {
 // LIVE SOVEREIGN MESH TELEMETRY WEBMAP ENGINE
 // ==============================================================================
 
-const SOVEREIGN_SEED_NODES = [
-  { id: 'NODE-CA-7F2A01', city: 'Winnipeg', region: 'Manitoba', country: 'Canada', countryCode: 'CA', lat: 49.895, lon: -97.138, role: 'Red River Engineering Core', tier: 'shield', status: 'Active Anchor' },
-  { id: 'NODE-CA-7F2A02', city: 'Montreal', region: 'Quebec', country: 'Canada', countryCode: 'CA', lat: 45.501, lon: -73.567, role: 'Bedrock WORM Vault', tier: 'shield', status: 'Active Anchor' },
-  { id: 'NODE-CA-7F2A03', city: 'Toronto', region: 'Ontario', country: 'Canada', countryCode: 'CA', lat: 43.653, lon: -79.383, role: 'Lake Ontario Shield Enclave', tier: 'shield', status: 'Active Anchor' },
-  { id: 'NODE-CA-7F2A04', city: 'Ottawa', region: 'Ontario', country: 'Canada', countryCode: 'CA', lat: 45.421, lon: -75.697, role: 'Sovereign Regulatory Hub', tier: 'shield', status: 'Active Anchor' },
-  { id: 'NODE-CA-7F2A05', city: 'Vancouver', region: 'British Columbia', country: 'Canada', countryCode: 'CA', lat: 49.282, lon: -123.120, role: 'Pacific Gateway Node', tier: 'shield', status: 'Active Anchor' },
-  { id: 'NODE-CA-7F2A06', city: 'Halifax', region: 'Nova Scotia', country: 'Canada', countryCode: 'CA', lat: 44.648, lon: -63.575, role: 'Atlantic Bastion Node', tier: 'shield', status: 'Active Anchor' },
-  { id: 'NODE-CA-7F2A07', city: 'Quebec City', region: 'Quebec', country: 'Canada', countryCode: 'CA', lat: 46.813, lon: -71.207, role: 'St. Lawrence Hydro Cluster', tier: 'shield', status: 'Active Cluster' },
-  { id: 'NODE-CA-7F2A08', city: 'Calgary', region: 'Alberta', country: 'Canada', countryCode: 'CA', lat: 51.044, lon: -114.071, role: 'Foothills Enterprise Node', tier: 'shield', status: 'Active Node' },
-  { id: 'NODE-BZ-410E01', city: 'Gales Point Manatee', region: 'Belize District', country: 'Belize', countryCode: 'BZ', lat: 17.218, lon: -88.336, role: 'UNESCO Origin Enclave', tier: 'allied', status: 'Active Enclave' },
-  { id: 'NODE-MX-903C01', city: 'Mexico City', region: 'CDMX', country: 'Mexico', countryCode: 'MX', lat: 19.432, lon: -99.133, role: 'Regenerative DKG Anchor', tier: 'allied', status: 'Active Anchor' },
-  { id: 'NODE-CH-118A01', city: 'Zurich', region: 'Zurich', country: 'Switzerland', countryCode: 'CH', lat: 47.376, lon: 8.541, role: 'Allied Sovereign Custodian', tier: 'allied', status: 'Active Custodian' },
-  { id: 'NODE-IS-642K01', city: 'Reykjavik', region: 'Capital Region', country: 'Iceland', countryCode: 'IS', lat: 64.146, lon: -21.942, role: 'Geothermal Transatlantic Peer', tier: 'allied', status: 'Active Peer' }
+// Founding Origin Anchor (Belize Community GIS & Data Sovereignty Roots)
+const SOVEREIGN_FOUNDING_ANCHORS = [
+  {
+    id: 'NODE-BZ-ORIGIN',
+    city: 'Gales Point Manatee',
+    region: 'Belize District',
+    country: 'Belize',
+    countryCode: 'BZ',
+    lat: 17.218,
+    lon: -88.336,
+    role: 'UNESCO Community Origin Anchor',
+    tier: 'allied',
+    status: 'Founding Origin Anchor',
+    isAnchor: true,
+    totalNodes: 1
+  }
 ];
+
+let meshNodes = [...SOVEREIGN_FOUNDING_ANCHORS];
 
 // Simplified Canadian Shield Bedrock Polygon (Lat, Lon coordinates)
 const CANADIAN_SHIELD_GEO_COORDS = [
@@ -1086,7 +1091,6 @@ const CANADIAN_SHIELD_GEO_COORDS = [
   { lat: 63.0, lon: -96.0 }
 ];
 
-let meshNodes = [...SOVEREIGN_SEED_NODES];
 let meshAnimFrameId = null;
 let meshIsVisible = true;
 let radarSweepAngle = 0;
@@ -1353,21 +1357,28 @@ function renderRadarLoop() {
   ctx.stroke();
 
   // --- Layer 4: Inter-Node Sovereign Mesh Edges (Virtual Iron Spine) ---
-  const meshConnections = [
-    ['Winnipeg', 'Montreal'],
-    ['Montreal', 'Toronto'],
-    ['Toronto', 'Ottawa'],
-    ['Montreal', 'Halifax'],
-    ['Winnipeg', 'Vancouver'],
-    ['Winnipeg', 'Calgary'],
-    ['Winnipeg', 'Gales Point Manatee'],
-    ['Gales Point Manatee', 'Mexico City'],
-    ['Montreal', 'Zurich'],
-    ['Montreal', 'Reykjavik']
-  ];
-
   const nodeMap = {};
   meshNodes.forEach(n => { nodeMap[n.city] = n; });
+
+  // Dynamically generate genuine mesh connection corridors:
+  const meshConnections = [];
+  const activeCities = meshNodes.map(n => n.city);
+
+  // 1. Founding Corridor: Gales Point Manatee (Origin) <-> Winnipeg (Red River Engineering Core)
+  if (activeCities.includes('Gales Point Manatee') && activeCities.includes('Winnipeg')) {
+    meshConnections.push(['Gales Point Manatee', 'Winnipeg']);
+  } else if (activeCities.includes('Gales Point Manatee') && meshNodes.length > 1) {
+    const firstOther = meshNodes.find(n => n.city !== 'Gales Point Manatee');
+    if (firstOther) meshConnections.push(['Gales Point Manatee', firstOther.city]);
+  }
+
+  // 2. Canadian Shield Bedrock links between all real active nodes
+  const shieldNodes = meshNodes.filter(n => n.city !== 'Gales Point Manatee');
+  for (let i = 0; i < shieldNodes.length; i++) {
+    for (let j = i + 1; j < shieldNodes.length; j++) {
+      meshConnections.push([shieldNodes[i].city, shieldNodes[j].city]);
+    }
+  }
 
   meshConnections.forEach(([cityA, cityB]) => {
     const nA = nodeMap[cityA];
@@ -1604,16 +1615,17 @@ function updateMeshMetricsHUD(remoteClusters) {
   const nodeCountEl = document.getElementById('telemetryNodeCount');
   const clusterCountEl = document.getElementById('telemetryClusterCount');
 
-  // Calculate distinct clusters and active node count
-  const distinctCities = new Set(meshNodes.map(n => n.city.toLowerCase()));
+  // Exact real count: 1 (Gales Point Founding Origin Anchor) + live DB nodes
   const dbCount = (remoteClusters || []).reduce((acc, c) => acc + (parseInt(c.total_nodes, 10) || 0), 0);
-  const totalCount = Math.max(dbCount + 12, meshNodes.length + 12);
+  const totalCount = Math.max(1 + dbCount, meshNodes.length);
+
+  const distinctCities = new Set(meshNodes.map(n => n.city.toLowerCase()));
 
   if (nodeCountEl) {
-    animateCountUp(nodeCountEl, totalCount, 1200);
+    animateCountUp(nodeCountEl, totalCount, 1000);
   }
   if (clusterCountEl) {
-    animateCountUp(clusterCountEl, distinctCities.size, 1000);
+    animateCountUp(clusterCountEl, distinctCities.size, 800);
   }
 }
 
@@ -1654,7 +1666,7 @@ function populateTelemetryFeedList(localSignups, remoteClusters) {
 
   feedList.innerHTML = '';
 
-  // Remote clusters formatted as live feeds
+  // Remote clusters from live database formatted as live feeds
   const dbFeeds = (remoteClusters || []).map(c => ({
     id: `NODE-${(c.country_code || 'CA').toUpperCase()}-${(c.city || 'CA').substring(0, 3).toUpperCase()}`,
     loc: [c.city, c.region, c.country_code].filter(Boolean).join(', '),
@@ -1664,19 +1676,23 @@ function populateTelemetryFeedList(localSignups, remoteClusters) {
     isLiveDb: true
   }));
 
-  // Combine real signups + live DB clusters + recent seed nodes
+  // Combine real signups + live DB clusters + Gales Point founding anchor
   const feedEntries = [
     ...(localSignups || []).slice(-3).reverse().map(s => ({
       id: s.node_badge_id || 'NODE-CA-NEW',
       loc: [s.city, s.region, s.country_code].filter(Boolean).join(', '),
-      role: s.interest_type === 'developer' ? 'DKG Custodian' : 'Citizen Privacy Shield',
+      role: s.interest_type === 'developer' ? 'DKG Custodian' : (s.interest_type === 'enterprise' ? 'Institutional Enclave' : 'Citizen Privacy Shield'),
       time: 'Just now',
       isNew: true
     })),
     ...dbFeeds,
-    { id: 'NODE-CA-7F2A02', loc: 'Montreal, Quebec, CA', role: 'Bedrock WORM Vault', time: '34m ago', isNew: false },
-    { id: 'NODE-BZ-410E01', loc: 'Gales Point Manatee, BZ', role: 'UNESCO Community Enclave', time: '2h ago', isNew: false },
-    { id: 'NODE-CH-118A01', loc: 'Zurich, Switzerland, CH', role: 'Allied Sovereign Custodian', time: '3h ago', isNew: false }
+    {
+      id: 'NODE-BZ-ORIGIN',
+      loc: 'Gales Point Manatee, Belize',
+      role: 'UNESCO Community Origin Anchor',
+      time: 'Founding Anchor',
+      isNew: false
+    }
   ];
 
   feedEntries.forEach(item => {

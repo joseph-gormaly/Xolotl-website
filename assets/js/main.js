@@ -1092,6 +1092,37 @@ window.toggleTopoTheme = function() {
   }
 };
 
+window.focusTopoView = function(preset, btnElement) {
+  if (!topoMap) return;
+  document.querySelectorAll('.topo-filter-btn').forEach(btn => btn.classList.remove('active'));
+  const targetBtn = btnElement || (window.event && window.event.currentTarget);
+  if (targetBtn && targetBtn.classList) {
+    targetBtn.classList.add('active');
+  }
+
+  if (preset === 'origin') {
+    // Focus directly onto Gales Point Manatee, Belize
+    topoMap.setView([17.218, -88.336], 7);
+  } else if (preset === 'canada') {
+    // Focus onto Canadian Sovereign Enclaves
+    const caNodes = meshNodes.filter(n => n.countryCode === 'CA' && n.lat && n.lon);
+    if (caNodes.length > 0) {
+      const bounds = caNodes.map(n => [n.lat, n.lon]);
+      topoMap.fitBounds(bounds, { padding: [50, 50], maxZoom: 6 });
+    } else {
+      topoMap.setView([49.895, -97.138], 5);
+    }
+  } else {
+    // Full network perspective
+    const allCoords = meshNodes.filter(n => n.lat && n.lon).map(n => [n.lat, n.lon]);
+    if (allCoords.length > 0) {
+      topoMap.fitBounds(allCoords, { padding: [50, 50], maxZoom: 5 });
+    } else {
+      topoMap.setView([36.0, -89.0], 4);
+    }
+  }
+};
+
 function getArcPoints(coordA, coordB, numPoints = 25) {
   const [lat1, lon1] = coordA;
   const [lat2, lon2] = coordB;

@@ -210,40 +210,50 @@
     </div>
   </section>
 
-  <!-- Origin Story: sticky network map + scrolling beats -->
+  <!-- Récit d'Origine : Grille Narrative en 3 Colonnes (Héros Cartographique Unique) -->
   <section class="origin-section">
     <div class="container">
-      <div class="origin-grid">
-        <div class="origin-beats">
-          <div class="origin-beat">
-            <span class="origin-beat-eyebrow">Là où l'idée a pris racine</span>
+      <div class="origin-header">
+        <div class="section-tag" style="justify-content: center;">● LA GENÈSE ET LES RACINES</div>
+        <h2 class="section-title">Où commence la souveraineté : de Gales Point au Bouclier canadien.</h2>
+        <p style="color: var(--text-warm-gray); font-size: 1.05rem; line-height: 1.6; margin-top: 14px;">
+          La souveraineté des données n'a rien d'une théorie abstraite. Elle a été forgée sur le terrain communautaire et pensée pour une garde institutionnelle incoercible.
+        </p>
+      </div>
+
+      <div class="origin-cards-grid">
+        <div class="origin-card">
+          <div>
+            <span class="origin-card-num">01 / Là où l'idée a pris racine</span>
             <h3>Ranimée à Gales Point Manatee, au Belize.</h3>
             <p>Un stage communautaire en SIG et en souveraineté des données avec l'Université Galen &mdash; dans un village dont le Christmas Bram et le Sambai viennent d'être inscrits au patrimoine culturel immatériel de l'UNESCO. Ici, la souveraineté des données n'a rien de théorique.</p>
           </div>
-          <div class="origin-beat">
-            <span class="origin-beat-eyebrow">D'où vient le nom</span>
+          <span class="origin-card-tag gold">Ancre d'Origine Fondatrice</span>
+        </div>
+
+        <div class="origin-card">
+          <div>
+            <span class="origin-card-num">02 / D'où vient le nom</span>
             <h3>Nommée en l'honneur de l'axolotl.</h3>
             <p>Une créature capable de se régénérer entièrement &mdash; le fondement biomathématique de notre Infrastructure Régénérative et de notre redistribution de clés par seuil.</p>
           </div>
-          <div class="origin-beat">
-            <span class="origin-beat-eyebrow">Là où nous bâtissons</span>
+          <span class="origin-card-tag teal">Cryptographie Régénérative</span>
+        </div>
+
+        <div class="origin-card">
+          <div>
+            <span class="origin-card-num">03 / Là où nous bâtissons</span>
             <h3>Bâti sur la rivière Rouge.</h3>
             <p>Conçu depuis Winnipeg, au Manitoba &mdash; terre natale des Métis de la rivière Rouge &mdash; et ancré dans le socle rocheux de Montréal. Une épine dorsale virtuelle reliant l'infrastructure du Bouclier canadien à des enclaves souveraines mondiales de confiance.</p>
           </div>
+          <span class="origin-card-tag emerald">Socle du Bouclier Canadien</span>
         </div>
+      </div>
 
-        <div class="origin-map-sticky">
-          <div class="network-map-card">
-            <img src="../assets/images/sovereign_network_map_fr.png" alt="Carte orthographique de l'est de l'Amérique du Nord et de l'Amérique centrale montrant Gales Point, Mexico et Winnipeg reliés comme origine de l'histoire, et Winnipeg relié à Montréal et Toronto comme lieux de construction de Xolotl">
-            <div class="network-map-legend">
-              <span><span class="dot origin"></span> Là où l'idée est née</span>
-              <span><span class="dot custodian"></span> Là où nous construisons</span>
-            </div>
-            <a href="#mesh-telemetry" style="display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 14px; padding-top: 12px; border-top: 1px dashed rgba(255, 255, 255, 0.1); font-family: var(--font-mono); font-size: 0.72rem; color: #00ff66; text-decoration: none;">
-              <span>● Voir le Radar de Télémesure en Direct</span> &darr;
-            </a>
-          </div>
-        </div>
+      <div class="origin-cta-strip">
+        <a href="#mesh-telemetry">
+          <span>● Explorer la Télémesure et le Transit d'Origine sur la Carte Ci-Dessous</span> &darr;
+        </a>
       </div>
     </div>
   </section>
@@ -314,13 +324,13 @@
   <!-- Section de Télémesure du Maillage Souverain en Direct -->
   <section class="section-standard mesh-telemetry-section" id="mesh-telemetry" style="padding: 75px 0 65px;">
     <div class="container">
-      <div class="section-header" style="max-width: 820px; margin: 0 auto 40px; text-align: center;">
+      <div class="section-header" style="max-width: 840px; margin: 0 auto 40px; text-align: center;">
         <div class="section-tag" style="justify-content: center;">
-          <span class="live-pulse-dot"></span> TÉLÉMESURE DU RÉSEAU EN DIRECT
+          <span class="live-pulse-dot"></span> TÉLÉMESURE DU RÉSEAU ET TRANSIT D'ORIGINE
         </div>
-        <h2 class="section-title">Enclaves Actives : Distribution des Nœuds en Temps Réel</h2>
+        <h2 class="section-title">Enclaves Actives et Transit d'Origine : Distribution des Nœuds en Temps Réel</h2>
         <p style="color: var(--text-warm-gray); font-size: 1.05rem; line-height: 1.6; margin-top: 14px;">
-          Télémesure en temps réel des nœuds participants coopératifs et des enclaves cryptographiques souveraines. Zéro dépendance infonuagique étrangère.
+          Topologie cryptographique de transit reliant l'ancre d'origine de Gales Point aux enclaves souveraines du Bouclier canadien. Zéro dépendance au cloud étranger.
         </p>
       </div>
 
@@ -354,8 +364,11 @@
 
             <!-- Commandes et Badges HUD -->
             <div class="map-hud-overlay top-left">
-              <div style="display: flex; align-items: center; gap: 8px;">
+              <div class="topo-controls-row">
                 <span class="map-hud-badge">TOPOLOGIE DE TRANSIT XOLOTL</span>
+                <button type="button" class="topo-filter-btn active" onclick="focusTopoView('all')">TOUT LE RÉSEAU</button>
+                <button type="button" class="topo-filter-btn" onclick="focusTopoView('origin')">ORIGINE : GALES POINT</button>
+                <button type="button" class="topo-filter-btn" onclick="focusTopoView('canada')">ENCLAVES CANADIENNES</button>
                 <button type="button" id="toggleTopoThemeBtn" class="topo-theme-toggle" onclick="toggleTopoTheme()">TOPO : NATUREL</button>
               </div>
               <span class="map-hud-coords" id="radarReticleCoords">RÉTICULE DU RÉSEAU : ACTIF</span>

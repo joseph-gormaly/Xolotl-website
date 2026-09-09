@@ -953,9 +953,9 @@
       font-size: 0.88rem;
     }
 
-    /* Origin Story: sticky network map + scrolling beats */
+    /* Origin Story: 3-Column Narrative Grid (Single Cartographic Hero) */
     .origin-section {
-      padding: 110px 0;
+      padding: 90px 0 85px;
       position: relative;
       background:
         radial-gradient(circle at 12% 15%, rgba(52, 211, 153, 0.07) 0%, transparent 45%),
@@ -965,99 +965,126 @@
       border-bottom: 1px solid var(--border-glass-subtle);
     }
 
-    .origin-grid {
+    .origin-header {
+      max-width: 800px;
+      margin: 0 auto 46px;
+      text-align: center;
+    }
+
+    .origin-cards-grid {
       display: grid;
-      grid-template-columns: 1fr 1.05fr;
-      gap: 60px;
-      align-items: start;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
     }
 
-    .origin-map-sticky {
-      position: sticky;
-      top: 110px;
-      order: 2;
+    @media (max-width: 960px) {
+      .origin-cards-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
     }
 
-    .origin-beats {
+    .origin-card {
+      background: var(--bg-glass-card);
+      border: 1px solid var(--border-glass);
+      border-radius: 14px;
+      padding: 30px 24px 26px;
       display: flex;
       flex-direction: column;
-      gap: 130px;
-      padding: 20px 0 40px;
-      order: 1;
+      justify-content: space-between;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
     }
 
-    .origin-beat-eyebrow {
+    .origin-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent-gold);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+    }
+
+    .origin-card-num {
       display: block;
       font-family: var(--font-mono);
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       text-transform: uppercase;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.16em;
       color: #d4af37;
       margin-bottom: 12px;
     }
 
-    .origin-beat h3 {
+    .origin-card h3 {
       font-family: var(--font-display);
-      font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+      font-size: 1.35rem;
       font-weight: 700;
-      letter-spacing: var(--tracking-wide, 0.05em);
       color: var(--text-dark);
-      line-height: 1.2;
+      line-height: 1.25;
       margin-bottom: 14px;
     }
 
-    .origin-beat p {
+    .origin-card p {
       color: var(--text-warm-gray);
-      font-size: 1.02rem;
-      line-height: 1.65;
-      max-width: 440px;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 22px;
+      flex-grow: 1;
     }
 
-    /* Sovereign network map graphic */
-    .network-map-card {
-      background: var(--bg-glass-card);
-      border: 1px solid var(--border-glass);
-      border-radius: 16px;
-      padding: 28px;
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-    }
-
-    .network-map-card svg,
-    .network-map-card img {
-      width: 100%;
-      height: auto;
-      display: block;
-      overflow: visible;
-      border-radius: 8px;
-    }
-
-    .network-map-legend {
-      display: flex;
-      gap: 20px;
-      margin-top: 18px;
+    .origin-card-tag {
       font-family: var(--font-mono);
-      font-size: 0.72rem;
-      color: var(--text-warm-gray);
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      padding: 4px 10px;
+      border-radius: 4px;
+      width: fit-content;
       text-transform: uppercase;
-      letter-spacing: 0.06em;
+      font-weight: 600;
     }
 
-    .network-map-legend span {
+    .origin-card-tag.gold {
+      color: var(--accent-gold);
+      background: rgba(212, 175, 55, 0.1);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+    }
+
+    .origin-card-tag.emerald {
+      color: #34d399;
+      background: rgba(52, 211, 153, 0.1);
+      border: 1px solid rgba(52, 211, 153, 0.3);
+    }
+
+    .origin-card-tag.teal {
+      color: #2dd4bf;
+      background: rgba(45, 212, 191, 0.1);
+      border: 1px solid rgba(45, 212, 191, 0.3);
+    }
+
+    .origin-cta-strip {
+      text-align: center;
+      margin-top: 36px;
+    }
+
+    .origin-cta-strip a {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      color: #34d399;
+      text-decoration: none;
+      padding: 8px 18px;
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      border-radius: 6px;
+      transition: all 0.2s ease;
     }
 
-    .network-map-legend .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      display: inline-block;
+    .origin-cta-strip a:hover {
+      background: rgba(16, 185, 129, 0.18);
+      border-color: #10b981;
+      color: #ffffff;
     }
-
-    .network-map-legend .dot.origin { background: #00ff66; box-shadow: 0 0 8px rgba(0, 255, 102, 0.6); }
-    .network-map-legend .dot.custodian { background: var(--accent-gold); }
 
     .network-node .node-dot {
       animation: node-pulse 2.6s ease-in-out infinite;
@@ -3760,6 +3787,14 @@
   gap: 6px;
 }
 
+.topo-controls-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.topo-filter-btn,
 .topo-theme-toggle {
   font-family: var(--font-mono);
   font-size: 0.62rem;
@@ -3775,10 +3810,18 @@
   transition: all 0.2s ease;
 }
 
+.topo-filter-btn:hover,
 .topo-theme-toggle:hover {
   background: rgba(16, 185, 129, 0.12);
   color: #ffffff;
   border-color: rgba(16, 185, 129, 0.4);
+}
+
+.topo-filter-btn.active {
+  background: rgba(16, 185, 129, 0.22);
+  color: #34d399;
+  border-color: #10b981;
+  font-weight: 600;
 }
 
 .map-hud-badge {

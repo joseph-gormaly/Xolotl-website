@@ -1145,17 +1145,15 @@ function renderTopoMapNodes() {
     let iconAnchor = [6, 6];
 
     if (isOrigin) {
-      iconSize = [26, 26];
-      iconAnchor = [13, 13];
+      iconSize = [18, 18];
+      iconAnchor = [9, 9];
       iconHtml = `
-        <div class="topo-anchor-badge" title="Founding Origin Anchor: Gales Point Manatee, Belize">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="5" r="3"></circle>
-            <line x1="12" y1="22" x2="12" y2="8"></line>
-            <path d="M5 12H2a10 10 0 0 0 20 0h-3"></path>
+        <div class="topo-monotone-anchor" title="Founding Origin: Gales Point Manatee, Belize">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2a3 3 0 0 0-1 5.83V9H8v2h3v8.94A6.003 6.003 0 0 1 5.09 15H3a8.003 8.003 0 0 0 8 7.94V24h2v-1.06A8.003 8.003 0 0 0 21 15h-2.09A6.003 6.003 0 0 1 13 19.94V11h3V9h-3V7.83A3.001 3.001 0 0 0 12 2zm0 2a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
           </svg>
         </div>
-        <div class="topo-marker-label origin-anchor-label">${cityLabel} ⚓</div>
+        <div class="topo-marker-label origin-anchor-label">${cityLabel}</div>
       `;
     } else {
       iconHtml = `
@@ -1168,7 +1166,7 @@ function renderTopoMapNodes() {
       className: 'leaflet-node-marker' + (isOrigin ? ' origin-anchor-marker' : ''),
       iconSize: iconSize,
       iconAnchor: iconAnchor,
-      popupAnchor: [0, isOrigin ? -16 : -10],
+      popupAnchor: [0, isOrigin ? -12 : -10],
       html: iconHtml
     });
 
@@ -1189,7 +1187,7 @@ function renderTopoMapNodes() {
 
     marker.bindTooltip(tooltipHtml, {
       direction: 'top',
-      offset: [0, isOrigin ? -16 : -12],
+      offset: [0, isOrigin ? -12 : -12],
       className: 'custom-topo-tooltip',
       opacity: 1
     });

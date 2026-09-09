@@ -3897,60 +3897,64 @@
   pointer-events: none;
 }
 
-/* Gales Point Founding Origin Anchor Marker */
-.topo-anchor-badge {
+/* Gales Point Founding Origin Monotone Anchor Marker */
+.topo-monotone-anchor {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 24px;
-  height: 24px;
-  background: #111a14;
-  border: 2px solid var(--accent-gold);
-  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--accent-gold);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6), 0 0 10px rgba(212, 175, 55, 0.35);
+  color: #0f172a;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  filter: drop-shadow(0 0 2px #ffffff) drop-shadow(0 0 4px #ffffff);
+  transition: transform 0.15s ease, color 0.15s ease;
 }
 
-.topo-anchor-badge:hover {
-  transform: translate(-50%, -50%) scale(1.15);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7), 0 0 14px rgba(212, 175, 55, 0.6);
-  color: #fef08a;
-  border-color: #fef08a;
+.topo-monotone-anchor:hover {
+  transform: translate(-50%, -50%) scale(1.18);
+  color: #0284c7;
 }
 
-.topo-anchor-badge svg {
-  width: 14px;
-  height: 14px;
+.topo-monotone-anchor svg {
+  width: 18px;
+  height: 18px;
   display: block;
 }
 
 .topo-marker-label.origin-anchor-label {
-  left: 18px;
-  color: #854d0e;
-  font-weight: 800;
-  letter-spacing: 0.02em;
-  text-shadow: 0 0 4px #ffffff, 0 0 6px #ffffff, 0 1px 3px #ffffff;
+  left: 14px;
+  color: #0f172a;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-shadow: 0 0 3px #ffffff, 0 0 5px #ffffff, 0 1px 2px #ffffff;
+}
+
+.mesh-radar-map.map-dark .topo-monotone-anchor,
+.mesh-radar-map.topo-dark .topo-monotone-anchor {
+  color: #f8fafc;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 2px rgba(0, 0, 0, 0.9));
 }
 
 .mesh-radar-map.map-dark .topo-marker-label.origin-anchor-label,
 .mesh-radar-map.topo-dark .topo-marker-label.origin-anchor-label {
-  color: #fde047;
+  color: #f8fafc;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.95), 0 0 3px #000000;
 }
 
 .legend-anchor-symbol {
-  color: var(--accent-gold);
+  color: #0f172a;
   font-size: 0.85rem;
   line-height: 1;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+}
+
+.mesh-radar-map.map-dark .legend-anchor-symbol,
+.mesh-radar-map.topo-dark .legend-anchor-symbol {
+  color: #f8fafc;
 }
 
 .mesh-radar-map.map-dark .topo-marker-label,

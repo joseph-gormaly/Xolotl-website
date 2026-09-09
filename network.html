@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live Network Telemetry // Xolotl Canadian Shield</title>
+  <meta name="description" content="Real-time node telemetry, sovereign enclaves, and cryptographic transit topology linking Gales Point Manatee with Canadian Shield infrastructure.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 2 L4 8 V16 C4 23.5 9.1 30 16 32 C22.9 30 28 23.5 28 16 V8 Z' fill='%23192B23' stroke='%23C89D4B' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='5' fill='%23D97706'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/leaflet.css">
+  <style>
+    .page-hero {
+      padding: 64px 0 40px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      background: radial-gradient(circle at 50% 10%, rgba(200, 157, 75, 0.08) 0%, transparent 70%);
+    }
+    .breadcrumb-nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-warm-gray);
+      margin-bottom: 16px;
+    }
+    .breadcrumb-nav a {
+      color: var(--accent-sage);
+      text-decoration: none;
+    }
+    .breadcrumb-nav a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Unified Header -->
+  <header class="site-header">
+    <nav class="navbar">
+      <div class="container nav-inner">
+        <a href="index.html" class="brand-logo" aria-label="Xolotl Canadian Shield Home">
+          <img src="assets/images/canadian-shield.png" alt="Canadian Shield" class="shield-icon">
+          <span>Xolotl</span>
+          <span class="brand-tag">Canadian Shield</span>
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="index.html">Overview</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="architecture.html">Architecture</a></li>
+          <li><a href="network.html" class="active" style="color: var(--accent-gold); border-bottom: 2px solid var(--accent-gold); padding-bottom: 4px;">Network</a></li>
+          <li><a href="deck.html">Deck ↗</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <div class="lang-selector-group">
+            <a href="network.html" class="lang-switch-btn active" aria-current="page">EN</a>
+            <a href="fr/index.html" class="lang-switch-btn" title="Voir en français">FR</a>
+            <a href="es/index.html" class="lang-switch-btn" title="Ver en Español">ES</a>
+          </div>
+          <a href="memo.html" class="btn btn-secondary nav-memo-btn">Invest</a>
+          <button class="btn btn-aurora" onclick="openModal('beta')">Join Beta</button>
+          <button class="btn btn-gold" onclick="openModal('pilot')">Join Pilot</button>
+          <a href="https://still.bz/" target="_blank" rel="noopener noreferrer" class="nav-xolo-container" title="Still — still.bz" aria-label="Still">
+            <img src="assets/images/Xoloitzcuintle_logo_v0.png" alt="Xoloitzcuintle" class="nav-xolo-img">
+          </a>
+          <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu" onclick="toggleMobileMenu()">
+            <span class="menu-bar"></span>
+            <span class="menu-bar"></span>
+            <span class="menu-bar"></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="mobile-drawer-inner">
+      <div class="mobile-drawer-top">
+        <a href="index.html" class="brand-logo" onclick="closeMobileMenu()">
+          <img src="assets/images/canadian-shield.png" alt="Canadian Shield" class="shield-icon">
+          <span>Xolotl</span>
+          <span class="brand-tag">Canadian Shield</span>
+        </a>
+        <button class="modal-close-btn" onclick="closeMobileMenu()">&times;</button>
+      </div>
+      <ul class="mobile-nav-list">
+        <li><a href="index.html" onclick="closeMobileMenu()">Overview</a></li>
+        <li><a href="about.html" onclick="closeMobileMenu()">About</a></li>
+        <li><a href="architecture.html" onclick="closeMobileMenu()">Architecture</a></li>
+        <li><a href="network.html" onclick="closeMobileMenu()">Network Explorer</a></li>
+        <li><a href="deck.html" onclick="closeMobileMenu()">Interactive 14-Slide Deck ↗</a></li>
+        <li><a href="news.html" onclick="closeMobileMenu()">News & Press</a></li>
+        <li><a href="contact.html" onclick="closeMobileMenu()">Contact & Pilot</a></li>
+      </ul>
+      <div style="padding: 20px 24px; display: flex; flex-direction: column; gap: 12px;">
+        <a href="memo.html" class="btn btn-secondary" style="width: 100%; text-align: center;">Investment Memo</a>
+        <button class="btn btn-aurora" style="width: 100%;" onclick="closeMobileMenu(); openModal('beta');">Join the Sovereign Beta</button>
+        <button class="btn btn-gold" style="width: 100%;" onclick="closeMobileMenu(); openModal('pilot');">Request Pilot Access</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="breadcrumb-nav">
+        <a href="index.html">Home</a> &gt; <span>Live Network Telemetry</span>
+      </div>
+      <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-gold); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 8px;">
+        // CRYPTOGRAPHIC TOPOLOGY & JURISDICTIONAL MESH
+      </div>
+      <h1 style="font-size: clamp(2rem, 4.5vw, 3.2rem); color: #FFFFFF; font-weight: 700; margin-bottom: 14px;">
+        Sovereign Network Telemetry &amp; Node Distribution.
+      </h1>
+      <p style="max-width: 760px; color: var(--text-warm-gray); font-size: 1.1rem; line-height: 1.6;">
+        Real-time telemetry linking the Gales Point founding origin anchor with domestic Canadian Shield enclaves. Continuous jurisdictional separation ensures zero foreign cloud compulsion.
+      </p>
+    </div>
+  </section>
+
+  <!-- Main Telemetry Dashboard Section -->
+  <section class="section-standard mesh-telemetry-section" style="padding: 50px 0 80px;">
+    <div class="container">
+      <!-- Telemetry Dashboard HUD -->
+      <div class="telemetry-dashboard-card">
+        <!-- Top Metrics Bar -->
+        <div class="telemetry-metrics-bar">
+          <div class="telemetry-metric">
+            <span class="telemetry-metric-label">Active Nodes</span>
+            <span class="telemetry-metric-val" id="telemetryNodeCount">--</span>
+          </div>
+          <div class="telemetry-metric">
+            <span class="telemetry-metric-label">Municipal Enclaves</span>
+            <span class="telemetry-metric-val" id="telemetryClusterCount">--</span>
+          </div>
+          <div class="telemetry-metric">
+            <span class="telemetry-metric-label">Network Status</span>
+            <span class="telemetry-metric-val status-secure">ONLINE ● NOMINAL</span>
+          </div>
+          <div class="telemetry-metric">
+            <span class="telemetry-metric-label">Jurisdiction</span>
+            <span class="telemetry-metric-val status-zero">CANADIAN COOPERATIVE (NO CLOUD ACT)</span>
+          </div>
+        </div>
+
+        <!-- Main Radar & Telemetry Split View -->
+        <div class="telemetry-split-layout">
+          <!-- Canvas Webmap Area -->
+          <div class="telemetry-map-wrap">
+            <div id="meshRadarMap" class="mesh-radar-map"></div>
+
+            <!-- Map Overlay Controls / HUD Tags -->
+            <div class="map-hud-overlay top-left">
+              <div class="topo-controls-row">
+                <span class="map-hud-badge">XOLOTL NODE TOPOLOGY</span>
+                <button type="button" class="topo-filter-btn active" onclick="focusTopoView('all')">ALL NETWORK</button>
+                <button type="button" class="topo-filter-btn" onclick="focusTopoView('origin')">ORIGIN: GALES POINT</button>
+                <button type="button" class="topo-filter-btn" onclick="focusTopoView('canada')">CANADIAN ENCLAVES</button>
+                <button type="button" id="toggleTopoThemeBtn" class="topo-theme-toggle" onclick="toggleTopoTheme()">MAP: LIGHT</button>
+              </div>
+              <span class="map-hud-coords" id="radarReticleCoords">TOPOLOGY RETICLE: ACTIVE</span>
+            </div>
+
+            <div class="map-hud-overlay top-right">
+              <div class="map-legend-items">
+                <span class="legend-item"><span class="legend-dot shield"></span> Canadian Enclave</span>
+                <span class="legend-item"><span class="legend-anchor-symbol">⚓</span> Origin Anchor (Gales Point)</span>
+                <span class="legend-item"><span class="legend-dot new-join"></span> Latest Join</span>
+              </div>
+            </div>
+
+            <!-- Interactive Tooltip Overlay -->
+            <div id="radarNodeTooltip" class="radar-node-tooltip" style="display: none;">
+              <div class="tooltip-header">
+                <span id="tooltipBadgeId" class="tooltip-badge-id">NODE-CA-XXXXXX</span>
+                <span id="tooltipStatus" class="tooltip-status">ACTIVE ENCLAVE</span>
+              </div>
+              <div class="tooltip-body">
+                <div class="tooltip-row">
+                  <span class="label">Location:</span>
+                  <span id="tooltipLocation" class="val">Toronto, Ontario</span>
+                </div>
+                <div class="tooltip-row">
+                  <span class="label">Jurisdiction:</span>
+                  <span id="tooltipJurisdiction" class="val">Canadian Cooperative Enclave</span>
+                </div>
+                <div class="tooltip-row">
+                  <span class="label">Coordinates:</span>
+                  <span id="tooltipCoords" class="val">43.65°N, 79.38°W</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Live Feed & Enlistment Sidebar -->
+          <div class="telemetry-sidebar">
+            <div class="telemetry-sidebar-header">
+              <h4>Live Node Feed</h4>
+              <span class="feed-pulse-text">REAL-TIME STREAM</span>
+            </div>
+
+            <div id="telemetryFeedList" class="telemetry-feed-list">
+              <!-- Dynamically populated -->
+            </div>
+
+            <div class="telemetry-sidebar-cta">
+              <button type="button" class="btn btn-aurora" onclick="openModal('beta')" style="width: 100%; justify-content: center; padding: 12px 18px; font-size: 0.92rem;">
+                + Enlist Node in the Cooperative &nbsp;→
+              </button>
+              <div class="telemetry-cta-subtext">
+                Join waitlist &bull; No trackers &bull; Canadian custody
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="brand-logo" style="margin-bottom: 12px;">
+            <img src="assets/images/canadian-shield.png" alt="Canadian Shield" class="shield-icon">
+            <span>Xolotl</span>
+            <span class="brand-tag">Canadian Shield</span>
+          </a>
+          <p style="font-size: 0.9rem; color: var(--text-warm-gray); line-height: 1.6; max-width: 320px;">
+            Canada's sovereign digital backbone. Uncoercible threshold custody for high-consequence enterprise data.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <span class="footer-heading">Platform</span>
+          <ul class="footer-links">
+            <li><a href="index.html">Overview</a></li>
+            <li><a href="architecture.html">Architecture Specs</a></li>
+            <li><a href="network.html">Network Explorer</a></li>
+            <li><a href="deck.html">Interactive Pitch Deck ↗</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <span class="footer-heading">Cooperative</span>
+          <ul class="footer-links">
+            <li><a href="about.html">About &amp; Roots</a></li>
+            <li><a href="news.html">News &amp; Updates</a></li>
+            <li><a href="careers.html">Careers</a></li>
+            <li><a href="suppliers.html">Suppliers &amp; RFP</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <span class="footer-heading">Contact &amp; Governance</span>
+          <ul class="footer-links">
+            <li><a href="contact.html">Institutional Pilot</a></li>
+            <li><a href="memo.html">Investment Memo</a></li>
+            <li><a href="mailto:cooperate@xolotl.ca">cooperate@xolotl.ca</a></li>
+            <li><span style="font-size: 0.8rem; color: var(--accent-gold);">Montreal · Winnipeg, Canada</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 Xolotl Canadian Shield Cooperative. Member-owned fiduciary custody.</div>
+        <div style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-warm-gray);">
+          🍁 100% Domestic Canadian Infrastructure · PIPEDA Compliant
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modals -->
+  <div id="betaModal" class="modal-backdrop" onclick="handleBackdrop(event)">
+    <div class="modal-card">
+      <button class="modal-close-btn" onclick="closeModal()">&times;</button>
+      <h3 style="font-size: 1.35rem; color: #FFFFFF; margin-bottom: 6px;">Join the Sovereign Beta</h3>
+      <p style="font-size: 0.88rem; color: var(--text-warm-gray); margin-bottom: 18px;">
+        Enlist your node in the Canadian Shield mesh. Built for individuals, creators, and teams protecting what matters most. Zero telemetry, zero US cloud jurisdiction, and 100% member-owned Canadian custody.
+      </p>
+      <form id="bForm" onsubmit="handleBetaFormSubmit(event)">
+        <label class="form-label" for="bName">Operator Name or Alias</label>
+        <input type="text" id="bName" class="form-input" placeholder="e.g. Alex Tremblay" required>
+        <label class="form-label" for="bEmail">Contact Email</label>
+        <input type="email" id="bEmail" class="form-input" placeholder="operator@domain.ca" required>
+        <label class="form-label" for="bLocation">Node Deployment Region</label>
+        <input type="text" id="bLocation" class="form-input" placeholder="e.g. Montreal, QC or Toronto, ON">
+        <label class="form-label" for="bPlatform">Primary Client Environment</label>
+        <select id="bPlatform" class="form-select">
+          <option value="macos-arm">macOS (Apple Silicon M-Series)</option>
+          <option value="windows-11">Windows 11 (64-bit)</option>
+          <option value="linux-x86">Linux (x86_64 / Debian / RHEL)</option>
+          <option value="enterprise-edge">Enterprise On-Prem Enclave (Edge Node)</option>
+        </select>
+        <button type="submit" class="btn btn-aurora" style="width: 100%; margin-top: 14px; padding: 13px;">
+          Enlist Node &amp; Receive Quorum Keys &nbsp;→
+        </button>
+      </form>
+      <div id="bSuccess" style="display: none; text-align: center; padding: 20px 0;">
+        <div style="font-size: 2.2rem; margin-bottom: 10px;">🛡️</div>
+        <h4 style="color: #FFFFFF; font-size: 1.15rem; margin-bottom: 8px;">Node Enlistment Confirmed</h4>
+        <p style="font-size: 0.85rem; color: var(--text-warm-gray); line-height: 1.5; margin-bottom: 16px;">
+          Your sovereign node configuration is queued. Below is your cryptographic receipt:
+        </p>
+        <pre id="receiptBox" style="background: rgba(0, 0, 0, 0.6); border: 1px solid var(--border-glass-emerald); border-radius: 8px; padding: 12px; font-family: var(--font-mono); font-size: 0.72rem; color: #a7f3d0; text-align: left; overflow-x: auto; max-height: 140px; margin-bottom: 16px;"></pre>
+        <button type="button" class="btn btn-secondary" onclick="closeModal()" style="width: 100%;">Return to Network</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="pilotModal" class="modal-backdrop" onclick="handleBackdrop(event)">
+    <div class="modal-card">
+      <button class="modal-close-btn" onclick="closeModal()">&times;</button>
+      <h3 style="font-size: 1.35rem; color: #FFFFFF; margin-bottom: 6px;">Request Institutional Pilot Access</h3>
+      <p style="font-size: 0.88rem; color: var(--text-warm-gray); margin-bottom: 18px;">
+        Clearance for regulated law firms, family offices, defense subcontractors, and enterprise enclaves requiring compliance with Canadian data sovereignty laws.
+      </p>
+      <form id="pForm" onsubmit="handlePilotFormSubmit(event)">
+        <label class="form-label" for="pName">Lead Counsel / Executive Name</label>
+        <input type="text" id="pName" class="form-input" placeholder="e.g. Me. Sarah Bouchard" required>
+        <label class="form-label" for="pOrg">Institution / Enterprise Organization</label>
+        <input type="text" id="pOrg" class="form-input" placeholder="e.g. Bouchard &amp; Associates LLP" required>
+        <label class="form-label" for="pEmail">Institutional Email</label>
+        <input type="email" id="pEmail" class="form-input" placeholder="s.bouchard@firm.ca" required>
+        <label class="form-label" for="pRequirement">Primary Compliance Mandate</label>
+        <select id="pRequirement" class="form-select">
+          <option value="cloud-act">US CLOUD Act Immunity / Legal Privilege Protection</option>
+          <option value="pipeda-law25">Canadian PIPEDA &amp; Quebec Law 25 Compliance</option>
+          <option value="cmmc-defense">CMMC 2.0 / ITAR Controlled Unclassified Info</option>
+          <option value="worm-ransomware">93-Day Immutable WORM Vault Anti-Ransomware</option>
+          <option value="family-wealth">Family Office &amp; Generational Wealth Custody</option>
+        </select>
+        <button type="submit" class="btn btn-gold" style="width: 100%; margin-top: 14px; padding: 13px;">
+          Submit Pilot Clearance Request &nbsp;→
+        </button>
+      </form>
+      <div id="pSuccess" style="display: none; text-align: center; padding: 20px 0;">
+        <div style="font-size: 2.2rem; margin-bottom: 10px;">🏛️</div>
+        <h4 style="color: #FFFFFF; font-size: 1.15rem; margin-bottom: 8px;">Pilot Application Logged</h4>
+        <p style="font-size: 0.85rem; color: var(--text-warm-gray); line-height: 1.5; margin-bottom: 16px;">
+          An executive encryption key manifest has been generated for your institution:
+        </p>
+        <pre id="pilotReceiptBox" style="background: rgba(0, 0, 0, 0.6); border: 1px solid var(--border-glass-gold); border-radius: 8px; padding: 12px; font-family: var(--font-mono); font-size: 0.72rem; color: #fde68a; text-align: left; overflow-x: auto; max-height: 140px; margin-bottom: 16px;"></pre>
+        <button type="button" class="btn btn-secondary" onclick="closeModal()" style="width: 100%;">Return to Network</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/leaflet.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

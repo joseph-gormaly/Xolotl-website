@@ -66,6 +66,7 @@
         <ul class="nav-links">
           <li><a href="about.html">À Propos</a></li>
           <li><a href="architecture.html">Architecture</a></li>
+          <li><a href="../network.html">Réseau</a></li>
           <li><a href="deck.html">Présentation ↗</a></li>
           <li><a href="news.html">Nouvelles</a></li>
           <li><a href="contact.html">Contact</a></li>
@@ -110,6 +111,7 @@
       <ul class="mobile-nav-list">
         <li><a href="about.html" onclick="closeMobileMenu()">À Propos</a></li>
         <li><a href="architecture.html" onclick="closeMobileMenu()">Architecture</a></li>
+        <li><a href="../network.html" onclick="closeMobileMenu()">Explorateur de Réseau</a></li>
         <li><a href="deck.html" onclick="closeMobileMenu()">Présentation Interactive de 14 Diapositives ↗</a></li>
         <li><a href="news.html" onclick="closeMobileMenu()">Nouvelles et Presse</a></li>
         <li><a href="contact.html" onclick="closeMobileMenu()">Contact et Pilote</a></li>
@@ -134,330 +136,410 @@
   </div>
 
 
-<section class="hero">
-    <div class="hero-bg">
-      <img src="../assets/images/canadian_shield_twilight.jpg" alt="Socle rocheux granitique du Bouclier Canadien sous un ciel d'aurore crépusculaire">
-    </div>
+  <!-- Hero Section -->
+  <section class="hero" style="background: radial-gradient(circle at 50% 12%, rgba(20, 36, 26, 0.5) 0%, rgba(10, 15, 12, 0.98) 75%); border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 75px;">
     <div class="container">
-      <div class="hero-content">
-        <div class="hero-eyebrow">
-          <span>🍁</span> L'Épine Dorsale Virtuelle · Périphérie Souveraine &amp; Infrastructure Régénérative Canadienne
+      <div class="hero-content" style="max-width: 980px; margin: 0 auto; text-align: center; padding: 145px 0 0;">
+        <div class="hero-eyebrow" style="justify-content: center;">
+          <span>🍁</span> Infrastructure Numérique Souveraine Canadienne · Garde de Fichiers d'Entreprise
         </div>
 
-        <h1 class="hero-title">
+        <h1 class="hero-title" style="margin-bottom: 22px;">
           Le nuage a des problèmes de confiance. <br>
           <span class="hero-highlight">Vos données n'ont pas à en avoir.</span> <br>
-          <span class="serif-light">Découvrez le Bouclier Canadien.</span>
+          <span class="serif-light">Stockage Infogéré Souverain pour Entreprises.</span>
         </h1>
 
-        <!-- Pronunciation & Meta-Advantage Banner -->
-        <div class="hero-meta-box">
-          <div class="hero-meta-top">
-            <div class="hero-phonetic-pill">
-              <span class="hero-phonetic-text">
-                <strong>/ˈʃoːloːtɬ/</strong>
-                <span class="hero-phonetic-guide">("SHOW-lot")</span>
-              </span>
-              <button class="meta-speaker-btn" onclick="playPronounceAudio(event)" title="Écouter la prononciation" aria-label="Écouter la prononciation">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
-                <span>Écouter</span>
-                <span class="sound-bars">
-                  <span class="bar"></span>
-                  <span class="bar"></span>
-                  <span class="bar"></span>
-                </span>
-              </button>
-            </div>
-            <span class="hero-meta-h">Difficile à épeler. Impossible à contraindre.</span>
-          </div>
-        </div>
-
-        <p style="max-width: 680px; color: var(--text-warm-gray); font-size: 1.08rem; line-height: 1.6; margin: 20px 0 22px;">
-          La coopérative détenue par ses membres qui bâtit l'épine dorsale numérique souveraine du Canada. Une garde à seuil inaliénable pour vos archives personnelles, votre PI d'entreprise et vos enclaves institutionnelles — intégrée de manière invisible à vos outils quotidiens.
+        <p style="max-width: 760px; margin: 0 auto 28px; color: var(--text-warm-gray); font-size: 1.15rem; line-height: 1.65;">
+          Xolotl offre le flux de travail familier « glisser-déposer » de OneDrive ou Dropbox &mdash; appuyé par un chiffrement multijuridictionnel inaliénable. Aucun fournisseur infonuagique étranger, ordonnance judiciaire extraterritoriale ou attaque par rançongiciel ne peut accéder à vos données en clair.
         </p>
 
         <!-- Hero CTAs -->
-        <div style="display: flex; gap: 14px; align-items: center; flex-wrap: wrap; margin-top: 10px;">
-          <button class="btn btn-aurora" onclick="openModal('beta')" style="font-size: 1.02rem; padding: 14px 30px;">
-            Rejoindre la Bêta Souveraine &nbsp;→
+        <div style="display: flex; gap: 14px; align-items: center; justify-content: center; flex-wrap: wrap; margin-bottom: 28px;">
+          <button class="btn btn-aurora" onclick="openModal('pilot')" style="font-size: 1.05rem; padding: 15px 32px;">
+            Demander un Pilote Institutionnel &nbsp;→
           </button>
-          <button class="btn btn-secondary" onclick="openModal('pilot')" style="font-size: 0.98rem; padding: 14px 24px;">
-            Pilote Institutionnel &nbsp;↗
-          </button>
+          <a href="architecture.html" class="btn btn-secondary" style="font-size: 1.02rem; padding: 15px 26px;">
+            Spécifications d'Architecture &nbsp;↗
+          </a>
         </div>
+
+        <!-- Trust Signals Bar -->
+        <div style="display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; font-family: var(--font-mono); font-size: 0.76rem; color: #94a3b8; padding-top: 6px;">
+          <span>✓ Résidence 100 % Canadienne des Données</span>
+          <span>✓ Conformité LPRPDE &amp; Loi 25</span>
+          <span>✓ Zéro Garde de Clés en SaaS</span>
+          <span>✓ Client Natif Rust (&lt;30 Mo RAM)</span>
+        </div>
+
+        <!-- Desktop Application Preview Mockup -->
+        <div class="hero-product-preview">
+          <div class="product-window-titlebar">
+            <div class="window-dots">
+              <span class="window-dot red"></span>
+              <span class="window-dot yellow"></span>
+              <span class="window-dot green"></span>
+            </div>
+            <div class="window-title">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F5D074" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <span>Coffre-Fort Souverain Xolotl · Client de Bureau v2.4 (Noyau Rust)</span>
+            </div>
+            <span class="window-status-pill">● Système Nominal</span>
+          </div>
+
+          <div class="product-window-body">
+            <!-- Sidebar -->
+            <div class="product-window-sidebar">
+              <div>
+                <div class="sidebar-group-title">Coffres Actifs</div>
+                <ul class="sidebar-item-list">
+                  <li class="sidebar-item active"><span class="sidebar-item-icon">📂</span> Secret_Professionnel_Litiges</li>
+                  <li class="sidebar-item"><span class="sidebar-item-icon">📂</span> Archives_PI_Direction</li>
+                  <li class="sidebar-item"><span class="sidebar-item-icon">📂</span> Sequencage_Genomique</li>
+                  <li class="sidebar-item"><span class="sidebar-item-icon">📂</span> Proces_Verbaux_CA_WORM</li>
+                </ul>
+              </div>
+
+              <div>
+                <div class="sidebar-group-title">Enclaves Souveraines</div>
+                <ul class="sidebar-item-list">
+                  <li class="sidebar-item"><span class="sidebar-item-icon">🍁</span> Socle Granitique Montréal (CA)</li>
+                  <li class="sidebar-item"><span class="sidebar-item-icon">🍁</span> Miroir Toronto (CA)</li>
+                  <li class="sidebar-item"><span class="sidebar-item-icon">⚓</span> Ancre d'Origine Gales Point (BLZ)</li>
+                  <li class="sidebar-item"><span class="sidebar-item-icon">🏔️</span> Quorum Zurich (CH)</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Main File List -->
+            <div class="product-window-main">
+              <div class="product-file-table-header">
+                <span>Nom du Fichier</span>
+                <span>Taille</span>
+                <span>Modèle de Protection</span>
+                <span>État</span>
+              </div>
+
+              <div class="product-file-row">
+                <span class="product-file-name">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                  Memo_Litige_Transfrontalier_T3.pdf
+                </span>
+                <span>14,2 Mo</span>
+                <span><span class="product-file-badge quorum">🔒 Quorum (3,5)</span></span>
+                <span style="color: #34d399;">✓ Synchronisé (il y a 2 min)</span>
+              </div>
+
+              <div class="product-file-row">
+                <span class="product-file-name">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                  Essai_Clinique_Cohorte_Phase2.enc
+                </span>
+                <span>284 Mo</span>
+                <span><span class="product-file-badge sharded">🔒 Fragments Aveugles</span></span>
+                <span style="color: #34d399;">✓ Synchronisé (il y a 12 min)</span>
+              </div>
+
+              <div class="product-file-row">
+                <span class="product-file-name">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                  Resolution_Conseil_Administration_2026.docx
+                </span>
+                <span>2,4 Mo</span>
+                <span><span class="product-file-badge worm">🔒 WORM 93 Jours</span></span>
+                <span style="color: #34d399;">✓ Verrouillé (il y a 1 h)</span>
+              </div>
+
+              <div class="product-file-row">
+                <span class="product-file-name">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                  Schema_Technique_Defense_CUI.tar
+                </span>
+                <span>92,6 Mo</span>
+                <span><span class="product-file-badge quorum">🔒 Quorum (3,5)</span></span>
+                <span style="color: #34d399;">✓ Synchronisé (il y a 3 h)</span>
+              </div>
+
+              <div class="product-window-footer">
+                <span>Empreinte RAM résidente : <strong>7,8 Mio</strong></span>
+                <span>Clés de déchiffrement dans le cloud : <strong>0 (Mathématiquement Aveugle)</strong></span>
+                <span>Maillage WireGuard : <strong style="color: #34d399;">Actif (Chiffré)</strong></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
 
-<section class="trust-strip">
+  <!-- Section 2: Le Dilemme Souverain -->
+  <section class="section-standard" style="padding: 90px 0 80px; border-bottom: 1px solid rgba(255, 255, 255, 0.08);">
     <div class="container">
-      <div class="trust-strip-inner">
-        <div class="ticker-item">
-          <span class="num">0 Clé</span>
-          <span class="label">Détenue dans un miroir infonuagique (mathématiquement aveugle)</span>
-        </div>
-        <div class="ticker-item">
-          <span class="num">93 Jours</span>
-          <span class="label">Verrouillage d'Objet par Coffre-Fort WORM Immuable de Conformité</span>
-        </div>
-        <div class="ticker-item">
-          <span class="num">(3, 5)</span>
-          <span class="label">Quorum juridictionnel imposé cryptographiquement</span>
-        </div>
-        <div class="ticker-item">
-          <span class="num">8 Mio</span>
-          <span class="label">Diffusion AES-256 à RAM résidente constante</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Récit d'Origine : Grille Narrative en 3 Colonnes (Héros Cartographique Unique) -->
-  <section class="origin-section">
-    <div class="container">
-      <div class="origin-header">
-        <div class="section-tag" style="justify-content: center;">● LA GENÈSE ET LES RACINES</div>
-        <h2 class="section-title">Où commence la souveraineté : de Gales Point au Bouclier canadien.</h2>
-        <p style="color: var(--text-warm-gray); font-size: 1.05rem; line-height: 1.6; margin-top: 14px;">
-          La souveraineté des données n'a rien d'une théorie abstraite. Elle a été forgée sur le terrain communautaire et pensée pour une garde institutionnelle incoercible.
+      <div class="section-header" style="max-width: 780px; margin: 0 auto 50px; text-align: center;">
+        <div class="section-tag" style="justify-content: center;">● LE DILEMME SOUVERAIN</div>
+        <h2 class="section-title">Pourquoi le stockage conventionnel échoue auprès des entreprises réglementées.</h2>
+        <p class="section-desc">
+          Les organisations manipulant des fichiers hautement sensibles font face à un choix intenable entre vulnérabilité juridique étrangère et paralysie opérationnelle.
         </p>
       </div>
 
-      <div class="origin-cards-grid">
-        <div class="origin-card">
-          <div>
-            <span class="origin-card-num">01 / Là où l'idée a pris racine</span>
-            <h3>Ranimée à Gales Point Manatee, au Belize.</h3>
-            <p>Un stage communautaire en SIG et en souveraineté des données avec l'Université Galen &mdash; dans un village dont le Christmas Bram et le Sambai viennent d'être inscrits au patrimoine culturel immatériel de l'UNESCO. Ici, la souveraineté des données n'a rien de théorique.</p>
-          </div>
-          <span class="origin-card-tag gold">Ancre d'Origine Fondatrice</span>
+      <div class="dilemma-grid">
+        <!-- Dilemma 1: Hyperscalers -->
+        <div class="dilemma-card">
+          <span class="dilemma-card-badge risk">Exposition au CLOUD Act Américain</span>
+          <h3>Hyperscalers du Nuage Public</h3>
+          <p>
+            En vertu du 18 U.S.C. § 2713, les sociétés mères américaines sont légalement contraintes de divulguer les données de leurs clients stockées n'importe où sur Terre sur ordonnance d'un tribunal américain. Les clés en clair dans les miroirs SaaS violent le secret professionnel sans votre consentement.
+          </p>
+          <ul class="dilemma-points">
+            <li class="dilemma-point bad">✕ Clés non chiffrées détenues par la maison-mère américaine</li>
+            <li class="dilemma-point bad">✕ Vulnérabilité aux mandats extraterritoriaux FISA</li>
+            <li class="dilemma-point bad">✕ Perte irrévocable du privilège avocat-client</li>
+          </ul>
         </div>
 
-        <div class="origin-card">
-          <div>
-            <span class="origin-card-num">02 / D'où vient le nom</span>
-            <h3>Nommée en l'honneur de l'axolotl.</h3>
-            <p>Une créature capable de se régénérer entièrement &mdash; le fondement biomathématique de notre Infrastructure Régénérative et de notre redistribution de clés par seuil.</p>
-          </div>
-          <span class="origin-card-tag teal">Cryptographie Régénérative</span>
+        <!-- Dilemma 2: Air-Gapped On-Prem -->
+        <div class="dilemma-card">
+          <span class="dilemma-card-badge friction">Paralysie Opérationnelle</span>
+          <h3>Systèmes Locaux Hors Ligne (Air-Gap)</h3>
+          <p>
+            Déconnecter les serveurs d'Internet empêche les assignations étrangères, mais paralyse les équipes distribuées modernes. Cela exige des millions de dollars de maintenance et laisse les données vulnérables à un point de défaillance unique et aux rançongiciels locaux.
+          </p>
+          <ul class="dilemma-points">
+            <li class="dilemma-point bad">✕ Zéro collaboration à distance pour les équipes modernes</li>
+            <li class="dilemma-point bad">✕ Risque catastrophique de rançongiciel sur site unique</li>
+            <li class="dilemma-point neutral">△ Dépenses d'investissement récurrentes massives</li>
+          </ul>
         </div>
 
-        <div class="origin-card">
-          <div>
-            <span class="origin-card-num">03 / Là où nous bâtissons</span>
-            <h3>Bâti sur la rivière Rouge.</h3>
-            <p>Conçu depuis Winnipeg, au Manitoba &mdash; terre natale des Métis de la rivière Rouge &mdash; et ancré dans le socle rocheux de Montréal. Une épine dorsale virtuelle reliant l'infrastructure du Bouclier canadien à des enclaves souveraines mondiales de confiance.</p>
-          </div>
-          <span class="origin-card-tag emerald">Socle du Bouclier Canadien</span>
+        <!-- Dilemma 3: Xolotl Hybrid Sovereign Edge -->
+        <div class="dilemma-card highlight">
+          <span class="dilemma-card-badge solution">Garde Souveraine Inaliénable</span>
+          <h3>Périphérie Hybride Souveraine Xolotl</h3>
+          <p>
+            Le flux de travail habituel de OneDrive jumelé à une immunité mathématique absolue. Les fichiers sont fragmentés en parts de seuil aveugles réparties sur des juridictions indépendantes. Il est mathématiquement impossible pour un seul tribunal ou acteur d'exiger la divulgation.
+          </p>
+          <ul class="dilemma-points">
+            <li class="dilemma-point good">✓ Dossier de synchronisation natif Windows et macOS</li>
+            <li class="dilemma-point good">✓ Zéro clé en clair conservée dans le nuage</li>
+            <li class="dilemma-point good">✓ Coopérative canadienne détenue à 100 % par ses membres</li>
+          </ul>
         </div>
-      </div>
-
-      <div class="origin-cta-strip">
-        <a href="#mesh-telemetry">
-          <span>● Explorer la Télémesure et le Transit d'Origine sur la Carte Ci-Dessous</span> &darr;
-        </a>
       </div>
     </div>
   </section>
 
-  <!-- Core Thesis / Les 4 Piliers Souverains -->
-  <section class="section-standard" style="padding: 90px 0 70px;">
+  <!-- Section 3: Comment ça fonctionne (3 Étapes) -->
+  <section class="section-standard" style="padding: 90px 0 80px; background: rgba(13, 19, 15, 0.6); border-bottom: 1px solid rgba(255, 255, 255, 0.08);">
     <div class="container">
-      <div class="section-header" style="max-width: 760px; margin: 0 auto 50px; text-align: center;">
-        <div class="section-tag" style="justify-content: center;">● LES QUATRE PILIERS SOUVERAINS</div>
-        <h2 class="section-title">Souveraineté Plan A : L'indépendance numérique bâtie sur le socle canadien.</h2>
-        <p style="color: var(--text-warm-gray); font-size: 1.05rem; line-height: 1.6; margin-top: 14px;">
-          La souveraineté n'est pas une simple clause contractuelle passive. C'est une architecture coopérative inaliénable conçue pour les citoyens, les entreprises en croissance et les infrastructures critiques.
+      <div class="section-header" style="max-width: 780px; margin: 0 auto 50px; text-align: center;">
+        <div class="section-tag" style="justify-content: center;">● FLUX DE TRAVAIL TRANSPARENT</div>
+        <h2 class="section-title">Trois étapes vers l'immunité mathématique des données.</h2>
+        <p class="section-desc">
+          Des garanties cryptographiques avancées encapsulées dans les habitudes quotidiennes que vos équipes utilisent déjà sur leur bureau.
+        </p>
+      </div>
+
+      <div class="workflow-grid">
+        <div class="workflow-card">
+          <span class="workflow-step-num">01</span>
+          <h3>Glissez-déposez dans l'Explorateur ou le Finder</h3>
+          <p>
+            Fonctionne comme un dossier de synchronisation natif et léger conçu en Rust et Tauri (moins de 30 Mo d'empreinte RAM). Aucune ligne de commande, aucun téléversement manuel par navigateur et aucune perturbation de vos opérations quotidiennes.
+          </p>
+        </div>
+
+        <div class="workflow-card">
+          <span class="workflow-step-num">02</span>
+          <h3>Fragmentation aveugle par seuil instantanée</h3>
+          <p>
+            Avant qu'un fichier ne quitte votre appareil, il est chiffré en mémoire vive en AES-256-GCM. La clé de déchiffrement est divisée en parts mathématiques de seuil via les protocoles audités Pedersen DKG et FROST.
+          </p>
+        </div>
+
+        <div class="workflow-card">
+          <span class="workflow-step-num">03</span>
+          <h3>Protection par quorum multijuridictionnel</h3>
+          <p>
+            Le texte en clair ne peut être reconstruit que lorsqu'un quorum mathématique d'enclaves indépendantes (Canada, Belize, Suisse) coopère. Aucun gouvernement isolé ni employé malveillant ne peut forcer le déverrouillage.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: Secteurs Réglementés -->
+  <section class="section-standard" style="padding: 90px 0 80px; border-bottom: 1px solid rgba(255, 255, 255, 0.08);">
+    <div class="container">
+      <div class="section-header" style="max-width: 780px; margin: 0 auto 50px; text-align: center;">
+        <div class="section-tag" style="justify-content: center;">● SECTEURS RÉGLEMENTÉS</div>
+        <h2 class="section-title">Conçu pour les organisations où l'échec n'est pas une option.</h2>
+        <p class="section-desc">
+          Architectures ciblées de garde des données pour les institutions soumises à de stricts mandats fiduciaires, de sécurité nationale ou de confidentialité statutaire.
         </p>
       </div>
 
       <div class="feature-grid">
-        <!-- Pilier 1 : Le Modèle Coopératif -->
         <div class="feature-card">
           <span class="feature-num">01</span>
-          <h3 class="feature-title">Le Modèle Coopératif : Incorruptible par Conception</h3>
+          <h3 class="feature-title">Droit Transfrontalier &amp; Fusions-Acquisitions</h3>
           <p class="feature-desc">
-            On ne peut acheter la souveraineté numérique auprès d'une société par actions américaine conçue pour être rachetée ou assujettie à Wall Street. Les géants de la tech capitulent parce que le droit corporatif du Delaware l'exige. Xolotl est une coopérative canadienne indépendante détenue exclusivement par ses membres. Elle ne peut être acquise par Microsoft, ne subit aucune pression des marchés boursiers étrangers et ne comporte aucune porte dérobée.
+            Protégez le privilège avocat-client lors de litiges transfrontaliers, de révisions antitrust internationales et de négociations confidentielles de fusions-acquisitions contre les demandes d'enquête étrangères et la portée du CLOUD Act.
           </p>
           <div style="margin-top: 14px; font-family: var(--font-mono); font-size: 0.74rem; color: var(--accent-gold);">
-            DÉTENUE PAR SES MEMBRES &bull; GOUVERNANCE DÉMOCRATIQUE
+            PRIVILÈGE AVOCAT-CLIENT &bull; IMMUNITÉ AUX ASSIGNATIONS ÉTRANGÈRES
           </div>
         </div>
 
-        <!-- Pilier 2 : Bâtir la Nation -->
         <div class="feature-card">
           <span class="feature-num">02</span>
-          <h3 class="feature-title">Bâtir la Nation : Construire Ce Dont Nous Avons Besoin</h3>
+          <h3 class="feature-title">Family Offices &amp; Fonds Souverains</h3>
           <p class="feature-desc">
-            Nous ne construisons pas par peur de la contrainte étrangère ; nous construisons par fierté pour le savoir-faire canadien. Alimenté par l'hydroélectricité propre et ancré dans le granit millénaire, Xolotl conserve le capital de données, la propriété intellectuelle et la puissance de calcul au Canada pour ériger l'infrastructure souveraine de notre pays.
+            Offrez une garde générationnelle pour les actes notariés familiaux, clés cryptographiques privées, registres successoraux et registres d'actionnaires &mdash; isolés en permanence des faillites bancaires systémiques et des interruptions d'hyperscalers.
           </p>
           <div style="margin-top: 14px; font-family: var(--font-mono); font-size: 0.74rem; color: #00ff66;">
-            HYDROÉLECTRICITÉ PROPRE &bull; RÉTENTION DU CAPITAL CANADIEN
+            GARDE GÉNÉRATIONNELLE &bull; REGISTRES D'ACTIONNAIRES
           </div>
         </div>
 
-        <!-- Pilier 3 : Zéro Perturbation -->
         <div class="feature-card">
           <span class="feature-num">03</span>
-          <h3 class="feature-title">Zéro Perturbation : Cryptographie Invisible</h3>
+          <h3 class="feature-title">Base Industrielle de Défense &amp; CUI</h3>
           <p class="feature-desc">
-            Nul besoin d'abandonner votre iPhone, de résilier Microsoft 365 ou d'apprendre des lignes de commande complexes. Xolotl s'intègre comme un dossier de synchronisation natif et fluide (conçu en Rust et Tauri avec une empreinte résidente fixe de 8 Mio de mémoire vive). Déposez simplement vos fichiers — ils sont fragmentés en parts de seuil mathématiques et protégés en arrière-plan sans perturber vos habitudes.
+            Répondez aux exigences de protection des données CMMC 2.0 Niveau 2 et ITAR pour les Renseignements Non Classifiés Contrôlés (CUI) sans les coûts exorbitants et la lourdeur administrative d'enclaves infonuagiques sur mesure.
           </p>
           <div style="margin-top: 14px; font-family: var(--font-mono); font-size: 0.74rem; color: var(--accent-sage);">
-            RUST &amp; TAURI &bull; 8 MIO RAM CONSTANTE &bull; INTÉGRATION IMMÉDIATE
+            CMMC 2.0 &bull; CONFORME ITAR &bull; DONNÉES CUI DE DÉFENSE
           </div>
         </div>
 
-        <!-- Pilier 4 : Des Actes Familiaux aux Enclaves Financières -->
         <div class="feature-card">
           <span class="feature-num">04</span>
-          <h3 class="feature-title">Des Actes Familiaux aux Enclaves Financières</h3>
+          <h3 class="feature-title">Santé &amp; Recherche Génomique</h3>
           <p class="feature-desc">
-            Conçu pour tous ceux qui refusent d'abandonner leur autonomie à des algorithmes étrangers. La Bêta Souveraine permet aux particuliers et créateurs de protéger leurs actes familiaux, ébauches de brevets, dossiers médicaux et clés privées. Pour les organisations, notre programme pilote fournit des enclaves dédiées et la conformité aux coffres WORM de 93 jours.
+            Préservez la confidentialité des dossiers patients et l'intégrité des données d'essais cliniques en conformité stricte avec la LPRPDE canadienne, la Loi 25 du Québec et les réglementations internationales de souveraineté des données de santé.
           </p>
           <div style="margin-top: 14px; font-family: var(--font-mono); font-size: 0.74rem; color: var(--accent-gold);">
-            VIE PRIVÉE DES CITOYENS &bull; ENCLAVES INSTITUTIONNELLES
+            LPRPDE &bull; LOI 25 DU QUÉBEC &bull; INTÉGRITÉ CLINIQUE
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Section de Télémesure du Maillage Souverain en Direct -->
-  <section class="section-standard mesh-telemetry-section" id="mesh-telemetry" style="padding: 75px 0 65px;">
+  <!-- Section 5: Gouvernance et Mandat Coopératif -->
+  <section class="section-standard" style="padding: 85px 0 75px; background: rgba(10, 16, 12, 0.7); border-bottom: 1px solid rgba(255, 255, 255, 0.08);">
     <div class="container">
-      <div class="section-header" style="max-width: 840px; margin: 0 auto 40px; text-align: center;">
-        <div class="section-tag" style="justify-content: center;">
-          <span class="live-pulse-dot"></span> TÉLÉMESURE DU RÉSEAU ET TRANSIT D'ORIGINE
-        </div>
-        <h2 class="section-title">Enclaves Actives et Transit d'Origine : Distribution des Nœuds en Temps Réel</h2>
-        <p style="color: var(--text-warm-gray); font-size: 1.05rem; line-height: 1.6; margin-top: 14px;">
-          Topologie cryptographique de transit reliant l'ancre d'origine de Gales Point aux enclaves souveraines du Bouclier canadien. Zéro dépendance au cloud étranger.
+      <div class="section-header" style="max-width: 780px; margin: 0 auto 45px; text-align: center;">
+        <div class="section-tag" style="justify-content: center;">● LE MANDAT COOPÉRATIF</div>
+        <h2 class="section-title">Une coopérative fiduciaire de données, pas une plateforme de surveillance.</h2>
+        <p class="section-desc">
+          On ne peut acheter la souveraineté numérique auprès d'une société par actions américaine assujettie à Wall Street. La garde fiduciaire exige une indépendance structurelle.
         </p>
       </div>
 
-      <!-- Tableau de Bord Télémesure HUD -->
-      <div class="telemetry-dashboard-card">
-        <!-- Barre de Métriques Supérieure -->
-        <div class="telemetry-metrics-bar">
-          <div class="telemetry-metric">
-            <span class="telemetry-metric-label">Nœuds Actifs</span>
-            <span class="telemetry-metric-val" id="telemetryNodeCount">--</span>
-          </div>
-          <div class="telemetry-metric">
-            <span class="telemetry-metric-label">Enclaves Municipales</span>
-            <span class="telemetry-metric-val" id="telemetryClusterCount">--</span>
-          </div>
-          <div class="telemetry-metric">
-            <span class="telemetry-metric-label">État du Réseau</span>
-            <span class="telemetry-metric-val status-secure">EN LIGNE ● NOMINAL</span>
-          </div>
-          <div class="telemetry-metric">
-            <span class="telemetry-metric-label">Juridiction</span>
-            <span class="telemetry-metric-val status-zero">COOPÉRATIVE CANADIENNE (SANS CLOUD ACT)</span>
-          </div>
+      <div class="feature-grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+        <div class="feature-card">
+          <div style="font-size: 1.5rem; margin-bottom: 12px;">🏛️</div>
+          <h3 style="font-size: 1.15rem; color: #FFFFFF; margin-bottom: 8px;">Coopérative Détenue par ses Membres</h3>
+          <p style="font-size: 0.9rem; color: var(--text-warm-gray); line-height: 1.55;">
+            Constituée sous forme de coopérative canadienne indépendante détenue exclusivement par ses membres. Elle ne peut être acquise par Microsoft, subordonnée aux marchés boursiers étrangers ou contrainte d'installer des portes dérobées.
+          </p>
         </div>
 
-        <!-- Vue Partagée : Carte Radar & Flux en Direct -->
-        <div class="telemetry-split-layout">
-          <!-- Zone Canvas de la Carte Web -->
-          <div class="telemetry-map-wrap">
-            <div id="meshRadarMap" class="mesh-radar-map"></div>
+        <div class="feature-card">
+          <div style="font-size: 1.5rem; margin-bottom: 12px;">🛡️</div>
+          <h3 style="font-size: 1.15rem; color: #FFFFFF; margin-bottom: 8px;">Zéro Garde de Texte en Clair en SaaS</h3>
+          <p style="font-size: 0.9rem; color: var(--text-warm-gray); line-height: 1.55;">
+            Notre cœur de stockage n'héberge que des fragments chiffrés et aucune clé maîtresse. Même sous mandat judiciaire, nos administrateurs ne peuvent produire vos données en clair car cela est mathématiquement impossible.
+          </p>
+        </div>
 
-            <!-- Commandes et Badges HUD -->
-            <div class="map-hud-overlay top-left">
-              <div class="topo-controls-row">
-                <span class="map-hud-badge">TOPOLOGIE DES NŒUDS XOLOTL</span>
-                <button type="button" class="topo-filter-btn active" onclick="focusTopoView('all')">TOUT LE RÉSEAU</button>
-                <button type="button" class="topo-filter-btn" onclick="focusTopoView('origin')">ORIGINE : GALES POINT</button>
-                <button type="button" class="topo-filter-btn" onclick="focusTopoView('canada')">ENCLAVES CANADIENNES</button>
-                <button type="button" id="toggleTopoThemeBtn" class="topo-theme-toggle" onclick="toggleTopoTheme()">CARTE : CLAIR</button>
-              </div>
-              <span class="map-hud-coords" id="radarReticleCoords">RÉTICULE DU RÉSEAU : ACTIF</span>
-            </div>
+        <div class="feature-card">
+          <div style="font-size: 1.5rem; margin-bottom: 12px;">🔒</div>
+          <h3 style="font-size: 1.15rem; color: #FFFFFF; margin-bottom: 8px;">Verrouillage Immuable WORM de 93 Jours</h3>
+          <p style="font-size: 0.9rem; color: var(--text-warm-gray); line-height: 1.55;">
+            La conservation WORM (« écriture unique, lectures multiples ») matérielle garantit que les rançongiciels ne peuvent corrompre votre historique de sauvegarde, permettant une restauration instantanée à la seconde près.
+          </p>
+        </div>
 
-            <div class="map-hud-overlay top-right">
-              <div class="map-legend-items">
-                <span class="legend-item"><span class="legend-dot shield"></span> Enclave Canadienne</span>
-                <span class="legend-item"><span class="legend-anchor-symbol">⚓</span> Ancre d'Origine (Gales Point)</span>
-                <span class="legend-item"><span class="legend-dot new-join"></span> Dernier Nœud Enrôlé</span>
-              </div>
-            </div>
-
-            <!-- Infobulle Interactive -->
-            <div id="radarNodeTooltip" class="radar-node-tooltip" style="display: none;">
-              <div class="tooltip-header">
-                <span id="tooltipBadgeId" class="tooltip-badge-id">NODE-CA-XXXXXX</span>
-                <span id="tooltipStatus" class="tooltip-status">ENCLAVE ACTIVE</span>
-              </div>
-              <div class="tooltip-body">
-                <div class="tooltip-row">
-                  <span class="label">Emplacement :</span>
-                  <span id="tooltipLocation" class="val">Montréal, Québec</span>
-                </div>
-                <div class="tooltip-row">
-                  <span class="label">Juridiction :</span>
-                  <span id="tooltipJurisdiction" class="val">Enclave Coopérative Canadienne</span>
-                </div>
-                <div class="tooltip-row">
-                  <span class="label">Coordonnées :</span>
-                  <span id="tooltipCoords" class="val">45.50°N, 73.57°O</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Barre Latérale : Flux en Direct & Enrôlement -->
-          <div class="telemetry-sidebar">
-            <div class="telemetry-sidebar-header">
-              <h4>Flux des Nœuds en Direct</h4>
-              <span class="feed-pulse-text">FLUX EN TEMPS RÉEL</span>
-            </div>
-
-            <div id="telemetryFeedList" class="telemetry-feed-list">
-              <!-- Rempli dynamiquement -->
-            </div>
-
-            <div class="telemetry-sidebar-cta">
-              <button type="button" class="btn btn-aurora" onclick="openModal('beta')" style="width: 100%; justify-content: center; padding: 12px 18px; font-size: 0.92rem;">
-                + Enrôler Votre Nœud dans la Coopérative &nbsp;→
-              </button>
-              <div class="telemetry-cta-subtext">
-                Rejoindre la liste &bull; Aucun traceur &bull; Garde canadienne
-              </div>
-            </div>
-          </div>
+        <div class="feature-card">
+          <div style="font-size: 1.5rem; margin-bottom: 12px;">⚡</div>
+          <h3 style="font-size: 1.15rem; color: #FFFFFF; margin-bottom: 8px;">Socle Canadien &amp; Hydroélectricité Propre</h3>
+          <p style="font-size: 0.9rem; color: var(--text-warm-gray); line-height: 1.55;">
+            Hébergé sur une infrastructure souveraine canadienne ancrée dans le socle granitique précambrien à Montréal et Winnipeg, alimentée à 100 % par une hydroélectricité propre et locale.
+          </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Final Clean Institutional CTA -->
-  <section class="container" style="padding: 60px 0 80px;">
-    <div style="background: radial-gradient(circle at 50% 50%, rgba(200, 157, 75, 0.12) 0%, rgba(14, 22, 18, 0.9) 100%); border: 1px solid var(--border-glass-gold); border-radius: 16px; padding: 50px 32px; text-align: center; position: relative; overflow: hidden;">
-      <div style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--accent-gold); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px;">
+  <!-- Section 6: Habilitation Institutionnelle Directe -->
+  <section class="container" style="padding: 80px 0;">
+    <div style="background: radial-gradient(circle at 50% 50%, rgba(200, 157, 75, 0.12) 0%, rgba(14, 22, 18, 0.95) 100%); border: 1.5px solid var(--border-glass-gold); border-radius: 16px; padding: 55px 36px; text-align: center; position: relative; overflow: hidden;">
+      <div style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--accent-gold); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 10px;">
         // IMMUNITÉ JURIDICTIONNELLE SUR DEMANDE
       </div>
-      <h2 style="font-size: 2rem; color: #FFFFFF; margin-bottom: 14px;">Déployez le Bouclier Souverain.</h2>
-      <p style="max-width: 620px; margin: 0 auto 28px; color: var(--text-warm-gray); font-size: 0.98rem; line-height: 1.6;">
-        Demandez une habilitation : contact exécutif direct, enclaves cryptographiquement isolées et stockage immuable en Coffre-Fort WORM S3 canadien.
+      <h2 style="font-size: clamp(1.8rem, 3.8vw, 2.5rem); color: #FFFFFF; margin-bottom: 14px; font-weight: 700;">
+        Déployez le Bouclier Souverain.
+      </h2>
+      <p style="max-width: 640px; margin: 0 auto 30px; color: var(--text-warm-gray); font-size: 1.05rem; line-height: 1.65;">
+        Habilitation pour cabinets juridiques réglementés, family offices, sous-traitants de la défense et enclaves d'entreprises. Demandez des enclaves souveraines dédiées et une intégration de conformité sur mesure.
       </p>
       <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
-        <button class="btn btn-aurora" onclick="openModal('beta')" style="font-size: 1rem; padding: 14px 28px;">
-          Rejoindre la Bêta &nbsp;→
+        <button class="btn btn-aurora" onclick="openModal('pilot')" style="font-size: 1.02rem; padding: 15px 32px;">
+          Demander une Habilitation Institutionnelle &nbsp;→
         </button>
-        <button class="btn btn-gold" onclick="openModal('pilot')" style="font-size: 1rem; padding: 14px 28px;">
-          Demander une Habilitation &nbsp;→
+        <button class="btn btn-secondary" onclick="openModal('beta')" style="font-size: 1.02rem; padding: 15px 28px;">
+          Rejoindre la Bêta Souveraine &nbsp;→
         </button>
-        <a href="architecture.html" class="btn btn-secondary" style="font-size: 1rem; padding: 14px 28px;">
-          Consulter les Schémas Cryptographiques &nbsp;→
+      </div>
+      <div style="margin-top: 24px; font-size: 0.92rem; color: var(--text-warm-gray);">
+        Contact Exécutif Direct : <a href="mailto:cooperate@xolotl.ca" style="color: var(--accent-gold-light); font-weight: 600; text-decoration: underline;">cooperate@xolotl.ca</a> &bull; Montréal &amp; Winnipeg, Canada
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 7: Portails vers les Fondations Approfondies -->
+  <section class="section-standard" style="padding: 20px 0 85px; border-top: 1px solid rgba(255, 255, 255, 0.08);">
+    <div class="container">
+      <div class="section-header" style="max-width: 780px; margin: 0 auto 36px; text-align: center;">
+        <div class="section-tag" style="justify-content: center;">● FONDATIONS TECHNIQUES ET PHILOSOPHIQUES APPROFONDIES</div>
+        <h2 class="section-title">Explorez les plans architecturaux en détail.</h2>
+        <p class="section-desc">
+          Examinez nos spécifications techniques, nos racines historiques, notre présentation investisseurs ou notre télémesure réseau en temps réel à votre propre rythme.
+        </p>
+      </div>
+
+      <div class="deep-dive-grid">
+        <a href="architecture.html" class="deep-dive-card">
+          <span class="card-icon">📐</span>
+          <h4>Architecture Technique <span>↗</span></h4>
+          <p>Découvrez les spécifications du Borde Hybride en 3 Couches, les cérémonies Pedersen DKG et les preuves à divulgation nulle de connaissance Threshold ElGamal.</p>
+          <span class="card-link-text">Consulter l'Architecture &rarr;</span>
         </a>
-      </div>
-      <div style="margin-top: 22px; font-size: 0.95rem; color: var(--text-warm-gray);">
-        Exigence de vérification technique ? <a href="architecture.html" style="color: var(--accent-gold-light); font-weight: 600; text-decoration: underline;">Consultez les schémas cryptographiques et l'architecture en 3 Couches Hybrides &rarr;</a>
-      </div>
-      <div style="margin-top: 14px; font-size: 0.85rem; color: var(--text-warm-gray);">
-        Demandes Directes : <a href="mailto:cooperate@xolotl.ca" style="color: var(--accent-gold); font-weight: 600;">cooperate@xolotl.ca</a>
+
+        <a href="about.html" class="deep-dive-card">
+          <span class="card-icon">📜</span>
+          <h4>Origines &amp; Philosophie <span>↗</span></h4>
+          <p>L'histoire depuis Gales Point Manatee et la rivière Rouge jusqu'au socle montréalais. Pourquoi la résilience biologique l'emporte sur la sécurité rigide.</p>
+          <span class="card-link-text">Explorer les Origines &rarr;</span>
+        </a>
+
+        <a href="deck.html" class="deep-dive-card">
+          <span class="card-icon">📊</span>
+          <h4>Présentation de 14 Diapositives <span>↗</span></h4>
+          <p>Présentation exécutive interactive sur l'opportunité de marché, l'économie unitaire, les barrières réglementaires et la feuille de route de déploiement.</p>
+          <span class="card-link-text">Lancer la Présentation &rarr;</span>
+        </a>
+
+        <a href="../network.html" class="deep-dive-card">
+          <span class="card-icon">🌐</span>
+          <h4>Explorateur de Réseau en Direct <span>↗</span></h4>
+          <p>Télémesure des nœuds en temps réel, distribution des grappes et cartographie des transits reliant les enclaves internationales.</p>
+          <span class="card-link-text">Ouvrir la Carte de Télémesure &rarr;</span>
+        </a>
       </div>
     </div>
   </section>

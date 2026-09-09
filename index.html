@@ -66,6 +66,7 @@
         <ul class="nav-links">
           <li><a href="about.html">About</a></li>
           <li><a href="architecture.html">Architecture</a></li>
+          <li><a href="network.html">Network</a></li>
           <li><a href="deck.html">Deck ↗</a></li>
           <li><a href="news.html">News</a></li>
           <li><a href="contact.html">Contact</a></li>
@@ -110,6 +111,7 @@
       <ul class="mobile-nav-list">
         <li><a href="about.html" onclick="closeMobileMenu()">About</a></li>
         <li><a href="architecture.html" onclick="closeMobileMenu()">Architecture</a></li>
+        <li><a href="network.html" onclick="closeMobileMenu()">Network Explorer</a></li>
         <li><a href="deck.html" onclick="closeMobileMenu()">Interactive 14-Slide Deck ↗</a></li>
         <li><a href="news.html" onclick="closeMobileMenu()">News & Press</a></li>
         <li><a href="contact.html" onclick="closeMobileMenu()">Contact & Pilot</a></li>
@@ -134,330 +136,410 @@
   </div>
 
 
-<section class="hero">
-    <div class="hero-bg">
-      <img src="assets/images/canadian_shield_twilight.jpg" alt="Canadian Shield granite bedrock under a twilight aurora sky">
-    </div>
+  <!-- Hero Section -->
+  <section class="hero" style="background: radial-gradient(circle at 50% 12%, rgba(20, 36, 26, 0.5) 0%, rgba(10, 15, 12, 0.98) 75%); border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 75px;">
     <div class="container">
-      <div class="hero-content">
-        <div class="hero-eyebrow">
-          <span>🍁</span> The Virtual Iron Spine · Canadian Sovereign Edge &amp; Regenerative Infrastructure
+      <div class="hero-content" style="max-width: 980px; margin: 0 auto; text-align: center; padding: 145px 0 0;">
+        <div class="hero-eyebrow" style="justify-content: center;">
+          <span>🍁</span> Canadian Sovereign Data Infrastructure · Enterprise File Custody
         </div>
 
-        <h1 class="hero-title">
+        <h1 class="hero-title" style="margin-bottom: 22px;">
           The cloud has trust issues. <br>
           <span class="hero-highlight">Your data doesn't need to.</span> <br>
-          <span class="serif-light">Meet the Canadian Shield.</span>
+          <span class="serif-light">Sovereign Enterprise Cloud Storage.</span>
         </h1>
 
-        <!-- Pronunciation & Meta-Advantage Banner -->
-        <div class="hero-meta-box">
-          <div class="hero-meta-top">
-            <div class="hero-phonetic-pill">
-              <span class="hero-phonetic-text">
-                <strong>/ˈʃoːloːtɬ/</strong>
-                <span class="hero-phonetic-guide">("SHOW-lot")</span>
-              </span>
-              <button class="meta-speaker-btn" onclick="playPronounceAudio(event)" title="Hear audio pronunciation" aria-label="Hear pronunciation">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
-                <span>Hear</span>
-                <span class="sound-bars">
-                  <span class="bar"></span>
-                  <span class="bar"></span>
-                  <span class="bar"></span>
-                </span>
-              </button>
-            </div>
-            <span class="hero-meta-h">Hard to spell. Impossible to compel.</span>
-          </div>
-        </div>
-
-        <p style="max-width: 680px; color: var(--text-warm-gray); font-size: 1.08rem; line-height: 1.6; margin: 20px 0 22px;">
-          The member-owned cooperative building Canada's sovereign digital backbone. Uncoercible threshold custody for family archives, proprietary IP, and enterprise enclaves—operating seamlessly alongside your daily tools.
+        <p style="max-width: 760px; margin: 0 auto 28px; color: var(--text-warm-gray); font-size: 1.15rem; line-height: 1.65;">
+          Xolotl delivers the familiar "drop-a-file-in-a-folder" workflow of OneDrive or Dropbox—backed by uncoercible multi-jurisdictional encryption. No single cloud provider, foreign court order, or ransomware attack can access your plaintext.
         </p>
 
         <!-- Hero CTAs -->
-        <div style="display: flex; gap: 14px; align-items: center; flex-wrap: wrap; margin-top: 10px;">
-          <button class="btn btn-aurora" onclick="openModal('beta')" style="font-size: 1.02rem; padding: 14px 30px;">
-            Join the Sovereign Beta &nbsp;→
+        <div style="display: flex; gap: 14px; align-items: center; justify-content: center; flex-wrap: wrap; margin-bottom: 28px;">
+          <button class="btn btn-aurora" onclick="openModal('pilot')" style="font-size: 1.05rem; padding: 15px 32px;">
+            Request Institutional Pilot &nbsp;→
           </button>
-          <button class="btn btn-secondary" onclick="openModal('pilot')" style="font-size: 0.98rem; padding: 14px 24px;">
-            Institutional Pilot &nbsp;↗
-          </button>
+          <a href="architecture.html" class="btn btn-secondary" style="font-size: 1.02rem; padding: 15px 26px;">
+            Technical Architecture Specs &nbsp;↗
+          </a>
         </div>
+
+        <!-- Trust Signals Bar -->
+        <div style="display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; font-family: var(--font-mono); font-size: 0.76rem; color: #94a3b8; padding-top: 6px;">
+          <span>✓ 100% Canadian Data Residency</span>
+          <span>✓ PIPEDA &amp; Law 25 Adequacy</span>
+          <span>✓ Zero SaaS Key Custody</span>
+          <span>✓ Native Rust Client (&lt;30MB RAM)</span>
+        </div>
+
+        <!-- Desktop Application Preview Mockup -->
+        <div class="hero-product-preview">
+          <div class="product-window-titlebar">
+            <div class="window-dots">
+              <span class="window-dot red"></span>
+              <span class="window-dot yellow"></span>
+              <span class="window-dot green"></span>
+            </div>
+            <div class="window-title">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F5D074" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <span>Xolotl Sovereign Vault · Desktop Client v2.4 (Rust Core)</span>
+            </div>
+            <span class="window-status-pill">● System Nominal</span>
+          </div>
+
+          <div class="product-window-body">
+            <!-- Sidebar -->
+            <div class="product-window-sidebar">
+              <div>
+                <div class="sidebar-group-title">Active Vaults</div>
+                <ul class="sidebar-item-list">
+                  <li class="sidebar-item active"><span class="sidebar-item-icon">📂</span> Litigation_Privilege</li>
+                  <li class="sidebar-item"><span class="sidebar-item-icon">📂</span> Executive_IP_Archive</li>
+                  <li class="sidebar-item"><span class="sidebar-item-icon">📂</span> Genomic_Sequencing</li>
+                  <li class="sidebar-item"><span class="sidebar-item-icon">📂</span> Board_Minutes_WORM</li>
+                </ul>
+              </div>
+
+              <div>
+                <div class="sidebar-group-title">Sovereign Enclaves</div>
+                <ul class="sidebar-item-list">
+                  <li class="sidebar-item"><span class="sidebar-item-icon">🍁</span> Montreal Bedrock (CA)</li>
+                  <li class="sidebar-item"><span class="sidebar-item-icon">🍁</span> Toronto Mirror (CA)</li>
+                  <li class="sidebar-item"><span class="sidebar-item-icon">⚓</span> Gales Point Origin (BLZ)</li>
+                  <li class="sidebar-item"><span class="sidebar-item-icon">🏔️</span> Zurich Quorum (CH)</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Main File List -->
+            <div class="product-window-main">
+              <div class="product-file-table-header">
+                <span>File Name</span>
+                <span>Size</span>
+                <span>Protection Model</span>
+                <span>Status</span>
+              </div>
+
+              <div class="product-file-row">
+                <span class="product-file-name">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                  Q3_Cross_Border_Litigation_Brief.pdf
+                </span>
+                <span>14.2 MB</span>
+                <span><span class="product-file-badge quorum">🔒 (3,5) Quorum</span></span>
+                <span style="color: #34d399;">✓ Synced (2m ago)</span>
+              </div>
+
+              <div class="product-file-row">
+                <span class="product-file-name">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                  Clinical_Trial_Cohort_Phase2.enc
+                </span>
+                <span>284 MB</span>
+                <span><span class="product-file-badge sharded">🔒 Blind Shards</span></span>
+                <span style="color: #34d399;">✓ Synced (12m ago)</span>
+              </div>
+
+              <div class="product-file-row">
+                <span class="product-file-name">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                  Board_Of_Directors_Resolution_2026.docx
+                </span>
+                <span>2.4 MB</span>
+                <span><span class="product-file-badge worm">🔒 93-Day WORM</span></span>
+                <span style="color: #34d399;">✓ Locked (1h ago)</span>
+              </div>
+
+              <div class="product-file-row">
+                <span class="product-file-name">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                  Defense_Subcontract_CUI_Schematic.tar
+                </span>
+                <span>92.6 MB</span>
+                <span><span class="product-file-badge quorum">🔒 (3,5) Quorum</span></span>
+                <span style="color: #34d399;">✓ Synced (3h ago)</span>
+              </div>
+
+              <div class="product-window-footer">
+                <span>Resident RAM Overhead: <strong>7.8 MiB</strong></span>
+                <span>Decryption Keys in Cloud: <strong>0 (Mathematically Blind)</strong></span>
+                <span>WireGuard Mesh: <strong style="color: #34d399;">Active (Encrypted)</strong></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
 
-<section class="trust-strip">
+  <!-- Section 2: The Enterprise Dilemma -->
+  <section class="section-standard" style="padding: 90px 0 80px; border-bottom: 1px solid rgba(255, 255, 255, 0.08);">
     <div class="container">
-      <div class="trust-strip-inner">
-        <div class="ticker-item">
-          <span class="num">0 Keys</span>
-          <span class="label">Held in Cloud SaaS Mirror (Mathematically Blind)</span>
-        </div>
-        <div class="ticker-item">
-          <span class="num">93 Days</span>
-          <span class="label">Immutable 93-Day WORM Vault Object Lock</span>
-        </div>
-        <div class="ticker-item">
-          <span class="num">(3, 5)</span>
-          <span class="label">Cryptographically Enforced Jurisdictional Quorum</span>
-        </div>
-        <div class="ticker-item">
-          <span class="num">8 MiB</span>
-          <span class="label">Constant Resident RAM Streaming AES-256</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Origin Story: 3-Column Narrative Grid (Single Cartographic Hero) -->
-  <section class="origin-section">
-    <div class="container">
-      <div class="origin-header">
-        <div class="section-tag" style="justify-content: center;">● THE GENESIS &amp; ROOTS</div>
-        <h2 class="section-title">Where sovereignty begins: From Gales Point to the Canadian Shield.</h2>
-        <p style="color: var(--text-warm-gray); font-size: 1.05rem; line-height: 1.6; margin-top: 14px;">
-          Data sovereignty isn't abstract theory. It was forged in community practice and engineered for uncoercible institutional custody.
+      <div class="section-header" style="max-width: 780px; margin: 0 auto 50px; text-align: center;">
+        <div class="section-tag" style="justify-content: center;">● THE SOVEREIGN DILEMMA</div>
+        <h2 class="section-title">Why Conventional Storage Fails Regulated Enterprise.</h2>
+        <p class="section-desc">
+          Organizations handling sensitive files face an impossible choice between foreign legal vulnerability and operational paralysis.
         </p>
       </div>
 
-      <div class="origin-cards-grid">
-        <div class="origin-card">
-          <div>
-            <span class="origin-card-num">01 / Where the idea took root</span>
-            <h3>Reignited in Gales Point Manatee, Belize.</h3>
-            <p>A community GIS and data-sovereignty practicum with Galen University &mdash; in a village whose Christmas Bram and Sambai were just named UNESCO Intangible Cultural Heritage. Here, data sovereignty isn't theoretical.</p>
-          </div>
-          <span class="origin-card-tag gold">Founding Origin Anchor</span>
+      <div class="dilemma-grid">
+        <!-- Dilemma 1: Big Tech Cloud -->
+        <div class="dilemma-card">
+          <span class="dilemma-card-badge risk">US CLOUD Act Exposure</span>
+          <h3>Public Cloud Hyperscalers</h3>
+          <p>
+            Under 18 U.S.C. § 2713, US parent companies are legally compelled to disclose client data stored anywhere on Earth upon domestic court order. Plaintext keys in US SaaS mirrors waive legal privilege without your knowledge.
+          </p>
+          <ul class="dilemma-points">
+            <li class="dilemma-point bad">✕ Unencrypted keys held by US cloud parent</li>
+            <li class="dilemma-point bad">✕ Vulnerable to extraterritorial FISA warrants</li>
+            <li class="dilemma-point bad">✕ Irrevocable loss of attorney-client privilege</li>
+          </ul>
         </div>
 
-        <div class="origin-card">
-          <div>
-            <span class="origin-card-num">02 / Where the name comes from</span>
-            <h3>Named for the axolotl.</h3>
-            <p>A creature that regenerates itself completely &mdash; the core bio-mathematical blueprint for our Regenerative Infrastructure and threshold key resharing.</p>
-          </div>
-          <span class="origin-card-tag teal">Regenerative Cryptography</span>
+        <!-- Dilemma 2: Air-Gapped On-Premises -->
+        <div class="dilemma-card">
+          <span class="dilemma-card-badge friction">Operational Paralysis</span>
+          <h3>Air-Gapped Legacy On-Prem</h3>
+          <p>
+            Severing servers from the internet prevents foreign subpoenas, but paralyses modern distributed teams. It requires multi-million dollar maintenance and leaves data vulnerable to single-point hardware failure and local ransomware.
+          </p>
+          <ul class="dilemma-points">
+            <li class="dilemma-point bad">✕ Zero remote collaboration for modern teams</li>
+            <li class="dilemma-point bad">✕ Catastrophic single-site ransomware risk</li>
+            <li class="dilemma-point neutral">△ High recurring capital expenditure</li>
+          </ul>
         </div>
 
-        <div class="origin-card">
-          <div>
-            <span class="origin-card-num">03 / Where it's built</span>
-            <h3>Built on the Red River.</h3>
-            <p>Engineered from Winnipeg, Manitoba &mdash; homeland of the Red River Métis &mdash; and anchored into Montreal bedrock. A Virtual Iron Spine connecting Canadian Shield infrastructure to trusted sovereign enclaves worldwide.</p>
-          </div>
-          <span class="origin-card-tag emerald">Canadian Shield Bedrock</span>
+        <!-- Dilemma 3: Xolotl Sovereign Hybrid Edge -->
+        <div class="dilemma-card highlight">
+          <span class="dilemma-card-badge solution">Uncoercible Sovereign Custody</span>
+          <h3>Xolotl Hybrid Sovereign Edge</h3>
+          <p>
+            The familiar desktop workflow of OneDrive paired with mathematical immunity. Files are fragmented into blinded threshold shares across independent jurisdictions. Mathematically impossible for any single court or actor to compel disclosure.
+          </p>
+          <ul class="dilemma-points">
+            <li class="dilemma-point good">✓ Seamless Windows &amp; macOS sync folder</li>
+            <li class="dilemma-point good">✓ Zero plaintext keys held in the cloud</li>
+            <li class="dilemma-point good">✓ 100% member-owned Canadian cooperative</li>
+          </ul>
         </div>
-      </div>
-
-      <div class="origin-cta-strip">
-        <a href="#mesh-telemetry">
-          <span>● Explore Live Network Telemetry &amp; Origin Transit on the Map Below</span> &darr;
-        </a>
       </div>
     </div>
   </section>
 
-  <!-- Core Thesis / The 4 Sovereign Pillars -->
-  <section class="section-standard" style="padding: 90px 0 70px;">
+  <!-- Section 3: How It Works (3 Steps) -->
+  <section class="section-standard" style="padding: 90px 0 80px; background: rgba(13, 19, 15, 0.6); border-bottom: 1px solid rgba(255, 255, 255, 0.08);">
     <div class="container">
-      <div class="section-header" style="max-width: 760px; margin: 0 auto 50px; text-align: center;">
-        <div class="section-tag" style="justify-content: center;">● THE FOUR SOVEREIGN PILLARS</div>
-        <h2 class="section-title">Plan A Sovereignty: Digital independence built on Canadian bedrock.</h2>
-        <p style="color: var(--text-warm-gray); font-size: 1.05rem; line-height: 1.6; margin-top: 14px;">
-          Sovereignty isn't a passive legal clause. It is an uncoercible cooperative architecture engineered for everyday citizens, growing businesses, and critical infrastructure.
+      <div class="section-header" style="max-width: 780px; margin: 0 auto 50px; text-align: center;">
+        <div class="section-tag" style="justify-content: center;">● SIMPLE DROP-IN WORKFLOW</div>
+        <h2 class="section-title">Three Steps to Mathematical Data Immunity.</h2>
+        <p class="section-desc">
+          Complex cryptographic guarantees abstracted into the effortless daily desktop habits your teams already use.
+        </p>
+      </div>
+
+      <div class="workflow-grid">
+        <div class="workflow-card">
+          <span class="workflow-step-num">01</span>
+          <h3>Drag &amp; Drop in Explorer or Finder</h3>
+          <p>
+            Operates as a lightweight native sync folder engineered in Rust &amp; Tauri (&lt;30MB RAM overhead). No command-line tools, no browser uploads, and zero disruption to your daily workflow.
+          </p>
+        </div>
+
+        <div class="workflow-card">
+          <span class="workflow-step-num">02</span>
+          <h3>Instant Blind Threshold Shredding</h3>
+          <p>
+            Before a file leaves your device, it is encrypted in memory with AES-256-GCM. The decryption key is split into mathematical threshold shares via audited Pedersen DKG and FROST algorithms.
+          </p>
+        </div>
+
+        <div class="workflow-card">
+          <span class="workflow-step-num">03</span>
+          <h3>Multi-Jurisdictional Quorum Protection</h3>
+          <p>
+            Plaintext can only be reconstructed when a mathematical quorum of independent enclaves (Canada, Belize, Switzerland) cooperate. No single government or rogue insider can force unlock.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: Built for Regulated Enterprise -->
+  <section class="section-standard" style="padding: 90px 0 80px; border-bottom: 1px solid rgba(255, 255, 255, 0.08);">
+    <div class="container">
+      <div class="section-header" style="max-width: 780px; margin: 0 auto 50px; text-align: center;">
+        <div class="section-tag" style="justify-content: center;">● REGULATED INDUSTRY SECTORS</div>
+        <h2 class="section-title">Engineered for Organizations That Cannot Afford Failure.</h2>
+        <p class="section-desc">
+          Targeted data custody architectures for institutions bound by strict fiduciary, national security, or statutory confidentiality mandates.
         </p>
       </div>
 
       <div class="feature-grid">
-        <!-- Pillar 1: The Cooperative Model -->
         <div class="feature-card">
           <span class="feature-num">01</span>
-          <h3 class="feature-title">The Cooperative Model: Unbribable by Design</h3>
+          <h3 class="feature-title">Cross-Border Law &amp; M&amp;A</h3>
           <p class="feature-desc">
-            You cannot buy digital sovereignty from a US public corporation designed to be acquired or beholden to Wall Street. Big Tech capitulates because Delaware corporate law demands it. Xolotl is an independent Canadian cooperative owned entirely by its members. It cannot be bought by Microsoft, cannot be pressured by foreign stock markets, and has no secret backdoors.
+            Safeguard attorney-client privilege during cross-border litigation, international antitrust reviews, and sensitive M&amp;A negotiations against foreign discovery demands and US CLOUD Act reach.
           </p>
           <div style="margin-top: 14px; font-family: var(--font-mono); font-size: 0.74rem; color: var(--accent-gold);">
-            MEMBER-OWNED &bull; DEMOCRATIC GOVERNANCE
+            LEGAL PRIVILEGE &bull; FOREIGN DISCOVERY IMMUNITY
           </div>
         </div>
 
-        <!-- Pillar 2: Affirmative Nation-Building -->
         <div class="feature-card">
           <span class="feature-num">02</span>
-          <h3 class="feature-title">Nation-Building: Building What We Need</h3>
+          <h3 class="feature-title">Family Offices &amp; Sovereign Wealth</h3>
           <p class="feature-desc">
-            We don't build out of fear of foreign coercion; we build out of pride in Canadian capability. Powered by clean Canadian hydro-electricity and anchored into ancient granite bedrock, Xolotl keeps domestic data capital, intellectual property, and high-performance computing wealth inside Canada to build our nation's sovereign digital backbone.
+            Provide generational custody for family deeds, private cryptographic keys, estate registers, and cap tables—permanently insulated from systemic banking failures and corporate hyperscaler shutoffs.
           </p>
           <div style="margin-top: 14px; font-family: var(--font-mono); font-size: 0.74rem; color: #00ff66;">
-            CLEAN HYDRO &bull; CANADIAN CAPITAL RETENTION
+            GENERATIONAL CUSTODY &bull; CAP TABLE ARCHIVES
           </div>
         </div>
 
-        <!-- Pillar 3: Zero-Disruption Usability -->
         <div class="feature-card">
           <span class="feature-num">03</span>
-          <h3 class="feature-title">Zero Disruption: Invisible Cryptography</h3>
+          <h3 class="feature-title">Defense Industrial Base &amp; CUI</h3>
           <p class="feature-desc">
-            You don't have to abandon your iPhone, cancel Microsoft 365, or learn complex command lines. Xolotl operates as an effortless native sync folder (engineered in Rust &amp; Tauri with a constant 8 MiB RAM footprint). Drop your files in—they are shredded into mathematical threshold shares and protected in the background without altering your daily workflow.
+            Satisfy CMMC 2.0 Level 2 and ITAR data protection requirements for Controlled Unclassified Information without the exorbitant cost and administrative complexity of multi-million dollar cloud enclaves.
           </p>
           <div style="margin-top: 14px; font-family: var(--font-mono); font-size: 0.74rem; color: var(--accent-sage);">
-            RUST &amp; TAURI &bull; 8 MIB CONSTANT RAM &bull; DROP-IN
+            CMMC 2.0 &bull; ITAR COMPLIANT &bull; DEFENSE CUI
           </div>
         </div>
 
-        <!-- Pillar 4: For Every Canadian -->
         <div class="feature-card">
           <span class="feature-num">04</span>
-          <h3 class="feature-title">From Family Deeds to Bay Street Enclaves</h3>
+          <h3 class="feature-title">Healthcare &amp; Genomic Research</h3>
           <p class="feature-desc">
-            Built for everyone who refuses to surrender autonomy to foreign algorithms. The Sovereign Beta empowers individuals and creators to protect family deeds, patent drafts, medical records, and private keys. For institutional teams, our clearance pilot provides dedicated sovereign enclaves and 93-day WORM Vault compliance.
+            Maintain patient confidentiality and clinical trial integrity under strict compliance with Canadian PIPEDA, Quebec Law 25, and international health data sovereignty statutes.
           </p>
           <div style="margin-top: 14px; font-family: var(--font-mono); font-size: 0.74rem; color: var(--accent-gold);">
-            CITIZEN PRIVACY &bull; INSTITUTIONAL ENCLAVES
+            PIPEDA &bull; QUEBEC LAW 25 &bull; CLINICAL INTEGRITY
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Live Sovereign Mesh Telemetry Map Section -->
-  <section class="section-standard mesh-telemetry-section" id="mesh-telemetry" style="padding: 75px 0 65px;">
+  <!-- Section 5: Institutional Governance & Fiduciary Mandate -->
+  <section class="section-standard" style="padding: 85px 0 75px; background: rgba(10, 16, 12, 0.7); border-bottom: 1px solid rgba(255, 255, 255, 0.08);">
     <div class="container">
-      <div class="section-header" style="max-width: 840px; margin: 0 auto 40px; text-align: center;">
-        <div class="section-tag" style="justify-content: center;">
-          <span class="live-pulse-dot"></span> LIVE NETWORK TELEMETRY &amp; ORIGIN TRANSIT
-        </div>
-        <h2 class="section-title">Active Enclaves &amp; Origin Transit: Real-Time Node Distribution</h2>
-        <p style="color: var(--text-warm-gray); font-size: 1.05rem; line-height: 1.6; margin-top: 14px;">
-          Cryptographic transit topology linking the Gales Point founding origin anchor with domestic Canadian Shield enclaves. Zero foreign cloud dependency.
+      <div class="section-header" style="max-width: 780px; margin: 0 auto 45px; text-align: center;">
+        <div class="section-tag" style="justify-content: center;">● THE COOPERATIVE MANDATE</div>
+        <h2 class="section-title">A Fiduciary Data Cooperative, Not a Surveillance Platform.</h2>
+        <p class="section-desc">
+          You cannot buy digital sovereignty from a US public corporation beholden to Wall Street. Fiduciary custody requires structural independence.
         </p>
       </div>
 
-      <!-- Telemetry Dashboard HUD -->
-      <div class="telemetry-dashboard-card">
-        <!-- Top Metrics Bar -->
-        <div class="telemetry-metrics-bar">
-          <div class="telemetry-metric">
-            <span class="telemetry-metric-label">Active Nodes</span>
-            <span class="telemetry-metric-val" id="telemetryNodeCount">--</span>
-          </div>
-          <div class="telemetry-metric">
-            <span class="telemetry-metric-label">Municipal Enclaves</span>
-            <span class="telemetry-metric-val" id="telemetryClusterCount">--</span>
-          </div>
-          <div class="telemetry-metric">
-            <span class="telemetry-metric-label">Network Status</span>
-            <span class="telemetry-metric-val status-secure">ONLINE ● NOMINAL</span>
-          </div>
-          <div class="telemetry-metric">
-            <span class="telemetry-metric-label">Jurisdiction</span>
-            <span class="telemetry-metric-val status-zero">CANADIAN COOPERATIVE (NO CLOUD ACT)</span>
-          </div>
+      <div class="feature-grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+        <div class="feature-card">
+          <div style="font-size: 1.5rem; margin-bottom: 12px;">🏛️</div>
+          <h3 style="font-size: 1.15rem; color: #FFFFFF; margin-bottom: 8px;">Member-Owned Cooperative</h3>
+          <p style="font-size: 0.9rem; color: var(--text-warm-gray); line-height: 1.55;">
+            Incorporated as an independent Canadian cooperative owned entirely by its members. It cannot be acquired by Microsoft, pressurized by foreign stock markets, or compelled to create backdoors.
+          </p>
         </div>
 
-        <!-- Main Radar & Telemetry Split View -->
-        <div class="telemetry-split-layout">
-          <!-- Canvas Webmap Area -->
-          <div class="telemetry-map-wrap">
-            <div id="meshRadarMap" class="mesh-radar-map"></div>
+        <div class="feature-card">
+          <div style="font-size: 1.5rem; margin-bottom: 12px;">🛡️</div>
+          <h3 style="font-size: 1.15rem; color: #FFFFFF; margin-bottom: 8px;">Zero SaaS Plaintext Custody</h3>
+          <p style="font-size: 0.9rem; color: var(--text-warm-gray); line-height: 1.55;">
+            Our storage core holds exclusively encrypted shards and zero master keys. Even under court subpoena, our officers cannot produce your plaintext because it is mathematically impossible.
+          </p>
+        </div>
 
-            <!-- Map Overlay Controls / HUD Tags -->
-            <div class="map-hud-overlay top-left">
-              <div class="topo-controls-row">
-                <span class="map-hud-badge">XOLOTL NODE TOPOLOGY</span>
-                <button type="button" class="topo-filter-btn active" onclick="focusTopoView('all')">ALL NETWORK</button>
-                <button type="button" class="topo-filter-btn" onclick="focusTopoView('origin')">ORIGIN: GALES POINT</button>
-                <button type="button" class="topo-filter-btn" onclick="focusTopoView('canada')">CANADIAN ENCLAVES</button>
-                <button type="button" id="toggleTopoThemeBtn" class="topo-theme-toggle" onclick="toggleTopoTheme()">MAP: LIGHT</button>
-              </div>
-              <span class="map-hud-coords" id="radarReticleCoords">TOPOLOGY RETICLE: ACTIVE</span>
-            </div>
+        <div class="feature-card">
+          <div style="font-size: 1.5rem; margin-bottom: 12px;">🔒</div>
+          <h3 style="font-size: 1.15rem; color: #FFFFFF; margin-bottom: 8px;">93-Day Immutable WORM Lock</h3>
+          <p style="font-size: 0.9rem; color: var(--text-warm-gray); line-height: 1.55;">
+            Hardware-enforced Write Once, Read Many retention guarantees that ransomware wipers cannot overwrite your backup history, enabling instant second-level rollback.
+          </p>
+        </div>
 
-            <div class="map-hud-overlay top-right">
-              <div class="map-legend-items">
-                <span class="legend-item"><span class="legend-dot shield"></span> Canadian Enclave</span>
-                <span class="legend-item"><span class="legend-anchor-symbol">⚓</span> Origin Anchor (Gales Point)</span>
-                <span class="legend-item"><span class="legend-dot new-join"></span> Latest Join</span>
-              </div>
-            </div>
-
-            <!-- Interactive Tooltip Overlay -->
-            <div id="radarNodeTooltip" class="radar-node-tooltip" style="display: none;">
-              <div class="tooltip-header">
-                <span id="tooltipBadgeId" class="tooltip-badge-id">NODE-CA-XXXXXX</span>
-                <span id="tooltipStatus" class="tooltip-status">ACTIVE ENCLAVE</span>
-              </div>
-              <div class="tooltip-body">
-                <div class="tooltip-row">
-                  <span class="label">Location:</span>
-                  <span id="tooltipLocation" class="val">Toronto, Ontario</span>
-                </div>
-                <div class="tooltip-row">
-                  <span class="label">Jurisdiction:</span>
-                  <span id="tooltipJurisdiction" class="val">Canadian Cooperative Enclave</span>
-                </div>
-                <div class="tooltip-row">
-                  <span class="label">Coordinates:</span>
-                  <span id="tooltipCoords" class="val">43.65°N, 79.38°W</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Live Feed & Enlistment Sidebar -->
-          <div class="telemetry-sidebar">
-            <div class="telemetry-sidebar-header">
-              <h4>Live Node Feed</h4>
-              <span class="feed-pulse-text">REAL-TIME STREAM</span>
-            </div>
-
-            <div id="telemetryFeedList" class="telemetry-feed-list">
-              <!-- Dynamically populated -->
-            </div>
-
-            <div class="telemetry-sidebar-cta">
-              <button type="button" class="btn btn-aurora" onclick="openModal('beta')" style="width: 100%; justify-content: center; padding: 12px 18px; font-size: 0.92rem;">
-                + Enlist Node in the Cooperative &nbsp;→
-              </button>
-              <div class="telemetry-cta-subtext">
-                Join waitlist &bull; No trackers &bull; Canadian custody
-              </div>
-            </div>
-          </div>
+        <div class="feature-card">
+          <div style="font-size: 1.5rem; margin-bottom: 12px;">⚡</div>
+          <h3 style="font-size: 1.15rem; color: #FFFFFF; margin-bottom: 8px;">Clean Hydro Canadian Bedrock</h3>
+          <p style="font-size: 0.9rem; color: var(--text-warm-gray); line-height: 1.55;">
+            Hosted on Canadian sovereign infrastructure anchored into ancient Precambrian granite in Montreal and Winnipeg, powered 100% by clean domestic hydro-electricity.
+          </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Final Clean Institutional CTA -->
-  <section class="container" style="padding: 60px 0 80px;">
-    <div style="background: radial-gradient(circle at 50% 50%, rgba(200, 157, 75, 0.12) 0%, rgba(14, 22, 18, 0.9) 100%); border: 1px solid var(--border-glass-gold); border-radius: 16px; padding: 50px 32px; text-align: center; position: relative; overflow: hidden;">
-      <div style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--accent-gold); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px;">
+  <!-- Section 6: Direct Institutional Clearance CTA -->
+  <section class="container" style="padding: 80px 0;">
+    <div style="background: radial-gradient(circle at 50% 50%, rgba(200, 157, 75, 0.12) 0%, rgba(14, 22, 18, 0.95) 100%); border: 1.5px solid var(--border-glass-gold); border-radius: 16px; padding: 55px 36px; text-align: center; position: relative; overflow: hidden;">
+      <div style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--accent-gold); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 10px;">
         // JURISDICTIONAL IMMUNITY ON DEMAND
       </div>
-      <h2 style="font-size: 2rem; color: #FFFFFF; margin-bottom: 14px;">Deploy the Sovereign Shield.</h2>
-      <p style="max-width: 620px; margin: 0 auto 28px; color: var(--text-warm-gray); font-size: 0.98rem; line-height: 1.6;">
-        Request clearance: direct executive contact, cryptographically isolated enclaves, and Canadian S3 compliance WORM Vault storage.
+      <h2 style="font-size: clamp(1.8rem, 3.8vw, 2.5rem); color: #FFFFFF; margin-bottom: 14px; font-weight: 700;">
+        Deploy the Sovereign Shield.
+      </h2>
+      <p style="max-width: 640px; margin: 0 auto 30px; color: var(--text-warm-gray); font-size: 1.05rem; line-height: 1.65;">
+        Clearance for regulated law firms, family offices, defense subcontractors, and enterprise enclaves. Request dedicated sovereign enclaves and custom compliance integration.
       </p>
       <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
-        <button class="btn btn-aurora" onclick="openModal('beta')" style="font-size: 1rem; padding: 14px 28px;">
-          Join the Beta &nbsp;→
+        <button class="btn btn-aurora" onclick="openModal('pilot')" style="font-size: 1.02rem; padding: 15px 32px;">
+          Request Institutional Clearance &nbsp;→
         </button>
-        <button class="btn btn-gold" onclick="openModal('pilot')" style="font-size: 1rem; padding: 14px 28px;">
-          Request Clearance &nbsp;→
+        <button class="btn btn-secondary" onclick="openModal('beta')" style="font-size: 1.02rem; padding: 15px 28px;">
+          Join Sovereign Beta &nbsp;→
         </button>
-        <a href="architecture.html" class="btn btn-secondary" style="font-size: 1rem; padding: 14px 28px;">
-          Review Cryptographic Blueprints &nbsp;→
+      </div>
+      <div style="margin-top: 24px; font-size: 0.92rem; color: var(--text-warm-gray);">
+        Direct Executive Contact: <a href="mailto:cooperate@xolotl.ca" style="color: var(--accent-gold-light); font-weight: 600; text-decoration: underline;">cooperate@xolotl.ca</a> &bull; Montreal &amp; Winnipeg, Canada
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 7: Deep Foundations Portals (Give the User Control) -->
+  <section class="section-standard" style="padding: 20px 0 85px; border-top: 1px solid rgba(255, 255, 255, 0.08);">
+    <div class="container">
+      <div class="section-header" style="max-width: 780px; margin: 0 auto 36px; text-align: center;">
+        <div class="section-tag" style="justify-content: center;">● DEEP TECHNICAL &amp; PHILOSOPHICAL FOUNDATIONS</div>
+        <h2 class="section-title">Explore the Deep Blueprints.</h2>
+        <p class="section-desc">
+          Inspect our architectural specifications, historical roots, investor deck, or real-time network telemetry at your own pace.
+        </p>
+      </div>
+
+      <div class="deep-dive-grid">
+        <a href="architecture.html" class="deep-dive-card">
+          <span class="card-icon">📐</span>
+          <h4>Technical Architecture <span>↗</span></h4>
+          <p>Inspect the 3-Layer Hybrid Edge specifications, Pedersen DKG ceremonies, and Threshold ElGamal zero-knowledge proofs.</p>
+          <span class="card-link-text">Read Architecture Specs &rarr;</span>
         </a>
-      </div>
-      <div style="margin-top: 22px; font-size: 0.95rem; color: var(--text-warm-gray);">
-        Seeking cryptographic verification? <a href="architecture.html" style="color: var(--accent-gold-light); font-weight: 600; text-decoration: underline;">Review the cryptographic blueprints &amp; 3-Layer Hybrid Edge specifications &rarr;</a>
-      </div>
-      <div style="margin-top: 14px; font-size: 0.85rem; color: var(--text-warm-gray);">
-        Direct Inquiries: <a href="mailto:cooperate@xolotl.ca" style="color: var(--accent-gold); font-weight: 600;">cooperate@xolotl.ca</a>
+
+        <a href="about.html" class="deep-dive-card">
+          <span class="card-icon">📜</span>
+          <h4>Origins &amp; Philosophy <span>↗</span></h4>
+          <p>The story from Gales Point Manatee and the Red River to Montreal bedrock. Why biological resilience beats brittle security.</p>
+          <span class="card-link-text">Explore Origins &amp; Roots &rarr;</span>
+        </a>
+
+        <a href="deck.html" class="deep-dive-card">
+          <span class="card-icon">📊</span>
+          <h4>14-Slide Investor Deck <span>↗</span></h4>
+          <p>Interactive executive presentation covering market opportunity, unit economics, regulatory moats, and deployment roadmap.</p>
+          <span class="card-link-text">Launch Slide Deck &rarr;</span>
+        </a>
+
+        <a href="network.html" class="deep-dive-card">
+          <span class="card-icon">🌐</span>
+          <h4>Live Network Explorer <span>↗</span></h4>
+          <p>Real-time node telemetry, cluster distribution, and jurisdictional transit mapping linking international enclaves.</p>
+          <span class="card-link-text">Open Telemetry Map &rarr;</span>
+        </a>
       </div>
     </div>
   </section>

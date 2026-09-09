@@ -66,6 +66,7 @@
         <ul class="nav-links">
           <li><a href="about.html" class="active">Quiénes Somos</a></li>
           <li><a href="architecture.html">Qué Hacemos</a></li>
+          <li><a href="../network.html">Red</a></li>
           <li><a href="deck.html">Presentación ↗</a></li>
           <li><a href="news.html">Noticias</a></li>
           <li><a href="contact.html">Contacto</a></li>
@@ -97,17 +98,16 @@
     <div class="mobile-drawer-inner">
       <div class="mobile-drawer-top">
         <a href="index.html" class="brand-logo" onclick="closeMobileMenu()">
-          <svg class="shield-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16 2L4 7V15C4 22.5 9.1 29 16 31C22.9 29 28 22.5 28 15V7L16 2Z" fill="#15231C" stroke="#C89D4B" stroke-width="2"/>
-            <circle cx="16" cy="16" r="4.5" fill="#D97706"/>
-          </svg>
+          <img src="../assets/images/canadian-shield.png" alt="Escudo Canadiense" class="shield-icon">
           <span>Xolotl</span>
+          <span class="brand-tag">Escudo Canadiense</span>
         </a>
         <button class="modal-close-btn" onclick="closeMobileMenu()">&times;</button>
       </div>
       <ul class="mobile-nav-list">
         <li><a href="about.html" onclick="closeMobileMenu()">Quiénes Somos</a></li>
         <li><a href="architecture.html" onclick="closeMobileMenu()">Qué Hacemos</a></li>
+        <li><a href="../network.html" onclick="closeMobileMenu()">Explorador de Red</a></li>
         <li><a href="deck.html" onclick="closeMobileMenu()">Presentación Interactiva de 14 Diapositivas ↗</a></li>
         <li><a href="news.html" onclick="closeMobileMenu()">Noticias y Comunicados</a></li>
         <li><a href="contact.html" onclick="closeMobileMenu()">Contacto y Piloto</a></li>
@@ -197,6 +197,60 @@
           <p class="feature-desc">
             Nuestros estatutos exigen que nuestro núcleo de almacenamiento custodie cero claves de descifrado. Incluso bajo orden judicial, nuestros directivos no pueden entregar su texto en claro porque es matemáticamente imposible de reconstruir.
           </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Génesis Fundacional y Raíces -->
+  <section id="roots" class="section-standard" style="background: rgba(10, 16, 13, 0.7); border-top: 1px solid var(--border-glass); border-bottom: 1px solid var(--border-glass);">
+    <div class="container">
+      <div class="section-header" style="max-width: 780px; margin: 0 auto 40px; text-align: center;">
+        <div class="section-tag" style="justify-content: center;">● LA GÉNESIS Y LAS RAÍCES</div>
+        <h2 class="section-title">Dónde comienza la soberanía: desde Gales Point hasta el Escudo Canadiense.</h2>
+        <p class="section-desc">
+          La soberanía de datos no es una teoría abstracta. Nació en la práctica comunitaria y fue diseñada para una custodia institucional incoercible.
+        </p>
+      </div>
+
+      <div class="origin-cards-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
+        <div class="origin-card" style="background: rgba(18, 28, 22, 0.75); border: 1px solid var(--border-glass); border-radius: 12px; padding: 28px; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <span style="font-family: var(--font-mono); font-size: 0.74rem; color: var(--accent-gold); letter-spacing: 0.1em; text-transform: uppercase;">01 / Dónde arraigó la idea</span>
+            <h3 style="font-size: 1.2rem; color: #FFFFFF; margin: 10px 0 8px;">Reencendida en Gales Point Manatee, Belice.</h3>
+            <p style="font-size: 0.92rem; color: var(--text-warm-gray); line-height: 1.6;">
+              Una práctica comunitaria de SIG y soberanía de datos con la Universidad de Galen &mdash; en un pueblo cimarrón histórico cuyo Christmas Bram y Sambai fueron declarados Patrimonio Cultural Inmaterial por la UNESCO. Aquí, la autodeterminación comunitaria demostró que la tecnología debe servir a quienes la generan.
+            </p>
+          </div>
+          <div style="margin-top: 16px; font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-gold); text-transform: uppercase; font-weight: 700;">
+            ⚓ Ancla de Origen Fundadora
+          </div>
+        </div>
+
+        <div class="origin-card" style="background: rgba(18, 28, 22, 0.75); border: 1px solid var(--border-glass); border-radius: 12px; padding: 28px; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <span style="font-family: var(--font-mono); font-size: 0.74rem; color: var(--accent-cyan); letter-spacing: 0.1em; text-transform: uppercase;">02 / De dónde viene el nombre</span>
+            <h3 style="font-size: 1.2rem; color: #FFFFFF; margin: 10px 0 8px;">Nombrada en honor al axolote regenerativo.</h3>
+            <p style="font-size: 0.92rem; color: var(--text-warm-gray); line-height: 1.6;">
+              Una criatura de linaje milenario capaz de regenerar extremidades, tejido cardíaco y médula espinal &mdash; ofreciendo el modelo biomatemático para el protocolo de redistribución de claves autorregenerativo de Xolotl bajo RFC 9591.
+            </p>
+          </div>
+          <div style="margin-top: 16px; font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-cyan); text-transform: uppercase; font-weight: 700;">
+            🦎 Criptografía Regenerativa
+          </div>
+        </div>
+
+        <div class="origin-card" style="background: rgba(18, 28, 22, 0.75); border: 1px solid var(--border-glass); border-radius: 12px; padding: 28px; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <span style="font-family: var(--font-mono); font-size: 0.74rem; color: #00ff66; letter-spacing: 0.1em; text-transform: uppercase;">03 / Dónde construimos</span>
+            <h3 style="font-size: 1.2rem; color: #FFFFFF; margin: 10px 0 8px;">Construida sobre el Río Rojo y la roca canadiense.</h3>
+            <p style="font-size: 0.92rem; color: var(--text-warm-gray); line-height: 1.6;">
+              Diseñada desde Winnipeg, Manitoba &mdash; tierra natal de los Métis del Río Rojo &mdash; y anclada en los cimientos de Montreal. Impulsada por hidroelectricidad limpia canadiense para erigir la columna vertebral digital soberana de nuestro país y proteger la propiedad intelectual en casa.
+            </p>
+          </div>
+          <div style="margin-top: 16px; font-family: var(--font-mono); font-size: 0.72rem; color: #00ff66; text-transform: uppercase; font-weight: 700;">
+            🍁 Roca del Escudo Canadiense
+          </div>
         </div>
       </div>
     </div>

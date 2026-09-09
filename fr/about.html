@@ -66,6 +66,7 @@
         <ul class="nav-links">
           <li><a href="about.html" class="active">À Propos</a></li>
           <li><a href="architecture.html">Architecture</a></li>
+          <li><a href="../network.html">Réseau</a></li>
           <li><a href="deck.html">Présentation ↗</a></li>
           <li><a href="news.html">Nouvelles</a></li>
           <li><a href="contact.html">Contact</a></li>
@@ -97,17 +98,16 @@
     <div class="mobile-drawer-inner">
       <div class="mobile-drawer-top">
         <a href="index.html" class="brand-logo" onclick="closeMobileMenu()">
-          <svg class="shield-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16 2L4 7V15C4 22.5 9.1 29 16 31C22.9 29 28 22.5 28 15V7L16 2Z" fill="#15231C" stroke="#C89D4B" stroke-width="2"/>
-            <circle cx="16" cy="16" r="4.5" fill="#D97706"/>
-          </svg>
+          <img src="../assets/images/canadian-shield.png" alt="Bouclier Canadien" class="shield-icon">
           <span>Xolotl</span>
+          <span class="brand-tag">Bouclier Canadien</span>
         </a>
         <button class="modal-close-btn" onclick="closeMobileMenu()">&times;</button>
       </div>
       <ul class="mobile-nav-list">
         <li><a href="about.html" onclick="closeMobileMenu()">À Propos</a></li>
         <li><a href="architecture.html" onclick="closeMobileMenu()">Architecture</a></li>
+        <li><a href="../network.html" onclick="closeMobileMenu()">Explorateur de Réseau</a></li>
         <li><a href="deck.html" onclick="closeMobileMenu()">Présentation Interactive de 14 Diapositives ↗</a></li>
         <li><a href="news.html" onclick="closeMobileMenu()">Nouvelles et Presse</a></li>
         <li><a href="contact.html" onclick="closeMobileMenu()">Contact et Pilote</a></li>
@@ -197,6 +197,60 @@
           <p class="feature-desc">
             Notre charte exige que notre noyau de stockage ne détienne aucune clé de déchiffrement. Même sous ordonnance judiciaire, nos dirigeants ne peuvent produire votre texte en clair, car sa reconstruction est mathématiquement impossible.
           </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Genèse Fondatrice et Racines -->
+  <section id="roots" class="section-standard" style="background: rgba(10, 16, 13, 0.7); border-top: 1px solid var(--border-glass); border-bottom: 1px solid var(--border-glass);">
+    <div class="container">
+      <div class="section-header" style="max-width: 780px; margin: 0 auto 40px; text-align: center;">
+        <div class="section-tag" style="justify-content: center;">● LA GENÈSE ET LES RACINES</div>
+        <h2 class="section-title">Où commence la souveraineté : de Gales Point au socle canadien.</h2>
+        <p class="section-desc">
+          La souveraineté des données n'a rien d'une théorie abstraite. Elle a été forgée sur le terrain communautaire et pensée pour une garde institutionnelle inaliénable.
+        </p>
+      </div>
+
+      <div class="origin-cards-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
+        <div class="origin-card" style="background: rgba(18, 28, 22, 0.75); border: 1px solid var(--border-glass); border-radius: 12px; padding: 28px; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <span style="font-family: var(--font-mono); font-size: 0.74rem; color: var(--accent-gold); letter-spacing: 0.1em; text-transform: uppercase;">01 / Là où l'idée a pris racine</span>
+            <h3 style="font-size: 1.2rem; color: #FFFFFF; margin: 10px 0 8px;">Ranimée à Gales Point Manatee, au Belize.</h3>
+            <p style="font-size: 0.92rem; color: var(--text-warm-gray); line-height: 1.6;">
+              Un stage communautaire en SIG et en souveraineté des données avec l'Université Galen &mdash; dans un village marron historique dont le Christmas Bram et le Sambai sont inscrits au patrimoine immatériel de l'UNESCO. Ici, l'autodétermination des données a prouvé que la technologie doit servir ceux qui la produisent.
+            </p>
+          </div>
+          <div style="margin-top: 16px; font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-gold); text-transform: uppercase; font-weight: 700;">
+            ⚓ Ancre Fondatrice d'Origine
+          </div>
+        </div>
+
+        <div class="origin-card" style="background: rgba(18, 28, 22, 0.75); border: 1px solid var(--border-glass); border-radius: 12px; padding: 28px; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <span style="font-family: var(--font-mono); font-size: 0.74rem; color: var(--accent-cyan); letter-spacing: 0.1em; text-transform: uppercase;">02 / D'où vient le nom</span>
+            <h3 style="font-size: 1.2rem; color: #FFFFFF; margin: 10px 0 8px;">Nommée en l'honneur de l'axolotl régénérateur.</h3>
+            <p style="font-size: 0.92rem; color: var(--text-warm-gray); line-height: 1.6;">
+              Une créature millénaire capable de régénérer ses membres, tissus cardiaques et moelle épinière &mdash; fournissant le modèle biomathématique de notre protocole de redistribution de clés par seuil autorégénérateur sous RFC 9591.
+            </p>
+          </div>
+          <div style="margin-top: 16px; font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-cyan); text-transform: uppercase; font-weight: 700;">
+            🦎 Cryptographie Régénérative
+          </div>
+        </div>
+
+        <div class="origin-card" style="background: rgba(18, 28, 22, 0.75); border: 1px solid var(--border-glass); border-radius: 12px; padding: 28px; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <span style="font-family: var(--font-mono); font-size: 0.74rem; color: #00ff66; letter-spacing: 0.1em; text-transform: uppercase;">03 / Là où nous bâtissons</span>
+            <h3 style="font-size: 1.2rem; color: #FFFFFF; margin: 10px 0 8px;">Bâti sur la rivière Rouge &amp; le socle canadien.</h3>
+            <p style="font-size: 0.92rem; color: var(--text-warm-gray); line-height: 1.6;">
+              Conçu depuis Winnipeg, au Manitoba &mdash; terre natale des Métis de la rivière Rouge &mdash; et ancré dans le granit montréalais. Alimenté par l'hydroélectricité propre canadienne pour ériger l'épine dorsale numérique souveraine de notre pays et protéger la propriété intellectuelle ici même.
+            </p>
+          </div>
+          <div style="margin-top: 16px; font-family: var(--font-mono); font-size: 0.72rem; color: #00ff66; text-transform: uppercase; font-weight: 700;">
+            🍁 Socle du Bouclier Canadien
+          </div>
         </div>
       </div>
     </div>

@@ -1513,3 +1513,59 @@ function addLiveNodeToMesh(nodeData) {
 // Expose globally for form submission callback
 window.addLiveNodeToMesh = addLiveNodeToMesh;
 
+// --- Burst Mechanics Controllers (Episodic Step & Sector Switchers) ---
+function switchWorkflowBurst(stepIndex) {
+  const tabs = document.querySelectorAll('.workflow-tab-btn');
+  const panels = document.querySelectorAll('.workflow-panel');
+  tabs.forEach((tab, i) => {
+    if (i === stepIndex) {
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected', 'true');
+    } else {
+      tab.classList.remove('active');
+      tab.setAttribute('aria-selected', 'false');
+    }
+  });
+  panels.forEach((panel, i) => {
+    if (i === stepIndex) {
+      panel.classList.add('active');
+    } else {
+      panel.classList.remove('active');
+    }
+  });
+}
+
+function switchSectorBurst(sectorIndex) {
+  const tabs = document.querySelectorAll('.sector-nav-btn');
+  const panels = document.querySelectorAll('.sector-panel');
+  tabs.forEach((tab, i) => {
+    if (i === sectorIndex) {
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected', 'true');
+    } else {
+      tab.classList.remove('active');
+      tab.setAttribute('aria-selected', 'false');
+    }
+  });
+  panels.forEach((panel, i) => {
+    if (i === sectorIndex) {
+      panel.classList.add('active');
+    } else {
+      panel.classList.remove('active');
+    }
+  });
+}
+
+function openPilotForSector(sectorValue) {
+  openModal('pilot');
+  const sectorSelect = document.getElementById('iSector') || document.getElementById('pInterest') || document.getElementById('bInterest');
+  if (sectorSelect && sectorValue) {
+    sectorSelect.value = sectorValue;
+  }
+}
+
+window.switchWorkflowBurst = switchWorkflowBurst;
+window.switchSectorBurst = switchSectorBurst;
+window.openPilotForSector = openPilotForSector;
+
+

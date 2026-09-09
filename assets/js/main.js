@@ -1140,27 +1140,48 @@ function renderTopoMapNodes() {
     const countSuffix = (node.totalNodes && node.totalNodes > 1) ? ` (${node.totalNodes})` : '';
     const cityLabel = `${node.city}${countSuffix}`;
 
-    const customIcon = L.divIcon({
-      className: 'leaflet-node-marker',
-      iconSize: [12, 12],
-      iconAnchor: [6, 6],
-      popupAnchor: [0, -10],
-      html: `
+    let iconHtml;
+    let iconSize = [12, 12];
+    let iconAnchor = [6, 6];
+
+    if (isOrigin) {
+      iconSize = [26, 26];
+      iconAnchor = [13, 13];
+      iconHtml = `
+        <div class="topo-anchor-badge" title="Founding Origin Anchor: Gales Point Manatee, Belize">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="5" r="3"></circle>
+            <line x1="12" y1="22" x2="12" y2="8"></line>
+            <path d="M5 12H2a10 10 0 0 0 20 0h-3"></path>
+          </svg>
+        </div>
+        <div class="topo-marker-label origin-anchor-label">${cityLabel} ⚓</div>
+      `;
+    } else {
+      iconHtml = `
         <div class="topo-marker-core ${tierClass}"></div>
         <div class="topo-marker-label">${cityLabel}</div>
-      `
+      `;
+    }
+
+    const customIcon = L.divIcon({
+      className: 'leaflet-node-marker' + (isOrigin ? ' origin-anchor-marker' : ''),
+      iconSize: iconSize,
+      iconAnchor: iconAnchor,
+      popupAnchor: [0, isOrigin ? -16 : -10],
+      html: iconHtml
     });
 
     const marker = L.marker([node.lat, node.lon], { icon: customIcon }).addTo(topoMap);
 
     // Rich Informational Tooltip
     const tooltipHtml = `
-      <div style="font-family: var(--font-mono, monospace); font-size: 0.72rem; line-height: 1.45; min-width: 170px;">
+      <div style="font-family: var(--font-mono, monospace); font-size: 0.72rem; line-height: 1.45; min-width: 180px;">
         <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 4px; border-bottom: 1px solid rgba(255,255,255,0.15); padding-bottom: 4px;">
-          <strong style="color: ${isOrigin ? '#f5d074' : '#10b981'}; font-size: 0.75rem;">${node.id || 'NODE-CA-ENLISTED'}</strong>
-          <span style="font-size: 0.6rem; color: #94a3b8; text-transform: uppercase;">${node.status || 'ACTIVE ENCLAVE'}</span>
+          <strong style="color: ${isOrigin ? '#f5d074' : '#10b981'}; font-size: 0.75rem;">${isOrigin ? '⚓ ' : ''}${node.id || 'NODE-CA-ENLISTED'}</strong>
+          <span style="font-size: 0.6rem; color: ${isOrigin ? '#f5d074' : '#94a3b8'}; text-transform: uppercase; font-weight: 600;">${node.status || 'ACTIVE ENCLAVE'}</span>
         </div>
-        <div style="font-size: 0.82rem; font-weight: 600; color: #FFFFFF; margin-bottom: 2px;">${[node.city, node.region, node.country].filter(Boolean).join(', ')}</div>
+        <div style="font-size: 0.82rem; font-weight: 700; color: #FFFFFF; margin-bottom: 2px;">${[node.city, node.region, node.country].filter(Boolean).join(', ')}</div>
         <div style="color: #cbd5e1; font-size: 0.68rem; margin-bottom: 3px;">${node.role || 'Sovereign Cooperative Enclave'}</div>
         <div style="font-size: 0.62rem; color: #64748b;">${Math.abs(node.lat).toFixed(2)}°${node.lat >= 0 ? 'N' : 'S'}, ${Math.abs(node.lon).toFixed(2)}°${node.lon >= 0 ? 'E' : 'W'}</div>
       </div>
@@ -1168,7 +1189,7 @@ function renderTopoMapNodes() {
 
     marker.bindTooltip(tooltipHtml, {
       direction: 'top',
-      offset: [0, -12],
+      offset: [0, isOrigin ? -16 : -12],
       className: 'custom-topo-tooltip',
       opacity: 1
     });

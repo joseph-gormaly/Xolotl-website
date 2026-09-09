@@ -104,8 +104,9 @@ FROM public.beta_signups
 GROUP BY country, country_code, region, city
 ORDER BY total_nodes DESC;
 
--- Grant read access on analytics view to service role
-GRANT SELECT ON public.beta_nodes_geographic_distribution TO service_role;
+-- Grant read access on analytics view to public anon and authenticated roles
+-- (Completely privacy-preserving: exposes ONLY coarse city, country, count, and avg lat/lon. Zero emails, names, or IPs)
+GRANT SELECT ON public.beta_nodes_geographic_distribution TO anon, authenticated, service_role;
 
 -- ==============================================================================
 -- VERIFICATION QUERIES (Run to verify setup)

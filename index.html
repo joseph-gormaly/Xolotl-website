@@ -239,6 +239,9 @@
               <span><span class="dot origin"></span> Where the idea began</span>
               <span><span class="dot custodian"></span> Where we build</span>
             </div>
+            <a href="#mesh-telemetry" style="display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 14px; padding-top: 12px; border-top: 1px dashed rgba(255, 255, 255, 0.1); font-family: var(--font-mono); font-size: 0.72rem; color: #00ff66; text-decoration: none;">
+              <span>● View Live Sovereign Mesh Telemetry Radar</span> &darr;
+            </a>
           </div>
         </div>
       </div>
@@ -302,6 +305,114 @@
           </p>
           <div style="margin-top: 14px; font-family: var(--font-mono); font-size: 0.74rem; color: var(--accent-gold);">
             CITIZEN PRIVACY &bull; INSTITUTIONAL ENCLAVES
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Live Sovereign Mesh Telemetry Map Section -->
+  <section class="section-standard mesh-telemetry-section" id="mesh-telemetry" style="padding: 75px 0 65px;">
+    <div class="container">
+      <div class="section-header" style="max-width: 820px; margin: 0 auto 40px; text-align: center;">
+        <div class="section-tag" style="justify-content: center;">
+          <span class="live-pulse-dot"></span> LIVE SOVEREIGN MESH TELEMETRY
+        </div>
+        <h2 class="section-title">Enlisted Node Map: Active Bedrock Infrastructure</h2>
+        <p style="color: var(--text-warm-gray); font-size: 1.05rem; line-height: 1.6; margin-top: 14px;">
+          Real-time telemetry of cooperative participant nodes, bedrock vaults, and allied sovereign enclaves anchored into Canadian granite. Zero foreign cloud ingress.
+        </p>
+      </div>
+
+      <!-- Telemetry Dashboard HUD -->
+      <div class="telemetry-dashboard-card">
+        <!-- Top Metrics Bar -->
+        <div class="telemetry-metrics-bar">
+          <div class="telemetry-metric">
+            <span class="telemetry-metric-label">Enlisted Nodes</span>
+            <span class="telemetry-metric-val" id="telemetryNodeCount">--</span>
+          </div>
+          <div class="telemetry-metric">
+            <span class="telemetry-metric-label">Bedrock Clusters</span>
+            <span class="telemetry-metric-val" id="telemetryClusterCount">--</span>
+          </div>
+          <div class="telemetry-metric">
+            <span class="telemetry-metric-label">Shield Status</span>
+            <span class="telemetry-metric-val status-secure">ONLINE ● 100% SECURE</span>
+          </div>
+          <div class="telemetry-metric">
+            <span class="telemetry-metric-label">Cloud Act Ingress</span>
+            <span class="telemetry-metric-val status-zero">0.00% (UNCOERCIBLE)</span>
+          </div>
+        </div>
+
+        <!-- Main Radar & Telemetry Split View -->
+        <div class="telemetry-split-layout">
+          <!-- Canvas Webmap Area -->
+          <div class="telemetry-map-wrap">
+            <canvas id="meshRadarCanvas" class="mesh-radar-canvas"></canvas>
+
+            <!-- Map Overlay Controls / HUD Tags -->
+            <div class="map-hud-overlay top-left">
+              <span class="map-hud-badge">CANADIAN SHIELD CO-OP MESH</span>
+              <span class="map-hud-coords" id="radarReticleCoords">RADAR SWEEP: 360° ACTIVE</span>
+            </div>
+
+            <div class="map-hud-overlay top-right">
+              <div class="map-legend-items">
+                <span class="legend-item"><span class="legend-dot shield"></span> Shield Bedrock Node</span>
+                <span class="legend-item"><span class="legend-dot allied"></span> Allied Enclave</span>
+                <span class="legend-item"><span class="legend-dot new-join"></span> Latest Join</span>
+              </div>
+            </div>
+
+            <!-- Lake Ontario Callout Badge -->
+            <div class="map-hud-overlay lake-ontario-tag">
+              <span class="tag-lake">LAKE ONTARIO [CANADIAN SOVEREIGN BEDROCK 🍁]</span>
+            </div>
+
+            <!-- Interactive Tooltip Overlay -->
+            <div id="radarNodeTooltip" class="radar-node-tooltip" style="display: none;">
+              <div class="tooltip-header">
+                <span id="tooltipBadgeId" class="tooltip-badge-id">NODE-CA-XXXXXX</span>
+                <span id="tooltipStatus" class="tooltip-status">ACTIVE ENCLAVE</span>
+              </div>
+              <div class="tooltip-body">
+                <div class="tooltip-row">
+                  <span class="label">Location:</span>
+                  <span id="tooltipLocation" class="val">Toronto, Ontario</span>
+                </div>
+                <div class="tooltip-row">
+                  <span class="label">Jurisdiction:</span>
+                  <span id="tooltipJurisdiction" class="val">Canadian Bedrock</span>
+                </div>
+                <div class="tooltip-row">
+                  <span class="label">Coordinates:</span>
+                  <span id="tooltipCoords" class="val">43.65°N, 79.38°W</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Live Feed & Enlistment Sidebar -->
+          <div class="telemetry-sidebar">
+            <div class="telemetry-sidebar-header">
+              <h4>Live Enlistment Feed</h4>
+              <span class="feed-pulse-text">REAL-TIME STREAM</span>
+            </div>
+
+            <div id="telemetryFeedList" class="telemetry-feed-list">
+              <!-- Dynamically populated -->
+            </div>
+
+            <div class="telemetry-sidebar-cta">
+              <button type="button" class="btn btn-aurora" onclick="openModal('beta')" style="width: 100%; justify-content: center; padding: 12px 18px; font-size: 0.92rem;">
+                + Enlist Your Node in the Mesh &nbsp;→
+              </button>
+              <div class="telemetry-cta-subtext">
+                Join waitlist &bull; No trackers &bull; Canadian custody
+              </div>
+            </div>
           </div>
         </div>
       </div>

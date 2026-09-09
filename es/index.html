@@ -239,6 +239,9 @@
               <span><span class="dot origin"></span> Dónde nació la idea</span>
               <span><span class="dot custodian"></span> Dónde construimos</span>
             </div>
+            <a href="#mesh-telemetry" style="display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 14px; padding-top: 12px; border-top: 1px dashed rgba(255, 255, 255, 0.1); font-family: var(--font-mono); font-size: 0.72rem; color: #00ff66; text-decoration: none;">
+              <span>● Ver Radar de Telemetría en Vivo</span> &darr;
+            </a>
           </div>
         </div>
       </div>
@@ -302,6 +305,114 @@
           </p>
           <div style="margin-top: 14px; font-family: var(--font-mono); font-size: 0.74rem; color: var(--accent-gold);">
             PRIVACIDAD CIUDADANA &bull; ENCLAVES INSTITUCIONALES
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección de Telemetría de la Red Soberana en Vivo -->
+  <section class="section-standard mesh-telemetry-section" id="mesh-telemetry" style="padding: 75px 0 65px;">
+    <div class="container">
+      <div class="section-header" style="max-width: 820px; margin: 0 auto 40px; text-align: center;">
+        <div class="section-tag" style="justify-content: center;">
+          <span class="live-pulse-dot"></span> TELEMETRÍA DE LA RED SOBERANA EN VIVO
+        </div>
+        <h2 class="section-title">Mapa de Nodos Alistados: Infraestructura Activa en Roca</h2>
+        <p style="color: var(--text-warm-gray); font-size: 1.05rem; line-height: 1.6; margin-top: 14px;">
+          Telemetría en tiempo real de nodos cooperativos, bóvedas en lecho rocoso y enclaves soberanos aliados anclados en granito canadiense. Cero injerencia en la nube extranjera.
+        </p>
+      </div>
+
+      <!-- Tablero de Telemetría HUD -->
+      <div class="telemetry-dashboard-card">
+        <!-- Barra de Métricas Superior -->
+        <div class="telemetry-metrics-bar">
+          <div class="telemetry-metric">
+            <span class="telemetry-metric-label">Nodos Alistados</span>
+            <span class="telemetry-metric-val" id="telemetryNodeCount">--</span>
+          </div>
+          <div class="telemetry-metric">
+            <span class="telemetry-metric-label">Grupos en Roca</span>
+            <span class="telemetry-metric-val" id="telemetryClusterCount">--</span>
+          </div>
+          <div class="telemetry-metric">
+            <span class="telemetry-metric-label">Estado del Escudo</span>
+            <span class="telemetry-metric-val status-secure">EN LÍNEA ● 100% SEGURO</span>
+          </div>
+          <div class="telemetry-metric">
+            <span class="telemetry-metric-label">Injerencia CLOUD Act</span>
+            <span class="telemetry-metric-val status-zero">0.00% (INCOERCIBLE)</span>
+          </div>
+        </div>
+
+        <!-- Vista Dividida: Mapa Radar y Flujo en Vivo -->
+        <div class="telemetry-split-layout">
+          <!-- Área Canvas del Mapa Web -->
+          <div class="telemetry-map-wrap">
+            <canvas id="meshRadarCanvas" class="mesh-radar-canvas"></canvas>
+
+            <!-- Controles y Etiquetas HUD -->
+            <div class="map-hud-overlay top-left">
+              <span class="map-hud-badge">RED COOPERATIVA ESCUDO CANADIENSE</span>
+              <span class="map-hud-coords" id="radarReticleCoords">BARRIDO DE RADAR: 360° ACTIVO</span>
+            </div>
+
+            <div class="map-hud-overlay top-right">
+              <div class="map-legend-items">
+                <span class="legend-item"><span class="legend-dot shield"></span> Nodo del Escudo</span>
+                <span class="legend-item"><span class="legend-dot allied"></span> Enclave Aliado</span>
+                <span class="legend-item"><span class="legend-dot new-join"></span> Último Nodo Alistado</span>
+              </div>
+            </div>
+
+            <!-- Etiqueta Lago Ontario -->
+            <div class="map-hud-overlay lake-ontario-tag">
+              <span class="tag-lake">LAGO ONTARIO [LECHO ROCOSO SOBERANO CANADIENSE 🍁]</span>
+            </div>
+
+            <!-- Información Emergente Interactiva -->
+            <div id="radarNodeTooltip" class="radar-node-tooltip" style="display: none;">
+              <div class="tooltip-header">
+                <span id="tooltipBadgeId" class="tooltip-badge-id">NODE-CA-XXXXXX</span>
+                <span id="tooltipStatus" class="tooltip-status">ENCLAVE ACTIVO</span>
+              </div>
+              <div class="tooltip-body">
+                <div class="tooltip-row">
+                  <span class="label">Ubicación:</span>
+                  <span id="tooltipLocation" class="val">Montreal, Quebec</span>
+                </div>
+                <div class="tooltip-row">
+                  <span class="label">Jurisdicción:</span>
+                  <span id="tooltipJurisdiction" class="val">Lecho Rocoso Canadiense</span>
+                </div>
+                <div class="tooltip-row">
+                  <span class="label">Coordenadas:</span>
+                  <span id="tooltipCoords" class="val">45.50°N, 73.57°O</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Barra Lateral: Flujo en Vivo y Alistamiento -->
+          <div class="telemetry-sidebar">
+            <div class="telemetry-sidebar-header">
+              <h4>Flujo de Alistamiento</h4>
+              <span class="feed-pulse-text">TRANSMISIÓN EN TIEMPO REAL</span>
+            </div>
+
+            <div id="telemetryFeedList" class="telemetry-feed-list">
+              <!-- Rellenado dinámicamente -->
+            </div>
+
+            <div class="telemetry-sidebar-cta">
+              <button type="button" class="btn btn-aurora" onclick="openModal('beta')" style="width: 100%; justify-content: center; padding: 12px 18px; font-size: 0.92rem;">
+                + Alistar su Nodo en la Red &nbsp;→
+              </button>
+              <div class="telemetry-cta-subtext">
+                Unirse a la lista &bull; Cero rastreadores &bull; Custodia canadiense
+              </div>
+            </div>
           </div>
         </div>
       </div>

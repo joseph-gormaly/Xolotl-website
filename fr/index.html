@@ -239,6 +239,9 @@
               <span><span class="dot origin"></span> Là où l'idée est née</span>
               <span><span class="dot custodian"></span> Là où nous construisons</span>
             </div>
+            <a href="#mesh-telemetry" style="display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 14px; padding-top: 12px; border-top: 1px dashed rgba(255, 255, 255, 0.1); font-family: var(--font-mono); font-size: 0.72rem; color: #00ff66; text-decoration: none;">
+              <span>● Voir le Radar de Télémesure en Direct</span> &darr;
+            </a>
           </div>
         </div>
       </div>
@@ -302,6 +305,114 @@
           </p>
           <div style="margin-top: 14px; font-family: var(--font-mono); font-size: 0.74rem; color: var(--accent-gold);">
             VIE PRIVÉE DES CITOYENS &bull; ENCLAVES INSTITUTIONNELLES
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section de Télémesure du Maillage Souverain en Direct -->
+  <section class="section-standard mesh-telemetry-section" id="mesh-telemetry" style="padding: 75px 0 65px;">
+    <div class="container">
+      <div class="section-header" style="max-width: 820px; margin: 0 auto 40px; text-align: center;">
+        <div class="section-tag" style="justify-content: center;">
+          <span class="live-pulse-dot"></span> TÉLÉMÉTRIE DU MAILLAGE SOUVERAIN EN DIRECT
+        </div>
+        <h2 class="section-title">Carte des Nœuds Enrôlés : Infrastructure du Bouclier Actif</h2>
+        <p style="color: var(--text-warm-gray); font-size: 1.05rem; line-height: 1.6; margin-top: 14px;">
+          Télémesure en temps réel des nœuds participants coopératifs, des coffres-forts dans la roche et des enclaves souveraines alliées ancrées dans le granit canadien. Zéro intrusion infonuagique étrangère.
+        </p>
+      </div>
+
+      <!-- Tableau de Bord Télémesure HUD -->
+      <div class="telemetry-dashboard-card">
+        <!-- Barre de Métriques Supérieure -->
+        <div class="telemetry-metrics-bar">
+          <div class="telemetry-metric">
+            <span class="telemetry-metric-label">Nœuds Enrôlés</span>
+            <span class="telemetry-metric-val" id="telemetryNodeCount">--</span>
+          </div>
+          <div class="telemetry-metric">
+            <span class="telemetry-metric-label">Grappes du Bouclier</span>
+            <span class="telemetry-metric-val" id="telemetryClusterCount">--</span>
+          </div>
+          <div class="telemetry-metric">
+            <span class="telemetry-metric-label">État du Bouclier</span>
+            <span class="telemetry-metric-val status-secure">EN LIGNE ● 100% SÉCURISÉ</span>
+          </div>
+          <div class="telemetry-metric">
+            <span class="telemetry-metric-label">Ingérence CLOUD Act</span>
+            <span class="telemetry-metric-val status-zero">0,00% (INCOERCIBLE)</span>
+          </div>
+        </div>
+
+        <!-- Vue Partagée : Carte Radar & Flux en Direct -->
+        <div class="telemetry-split-layout">
+          <!-- Zone Canvas de la Carte Web -->
+          <div class="telemetry-map-wrap">
+            <canvas id="meshRadarCanvas" class="mesh-radar-canvas"></canvas>
+
+            <!-- Commandes et Badges HUD -->
+            <div class="map-hud-overlay top-left">
+              <span class="map-hud-badge">MAILLAGE COOPÉRATIF DU BOUCLIER CANADIEN</span>
+              <span class="map-hud-coords" id="radarReticleCoords">BALAYAGE RADAR : 360° ACTIF</span>
+            </div>
+
+            <div class="map-hud-overlay top-right">
+              <div class="map-legend-items">
+                <span class="legend-item"><span class="legend-dot shield"></span> Nœud du Bouclier</span>
+                <span class="legend-item"><span class="legend-dot allied"></span> Enclave Alliée</span>
+                <span class="legend-item"><span class="legend-dot new-join"></span> Dernier Nœud Enrôlé</span>
+              </div>
+            </div>
+
+            <!-- Badge d'Appel Lac Ontario -->
+            <div class="map-hud-overlay lake-ontario-tag">
+              <span class="tag-lake">LAC ONTARIO [SOCLE ROCHEUX SOUVERAIN CANADIEN 🍁]</span>
+            </div>
+
+            <!-- Infobulle Interactive -->
+            <div id="radarNodeTooltip" class="radar-node-tooltip" style="display: none;">
+              <div class="tooltip-header">
+                <span id="tooltipBadgeId" class="tooltip-badge-id">NODE-CA-XXXXXX</span>
+                <span id="tooltipStatus" class="tooltip-status">ENCLAVE ACTIVE</span>
+              </div>
+              <div class="tooltip-body">
+                <div class="tooltip-row">
+                  <span class="label">Emplacement :</span>
+                  <span id="tooltipLocation" class="val">Montréal, Québec</span>
+                </div>
+                <div class="tooltip-row">
+                  <span class="label">Juridiction :</span>
+                  <span id="tooltipJurisdiction" class="val">Socle Rocheux Canadien</span>
+                </div>
+                <div class="tooltip-row">
+                  <span class="label">Coordonnées :</span>
+                  <span id="tooltipCoords" class="val">45.50°N, 73.57°O</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Barre Latérale : Flux en Direct & Enrôlement -->
+          <div class="telemetry-sidebar">
+            <div class="telemetry-sidebar-header">
+              <h4>Flux des Enrôlements</h4>
+              <span class="feed-pulse-text">FLUX EN TEMPS RÉEL</span>
+            </div>
+
+            <div id="telemetryFeedList" class="telemetry-feed-list">
+              <!-- Rempli dynamiquement -->
+            </div>
+
+            <div class="telemetry-sidebar-cta">
+              <button type="button" class="btn btn-aurora" onclick="openModal('beta')" style="width: 100%; justify-content: center; padding: 12px 18px; font-size: 0.92rem;">
+                + Enrôler Votre Nœud dans le Maillage &nbsp;→
+              </button>
+              <div class="telemetry-cta-subtext">
+                Rejoindre la liste &bull; Aucun traceur &bull; Garde canadienne
+              </div>
+            </div>
           </div>
         </div>
       </div>

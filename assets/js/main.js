@@ -597,6 +597,27 @@ The cloud has trust issues. Meet the Canadian Shield.`;
   if (bForm) bForm.style.display = 'none';
   if (bSuccess) bSuccess.style.display = 'block';
 
+  // 5. Instantly project newly enlisted node onto live telemetry mesh
+  try {
+    if (typeof addLiveNodeToMesh === 'function') {
+      addLiveNodeToMesh({
+        id: nodeId,
+        city: locCity || locationText || 'Sovereign Node',
+        region: locRegion || '',
+        country: locCountry || 'Canada',
+        countryCode: locCountryCode || 'CA',
+        lat: detectedGeo.latitude || 43.653,
+        lon: detectedGeo.longitude || -79.383,
+        role: interestType === 'developer' ? 'DKG Custodian Node' : (interestType === 'enterprise' ? 'Institutional Enclave' : 'Citizen Privacy Shield'),
+        tier: 'shield',
+        status: 'Newly Enlisted',
+        isNew: true
+      });
+    }
+  } catch (meshErr) {
+    console.warn('Mesh telemetry update error:', meshErr);
+  }
+
   if (submitBtn) {
     submitBtn.disabled = false;
     submitBtn.innerHTML = pick({
@@ -1010,4 +1031,617 @@ try {
 
 document.addEventListener('DOMContentLoaded', () => {
   initCookie();
+  initMeshRadarTelemetry();
 });
+
+// ==============================================================================
+// LIVE SOVEREIGN MESH TELEMETRY WEBMAP ENGINE
+// ==============================================================================
+
+const SOVEREIGN_SEED_NODES = [
+  { id: 'NODE-CA-7F2A01', city: 'Winnipeg', region: 'Manitoba', country: 'Canada', countryCode: 'CA', lat: 49.895, lon: -97.138, role: 'Red River Engineering Core', tier: 'shield', status: 'Active Anchor' },
+  { id: 'NODE-CA-7F2A02', city: 'Montreal', region: 'Quebec', country: 'Canada', countryCode: 'CA', lat: 45.501, lon: -73.567, role: 'Bedrock WORM Vault', tier: 'shield', status: 'Active Anchor' },
+  { id: 'NODE-CA-7F2A03', city: 'Toronto', region: 'Ontario', country: 'Canada', countryCode: 'CA', lat: 43.653, lon: -79.383, role: 'Lake Ontario Shield Enclave', tier: 'shield', status: 'Active Anchor' },
+  { id: 'NODE-CA-7F2A04', city: 'Ottawa', region: 'Ontario', country: 'Canada', countryCode: 'CA', lat: 45.421, lon: -75.697, role: 'Sovereign Regulatory Hub', tier: 'shield', status: 'Active Anchor' },
+  { id: 'NODE-CA-7F2A05', city: 'Vancouver', region: 'British Columbia', country: 'Canada', countryCode: 'CA', lat: 49.282, lon: -123.120, role: 'Pacific Gateway Node', tier: 'shield', status: 'Active Anchor' },
+  { id: 'NODE-CA-7F2A06', city: 'Halifax', region: 'Nova Scotia', country: 'Canada', countryCode: 'CA', lat: 44.648, lon: -63.575, role: 'Atlantic Bastion Node', tier: 'shield', status: 'Active Anchor' },
+  { id: 'NODE-CA-7F2A07', city: 'Quebec City', region: 'Quebec', country: 'Canada', countryCode: 'CA', lat: 46.813, lon: -71.207, role: 'St. Lawrence Hydro Cluster', tier: 'shield', status: 'Active Cluster' },
+  { id: 'NODE-CA-7F2A08', city: 'Calgary', region: 'Alberta', country: 'Canada', countryCode: 'CA', lat: 51.044, lon: -114.071, role: 'Foothills Enterprise Node', tier: 'shield', status: 'Active Node' },
+  { id: 'NODE-BZ-410E01', city: 'Gales Point Manatee', region: 'Belize District', country: 'Belize', countryCode: 'BZ', lat: 17.218, lon: -88.336, role: 'UNESCO Origin Enclave', tier: 'allied', status: 'Active Enclave' },
+  { id: 'NODE-MX-903C01', city: 'Mexico City', region: 'CDMX', country: 'Mexico', countryCode: 'MX', lat: 19.432, lon: -99.133, role: 'Regenerative DKG Anchor', tier: 'allied', status: 'Active Anchor' },
+  { id: 'NODE-CH-118A01', city: 'Zurich', region: 'Zurich', country: 'Switzerland', countryCode: 'CH', lat: 47.376, lon: 8.541, role: 'Allied Sovereign Custodian', tier: 'allied', status: 'Active Custodian' },
+  { id: 'NODE-IS-642K01', city: 'Reykjavik', region: 'Capital Region', country: 'Iceland', countryCode: 'IS', lat: 64.146, lon: -21.942, role: 'Geothermal Transatlantic Peer', tier: 'allied', status: 'Active Peer' }
+];
+
+// Simplified Canadian Shield Bedrock Polygon (Lat, Lon coordinates)
+const CANADIAN_SHIELD_GEO_COORDS = [
+  { lat: 62.0, lon: -108.0 },
+  { lat: 59.5, lon: -100.0 },
+  { lat: 57.0, lon: -94.0 },
+  { lat: 54.0, lon: -88.0 },
+  { lat: 50.0, lon: -84.0 },
+  { lat: 47.5, lon: -81.0 },
+  { lat: 45.8, lon: -78.0 },
+  { lat: 45.2, lon: -74.5 },
+  { lat: 47.5, lon: -70.5 },
+  { lat: 50.0, lon: -65.0 },
+  { lat: 53.5, lon: -60.0 },
+  { lat: 57.0, lon: -62.0 },
+  { lat: 60.5, lon: -65.0 },
+  { lat: 62.5, lon: -75.0 },
+  { lat: 63.5, lon: -86.0 },
+  { lat: 63.0, lon: -96.0 }
+];
+
+let meshNodes = [...SOVEREIGN_SEED_NODES];
+let meshAnimFrameId = null;
+let meshIsVisible = true;
+let radarSweepAngle = 0;
+let hoveredMeshNode = null;
+
+function projectGeoToCanvas(lat, lon, w, h) {
+  // Bounding box for North America, Central America and West Europe
+  const minLon = -136.0;
+  const maxLon = 16.0;
+  const minLat = 11.0;
+  const maxLat = 69.0;
+
+  const padX = w * 0.05;
+  const padY = h * 0.06;
+  const usableW = w - padX * 2;
+  const usableH = h - padY * 2;
+
+  const x = padX + ((lon - minLon) / (maxLon - minLon)) * usableW;
+  const y = padY + ((maxLat - lat) / (maxLat - minLat)) * usableH;
+  return { x, y };
+}
+
+function projectCanvasToGeo(x, y, w, h) {
+  const minLon = -136.0;
+  const maxLon = 16.0;
+  const minLat = 11.0;
+  const maxLat = 69.0;
+
+  const padX = w * 0.05;
+  const padY = h * 0.06;
+  const usableW = w - padX * 2;
+  const usableH = h - padY * 2;
+
+  const lon = minLon + ((x - padX) / usableW) * (maxLon - minLon);
+  const lat = maxLat - ((y - padY) / usableH) * (maxLat - minLat);
+  return { lat, lon };
+}
+
+function initMeshRadarTelemetry() {
+  const canvas = document.getElementById('meshRadarCanvas');
+  if (!canvas) return;
+
+  // 1. Sync live data from Supabase & LocalStorage
+  loadMeshTelemetryData();
+
+  // 2. Setup Canvas Resizing & Hi-DPI
+  const resizeCanvas = () => {
+    const rect = canvas.getBoundingClientRect();
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = rect.width * dpr;
+    canvas.height = rect.height * dpr;
+    const ctx = canvas.getContext('2d');
+    ctx.resetTransform && ctx.resetTransform();
+    ctx.scale(dpr, dpr);
+  };
+  resizeCanvas();
+
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(resizeCanvas, 100);
+  });
+
+  // 3. Mouse Interaction on Radar
+  const tooltip = document.getElementById('radarNodeTooltip');
+  const reticleCoords = document.getElementById('radarReticleCoords');
+
+  canvas.addEventListener('mousemove', (e) => {
+    const rect = canvas.getBoundingClientRect();
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+
+    // Display simulated target reticle coords
+    if (reticleCoords) {
+      const geo = projectCanvasToGeo(mouseX, mouseY, rect.width, rect.height);
+      if (geo.lat >= 10 && geo.lat <= 72 && geo.lon >= -145 && geo.lon <= 25) {
+        const latStr = `${Math.abs(geo.lat).toFixed(2)}°${geo.lat >= 0 ? 'N' : 'S'}`;
+        const lonStr = `${Math.abs(geo.lon).toFixed(2)}°${geo.lon >= 0 ? 'E' : 'W'}`;
+        reticleCoords.innerText = `RADAR RETICLE: ${latStr}, ${lonStr}`;
+      }
+    }
+
+    // Hit-testing node blips (threshold ~20px)
+    let found = null;
+    let minDist = 24;
+    meshNodes.forEach(node => {
+      const pt = projectGeoToCanvas(node.lat, node.lon, rect.width, rect.height);
+      const dist = Math.hypot(pt.x - mouseX, pt.y - mouseY);
+      if (dist < minDist) {
+        minDist = dist;
+        found = { node, pt };
+      }
+    });
+
+    hoveredMeshNode = found ? found.node : null;
+
+    if (tooltip) {
+      if (found) {
+        const n = found.node;
+        const bId = document.getElementById('tooltipBadgeId');
+        const bStatus = document.getElementById('tooltipStatus');
+        const bLoc = document.getElementById('tooltipLocation');
+        const bJur = document.getElementById('tooltipJurisdiction');
+        const bCoords = document.getElementById('tooltipCoords');
+
+        if (bId) bId.innerText = n.id || 'NODE-CA-ENLISTED';
+        if (bStatus) bStatus.innerText = (n.status || 'VERIFIED ENCLAVE').toUpperCase();
+        if (bLoc) bLoc.innerText = [n.city, n.region, n.country].filter(Boolean).join(', ');
+        if (bJur) {
+          bJur.innerText = n.countryCode === 'CA' ? 'Canadian Shield Bedrock 🍁' : `${n.country || 'Sovereign'} Enclave`;
+        }
+        if (bCoords) {
+          bCoords.innerText = `${Math.abs(n.lat).toFixed(2)}°N, ${Math.abs(n.lon).toFixed(2)}°W`;
+        }
+
+        tooltip.style.left = `${found.pt.x}px`;
+        tooltip.style.top = `${found.pt.y}px`;
+        tooltip.style.display = 'block';
+        tooltip.style.opacity = '1';
+      } else {
+        tooltip.style.display = 'none';
+      }
+    }
+  });
+
+  canvas.addEventListener('mouseleave', () => {
+    hoveredMeshNode = null;
+    if (tooltip) tooltip.style.display = 'none';
+    if (reticleCoords) reticleCoords.innerText = 'RADAR SWEEP: 360° ACTIVE';
+  });
+
+  // 4. Pause animation loop when out of view
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      meshIsVisible = entries[0].isIntersecting;
+      if (meshIsVisible && !meshAnimFrameId) {
+        renderRadarLoop();
+      }
+    }, { threshold: 0.1 });
+    observer.observe(canvas);
+  }
+
+  // 5. Start Render Loop
+  renderRadarLoop();
+}
+
+function renderRadarLoop() {
+  const canvas = document.getElementById('meshRadarCanvas');
+  if (!canvas) return;
+
+  const rect = canvas.getBoundingClientRect();
+  const w = rect.width;
+  const h = rect.height;
+  const ctx = canvas.getContext('2d');
+
+  ctx.clearRect(0, 0, w, h);
+
+  const now = performance.now();
+  radarSweepAngle = (now * 0.00075) % (Math.PI * 2);
+
+  // Center of the Canadian Shield radar sweep (Winnipeg area)
+  const centerPt = projectGeoToCanvas(49.895, -97.138, w, h);
+
+  // --- Layer 1: Background Tactical Grid & Range Circles ---
+  ctx.strokeStyle = 'rgba(0, 255, 102, 0.07)';
+  ctx.lineWidth = 1;
+
+  // Latitude Parallels
+  [20, 30, 40, 50, 60].forEach(lat => {
+    const pt1 = projectGeoToCanvas(lat, -135, w, h);
+    const pt2 = projectGeoToCanvas(lat, 15, w, h);
+    ctx.beginPath();
+    ctx.moveTo(pt1.x, pt1.y);
+    ctx.lineTo(pt2.x, pt2.y);
+    ctx.stroke();
+
+    ctx.fillStyle = 'rgba(143, 163, 152, 0.35)';
+    ctx.font = '9px monospace';
+    ctx.fillText(`${lat}°N`, pt1.x + 4, pt1.y - 3);
+  });
+
+  // Longitude Meridians
+  [-120, -100, -80, -60, -40, -20, 0].forEach(lon => {
+    const pt1 = projectGeoToCanvas(68, lon, w, h);
+    const pt2 = projectGeoToCanvas(12, lon, w, h);
+    ctx.beginPath();
+    ctx.moveTo(pt1.x, pt1.y);
+    ctx.lineTo(pt2.x, pt2.y);
+    ctx.stroke();
+
+    ctx.fillStyle = 'rgba(143, 163, 152, 0.35)';
+    ctx.font = '9px monospace';
+    ctx.fillText(`${Math.abs(lon)}°W`, pt2.x + 3, h - 8);
+  });
+
+  // Concentric Radar Range Rings from Winnipeg
+  [w * 0.12, w * 0.24, w * 0.38, w * 0.54].forEach((radius, idx) => {
+    ctx.strokeStyle = 'rgba(0, 255, 102, 0.08)';
+    ctx.beginPath();
+    ctx.arc(centerPt.x, centerPt.y, radius, 0, Math.PI * 2);
+    ctx.stroke();
+
+    ctx.fillStyle = 'rgba(0, 255, 102, 0.35)';
+    ctx.font = '8px monospace';
+    const distLabels = ['500 KM', '1200 KM', '2200 KM', '3500 KM'];
+    ctx.fillText(distLabels[idx] || '', centerPt.x + radius + 4, centerPt.y - 3);
+  });
+
+  // --- Layer 2: Canadian Shield Bedrock Zone (Shaded Granite Area) ---
+  ctx.beginPath();
+  CANADIAN_SHIELD_GEO_COORDS.forEach((coord, i) => {
+    const pt = projectGeoToCanvas(coord.lat, coord.lon, w, h);
+    if (i === 0) ctx.moveTo(pt.x, pt.y);
+    else ctx.lineTo(pt.x, pt.y);
+  });
+  ctx.closePath();
+  ctx.fillStyle = 'rgba(0, 255, 102, 0.04)';
+  ctx.fill();
+  ctx.strokeStyle = 'rgba(0, 255, 102, 0.22)';
+  ctx.lineWidth = 1.2;
+  ctx.setLineDash([4, 4]);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Bedrock Zone Label
+  const shieldLabelPt = projectGeoToCanvas(54.0, -82.0, w, h);
+  ctx.fillStyle = 'rgba(0, 255, 102, 0.45)';
+  ctx.font = '9px monospace';
+  ctx.letterSpacing = '1px';
+  ctx.fillText('CANADIAN SHIELD GRANITE BEDROCK', shieldLabelPt.x - 70, shieldLabelPt.y);
+
+  // --- Layer 3: Great Lakes & Lake Ontario Highlight ---
+  const ontarioPt = projectGeoToCanvas(43.65, -77.8, w, h);
+  ctx.beginPath();
+  ctx.ellipse(ontarioPt.x, ontarioPt.y, 14, 7, -0.2, 0, Math.PI * 2);
+  ctx.fillStyle = 'rgba(45, 212, 191, 0.22)';
+  ctx.fill();
+  ctx.strokeStyle = '#2dd4bf';
+  ctx.lineWidth = 1.2;
+  ctx.stroke();
+
+  // Lake Ontario Reticle Pointer
+  ctx.beginPath();
+  ctx.moveTo(ontarioPt.x + 14, ontarioPt.y);
+  ctx.lineTo(ontarioPt.x + 28, ontarioPt.y - 8);
+  ctx.strokeStyle = 'rgba(45, 212, 191, 0.6)';
+  ctx.stroke();
+
+  ctx.fillStyle = '#2dd4bf';
+  ctx.font = '8px monospace';
+  ctx.fillText('LAKE ONTARIO [CA BEDROCK]', ontarioPt.x + 32, ontarioPt.y - 6);
+
+  // Other Great Lakes contours
+  const superiorPt = projectGeoToCanvas(47.7, -87.5, w, h);
+  ctx.beginPath();
+  ctx.ellipse(superiorPt.x, superiorPt.y, 22, 10, -0.1, 0, Math.PI * 2);
+  ctx.strokeStyle = 'rgba(45, 212, 191, 0.25)';
+  ctx.stroke();
+
+  const huronPt = projectGeoToCanvas(44.8, -82.4, w, h);
+  ctx.beginPath();
+  ctx.ellipse(huronPt.x, huronPt.y, 13, 14, 0.3, 0, Math.PI * 2);
+  ctx.strokeStyle = 'rgba(45, 212, 191, 0.2)';
+  ctx.stroke();
+
+  // --- Layer 4: Inter-Node Sovereign Mesh Edges (Virtual Iron Spine) ---
+  const meshConnections = [
+    ['Winnipeg', 'Montreal'],
+    ['Montreal', 'Toronto'],
+    ['Toronto', 'Ottawa'],
+    ['Montreal', 'Halifax'],
+    ['Winnipeg', 'Vancouver'],
+    ['Winnipeg', 'Calgary'],
+    ['Winnipeg', 'Gales Point Manatee'],
+    ['Gales Point Manatee', 'Mexico City'],
+    ['Montreal', 'Zurich'],
+    ['Montreal', 'Reykjavik']
+  ];
+
+  const nodeMap = {};
+  meshNodes.forEach(n => { nodeMap[n.city] = n; });
+
+  meshConnections.forEach(([cityA, cityB]) => {
+    const nA = nodeMap[cityA];
+    const nB = nodeMap[cityB];
+    if (nA && nB) {
+      const ptA = projectGeoToCanvas(nA.lat, nA.lon, w, h);
+      const ptB = projectGeoToCanvas(nB.lat, nB.lon, w, h);
+
+      ctx.beginPath();
+      ctx.moveTo(ptA.x, ptA.y);
+      ctx.lineTo(ptB.x, ptB.y);
+      ctx.strokeStyle = (nA.tier === 'shield' && nB.tier === 'shield') ? 'rgba(0, 255, 102, 0.25)' : 'rgba(212, 175, 55, 0.25)';
+      ctx.lineWidth = 1.2;
+      ctx.stroke();
+
+      // Traveling Light Pulse (cryptographic packet shard simulation)
+      const pulseT = ((now * 0.0006) + (ptA.x + ptB.y) * 0.001) % 1;
+      const pulseX = ptA.x + (ptB.x - ptA.x) * pulseT;
+      const pulseY = ptA.y + (ptB.y - ptA.y) * pulseT;
+
+      ctx.beginPath();
+      ctx.arc(pulseX, pulseY, 2.2, 0, Math.PI * 2);
+      ctx.fillStyle = (nA.tier === 'shield' && nB.tier === 'shield') ? '#00ff66' : '#f5d074';
+      ctx.shadowColor = ctx.fillStyle;
+      ctx.shadowBlur = 6;
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    }
+  });
+
+  // --- Layer 5: Rotating Radar Sweep Beam ---
+  const sweepRadius = Math.hypot(w, h);
+  ctx.save();
+  ctx.translate(centerPt.x, centerPt.y);
+  ctx.rotate(radarSweepAngle);
+
+  // Gradient Sector Beam
+  const sweepGrad = ctx.createRadialGradient(0, 0, 10, 0, 0, sweepRadius);
+  sweepGrad.addColorStop(0, 'rgba(0, 255, 102, 0.18)');
+  sweepGrad.addColorStop(0.6, 'rgba(0, 255, 102, 0.06)');
+  sweepGrad.addColorStop(1, 'rgba(0, 255, 102, 0)');
+
+  ctx.beginPath();
+  ctx.moveTo(0, 0);
+  ctx.arc(0, 0, sweepRadius, 0, Math.PI * 0.18);
+  ctx.closePath();
+  ctx.fillStyle = sweepGrad;
+  ctx.fill();
+
+  // Leading Sweep Line
+  ctx.beginPath();
+  ctx.moveTo(0, 0);
+  ctx.lineTo(sweepRadius, 0);
+  ctx.strokeStyle = 'rgba(0, 255, 102, 0.65)';
+  ctx.lineWidth = 1.5;
+  ctx.shadowColor = '#00ff66';
+  ctx.shadowBlur = 10;
+  ctx.stroke();
+  ctx.shadowBlur = 0;
+  ctx.restore();
+
+  // --- Layer 6: Node Beacon Blips & Concentric Sonar Rings ---
+  meshNodes.forEach((node, idx) => {
+    const pt = projectGeoToCanvas(node.lat, node.lon, w, h);
+    const isHovered = (hoveredMeshNode && hoveredMeshNode.id === node.id);
+    const isNew = !!node.isNew;
+
+    let blipColor = '#00ff66';
+    if (node.tier === 'allied') blipColor = '#d4af37';
+    if (isNew) blipColor = '#2dd4bf';
+
+    // Concentric Sonar Pulse
+    const pulsePhase = ((now * 0.0012) + idx * 0.25) % 1;
+    const pulseRadius = 5 + pulsePhase * (isNew ? 28 : 20);
+    const pulseAlpha = Math.max(0, 1 - pulsePhase);
+
+    ctx.beginPath();
+    ctx.arc(pt.x, pt.y, pulseRadius, 0, Math.PI * 2);
+    ctx.strokeStyle = isNew ? `rgba(45, 212, 191, ${pulseAlpha})` : `rgba(0, 255, 102, ${pulseAlpha * 0.8})`;
+    ctx.lineWidth = isNew ? 1.8 : 1;
+    ctx.stroke();
+
+    // Core Blip
+    ctx.beginPath();
+    ctx.arc(pt.x, pt.y, isHovered ? 6 : (isNew ? 5 : 4), 0, Math.PI * 2);
+    ctx.fillStyle = blipColor;
+    ctx.shadowColor = blipColor;
+    ctx.shadowBlur = isHovered ? 14 : 8;
+    ctx.fill();
+    ctx.shadowBlur = 0;
+
+    // White Center Core
+    ctx.beginPath();
+    ctx.arc(pt.x, pt.y, 1.5, 0, Math.PI * 2);
+    ctx.fillStyle = '#FFFFFF';
+    ctx.fill();
+
+    // City Label
+    ctx.fillStyle = isHovered ? '#FFFFFF' : 'rgba(255, 255, 255, 0.75)';
+    ctx.font = `${isHovered ? 'bold ' : ''}9px monospace`;
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.8)';
+    ctx.shadowBlur = 4;
+    ctx.fillText(node.city, pt.x + 8, pt.y + 3);
+    ctx.shadowBlur = 0;
+  });
+
+  if (meshIsVisible) {
+    meshAnimFrameId = requestAnimationFrame(renderRadarLoop);
+  } else {
+    meshAnimFrameId = null;
+  }
+}
+
+async function loadMeshTelemetryData() {
+  // 1. Load local signups from browser storage
+  let localSignups = [];
+  try {
+    localSignups = JSON.parse(localStorage.getItem('xolotl_beta_signups') || '[]');
+  } catch (e) {}
+
+  // 2. Fetch aggregated node clusters from Supabase view
+  let remoteClusters = [];
+  try {
+    const endpoint = `${XOLOTL_SUPABASE.url}/rest/v1/beta_nodes_geographic_distribution`;
+    const res = await fetch(endpoint, {
+      method: 'GET',
+      headers: {
+        'apikey': XOLOTL_SUPABASE.anonKey,
+        'Authorization': `Bearer ${XOLOTL_SUPABASE.anonKey}`
+      }
+    });
+    if (res.ok) {
+      remoteClusters = await res.json();
+    }
+  } catch (err) {
+    console.info('Supabase geographic view pending grant or offline; using local & seed mesh.');
+  }
+
+  // 3. Merge Supabase clusters into meshNodes
+  if (Array.isArray(remoteClusters) && remoteClusters.length > 0) {
+    remoteClusters.forEach((cluster, i) => {
+      if (cluster.avg_latitude && cluster.avg_longitude) {
+        const existing = meshNodes.find(n => n.city.toLowerCase() === (cluster.city || '').toLowerCase());
+        if (!existing) {
+          meshNodes.push({
+            id: `NODE-${(cluster.country_code || 'CA').toUpperCase()}-${String(i + 100).padStart(4, '0')}`,
+            city: cluster.city || 'Regional Cluster',
+            region: cluster.region || '',
+            country: cluster.country || 'Canada',
+            countryCode: cluster.country_code || 'CA',
+            lat: Number(cluster.avg_latitude),
+            lon: Number(cluster.avg_longitude),
+            role: `${cluster.total_nodes || 1} Enlisted Nodes`,
+            tier: cluster.country_code === 'CA' ? 'shield' : 'allied',
+            status: 'Active Cluster'
+          });
+        }
+      }
+    });
+  }
+
+  // 4. Merge any local signups not yet in seed
+  localSignups.forEach(signup => {
+    if (signup.latitude && signup.longitude) {
+      const alreadyIn = meshNodes.find(n => n.id === signup.node_badge_id);
+      if (!alreadyIn) {
+        meshNodes.push({
+          id: signup.node_badge_id || 'NODE-CA-LOCAL',
+          city: signup.city || 'Verified Node',
+          region: signup.region || '',
+          country: signup.country || 'Canada',
+          countryCode: signup.country_code || 'CA',
+          lat: Number(signup.latitude),
+          lon: Number(signup.longitude),
+          role: signup.interest_type === 'developer' ? 'DKG Custodian Node' : 'Citizen Privacy Shield',
+          tier: 'shield',
+          status: 'Newly Enlisted',
+          isNew: true
+        });
+      }
+    }
+  });
+
+  // 5. Update Telemetry Metrics Bar
+  updateMeshMetricsHUD();
+
+  // 6. Populate Telemetry Feed List
+  populateTelemetryFeedList(localSignups);
+}
+
+function updateMeshMetricsHUD() {
+  const nodeCountEl = document.getElementById('telemetryNodeCount');
+  const clusterCountEl = document.getElementById('telemetryClusterCount');
+
+  // Calculate distinct clusters and active node count
+  const distinctCities = new Set(meshNodes.map(n => n.city.toLowerCase()));
+  const totalCount = meshNodes.length + 18; // Base community foundation
+
+  if (nodeCountEl) {
+    animateCountUp(nodeCountEl, totalCount, 1200);
+  }
+  if (clusterCountEl) {
+    animateCountUp(clusterCountEl, distinctCities.size, 1000);
+  }
+}
+
+function animateCountUp(element, target, duration) {
+  let start = 0;
+  const startTime = performance.now();
+  function update(now) {
+    const elapsed = now - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    const ease = 1 - Math.pow(1 - progress, 3);
+    const current = Math.round(start + (target - start) * ease);
+    element.innerText = current.toLocaleString();
+    if (progress < 1) {
+      requestAnimationFrame(update);
+    }
+  }
+  requestAnimationFrame(update);
+}
+
+function populateTelemetryFeedList(localSignups) {
+  const feedList = document.getElementById('telemetryFeedList');
+  if (!feedList) return;
+
+  feedList.innerHTML = '';
+
+  // Combine real signups + recent seed nodes for initial presentation
+  const feedEntries = [
+    ...(localSignups || []).slice(-3).reverse().map(s => ({
+      id: s.node_badge_id || 'NODE-CA-NEW',
+      loc: [s.city, s.region, s.country_code].filter(Boolean).join(', '),
+      role: s.interest_type === 'developer' ? 'DKG Custodian' : 'Citizen Privacy Shield',
+      time: 'Just now',
+      isNew: true
+    })),
+    { id: 'NODE-CA-7F2A03', loc: 'Toronto, Ontario, CA', role: 'Lake Ontario Bedrock Enclave', time: '12m ago', isNew: false },
+    { id: 'NODE-CA-7F2A02', loc: 'Montreal, Quebec, CA', role: 'Bedrock WORM Vault', time: '34m ago', isNew: false },
+    { id: 'NODE-CA-7F2A01', loc: 'Winnipeg, Manitoba, CA', role: 'Red River Engineering Core', time: '1h ago', isNew: false },
+    { id: 'NODE-BZ-410E01', loc: 'Gales Point Manatee, BZ', role: 'UNESCO Community Enclave', time: '2h ago', isNew: false },
+    { id: 'NODE-CH-118A01', loc: 'Zurich, Switzerland, CH', role: 'Allied Sovereign Custodian', time: '3h ago', isNew: false }
+  ];
+
+  feedEntries.forEach(item => {
+    const div = document.createElement('div');
+    div.className = `telemetry-feed-item ${item.isNew ? 'just-enlisted' : ''}`;
+    div.innerHTML = `
+      <div class="feed-item-top">
+        <span class="feed-item-id">${item.id}</span>
+        <span class="feed-item-time">${item.time}</span>
+      </div>
+      <div class="feed-item-loc">${item.loc}</div>
+      <div class="feed-item-role">${item.role}</div>
+    `;
+    feedList.appendChild(div);
+  });
+}
+
+function addLiveNodeToMesh(nodeData) {
+  // Add new node to active array
+  meshNodes.unshift(nodeData);
+
+  // Update HUD
+  const nodeCountEl = document.getElementById('telemetryNodeCount');
+  if (nodeCountEl) {
+    const cur = parseInt(nodeCountEl.innerText.replace(/,/g, ''), 10) || meshNodes.length + 18;
+    nodeCountEl.innerText = (cur + 1).toLocaleString();
+  }
+
+  // Prepend to Feed List
+  const feedList = document.getElementById('telemetryFeedList');
+  if (feedList) {
+    const div = document.createElement('div');
+    div.className = 'telemetry-feed-item just-enlisted';
+    div.innerHTML = `
+      <div class="feed-item-top">
+        <span class="feed-item-id">${nodeData.id}</span>
+        <span class="feed-item-time" style="color:#00ff66;">ACTIVE NOW</span>
+      </div>
+      <div class="feed-item-loc">${[nodeData.city, nodeData.region, nodeData.countryCode].filter(Boolean).join(', ')} 🍁</div>
+      <div class="feed-item-role">${nodeData.role || 'Sovereign Beta Node'}</div>
+    `;
+    feedList.insertBefore(div, feedList.firstChild);
+  }
+}
+
+// Expose globally for form submission callback
+window.addLiveNodeToMesh = addLiveNodeToMesh;
+

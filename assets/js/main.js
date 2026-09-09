@@ -296,8 +296,8 @@ function editApplicationDetails() {
 
 // --- Supabase & Sovereign Beta Waitlist Integration ---
 const XOLOTL_SUPABASE = {
-  url: (window.XOLOTL_SUPABASE_CONFIG && window.XOLOTL_SUPABASE_CONFIG.url) || 'https://xolotl-sovereign.supabase.co',
-  anonKey: (window.XOLOTL_SUPABASE_CONFIG && window.XOLOTL_SUPABASE_CONFIG.anonKey) || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.public-anon-key',
+  url: (window.XOLOTL_SUPABASE_CONFIG && window.XOLOTL_SUPABASE_CONFIG.url) || 'https://zqaitwxasunttgvxbnga.supabase.co',
+  anonKey: (window.XOLOTL_SUPABASE_CONFIG && window.XOLOTL_SUPABASE_CONFIG.anonKey) || 'sb_publishable_NPuIZJCjr0ZXuDw8Q5JvJQ_COfyQ2LS',
   tableName: 'beta_signups'
 };
 

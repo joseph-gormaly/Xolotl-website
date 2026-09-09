@@ -3808,37 +3808,11 @@
   width: fit-content;
 }
 
-/* Custom Leaflet Node Markers */
+/* Custom Leaflet Node Markers (Clean & Professional Static Topo Points) */
 .leaflet-node-marker {
   background: transparent !important;
   border: none !important;
-}
-
-.topo-marker-halo {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  animation: markerHaloBreathe 2.4s ease-in-out infinite;
-  pointer-events: none;
-}
-
-.topo-marker-halo.shield {
-  border: 1.5px solid rgba(16, 185, 129, 0.55);
-  background: rgba(16, 185, 129, 0.15);
-}
-
-.topo-marker-halo.allied {
-  border: 1.5px solid rgba(212, 175, 55, 0.55);
-  background: rgba(212, 175, 55, 0.15);
-}
-
-.topo-marker-halo.new-join {
-  border: 1.5px solid rgba(45, 212, 191, 0.6);
-  background: rgba(45, 212, 191, 0.2);
+  overflow: visible !important;
 }
 
 .topo-marker-core {
@@ -3850,40 +3824,38 @@
   height: 9px;
   border-radius: 50%;
   border: 1.5px solid #FFFFFF;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.45);
 }
 
 .topo-marker-core.shield {
   background: #10b981;
-  box-shadow: 0 0 8px #10b981;
 }
 
 .topo-marker-core.allied {
   background: var(--accent-gold);
-  box-shadow: 0 0 8px var(--accent-gold);
 }
 
 .topo-marker-core.new-join {
   background: #2dd4bf;
-  box-shadow: 0 0 10px #2dd4bf;
 }
 
-@keyframes markerHaloBreathe {
-  0% { transform: translate(-50%, -50%) scale(0.85); opacity: 0.5; }
-  50% { transform: translate(-50%, -50%) scale(1.3); opacity: 1; }
-  100% { transform: translate(-50%, -50%) scale(0.85); opacity: 0.5; }
+.topo-marker-label {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  font-family: var(--font-mono, monospace);
+  font-size: 10px;
+  font-weight: 600;
+  color: #0f172a;
+  text-shadow: 0 0 4px #ffffff, 0 0 6px #ffffff, 0 1px 2px rgba(255, 255, 255, 0.9);
+  pointer-events: none;
 }
 
-/* Traveling Data Pulse Lines */
-@keyframes dashPulse {
-  to { stroke-dashoffset: -28; }
-}
-
-.pulse-line {
-  animation: dashPulse 2s linear infinite;
-}
-
-.pulse-line-gold {
-  animation: dashPulse 2.4s linear infinite;
+.mesh-radar-map.topo-dark .topo-marker-label {
+  color: #f8fafc;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.95), 0 0 2px #000000;
 }
 
 /* Custom Tooltip */

@@ -1159,7 +1159,7 @@ function renderTopoMapNodes() {
     }
   }
 
-  // Draw animated transit lines
+  // Draw static transit route lines
   meshConnections.forEach(([cityA, cityB]) => {
     const nA = nodeMap[cityA];
     const nB = nodeMap[cityB];
@@ -1168,11 +1168,10 @@ function renderTopoMapNodes() {
       const isOriginLink = (nA.tier === 'allied' || nB.tier === 'allied' || nA.id === 'NODE-BZ-ORIGIN' || nB.id === 'NODE-BZ-ORIGIN');
 
       const polyline = L.polyline(arcCoords, {
-        color: isOriginLink ? '#d4af37' : '#10b981',
-        weight: 2,
-        opacity: 0.75,
-        dashArray: '6, 8',
-        className: isOriginLink ? 'pulse-line-gold' : 'pulse-line',
+        color: isOriginLink ? '#c89d4b' : '#059669',
+        weight: 1.5,
+        opacity: 0.65,
+        dashArray: '3, 4',
         interactive: false
       }).addTo(topoMap);
 
@@ -1180,7 +1179,7 @@ function renderTopoMapNodes() {
     }
   });
 
-  // Draw live node blips
+  // Draw clean static node points
   meshNodes.forEach(node => {
     if (!node.lat || !node.lon) return;
 
@@ -1193,13 +1192,12 @@ function renderTopoMapNodes() {
 
     const customIcon = L.divIcon({
       className: 'leaflet-node-marker',
-      iconSize: [28, 28],
-      iconAnchor: [14, 14],
-      popupAnchor: [0, -14],
+      iconSize: [12, 12],
+      iconAnchor: [6, 6],
+      popupAnchor: [0, -10],
       html: `
-        <div class="topo-marker-halo ${tierClass}"></div>
         <div class="topo-marker-core ${tierClass}"></div>
-        <div class="topo-marker-label" style="position: absolute; left: 20px; top: 50%; transform: translateY(-50%); white-space: nowrap; font-family: var(--font-mono, monospace); font-size: 10px; font-weight: 600; color: #f1f5f9; text-shadow: 0 1px 4px rgba(0,0,0,0.95), 0 0 2px #000; pointer-events: none;">${cityLabel}</div>
+        <div class="topo-marker-label">${cityLabel}</div>
       `
     });
 
@@ -1436,27 +1434,11 @@ function updateMeshMetricsHUD(remoteClusters) {
   const distinctCities = new Set(meshNodes.map(n => n.city.toLowerCase()));
 
   if (nodeCountEl) {
-    animateCountUp(nodeCountEl, totalCount, 1000);
+    nodeCountEl.innerText = totalCount.toLocaleString();
   }
   if (clusterCountEl) {
-    animateCountUp(clusterCountEl, distinctCities.size, 800);
+    clusterCountEl.innerText = distinctCities.size.toLocaleString();
   }
-}
-
-function animateCountUp(element, target, duration) {
-  let start = 0;
-  const startTime = performance.now();
-  function update(now) {
-    const elapsed = now - startTime;
-    const progress = Math.min(elapsed / duration, 1);
-    const ease = 1 - Math.pow(1 - progress, 3);
-    const current = Math.round(start + (target - start) * ease);
-    element.innerText = current.toLocaleString();
-    if (progress < 1) {
-      requestAnimationFrame(update);
-    }
-  }
-  requestAnimationFrame(update);
 }
 
 function formatRelativeTime(isoString) {
@@ -1528,11 +1510,11 @@ function addLiveNodeToMesh(nodeData) {
   // Add new node to active array
   meshNodes.unshift(nodeData);
 
-  // Refresh Leaflet markers & animated transit links
+  // Refresh Leaflet markers & transit links
   renderTopoMapNodes();
 
   if (topoMap && nodeData.lat && nodeData.lon) {
-    topoMap.flyTo([nodeData.lat, nodeData.lon], 6, { duration: 1.5 });
+    topoMap.panTo([nodeData.lat, nodeData.lon]);
   }
 
   // Update HUD

@@ -653,11 +653,24 @@ function copyBetaNodeCertificate() {
 }
 
 function shareBetaNode(platform) {
-  const text = encodeURIComponent("I just enlisted my node on the Xolotl Sovereign Beta. The cloud has trust issues. Meet the Canadian Shield: https://xolotl.ca");
+  const badgeId = document.getElementById('bBadgeId')?.innerText || 'NODE-CA-SOVEREIGN';
+  const lang = getCurrentLang();
+  const url = 'https://xolotl.ca';
+
   if (platform === 'twitter') {
-    window.open(`https://twitter.com/intent/tweet?text=${text}`, '_blank', 'noopener,noreferrer');
+    let tweet = '';
+    if (lang === 'fr') {
+      tweet = `Pendant que la Big Tech capitule et que @SouthPark se rebaptise "South America", le lac Ontario demeure 100% ancré dans le socle canadien 🍁\n\nNœud souverain enrôlé [${badgeId}] dans le maillage coopératif.\n\nZéro CLOUD Act. Difficile à épeler. Impossible à contraindre.\n${url}`;
+    } else if (lang === 'es') {
+      tweet = `Mientras las grandes tecnológicas capitulan y @SouthPark se renombra como "South America", el lago Ontario sigue 100% en el lecho rocoso canadiense 🍁\n\nNodo soberano alistado [${badgeId}] en la red cooperativa.\n\nCero CLOUD Act. Difícil de deletrear. Imposible de coaccionar.\n${url}`;
+    } else {
+      tweet = `While Big Tech capitulates and @SouthPark rebrands to "South America", Lake Ontario is still 100% Canadian Shield bedrock 🍁\n\nJust enlisted my sovereign node [${badgeId}] in the cooperative mesh.\n\nZero US CLOUD Act jurisdiction. Hard to spell. Impossible to compel.\n${url}`;
+    }
+    const intentUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweet)}`;
+    window.open(intentUrl, '_blank', 'width=600,height=450,noopener,noreferrer');
   } else if (platform === 'linkedin') {
-    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=https://xolotl.ca`, '_blank', 'noopener,noreferrer');
+    const intentUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
+    window.open(intentUrl, '_blank', 'width=600,height=550,noopener,noreferrer');
   }
 }
 

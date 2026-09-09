@@ -1073,7 +1073,6 @@ let meshNodes = [...SOVEREIGN_FOUNDING_ANCHORS];
 
 let topoMap = null;
 let topoMapMarkers = [];
-let topoMapLines = [];
 let isDarkTopo = false;
 
 window.toggleTopoTheme = function() {
@@ -1123,92 +1122,12 @@ window.focusTopoView = function(preset, btnElement) {
   }
 };
 
-function getArcPoints(coordA, coordB, numPoints = 25) {
-  const [lat1, lon1] = coordA;
-  const [lat2, lon2] = coordB;
-  const midLat = (lat1 + lat2) / 2;
-  const midLon = (lon1 + lon2) / 2;
-
-  // Vector from A to B
-  const dLat = lat2 - lat1;
-  const dLon = lon2 - lon1;
-  const dist = Math.hypot(dLat, dLon);
-
-  // Perpendicular vector (-dLon, dLat) normalized
-  const perpLat = dist > 0 ? (-dLon / dist) : 0;
-  const perpLon = dist > 0 ? (dLat / dist) : 0;
-
-  // Subtle natural geodesic bulge
-  const curveFactor = Math.min(3.5, dist * 0.08);
-  const ctrlLat = midLat + perpLat * curveFactor * 0.4;
-  const ctrlLon = midLon + perpLon * curveFactor;
-
-  const points = [];
-  for (let i = 0; i <= numPoints; i++) {
-    const t = i / numPoints;
-    const lat = (1 - t) * (1 - t) * lat1 + 2 * (1 - t) * t * ctrlLat + t * t * lat2;
-    const lon = (1 - t) * (1 - t) * lon1 + 2 * (1 - t) * t * ctrlLon + t * t * lon2;
-    points.push([lat, lon]);
-  }
-  return points;
-}
-
 function renderTopoMapNodes() {
   if (!topoMap) return;
 
-  // Clean up existing markers and transit lines
+  // Clean up existing markers
   topoMapMarkers.forEach(m => topoMap.removeLayer(m));
   topoMapMarkers = [];
-  topoMapLines.forEach(l => topoMap.removeLayer(l));
-  topoMapLines = [];
-
-  const nodeMap = {};
-  meshNodes.forEach(n => { nodeMap[n.city] = n; });
-
-  const meshConnections = [];
-  const activeCities = meshNodes.map(n => n.city);
-
-  // 1. Origin Anchor Links (Gales Point <-> Canadian Hubs)
-  if (activeCities.includes('Gales Point Manatee')) {
-    if (activeCities.includes('Winnipeg')) {
-      meshConnections.push(['Gales Point Manatee', 'Winnipeg']);
-    }
-    if (activeCities.includes('Toronto')) {
-      meshConnections.push(['Gales Point Manatee', 'Toronto']);
-    }
-    if (!activeCities.includes('Winnipeg') && !activeCities.includes('Toronto') && meshNodes.length > 1) {
-      const firstOther = meshNodes.find(n => n.city !== 'Gales Point Manatee');
-      if (firstOther) meshConnections.push(['Gales Point Manatee', firstOther.city]);
-    }
-  }
-
-  // 2. Domestic Canadian Enclave Mesh Connections
-  const canadianNodes = meshNodes.filter(n => n.city !== 'Gales Point Manatee');
-  for (let i = 0; i < canadianNodes.length; i++) {
-    for (let j = i + 1; j < canadianNodes.length; j++) {
-      meshConnections.push([canadianNodes[i].city, canadianNodes[j].city]);
-    }
-  }
-
-  // Draw static transit route lines
-  meshConnections.forEach(([cityA, cityB]) => {
-    const nA = nodeMap[cityA];
-    const nB = nodeMap[cityB];
-    if (nA && nB && nA.lat && nA.lon && nB.lat && nB.lon) {
-      const arcCoords = getArcPoints([nA.lat, nA.lon], [nB.lat, nB.lon]);
-      const isOriginLink = (nA.tier === 'allied' || nB.tier === 'allied' || nA.id === 'NODE-BZ-ORIGIN' || nB.id === 'NODE-BZ-ORIGIN');
-
-      const polyline = L.polyline(arcCoords, {
-        color: isOriginLink ? '#b45309' : '#047857',
-        weight: 2,
-        opacity: 0.75,
-        dashArray: '4, 4',
-        interactive: false
-      }).addTo(topoMap);
-
-      topoMapLines.push(polyline);
-    }
-  });
 
   // Draw clean static node points
   meshNodes.forEach(node => {

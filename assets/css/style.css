@@ -542,6 +542,10 @@
       text-shadow: 0 2px 40px rgba(0,0,0,0.35);
     }
 
+    .hero-highlight {
+      color: var(--accent-gold);
+    }
+
     span.serif-light {
       font-family: var(--font-serif);
       font-weight: 400;

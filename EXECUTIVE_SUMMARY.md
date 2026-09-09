@@ -9,7 +9,7 @@
 
 ## 1. Executive Snapshot
 
-> **The cloud has trust issues. Meet the Canadian Shield.**  
+> **The cloud has trust issues. Your data doesn't need to. Meet the Canadian Shield.**  
 > **One-Sentence Vision:** Xolotl is the **Virtual Iron Spine** for high-consequence institutional data—the world’s first hybrid sovereign edge file-synchronization platform, providing regulated enterprises with a seamless "OneDrive-like" experience while ensuring that no single technical compromise and no single legal jurisdiction on Earth can compel disclosure of their plaintext data.
 
 | Metric / Dimension | Detail |

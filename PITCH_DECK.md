@@ -12,7 +12,7 @@
 ### Visual Layout
 * **Hero Graphic:** A dark-mode split screen. On the left, a traditional cloud icon trapped in a spiderweb of national flag borders and subpoena seals. On the right, the clean geometric Xolotl mesh topology: three independent jurisdictional nodes interlocking around a sealed vault.
 * **Tagline:** *The Virtual Iron Spine for High-Consequence Institutional Data.*
-* **Lead Hook:** *The cloud has trust issues. Meet the Canadian Shield.*
+* **Lead Hook:** *The cloud has trust issues. Your data doesn't need to. Meet the Canadian Shield.*
 * **Sub-text:** High-consequence file sync engineered for institutions that cannot afford a single point of legal compulsion.
 
 ### Slide Copy

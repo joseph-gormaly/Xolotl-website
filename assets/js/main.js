@@ -589,7 +589,7 @@ Client Platform:    ${platform}
 Verification:       Pedersen DKG / FROST Threshold Mesh
 Sovereign Network:  https://xolotl.ca
 ===================================================
-The cloud has trust issues. Meet the Canadian Shield.`;
+The cloud has trust issues. Your data doesn't need to. Meet the Canadian Shield.`;
 
   // 4. Toggle UI views
   const bForm = document.getElementById('bForm');

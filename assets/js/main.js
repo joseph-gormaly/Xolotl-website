@@ -138,6 +138,9 @@ function openModal(type) {
       modal.classList.add('active');
       initBetaLocationDetection();
     }
+  } else if (type === 'dispatch' || type === 'article') {
+    const modal = document.getElementById('dispatchModal');
+    if (modal) modal.classList.add('active');
   } else {
     const modal = document.getElementById('pilotModal');
     if (modal) {
@@ -163,13 +166,15 @@ function closeModal() {
   const pilot = document.getElementById('pilotModal');
   const priv = document.getElementById('privacyModal');
   const beta = document.getElementById('betaModal');
+  const dispatch = document.getElementById('dispatchModal');
   if (pilot) pilot.classList.remove('active');
   if (priv) priv.classList.remove('active');
   if (beta) beta.classList.remove('active');
+  if (dispatch) dispatch.classList.remove('active');
 }
 
 function handleBackdrop(e) {
-  if (e && (e.target.id === 'pilotModal' || e.target.id === 'privacyModal' || e.target.id === 'betaModal')) {
+  if (e && (e.target.id === 'pilotModal' || e.target.id === 'privacyModal' || e.target.id === 'betaModal' || e.target.id === 'dispatchModal')) {
     closeModal();
   }
 }
@@ -570,12 +575,16 @@ async function handleBetaFormSubmit(e) {
   if (bBadgePlatform) bBadgePlatform.innerText = platform.toUpperCase();
   if (bBadgeTime) bBadgeTime.innerText = new Date().toLocaleDateString(lang, { month: 'short', day: 'numeric', year: 'numeric' });
 
+  const isCanadian = locCountryCode === 'CA' || (locationText && locationText.toLowerCase().includes('canada')) || (!locationText && !locCountryCode);
+  const jurisdictionNote = isCanadian ? 'Canadian Shield Bedrock (Lake Ontario, not Lake America 🍁)' : `${locCity || 'Bedrock'}, ${locCountry || 'Sovereign Node'}`;
+
   currentBetaBadgeText = 
 `🛡️ XOLOTL CANADIAN SHIELD — SOVEREIGN BETA NODE
 ===================================================
 Node Registry ID:   ${nodeId}
 Enlisted Operator:  ${fullName}
 Deployment Region:  ${locationText || locCity || 'Canadian Shield Bedrock'}
+Jurisdiction:       ${jurisdictionNote}
 Client Platform:    ${platform}
 Verification:       Pedersen DKG / FROST Threshold Mesh
 Sovereign Network:  https://xolotl.ca

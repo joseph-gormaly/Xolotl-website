@@ -78,6 +78,7 @@
             <a href="news.html" class="lang-switch-btn active" aria-current="page" onclick="setUserLanguage('es')">ES</a>
           </div>
           <a href="memo.html" class="btn btn-secondary nav-memo-btn">Invertir</a>
+          <button class="btn btn-aurora" onclick="openModal('beta')">Unirse a la Beta</button>
           <button class="btn btn-gold" onclick="openModal('pilot')">Unirse al Piloto</button>
           <a href="https://still.bz/" target="_blank" rel="noopener noreferrer" class="nav-xolo-container" title="Still — still.bz" aria-label="Still">
             <img src="../assets/images/Xoloitzcuintle_logo_v0.png" alt="Xoloitzcuintle" class="nav-xolo-img">
@@ -122,6 +123,7 @@
           </div>
         </div>
         <a href="memo.html" class="btn btn-secondary" style="width: 100%; text-align: center;">Leer Memorando Ejecutivo</a>
+        <button class="btn btn-aurora" style="width: 100%;" onclick="closeMobileMenu(); openModal('beta');">Unirse a la Beta Soberana</button>
         <button class="btn btn-gold" style="width: 100%;" onclick="closeMobileMenu(); openModal('pilot');">Solicitar Acceso al Piloto</button>
       </div>
       <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-warm-gray); text-align: center; margin-top: 16px;">
@@ -155,6 +157,22 @@
       </div>
 
       <div class="news-grid">
+        <!-- Boletín Técnico Urgente: Lago Ontario y Capitulación Cartográfica -->
+        <div class="news-card" style="border-color: rgba(0, 255, 102, 0.45); background: linear-gradient(135deg, rgba(14, 25, 19, 0.96) 0%, rgba(7, 14, 10, 0.98) 100%);">
+          <div class="news-meta">
+            <span class="news-tag cooperative" style="background: rgba(0, 255, 102, 0.15); color: #00ff66; border: 1px solid rgba(0, 255, 102, 0.4);">AVISO JURISDICCIONAL // ÚLTIMA HORA</span>
+            <span class="news-date" style="color: #00ff66;">SEPTIEMBRE 2026 // TORONTO Y OTTAWA</span>
+          </div>
+          <h4 class="news-title" style="color: #FFFFFF; font-size: 1.22rem;">Del Lago Ontario a los Enclaves en la Nube: Lo que la Capitulación Cartográfica Nos Enseña sobre la Soberanía de Datos</h4>
+          <p class="news-excerpt">
+            Tras los informes de que Apple Maps y Google acataron directivas de la Casa Blanca rebautizando el lago Ontario como «Lake America» para usuarios estadounidenses, la Cooperativa publica una sesión técnica urgente sobre la ilusión estructural de la «residencia contractual de datos», el alcance extraterritorial de 18 U.S.C. § 2713 (CLOUD Act), y por qué la negativa de MapQuest demuestra la creciente demanda del mercado de una soberanía digital inquebrantable.
+          </p>
+          <div class="news-footer" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+            <a href="javascript:void(0)" onclick="openModal('dispatch')" class="news-link" style="color: #00ff66; font-weight: 700;">Leer Informe Completo &nbsp;→</a>
+            <button class="btn btn-aurora" onclick="openModal('beta')" style="font-size: 0.78rem; padding: 6px 14px;">Alistar Nodo Soberano</button>
+          </div>
+        </div>
+
         <!-- Lead Dispatch: La Columna Vertebral Virtual -->
         <div class="news-card">
           <div class="news-meta">
@@ -217,6 +235,182 @@
       </div>
     </div>
   </section>
+
+
+  <!-- Modal de Informe Lago Ontario y Soberanía -->
+  <div id="dispatchModal" class="modal-backdrop" onclick="handleBackdrop(event)">
+    <div class="modal-card" style="max-width: 740px; max-height: 85vh; display: flex; flex-direction: column;">
+      <button class="modal-close-btn" onclick="closeModal()">&times;</button>
+      <div style="font-family: var(--font-mono); font-size: 0.72rem; color: #00ff66; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px;">
+        // INFORME TÉCNICO &bull; BOLETÍN JURISDICCIONAL 2026.09
+      </div>
+      <h3 style="font-size: 1.4rem; color: #FFFFFF; line-height: 1.3; margin-bottom: 8px;">
+        Del Lago Ontario a los Enclaves en la Nube: Lo que la Capitulación Cartográfica Nos Enseña sobre la Soberanía de Datos
+      </h3>
+      <div style="font-size: 0.78rem; font-family: var(--font-mono); color: var(--accent-gold); margin-bottom: 16px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 10px;">
+        AUTOR: COOPERATIVA XOLOTL CANADIAN SHIELD &bull; OTTAWA Y MONTREAL &bull; 8 DE SEPTIEMBRE DE 2026
+      </div>
+
+      <div style="color: var(--text-warm-gray); font-size: 0.92rem; line-height: 1.7; overflow-y: auto; padding-right: 12px; flex: 1;">
+        <h4 style="color: #FFFFFF; font-size: 1.05rem; margin: 16px 0 6px;">1. El Suceso: Capitulación de Software con una Simple Firma</h4>
+        <p>
+          En septiembre de 2026, Apple Maps y Google Maps actualizaron su software geográfico para renombrar el lago Ontario como «Lake America» para los usuarios ubicados en los Estados Unidos. Esta alteración se implementó tras una orden ejecutiva emitida por la Casa Blanca en medio de tensiones comerciales bilaterales. Mientras que los usuarios canadienses siguen viendo «Lago Ontario», las interfaces cartográficas de consumo en EE. UU. se bifurcaron de la noche a la mañana sin audiencia judicial ni conciliación de tratados internacionales.
+        </p>
+        <p>
+          Poco después, la plataforma de navegación MapQuest se negó públicamente a acatar este cambio forzado, manteniendo el nombre reconocido internacionalmente «Lake Ontario» para todos los usuarios. En 48 horas, MapQuest experimentó un aumento masivo en descargas móviles y adopción orgánica en el mercado &mdash; una clara demostración de la demanda por infraestructura digital que rechaza la cooptación política.
+        </p>
+
+        <h4 style="color: #FFFFFF; font-size: 1.05rem; margin: 18px 0 6px;">2. La Mentira Estructural de los «Centros de Datos Canadienses»</h4>
+        <p>
+          Durante más de una década, los gigantes de la nube (Microsoft Azure, AWS, Google Cloud) han comercializado regiones como «Canadá Central» y «Canadá Este». Los directores de seguridad de la información (CISO) y asesores jurídicos han confiado en estas etiquetas bajo el supuesto de que los servidores físicos ubicados en Montreal o Toronto garantizan la soberanía de los datos y el cumplimiento de PIPEDA.
+        </p>
+        <p>
+          El incidente del lago Ontario expone la fragilidad de este supuesto. Según la ley <strong>18 U.S.C. § 2713 (CLOUD Act)</strong>, la coacción extraterritorial se aplica a la <em>entidad corporativa</em>, no a la ubicación física del hardware. Si un monopolio tecnológico estadounidense altera la toponimia de aguas internacionales compartidas simplemente porque Washington se lo pide, no podrá &mdash; ni querrá &mdash; defender los enclaves corporativos canadienses ante una Carta de Seguridad Nacional (NSL) o una orden judicial federal de EE. UU.
+        </p>
+
+        <h4 style="color: #FFFFFF; font-size: 1.05rem; margin: 18px 0 6px;">3. El Peligro de la «Realidad Bifurcada» en el Software en la Nube</h4>
+        <p>
+          El mecanismo utilizado por Apple y Google &mdash;mostrar una versión de la realidad a los canadienses y otra a los estadounidenses&mdash; es exactamente la vulnerabilidad arquitectónica que debilita el modelo multi-inquilino de SaaS. Cuando una empresa alquila software a un monopolio extranjero, las puertas traseras administrativas y los puntos de telemetría remota quedan inevitablemente sujetos a jurisdicción foránea.
+        </p>
+        <p>
+          La soberanía no se puede contratar a través de un Acuerdo de Nivel de Servicio (SLA). No se puede garantizar con una promesa corporativa. Si una entidad tiene la capacidad técnica de modificar unilateralmente la realidad de un cliente, tiene la capacidad técnica de extraer unilateralmente sus claves criptográficas.
+        </p>
+
+        <h4 style="color: #FFFFFF; font-size: 1.05rem; margin: 18px 0 6px;">4. La Señal de MapQuest: El Apetito por Herramientas con Firmeza</h4>
+        <p>
+          La repentina migración de usuarios a MapQuest comprueba una tesis determinante: tanto los ciudadanos como las empresas están cansados del servilismo corporativo. Cuando una organización demuestra que sus principios no son negociables, el mercado responde de inmediato. El público busca herramientas que no se dobleguen.
+        </p>
+
+        <h4 style="color: #FFFFFF; font-size: 1.05rem; margin: 18px 0 6px;">5. La Solución Matemática: DKG de Pedersen y Umbral FROST</h4>
+        <p>
+          La Cooperativa Xolotl Canadian Shield fue concebida específicamente para hacer que la coacción extraterritorial sea matemáticamente imposible. Nuestra arquitectura descansa en tres pilares irrenunciables:
+        </p>
+        <ul style="padding-left: 20px; margin: 10px 0;">
+          <li style="margin-bottom: 8px;"><strong style="color: #FFFFFF;">Almacenamiento Matemáticamente Ciego:</strong> Los datos se cifran localmente antes de ser transmitidos. Ningún custodio ni proveedor de nube posee las claves de descifrado.</li>
+          <li style="margin-bottom: 8px;"><strong style="color: #FFFFFF;">Enclaves de Umbral Tri-Soberanos (3 de 5):</strong> Las claves se distribuyen entre tres jurisdicciones soberanas sin tratados de extradición unívocos: los cimientos de granito del Escudo Canadiense, bóvedas en los Alpes suizos y enclaves geotérmicos en Islandia. Una orden servida en un solo país solo obtiene ruido matemático inútil.</li>
+          <li style="margin-bottom: 8px;"><strong style="color: #FFFFFF;">Bóvedas Espejo S3 100% Canadienses:</strong> Bloqueo de objetos inmutable WORM (Write Once, Read Many) de 93 días anclado exclusivamente en territorio canadiense.</li>
+        </ul>
+        <p style="margin-top: 14px; font-style: italic; color: #FFFFFF;">
+          «Difícil de pronunciar. Imposible de coaccionar.»
+        </p>
+      </div>
+
+      <div style="display: flex; gap: 12px; margin-top: 18px; padding-top: 14px; border-top: 1px solid rgba(255, 255, 255, 0.1); flex-wrap: wrap;">
+        <button class="btn btn-aurora" onclick="closeModal(); openModal('beta');" style="flex: 1; justify-content: center; font-size: 0.92rem;">
+          Alistarse en la Beta Soberana &nbsp;→
+        </button>
+        <button class="btn btn-secondary" onclick="closeModal(); openModal('pilot');" style="font-size: 0.92rem;">
+          Solicitar Piloto Institucional
+        </button>
+        <button class="btn btn-secondary" onclick="closeModal();" style="font-size: 0.92rem;">
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Sovereign Beta Waitlist Modal -->
+  <div id="betaModal" class="modal-backdrop" onclick="handleBackdrop(event)">
+    <div class="modal-card">
+      <button class="modal-close-btn" onclick="closeModal()">&times;</button>
+      <h3 style="font-size: 1.35rem; color: #FFFFFF; margin-bottom: 6px;">Unirse a la Beta Soberana</h3>
+      <p style="font-size: 0.88rem; color: var(--text-warm-gray); margin-bottom: 18px;">
+        Aliste su nodo en la malla del Escudo Canadiense. Cero telemetría, cero jurisdicción de nube estadounidense y custodia 100% soberana sobre roca madre canadiense.
+      </p>
+
+      <form id="bForm" onsubmit="handleBetaFormSubmit(event)">
+        <label class="form-label" for="bName">Nombre del Operador o Alias</label>
+        <input type="text" id="bName" class="form-input" placeholder="ej. Alex Tremblay o Nodo-7" required>
+
+        <label class="form-label" for="bEmail">Correo Electrónico de Contacto</label>
+        <input type="email" id="bEmail" class="form-input" placeholder="operador@proton.me o usted@dominio.ca" required>
+
+        <label class="form-label" for="bPlatform">Arquitectura Principal del Dispositivo</label>
+        <select id="bPlatform" class="form-input">
+          <option value="macos_arm">macOS (Apple Silicon M1/M2/M3/M4)</option>
+          <option value="macos_intel">macOS (Intel)</option>
+          <option value="windows">Windows 10 / 11 (x64 / ARM)</option>
+          <option value="linux_x86">Linux (x86_64 Debian/Ubuntu/Fedora/Arch)</option>
+          <option value="linux_arm">Linux (ARM64 / Raspberry Pi / Nodo de Borde)</option>
+          <option value="ios_android">Móvil (iOS / Android)</option>
+          <option value="all">Múltiple / Homelab / Clúster Empresarial</option>
+        </select>
+
+        <label class="form-label" for="bInterest">Rol / Enfoque de Despliegue</label>
+        <select id="bInterest" class="form-input">
+          <option value="individual">Defensor de la Privacidad &amp; Individuo Soberano</option>
+          <option value="developer">Desarrollador / Operador de Nodo Custodio DKG</option>
+          <option value="legal">Legal Transfronterizo / Custodia Financiera</option>
+          <option value="defense">Defensa, CMMC, Infraestructura Crítica</option>
+          <option value="enterprise">Equipo Institucional / Empresarial</option>
+        </select>
+
+        <label class="form-label" for="bLocation">Nodo Regional / Ubicación (Aproximada)</label>
+        <input type="text" id="bLocation" class="form-input" placeholder="ej. Montreal, QC, Canadá">
+        <div class="geo-detect-wrap">
+          <span id="bGeoStatus" class="geo-status-indicator"></span>
+          <button type="button" class="btn-detect-loc" onclick="detectExactGPSLocation()">📍 Verificar Coordenadas del Dispositivo</button>
+        </div>
+
+        <label class="form-label" for="bNotes">Lo que la soberanía de datos significa para usted (Opcional)</label>
+        <textarea id="bNotes" class="form-input" rows="2" placeholder="Cuéntenos sobre su entorno, inquietudes con respecto a la CLOUD Act..."></textarea>
+
+        <button type="submit" id="bSubmitBtn" class="btn btn-aurora" style="width: 100%; justify-content: center; font-size: 1rem; padding: 12px 24px;">Alistarse en la Beta Soberana &nbsp;→</button>
+        <div style="text-align: center; margin-top: 10px; font-size: 0.8rem; color: var(--text-warm-gray);">
+          Nunca vendemos datos, no ejecutamos rastreadores de terceros ni registramos coordenadas sin cifrar. Telemetría puramente soberana.
+        </div>
+      </form>
+
+      <div id="bSuccess" style="display:none; text-align: left; padding: 6px 0;">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 14px;">
+          <div style="width: 36px; height: 36px; border-radius: 50%; background: rgba(0, 255, 102, 0.15); border: 1px solid #00ff66; display: flex; align-items: center; justify-content: center; color: #00ff66; font-weight: bold; flex-shrink: 0; font-size: 1.1rem;">✓</div>
+          <div>
+            <h4 style="font-size: 1.18rem; color: #FFFFFF; margin: 0;">Habilitación Beta Registrada</h4>
+            <span style="font-size: 0.78rem; font-family: var(--font-mono); color: #00ff66;">NODO REGISTRADO EN LA MALLA SOBERANA</span>
+          </div>
+        </div>
+
+        <p style="font-size: 0.88rem; color: var(--text-warm-gray); margin-bottom: 14px;">
+          El perfil de despliegue de su nodo ha sido catalogado criptográficamente. A medida que las olas de despliegue se activen en los clústeres del Escudo Canadiense, recibirá sus credenciales de invitación directamente.
+        </p>
+
+        <div class="node-badge-card">
+          <div class="node-badge-header">
+            <span class="node-badge-tag">🍁 NODO SOBERANO DEL ESCUDO CANADIENSE</span>
+            <span id="bBadgeId" class="node-badge-id">NODE-CA-000000</span>
+          </div>
+          <div class="node-badge-grid">
+            <div>
+              <span class="node-badge-label">Operador</span>
+              <span id="bBadgeName" class="node-badge-val">—</span>
+            </div>
+            <div>
+              <span class="node-badge-label">Región / Nodo</span>
+              <span id="bBadgeLoc" class="node-badge-val">—</span>
+            </div>
+            <div>
+              <span class="node-badge-label">Arquitectura</span>
+              <span id="bBadgePlatform" class="node-badge-val">—</span>
+            </div>
+            <div>
+              <span class="node-badge-label">Fecha de Registro</span>
+              <span id="bBadgeTime" class="node-badge-val">—</span>
+            </div>
+          </div>
+          <div style="margin-top: 14px; padding-top: 10px; border-top: 1px dashed rgba(255, 255, 255, 0.12); font-family: var(--font-mono); font-size: 0.72rem; color: #8fa398;">
+            PROTOCOLO: DKG DE PEDERSEN &bull; UMBRAL FROST &bull; CERO JURISDICCIÓN EE. UU.
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px;">
+          <button id="bCopyBtn" class="btn btn-secondary" onclick="copyBetaNodeCertificate()" style="flex: 1; font-size: 0.84rem; padding: 10px 14px;">📋 Copiar Certificado</button>
+          <button class="btn btn-secondary" onclick="shareBetaNode('twitter')" style="font-size: 0.84rem; padding: 10px 14px;">Compartir en 𝕏</button>
+          <button class="btn btn-secondary" onclick="shareBetaNode('linkedin')" style="font-size: 0.84rem; padding: 10px 14px;">LinkedIn</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
   <!-- Pilot Request Modal -->

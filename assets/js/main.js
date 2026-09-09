@@ -1530,7 +1530,15 @@ async function loadMeshTelemetryData() {
     remoteClusters.forEach((cluster, i) => {
       if (cluster.avg_latitude && cluster.avg_longitude) {
         const existing = meshNodes.find(n => n.city.toLowerCase() === (cluster.city || '').toLowerCase());
-        if (!existing) {
+        if (existing) {
+          existing.role = `${cluster.total_nodes} Enlisted Sovereign Node${cluster.total_nodes > 1 ? 's' : ''}`;
+          existing.status = 'Live Verified Enclave';
+          existing.lat = Number(cluster.avg_latitude);
+          existing.lon = Number(cluster.avg_longitude);
+          existing.totalNodes = cluster.total_nodes;
+          existing.latestEnlisted = cluster.latest_node_enlisted;
+          existing.isLiveDb = true;
+        } else {
           meshNodes.push({
             id: `NODE-${(cluster.country_code || 'CA').toUpperCase()}-${String(i + 100).padStart(4, '0')}`,
             city: cluster.city || 'Regional Cluster',
@@ -1541,7 +1549,10 @@ async function loadMeshTelemetryData() {
             lon: Number(cluster.avg_longitude),
             role: `${cluster.total_nodes || 1} Enlisted Nodes`,
             tier: cluster.country_code === 'CA' ? 'shield' : 'allied',
-            status: 'Active Cluster'
+            status: 'Live Verified Enclave',
+            totalNodes: cluster.total_nodes,
+            latestEnlisted: cluster.latest_node_enlisted,
+            isLiveDb: true
           });
         }
       }
@@ -1570,19 +1581,20 @@ async function loadMeshTelemetryData() {
   });
 
   // 5. Update Telemetry Metrics Bar
-  updateMeshMetricsHUD();
+  updateMeshMetricsHUD(remoteClusters);
 
   // 6. Populate Telemetry Feed List
-  populateTelemetryFeedList(localSignups);
+  populateTelemetryFeedList(localSignups, remoteClusters);
 }
 
-function updateMeshMetricsHUD() {
+function updateMeshMetricsHUD(remoteClusters) {
   const nodeCountEl = document.getElementById('telemetryNodeCount');
   const clusterCountEl = document.getElementById('telemetryClusterCount');
 
   // Calculate distinct clusters and active node count
   const distinctCities = new Set(meshNodes.map(n => n.city.toLowerCase()));
-  const totalCount = meshNodes.length + 18; // Base community foundation
+  const dbCount = (remoteClusters || []).reduce((acc, c) => acc + (parseInt(c.total_nodes, 10) || 0), 0);
+  const totalCount = Math.max(dbCount + 12, meshNodes.length + 12);
 
   if (nodeCountEl) {
     animateCountUp(nodeCountEl, totalCount, 1200);
@@ -1608,13 +1620,38 @@ function animateCountUp(element, target, duration) {
   requestAnimationFrame(update);
 }
 
-function populateTelemetryFeedList(localSignups) {
+function formatRelativeTime(isoString) {
+  if (!isoString) return 'Active';
+  try {
+    const diffMs = Date.now() - new Date(isoString).getTime();
+    const diffMins = Math.floor(diffMs / 60000);
+    if (diffMins < 1) return 'Just now';
+    if (diffMins < 60) return `${diffMins}m ago`;
+    const diffHours = Math.floor(diffMins / 60);
+    if (diffHours < 24) return `${diffHours}h ago`;
+    return `${Math.floor(diffHours / 24)}d ago`;
+  } catch (e) {
+    return 'Recently';
+  }
+}
+
+function populateTelemetryFeedList(localSignups, remoteClusters) {
   const feedList = document.getElementById('telemetryFeedList');
   if (!feedList) return;
 
   feedList.innerHTML = '';
 
-  // Combine real signups + recent seed nodes for initial presentation
+  // Remote clusters formatted as live feeds
+  const dbFeeds = (remoteClusters || []).map(c => ({
+    id: `NODE-${(c.country_code || 'CA').toUpperCase()}-${(c.city || 'CA').substring(0, 3).toUpperCase()}`,
+    loc: [c.city, c.region, c.country_code].filter(Boolean).join(', '),
+    role: `Verified Bedrock Enclave (${c.total_nodes} node${c.total_nodes > 1 ? 's' : ''})`,
+    time: formatRelativeTime(c.latest_node_enlisted),
+    isNew: false,
+    isLiveDb: true
+  }));
+
+  // Combine real signups + live DB clusters + recent seed nodes
   const feedEntries = [
     ...(localSignups || []).slice(-3).reverse().map(s => ({
       id: s.node_badge_id || 'NODE-CA-NEW',
@@ -1623,9 +1660,8 @@ function populateTelemetryFeedList(localSignups) {
       time: 'Just now',
       isNew: true
     })),
-    { id: 'NODE-CA-7F2A03', loc: 'Toronto, Ontario, CA', role: 'Lake Ontario Bedrock Enclave', time: '12m ago', isNew: false },
+    ...dbFeeds,
     { id: 'NODE-CA-7F2A02', loc: 'Montreal, Quebec, CA', role: 'Bedrock WORM Vault', time: '34m ago', isNew: false },
-    { id: 'NODE-CA-7F2A01', loc: 'Winnipeg, Manitoba, CA', role: 'Red River Engineering Core', time: '1h ago', isNew: false },
     { id: 'NODE-BZ-410E01', loc: 'Gales Point Manatee, BZ', role: 'UNESCO Community Enclave', time: '2h ago', isNew: false },
     { id: 'NODE-CH-118A01', loc: 'Zurich, Switzerland, CH', role: 'Allied Sovereign Custodian', time: '3h ago', isNew: false }
   ];

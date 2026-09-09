@@ -20,8 +20,8 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 2 L4 8 V16 C4 23.5 9.1 30 16 32 C22.9 30 28 23.5 28 16 V8 Z' fill='%23192B23' stroke='%23C89D4B' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='5' fill='%23D97706'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;0,700;0,900;1,400;1,600&display=swap">
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/leaflet.css">
   <style>
     .nav-links a.active {
       color: var(--accent-gold);
@@ -350,11 +350,14 @@
         <div class="telemetry-split-layout">
           <!-- Canvas Webmap Area -->
           <div class="telemetry-map-wrap">
-            <canvas id="meshRadarCanvas" class="mesh-radar-canvas"></canvas>
+            <div id="meshRadarMap" class="mesh-radar-map"></div>
 
             <!-- Map Overlay Controls / HUD Tags -->
             <div class="map-hud-overlay top-left">
-              <span class="map-hud-badge">XOLOTL TRANSIT TOPOLOGY</span>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span class="map-hud-badge">XOLOTL TRANSIT TOPOLOGY</span>
+                <button type="button" id="toggleTopoThemeBtn" class="topo-theme-toggle" onclick="toggleTopoTheme()">TOPO: NATURAL</button>
+              </div>
               <span class="map-hud-coords" id="radarReticleCoords">TOPOLOGY RETICLE: ACTIVE</span>
             </div>
 
@@ -733,6 +736,7 @@
     </div>
   </footer>
 
+  <script src="assets/js/leaflet.js"></script>
   <script src="assets/js/main.js"></script>
 </body>
 </html>

@@ -1071,374 +1071,66 @@ const SOVEREIGN_FOUNDING_ANCHORS = [
 
 let meshNodes = [...SOVEREIGN_FOUNDING_ANCHORS];
 
-// Simplified Vector Outlines for Professional Transit Topology (North/Central America, Caribbean, Europe)
-const CONTINENTAL_COASTLINE_COORDS = [
-  { lat: 68.0, lon: -136.0 },
-  { lat: 60.0, lon: -136.0 },
-  { lat: 54.5, lon: -130.5 },
-  { lat: 51.0, lon: -128.0 },
-  { lat: 49.0, lon: -123.5 },
-  { lat: 46.0, lon: -124.0 },
-  { lat: 42.0, lon: -124.2 },
-  { lat: 38.0, lon: -123.0 },
-  { lat: 34.0, lon: -119.0 },
-  { lat: 32.5, lon: -117.0 },
-  { lat: 28.0, lon: -114.5 },
-  { lat: 23.0, lon: -110.0 },
-  { lat: 24.5, lon: -110.5 },
-  { lat: 31.5, lon: -114.5 },
-  { lat: 20.5, lon: -105.0 },
-  { lat: 17.0, lon: -100.0 },
-  { lat: 16.0, lon: -97.0 },
-  { lat: 14.5, lon: -92.5 },
-  { lat: 13.5, lon: -89.0 },
-  { lat: 11.0, lon: -85.5 },
-  { lat: 11.0, lon: -83.5 },
-  { lat: 14.0, lon: -83.5 },
-  { lat: 16.0, lon: -87.5 },
-  { lat: 17.2, lon: -88.3 }, // Belize (Gales Point)
-  { lat: 18.5, lon: -88.2 },
-  { lat: 21.5, lon: -87.0 },
-  { lat: 20.0, lon: -90.5 },
-  { lat: 19.0, lon: -92.0 },
-  { lat: 19.0, lon: -96.0 },
-  { lat: 22.5, lon: -97.8 },
-  { lat: 26.0, lon: -97.2 },
-  { lat: 29.5, lon: -95.0 },
-  { lat: 30.0, lon: -90.0 },
-  { lat: 30.5, lon: -87.0 },
-  { lat: 28.5, lon: -82.8 },
-  { lat: 25.0, lon: -81.0 },
-  { lat: 25.8, lon: -80.0 },
-  { lat: 28.5, lon: -80.5 },
-  { lat: 30.5, lon: -81.5 },
-  { lat: 32.5, lon: -80.0 },
-  { lat: 35.5, lon: -75.5 },
-  { lat: 37.0, lon: -76.0 },
-  { lat: 39.0, lon: -74.5 },
-  { lat: 40.7, lon: -74.0 },
-  { lat: 42.3, lon: -71.0 },
-  { lat: 44.5, lon: -67.0 },
-  { lat: 45.0, lon: -66.0 },
-  { lat: 44.5, lon: -63.5 },
-  { lat: 46.5, lon: -60.5 },
-  { lat: 48.0, lon: -64.5 },
-  { lat: 48.5, lon: -68.5 },
-  { lat: 50.5, lon: -66.0 },
-  { lat: 53.5, lon: -56.0 },
-  { lat: 58.5, lon: -62.5 },
-  { lat: 60.5, lon: -64.5 },
-  { lat: 62.2, lon: -75.0 },
-  { lat: 58.0, lon: -78.5 },
-  { lat: 54.0, lon: -80.0 },
-  { lat: 56.0, lon: -88.0 },
-  { lat: 58.8, lon: -94.0 },
-  { lat: 64.0, lon: -90.0 },
-  { lat: 66.0, lon: -110.0 },
-  { lat: 69.0, lon: -136.0 }
-];
+let topoMap = null;
+let topoMapMarkers = [];
+let topoMapLines = [];
+let isDarkTopo = false;
 
-const NEWFOUNDLAND_COORDS = [
-  { lat: 47.5, lon: -53.5 },
-  { lat: 46.8, lon: -55.5 },
-  { lat: 48.0, lon: -59.0 },
-  { lat: 51.4, lon: -55.5 }
-];
-
-const WEST_EUROPE_COAST_COORDS = [
-  { lat: 36.0, lon: -5.5 },
-  { lat: 37.0, lon: -9.0 },
-  { lat: 41.0, lon: -8.7 },
-  { lat: 43.5, lon: -9.0 },
-  { lat: 43.5, lon: -1.8 },
-  { lat: 47.5, lon: -3.0 },
-  { lat: 49.5, lon: -1.5 },
-  { lat: 51.0, lon: 2.5 },
-  { lat: 53.5, lon: 7.5 },
-  { lat: 57.5, lon: 8.5 },
-  { lat: 59.0, lon: 5.5 },
-  { lat: 64.0, lon: 10.0 }
-];
-
-const BRITISH_ISLES_COORDS = [
-  { lat: 50.2, lon: -5.3 },
-  { lat: 51.0, lon: 1.4 },
-  { lat: 53.0, lon: 0.3 },
-  { lat: 58.5, lon: -3.5 },
-  { lat: 56.0, lon: -5.5 },
-  { lat: 51.5, lon: -3.5 }
-];
-
-let meshAnimFrameId = null;
-let meshIsVisible = true;
-let hoveredMeshNode = null;
-
-function projectGeoToCanvas(lat, lon, w, h) {
-  // Bounding box for North America, Central America and West Europe
-  const minLon = -136.0;
-  const maxLon = 16.0;
-  const minLat = 11.0;
-  const maxLat = 69.0;
-
-  const padX = w * 0.05;
-  const padY = h * 0.06;
-  const usableW = w - padX * 2;
-  const usableH = h - padY * 2;
-
-  const x = padX + ((lon - minLon) / (maxLon - minLon)) * usableW;
-  const y = padY + ((maxLat - lat) / (maxLat - minLat)) * usableH;
-  return { x, y };
-}
-
-function projectCanvasToGeo(x, y, w, h) {
-  const minLon = -136.0;
-  const maxLon = 16.0;
-  const minLat = 11.0;
-  const maxLat = 69.0;
-
-  const padX = w * 0.05;
-  const padY = h * 0.06;
-  const usableW = w - padX * 2;
-  const usableH = h - padY * 2;
-
-  const lon = minLon + ((x - padX) / usableW) * (maxLon - minLon);
-  const lat = maxLat - ((y - padY) / usableH) * (maxLat - minLat);
-  return { lat, lon };
-}
-
-function initMeshRadarTelemetry() {
-  const canvas = document.getElementById('meshRadarCanvas');
-  if (!canvas) return;
-
-  // 1. Sync live data from Supabase & LocalStorage
-  loadMeshTelemetryData();
-
-  // 2. Setup Canvas Resizing & Hi-DPI
-  const resizeCanvas = () => {
-    const rect = canvas.getBoundingClientRect();
-    const dpr = window.devicePixelRatio || 1;
-    canvas.width = rect.width * dpr;
-    canvas.height = rect.height * dpr;
-    const ctx = canvas.getContext('2d');
-    ctx.resetTransform && ctx.resetTransform();
-    ctx.scale(dpr, dpr);
-  };
-  resizeCanvas();
-
-  let resizeTimer;
-  window.addEventListener('resize', () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(resizeCanvas, 100);
-  });
-
-  // 3. Mouse Interaction on Topology Map
-  const tooltip = document.getElementById('radarNodeTooltip');
-  const reticleCoords = document.getElementById('radarReticleCoords');
-
-  canvas.addEventListener('mousemove', (e) => {
-    const rect = canvas.getBoundingClientRect();
-    const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
-
-    // Display coordinates under reticle
-    if (reticleCoords) {
-      const geo = projectCanvasToGeo(mouseX, mouseY, rect.width, rect.height);
-      if (geo.lat >= 10 && geo.lat <= 72 && geo.lon >= -145 && geo.lon <= 25) {
-        const latStr = `${Math.abs(geo.lat).toFixed(2)}°${geo.lat >= 0 ? 'N' : 'S'}`;
-        const lonStr = `${Math.abs(geo.lon).toFixed(2)}°${geo.lon >= 0 ? 'E' : 'W'}`;
-        reticleCoords.innerText = `TOPOLOGY RETICLE: ${latStr}, ${lonStr}`;
-      }
-    }
-
-    // Hit-testing node points (threshold ~24px)
-    let found = null;
-    let minDist = 24;
-    meshNodes.forEach(node => {
-      const pt = projectGeoToCanvas(node.lat, node.lon, rect.width, rect.height);
-      const dist = Math.hypot(pt.x - mouseX, pt.y - mouseY);
-      if (dist < minDist) {
-        minDist = dist;
-        found = { node, pt };
-      }
-    });
-
-    hoveredMeshNode = found ? found.node : null;
-
-    if (tooltip) {
-      if (found) {
-        const n = found.node;
-        const bId = document.getElementById('tooltipBadgeId');
-        const bStatus = document.getElementById('tooltipStatus');
-        const bLoc = document.getElementById('tooltipLocation');
-        const bJur = document.getElementById('tooltipJurisdiction');
-        const bCoords = document.getElementById('tooltipCoords');
-
-        if (bId) bId.innerText = n.id || 'NODE-CA-ENLISTED';
-        if (bStatus) bStatus.innerText = (n.status || 'ACTIVE ENCLAVE').toUpperCase();
-        if (bLoc) bLoc.innerText = [n.city, n.region, n.country].filter(Boolean).join(', ');
-        if (bJur) {
-          bJur.innerText = n.countryCode === 'CA' ? 'Canadian Cooperative Enclave' : `${n.country || 'Sovereign'} Enclave`;
-        }
-        if (bCoords) {
-          bCoords.innerText = `${Math.abs(n.lat).toFixed(2)}°N, ${Math.abs(n.lon).toFixed(2)}°W`;
-        }
-
-        tooltip.style.left = `${found.pt.x}px`;
-        tooltip.style.top = `${found.pt.y}px`;
-        tooltip.style.display = 'block';
-        tooltip.style.opacity = '1';
-      } else {
-        tooltip.style.display = 'none';
-      }
-    }
-  });
-
-  canvas.addEventListener('mouseleave', () => {
-    hoveredMeshNode = null;
-    if (tooltip) tooltip.style.display = 'none';
-    if (reticleCoords) reticleCoords.innerText = 'TOPOLOGY RETICLE: ACTIVE';
-  });
-
-  // 4. Pause animation loop when out of view
-  if ('IntersectionObserver' in window) {
-    const observer = new IntersectionObserver((entries) => {
-      meshIsVisible = entries[0].isIntersecting;
-      if (meshIsVisible && !meshAnimFrameId) {
-        renderRadarLoop();
-      }
-    }, { threshold: 0.1 });
-    observer.observe(canvas);
+window.toggleTopoTheme = function() {
+  const mapEl = document.getElementById('meshRadarMap');
+  const btn = document.getElementById('toggleTopoThemeBtn');
+  if (!mapEl) return;
+  isDarkTopo = !isDarkTopo;
+  const isFr = document.documentElement.lang === 'fr';
+  const isEs = document.documentElement.lang === 'es';
+  if (isDarkTopo) {
+    mapEl.classList.add('topo-dark');
+    if (btn) btn.innerText = isFr ? 'TOPO : SOMBRE' : (isEs ? 'TOPO: OSCURO' : 'TOPO: DARK');
+  } else {
+    mapEl.classList.remove('topo-dark');
+    if (btn) btn.innerText = isFr ? 'TOPO : NATUREL' : (isEs ? 'TOPO: NATURAL' : 'TOPO: NATURAL');
   }
+};
 
-  // 5. Start Render Loop
-  renderRadarLoop();
+function getArcPoints(coordA, coordB, numPoints = 25) {
+  const [lat1, lon1] = coordA;
+  const [lat2, lon2] = coordB;
+  const midLat = (lat1 + lat2) / 2;
+  const midLon = (lon1 + lon2) / 2;
+
+  // Vector from A to B
+  const dLat = lat2 - lat1;
+  const dLon = lon2 - lon1;
+  const dist = Math.hypot(dLat, dLon);
+
+  // Perpendicular vector (-dLon, dLat) normalized
+  const perpLat = dist > 0 ? (-dLon / dist) : 0;
+  const perpLon = dist > 0 ? (dLat / dist) : 0;
+
+  // Subtle natural geodesic bulge
+  const curveFactor = Math.min(3.5, dist * 0.08);
+  const ctrlLat = midLat + perpLat * curveFactor * 0.4;
+  const ctrlLon = midLon + perpLon * curveFactor;
+
+  const points = [];
+  for (let i = 0; i <= numPoints; i++) {
+    const t = i / numPoints;
+    const lat = (1 - t) * (1 - t) * lat1 + 2 * (1 - t) * t * ctrlLat + t * t * lat2;
+    const lon = (1 - t) * (1 - t) * lon1 + 2 * (1 - t) * t * ctrlLon + t * t * lon2;
+    points.push([lat, lon]);
+  }
+  return points;
 }
 
-function renderRadarLoop() {
-  const canvas = document.getElementById('meshRadarCanvas');
-  if (!canvas) return;
+function renderTopoMapNodes() {
+  if (!topoMap) return;
 
-  const rect = canvas.getBoundingClientRect();
-  const w = rect.width;
-  const h = rect.height;
-  const ctx = canvas.getContext('2d');
+  // Clean up existing markers and transit lines
+  topoMapMarkers.forEach(m => topoMap.removeLayer(m));
+  topoMapMarkers = [];
+  topoMapLines.forEach(l => topoMap.removeLayer(l));
+  topoMapLines = [];
 
-  ctx.clearRect(0, 0, w, h);
-  const now = performance.now();
-
-  // --- Layer 1: Background Geographic Graticule Grid ---
-  ctx.strokeStyle = 'rgba(255, 255, 255, 0.035)';
-  ctx.lineWidth = 0.8;
-
-  // Latitude Parallels
-  [20, 30, 40, 50, 60].forEach(lat => {
-    const pt1 = projectGeoToCanvas(lat, -135, w, h);
-    const pt2 = projectGeoToCanvas(lat, 15, w, h);
-    ctx.beginPath();
-    ctx.moveTo(pt1.x, pt1.y);
-    ctx.lineTo(pt2.x, pt2.y);
-    ctx.stroke();
-
-    ctx.fillStyle = 'rgba(148, 163, 184, 0.25)';
-    ctx.font = '9px monospace';
-    ctx.fillText(`${lat}°N`, pt1.x + 4, pt1.y - 3);
-  });
-
-  // Longitude Meridians
-  [-120, -100, -80, -60, -40, -20, 0].forEach(lon => {
-    const pt1 = projectGeoToCanvas(68, lon, w, h);
-    const pt2 = projectGeoToCanvas(12, lon, w, h);
-    ctx.beginPath();
-    ctx.moveTo(pt1.x, pt1.y);
-    ctx.lineTo(pt2.x, pt2.y);
-    ctx.stroke();
-
-    ctx.fillStyle = 'rgba(148, 163, 184, 0.25)';
-    ctx.font = '9px monospace';
-    ctx.fillText(`${Math.abs(lon)}°W`, pt2.x + 3, h - 8);
-  });
-
-  // --- Layer 2: Subtle Continental Coastlines ---
-  const drawPath = (coords, closePath = true) => {
-    ctx.beginPath();
-    coords.forEach((coord, i) => {
-      const pt = projectGeoToCanvas(coord.lat, coord.lon, w, h);
-      if (i === 0) ctx.moveTo(pt.x, pt.y);
-      else ctx.lineTo(pt.x, pt.y);
-    });
-    if (closePath) ctx.closePath();
-  };
-
-  // North America Mainland
-  drawPath(CONTINENTAL_COASTLINE_COORDS, true);
-  ctx.fillStyle = 'rgba(255, 255, 255, 0.012)';
-  ctx.fill();
-  ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
-  ctx.lineWidth = 1;
-  ctx.stroke();
-
-  // Newfoundland
-  drawPath(NEWFOUNDLAND_COORDS, true);
-  ctx.fillStyle = 'rgba(255, 255, 255, 0.012)';
-  ctx.fill();
-  ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
-  ctx.stroke();
-
-  // West Europe Coastline
-  drawPath(WEST_EUROPE_COAST_COORDS, false);
-  ctx.strokeStyle = 'rgba(255, 255, 255, 0.06)';
-  ctx.stroke();
-
-  // British Isles
-  drawPath(BRITISH_ISLES_COORDS, true);
-  ctx.stroke();
-
-  // --- Layer 3: Great Lakes & Lake Ontario Detail ---
-  ctx.fillStyle = 'rgba(45, 212, 191, 0.05)';
-  ctx.strokeStyle = 'rgba(45, 212, 191, 0.22)';
-  ctx.lineWidth = 1;
-
-  // Lake Superior
-  const superiorPt = projectGeoToCanvas(47.7, -87.5, w, h);
-  ctx.beginPath();
-  ctx.ellipse(superiorPt.x, superiorPt.y, 22, 10, -0.1, 0, Math.PI * 2);
-  ctx.fill();
-  ctx.stroke();
-
-  // Lake Michigan
-  const michiganPt = projectGeoToCanvas(43.5, -87.0, w, h);
-  ctx.beginPath();
-  ctx.ellipse(michiganPt.x, michiganPt.y, 8, 17, 0.05, 0, Math.PI * 2);
-  ctx.fill();
-  ctx.stroke();
-
-  // Lake Huron
-  const huronPt = projectGeoToCanvas(44.8, -82.0, w, h);
-  ctx.beginPath();
-  ctx.ellipse(huronPt.x, huronPt.y, 13, 14, 0.3, 0, Math.PI * 2);
-  ctx.fill();
-  ctx.stroke();
-
-  // Lake Erie
-  const eriePt = projectGeoToCanvas(42.0, -81.2, w, h);
-  ctx.beginPath();
-  ctx.ellipse(eriePt.x, eriePt.y, 14, 6, 0.35, 0, Math.PI * 2);
-  ctx.fill();
-  ctx.stroke();
-
-  // Lake Ontario
-  const ontarioPt = projectGeoToCanvas(43.65, -77.8, w, h);
-  ctx.beginPath();
-  ctx.ellipse(ontarioPt.x, ontarioPt.y, 13, 7, -0.2, 0, Math.PI * 2);
-  ctx.fill();
-  ctx.stroke();
-
-  // Quiet Lake Ontario label
-  ctx.fillStyle = 'rgba(148, 163, 184, 0.45)';
-  ctx.font = '8px monospace';
-  ctx.fillText('Lake Ontario', ontarioPt.x + 16, ontarioPt.y + 3);
-
-  // --- Layer 4: Inter-Node Transit Backbone (Network Mesh Arcs) ---
   const nodeMap = {};
   meshNodes.forEach(n => { nodeMap[n.city] = n; });
 
@@ -1467,96 +1159,142 @@ function renderRadarLoop() {
     }
   }
 
-  meshConnections.forEach(([cityA, cityB], connIdx) => {
+  // Draw animated transit lines
+  meshConnections.forEach(([cityA, cityB]) => {
     const nA = nodeMap[cityA];
     const nB = nodeMap[cityB];
-    if (nA && nB) {
-      const ptA = projectGeoToCanvas(nA.lat, nA.lon, w, h);
-      const ptB = projectGeoToCanvas(nB.lat, nB.lon, w, h);
+    if (nA && nB && nA.lat && nA.lon && nB.lat && nB.lon) {
+      const arcCoords = getArcPoints([nA.lat, nA.lon], [nB.lat, nB.lon]);
+      const isOriginLink = (nA.tier === 'allied' || nB.tier === 'allied' || nA.id === 'NODE-BZ-ORIGIN' || nB.id === 'NODE-BZ-ORIGIN');
 
-      // Curved transit arc
-      const midX = (ptA.x + ptB.x) / 2;
-      const dist = Math.hypot(ptB.x - ptA.x, ptB.y - ptA.y);
-      const curveLift = Math.min(26, dist * 0.07);
-      const midY = (ptA.y + ptB.y) / 2 - curveLift;
+      const polyline = L.polyline(arcCoords, {
+        color: isOriginLink ? '#d4af37' : '#10b981',
+        weight: 2,
+        opacity: 0.75,
+        dashArray: '6, 8',
+        className: isOriginLink ? 'pulse-line-gold' : 'pulse-line',
+        interactive: false
+      }).addTo(topoMap);
 
-      const isOriginLink = (nA.tier === 'allied' || nB.tier === 'allied');
-
-      ctx.beginPath();
-      ctx.moveTo(ptA.x, ptA.y);
-      ctx.quadraticCurveTo(midX, midY, ptB.x, ptB.y);
-      ctx.strokeStyle = isOriginLink ? 'rgba(212, 175, 55, 0.28)' : 'rgba(16, 185, 129, 0.28)';
-      ctx.lineWidth = 1.2;
-      ctx.stroke();
-
-      // Traveling cryptographic data packet
-      const packetT = ((now * 0.00032) + connIdx * 0.35) % 1;
-      const px = (1 - packetT) * (1 - packetT) * ptA.x + 2 * (1 - packetT) * packetT * midX + packetT * packetT * ptB.x;
-      const py = (1 - packetT) * (1 - packetT) * ptA.y + 2 * (1 - packetT) * packetT * midY + packetT * packetT * ptB.y;
-
-      ctx.beginPath();
-      ctx.arc(px, py, 2.2, 0, Math.PI * 2);
-      ctx.fillStyle = isOriginLink ? '#f5d074' : '#10b981';
-      ctx.shadowColor = ctx.fillStyle;
-      ctx.shadowBlur = 5;
-      ctx.fill();
-      ctx.shadowBlur = 0;
+      topoMapLines.push(polyline);
     }
   });
 
-  // --- Layer 5: Node Enclaves (Calm Breathing Halo & Precision Blips) ---
-  meshNodes.forEach((node, idx) => {
-    const pt = projectGeoToCanvas(node.lat, node.lon, w, h);
-    const isHovered = (hoveredMeshNode && hoveredMeshNode.id === node.id);
-    const isNew = !!node.isNew;
+  // Draw live node blips
+  meshNodes.forEach(node => {
+    if (!node.lat || !node.lon) return;
+
     const isOrigin = (node.tier === 'allied' || node.id === 'NODE-BZ-ORIGIN');
+    const isNew = !!node.isNew;
+    const tierClass = isNew ? 'new-join' : (isOrigin ? 'allied' : 'shield');
 
-    let blipColor = '#10b981'; // Canadian cooperative nodes
-    if (isOrigin) blipColor = '#d4af37'; // Founding origin anchor
-    if (isNew) blipColor = '#2dd4bf'; // Fresh enlistment
-
-    // Gentle breathing halo (restrained, professional pulse)
-    const breathe = Math.sin(now * 0.0025 + idx * 1.5) * 1.5;
-    const haloRadius = (isNew ? 8.5 : (isOrigin ? 7.5 : 6.5)) + breathe;
-    ctx.beginPath();
-    ctx.arc(pt.x, pt.y, haloRadius, 0, Math.PI * 2);
-    ctx.strokeStyle = isNew
-      ? 'rgba(45, 212, 191, 0.35)'
-      : (isOrigin ? 'rgba(212, 175, 55, 0.32)' : 'rgba(16, 185, 129, 0.32)');
-    ctx.lineWidth = 1;
-    ctx.stroke();
-
-    // Node Core Dot
-    ctx.beginPath();
-    ctx.arc(pt.x, pt.y, isHovered ? 5.5 : (isNew ? 4.5 : 3.8), 0, Math.PI * 2);
-    ctx.fillStyle = blipColor;
-    ctx.shadowColor = blipColor;
-    ctx.shadowBlur = isHovered ? 12 : 6;
-    ctx.fill();
-    ctx.shadowBlur = 0;
-
-    // White Center Core
-    ctx.beginPath();
-    ctx.arc(pt.x, pt.y, 1.4, 0, Math.PI * 2);
-    ctx.fillStyle = '#FFFFFF';
-    ctx.fill();
-
-    // Clean Typography City Label
     const countSuffix = (node.totalNodes && node.totalNodes > 1) ? ` (${node.totalNodes})` : '';
-    const label = `${node.city}${countSuffix}`;
-    ctx.fillStyle = isHovered ? '#FFFFFF' : 'rgba(241, 245, 249, 0.85)';
-    ctx.font = `${isHovered ? '600 ' : '500 '}10px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, monospace`;
-    ctx.shadowColor = 'rgba(0, 0, 0, 0.85)';
-    ctx.shadowBlur = 4;
-    ctx.fillText(label, pt.x + 8, pt.y + 3.5);
-    ctx.shadowBlur = 0;
+    const cityLabel = `${node.city}${countSuffix}`;
+
+    const customIcon = L.divIcon({
+      className: 'leaflet-node-marker',
+      iconSize: [28, 28],
+      iconAnchor: [14, 14],
+      popupAnchor: [0, -14],
+      html: `
+        <div class="topo-marker-halo ${tierClass}"></div>
+        <div class="topo-marker-core ${tierClass}"></div>
+        <div class="topo-marker-label" style="position: absolute; left: 20px; top: 50%; transform: translateY(-50%); white-space: nowrap; font-family: var(--font-mono, monospace); font-size: 10px; font-weight: 600; color: #f1f5f9; text-shadow: 0 1px 4px rgba(0,0,0,0.95), 0 0 2px #000; pointer-events: none;">${cityLabel}</div>
+      `
+    });
+
+    const marker = L.marker([node.lat, node.lon], { icon: customIcon }).addTo(topoMap);
+
+    // Rich Informational Tooltip
+    const tooltipHtml = `
+      <div style="font-family: var(--font-mono, monospace); font-size: 0.72rem; line-height: 1.45; min-width: 170px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 4px; border-bottom: 1px solid rgba(255,255,255,0.15); padding-bottom: 4px;">
+          <strong style="color: ${isOrigin ? '#f5d074' : '#10b981'}; font-size: 0.75rem;">${node.id || 'NODE-CA-ENLISTED'}</strong>
+          <span style="font-size: 0.6rem; color: #94a3b8; text-transform: uppercase;">${node.status || 'ACTIVE ENCLAVE'}</span>
+        </div>
+        <div style="font-size: 0.82rem; font-weight: 600; color: #FFFFFF; margin-bottom: 2px;">${[node.city, node.region, node.country].filter(Boolean).join(', ')}</div>
+        <div style="color: #cbd5e1; font-size: 0.68rem; margin-bottom: 3px;">${node.role || 'Sovereign Cooperative Enclave'}</div>
+        <div style="font-size: 0.62rem; color: #64748b;">${Math.abs(node.lat).toFixed(2)}°${node.lat >= 0 ? 'N' : 'S'}, ${Math.abs(node.lon).toFixed(2)}°${node.lon >= 0 ? 'E' : 'W'}</div>
+      </div>
+    `;
+
+    marker.bindTooltip(tooltipHtml, {
+      direction: 'top',
+      offset: [0, -12],
+      className: 'custom-topo-tooltip',
+      opacity: 1
+    });
+
+    topoMapMarkers.push(marker);
+  });
+}
+
+function initMeshRadarTelemetry() {
+  const container = document.getElementById('meshRadarMap');
+  if (!container) return;
+
+  if (typeof L === 'undefined') {
+    console.warn('Leaflet not loaded yet; retrying in 100ms...');
+    setTimeout(initMeshRadarTelemetry, 100);
+    return;
+  }
+
+  if (topoMap) return;
+
+  // 1. Create Leaflet map
+  topoMap = L.map('meshRadarMap', {
+    center: [36.0, -89.0],
+    zoom: 4,
+    minZoom: 3,
+    maxZoom: 16,
+    scrollWheelZoom: false,
+    attributionControl: true
   });
 
-  if (meshIsVisible) {
-    meshAnimFrameId = requestAnimationFrame(renderRadarLoop);
-  } else {
-    meshAnimFrameId = null;
+  // Enable scroll-wheel zoom when clicked / focused
+  topoMap.on('focus', () => { topoMap.scrollWheelZoom.enable(); });
+
+  // 2. Add OpenTopoMap raster tile basemap
+  L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+    subdomains: 'abc',
+    maxZoom: 17,
+    attribution: 'Map: &copy; <a href="https://opentopomap.org" target="_blank" rel="noopener">OpenTopoMap</a>'
+  }).addTo(topoMap);
+
+  // 3. Mouse Interaction on Topo Map (HUD Reticle Coordinates)
+  const reticleCoords = document.getElementById('radarReticleCoords');
+  topoMap.on('mousemove', (e) => {
+    if (reticleCoords) {
+      const lat = e.latlng.lat;
+      const lon = e.latlng.lng;
+      const latStr = `${Math.abs(lat).toFixed(2)}°${lat >= 0 ? 'N' : 'S'}`;
+      const lonStr = `${Math.abs(lon).toFixed(2)}°${lon >= 0 ? 'E' : 'W'}`;
+      reticleCoords.innerText = `TOPOLOGY RETICLE: ${latStr}, ${lonStr}`;
+    }
+  });
+
+  topoMap.on('mouseout', () => {
+    if (reticleCoords) {
+      reticleCoords.innerText = 'TOPOLOGY RETICLE: ACTIVE';
+    }
+  });
+
+  // 4. Responsive map resizing
+  window.addEventListener('resize', () => {
+    if (topoMap) topoMap.invalidateSize();
+  });
+
+  // 5. Initial render of nodes
+  renderTopoMapNodes();
+
+  // 6. Center and fit initial nodes
+  const validCoords = meshNodes.filter(n => n.lat && n.lon).map(n => [n.lat, n.lon]);
+  if (validCoords.length > 0) {
+    topoMap.fitBounds(validCoords, { padding: [50, 50], maxZoom: 5 });
   }
+
+  // 7. Sync live data from Supabase & LocalStorage
+  loadMeshTelemetryData();
 }
 
 function resolveNodeCoords(locText, country, lat, lon) {
@@ -1676,6 +1414,15 @@ async function loadMeshTelemetryData() {
 
   // 6. Populate Telemetry Feed List
   populateTelemetryFeedList(localSignups, remoteClusters);
+
+  // 7. Refresh Leaflet map with loaded nodes
+  renderTopoMapNodes();
+  if (topoMap && meshNodes.length > 0) {
+    const validCoords = meshNodes.filter(n => n.lat && n.lon).map(n => [n.lat, n.lon]);
+    if (validCoords.length > 0) {
+      topoMap.fitBounds(validCoords, { padding: [50, 50], maxZoom: 5 });
+    }
+  }
 }
 
 function updateMeshMetricsHUD(remoteClusters) {
@@ -1780,6 +1527,13 @@ function populateTelemetryFeedList(localSignups, remoteClusters) {
 function addLiveNodeToMesh(nodeData) {
   // Add new node to active array
   meshNodes.unshift(nodeData);
+
+  // Refresh Leaflet markers & animated transit links
+  renderTopoMapNodes();
+
+  if (topoMap && nodeData.lat && nodeData.lon) {
+    topoMap.flyTo([nodeData.lat, nodeData.lon], 6, { duration: 1.5 });
+  }
 
   // Update HUD
   const nodeCountEl = document.getElementById('telemetryNodeCount');

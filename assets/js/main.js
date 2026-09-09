@@ -1468,6 +1468,25 @@ function renderRadarLoop() {
   }
 }
 
+function resolveNodeCoords(locText, country, lat, lon) {
+  if (lat && lon && !isNaN(lat) && !isNaN(lon) && lat !== 0) {
+    return { lat: Number(lat), lon: Number(lon) };
+  }
+  const text = (locText || '').toLowerCase();
+  if (text.includes('toronto') || text.includes('ontario') || text.includes('gta')) return { lat: 43.653, lon: -79.383 };
+  if (text.includes('montreal') || text.includes('montréal') || text.includes('quebec') || text.includes('qc')) return { lat: 45.501, lon: -73.567 };
+  if (text.includes('winnipeg') || text.includes('manitoba') || text.includes('red river')) return { lat: 49.895, lon: -97.138 };
+  if (text.includes('ottawa') || text.includes('gatineau')) return { lat: 45.421, lon: -75.697 };
+  if (text.includes('vancouver') || text.includes('bc') || text.includes('british columbia')) return { lat: 49.282, lon: -123.120 };
+  if (text.includes('calgary') || text.includes('alberta') || text.includes('edmonton')) return { lat: 51.044, lon: -114.071 };
+  if (text.includes('halifax') || text.includes('nova scotia')) return { lat: 44.648, lon: -63.575 };
+  if (text.includes('belize') || text.includes('gales point')) return { lat: 17.218, lon: -88.336 };
+  if (text.includes('mexico') || text.includes('cdmx')) return { lat: 19.432, lon: -99.133 };
+  if (text.includes('zurich') || text.includes('switzerland')) return { lat: 47.376, lon: 8.541 };
+  // Default to Canadian Shield Bedrock with subtle offset
+  return { lat: 46.5 + (Math.random() * 2 - 1), lon: -80.0 + (Math.random() * 2 - 1) };
+}
+
 async function loadMeshTelemetryData() {
   // 1. Load local signups from browser storage
   let localSignups = [];
@@ -1475,7 +1494,7 @@ async function loadMeshTelemetryData() {
     localSignups = JSON.parse(localStorage.getItem('xolotl_beta_signups') || '[]');
   } catch (e) {}
 
-  // 2. Fetch aggregated node clusters from Supabase view
+  // 2. Fetch aggregated node clusters from Supabase view or RPC
   let remoteClusters = [];
   try {
     const endpoint = `${XOLOTL_SUPABASE.url}/rest/v1/beta_nodes_geographic_distribution`;
@@ -1488,9 +1507,22 @@ async function loadMeshTelemetryData() {
     });
     if (res.ok) {
       remoteClusters = await res.json();
+    } else {
+      // Try RPC fallback
+      const rpcRes = await fetch(`${XOLOTL_SUPABASE.url}/rest/v1/rpc/get_live_node_clusters`, {
+        method: 'POST',
+        headers: {
+          'apikey': XOLOTL_SUPABASE.anonKey,
+          'Authorization': `Bearer ${XOLOTL_SUPABASE.anonKey}`,
+          'Content-Type': 'application/json'
+        }
+      });
+      if (rpcRes.ok) {
+        remoteClusters = await rpcRes.json();
+      }
     }
   } catch (err) {
-    console.info('Supabase geographic view pending grant or offline; using local & seed mesh.');
+    console.info('Supabase geographic telemetry pending schema reload or offline; using local & seed mesh.');
   }
 
   // 3. Merge Supabase clusters into meshNodes
@@ -1516,25 +1548,24 @@ async function loadMeshTelemetryData() {
     });
   }
 
-  // 4. Merge any local signups not yet in seed
+  // 4. Merge any local signups from browser storage
   localSignups.forEach(signup => {
-    if (signup.latitude && signup.longitude) {
-      const alreadyIn = meshNodes.find(n => n.id === signup.node_badge_id);
-      if (!alreadyIn) {
-        meshNodes.push({
-          id: signup.node_badge_id || 'NODE-CA-LOCAL',
-          city: signup.city || 'Verified Node',
-          region: signup.region || '',
-          country: signup.country || 'Canada',
-          countryCode: signup.country_code || 'CA',
-          lat: Number(signup.latitude),
-          lon: Number(signup.longitude),
-          role: signup.interest_type === 'developer' ? 'DKG Custodian Node' : 'Citizen Privacy Shield',
-          tier: 'shield',
-          status: 'Newly Enlisted',
-          isNew: true
-        });
-      }
+    const coords = resolveNodeCoords(signup.city || signup.locationText, signup.country, signup.latitude, signup.longitude);
+    const alreadyIn = meshNodes.find(n => n.id === signup.node_badge_id);
+    if (!alreadyIn) {
+      meshNodes.unshift({
+        id: signup.node_badge_id || 'NODE-CA-LOCAL',
+        city: signup.city || 'Verified Sovereign Node',
+        region: signup.region || '',
+        country: signup.country || 'Canada',
+        countryCode: signup.country_code || 'CA',
+        lat: coords.lat,
+        lon: coords.lon,
+        role: signup.interest_type === 'developer' ? 'DKG Custodian Node' : (signup.interest_type === 'enterprise' ? 'Institutional Enclave' : 'Citizen Privacy Shield'),
+        tier: 'shield',
+        status: 'Newly Enlisted',
+        isNew: true
+      });
     }
   });
 

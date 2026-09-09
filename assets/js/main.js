@@ -1083,12 +1083,12 @@ window.toggleTopoTheme = function() {
   isDarkTopo = !isDarkTopo;
   const isFr = document.documentElement.lang === 'fr';
   const isEs = document.documentElement.lang === 'es';
+  mapEl.classList.toggle('map-dark', isDarkTopo);
+  mapEl.classList.toggle('topo-dark', isDarkTopo);
   if (isDarkTopo) {
-    mapEl.classList.add('topo-dark');
-    if (btn) btn.innerText = isFr ? 'TOPO : SOMBRE' : (isEs ? 'TOPO: OSCURO' : 'TOPO: DARK');
+    if (btn) btn.innerText = isFr ? 'CARTE : SOMBRE' : (isEs ? 'MAPA: OSCURO' : 'MAP: DARK');
   } else {
-    mapEl.classList.remove('topo-dark');
-    if (btn) btn.innerText = isFr ? 'TOPO : NATUREL' : (isEs ? 'TOPO: NATURAL' : 'TOPO: NATURAL');
+    if (btn) btn.innerText = isFr ? 'CARTE : CLAIR' : (isEs ? 'MAPA: CLARO' : 'MAP: LIGHT');
   }
 };
 
@@ -1199,10 +1199,10 @@ function renderTopoMapNodes() {
       const isOriginLink = (nA.tier === 'allied' || nB.tier === 'allied' || nA.id === 'NODE-BZ-ORIGIN' || nB.id === 'NODE-BZ-ORIGIN');
 
       const polyline = L.polyline(arcCoords, {
-        color: isOriginLink ? '#c89d4b' : '#059669',
-        weight: 1.5,
-        opacity: 0.65,
-        dashArray: '3, 4',
+        color: isOriginLink ? '#b45309' : '#047857',
+        weight: 2,
+        opacity: 0.75,
+        dashArray: '4, 4',
         interactive: false
       }).addTo(topoMap);
 
@@ -1283,11 +1283,11 @@ function initMeshRadarTelemetry() {
   // Enable scroll-wheel zoom when clicked / focused
   topoMap.on('focus', () => { topoMap.scrollWheelZoom.enable(); });
 
-  // 2. Add OpenTopoMap raster tile basemap
-  L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+  // 2. Add standard OpenStreetMap raster tile basemap
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     subdomains: 'abc',
-    maxZoom: 17,
-    attribution: 'Map: &copy; <a href="https://opentopomap.org" target="_blank" rel="noopener">OpenTopoMap</a>'
+    maxZoom: 19,
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>'
   }).addTo(topoMap);
 
   // 3. Mouse Interaction on Topo Map (HUD Reticle Coordinates)

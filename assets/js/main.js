@@ -1126,6 +1126,102 @@ window.focusTopoView = function(preset, btnElement) {
   }
 };
 
+window.zoomToCluster = function(lat, lon) {
+  if (topoMap) {
+    topoMap.setView([lat, lon], 9, { animate: true });
+  }
+};
+
+function isSouthernOntario(node) {
+  const c = (node.city || '').toLowerCase();
+  const soCities = ['toronto', 'mississauga', 'hamilton', 'brampton', 'markham', 'vaughan', 'oakville', 'burlington', 'richmond hill', 'scarborough'];
+  if (soCities.some(name => c.includes(name))) return true;
+  if (node.lat >= 42.8 && node.lat <= 44.4 && node.lon >= -80.5 && node.lon <= -78.8) {
+    return true;
+  }
+  return false;
+}
+
+function getClusteredNodes(allNodes, zoom) {
+  // If zoomed in (zoom >= 8), display individual enclaves with smart label collision avoidance
+  if (zoom >= 8) {
+    const result = allNodes.map(n => ({ ...n, isCluster: false, subNodes: [n] }));
+    for (let i = 0; i < result.length; i++) {
+      for (let j = 0; j < result.length; j++) {
+        if (i === j) continue;
+        const n1 = result[i];
+        const n2 = result[j];
+        if (!n1.lat || !n2.lat) continue;
+        const dLat = Math.abs(n1.lat - n2.lat);
+        const dLon = Math.abs(n1.lon - n2.lon);
+        // If horizontally close and n1 is western (lower longitude), orient n1 label left
+        if (dLat < 0.4 && dLon < 0.6 && n1.lon < n2.lon) {
+          n1.labelPosition = 'left';
+        }
+      }
+    }
+    return result;
+  }
+
+  // When zoomed out (zoom < 8): aggregate close regional nodes (Southern Ontario / GTA)
+  const originNodes = allNodes.filter(n => n.id === 'NODE-BZ-ORIGIN' || n.tier === 'allied');
+  const regularNodes = allNodes.filter(n => n.id !== 'NODE-BZ-ORIGIN' && n.tier !== 'allied');
+
+  const clusters = [];
+  const visited = new Set();
+
+  for (let i = 0; i < regularNodes.length; i++) {
+    if (visited.has(i)) continue;
+    visited.add(i);
+    const cluster = [regularNodes[i]];
+
+    for (let j = i + 1; j < regularNodes.length; j++) {
+      if (visited.has(j)) continue;
+      const n1 = regularNodes[i];
+      const n2 = regularNodes[j];
+
+      const dLat = (n2.lat - n1.lat) * 111.32;
+      const dLon = (n2.lon - n1.lon) * 111.32 * Math.cos(((n1.lat + n2.lat) / 2) * (Math.PI / 180));
+      const distKm = Math.hypot(dLat, dLon);
+
+      const isSoOnt1 = isSouthernOntario(n1);
+      const isSoOnt2 = isSouthernOntario(n2);
+
+      if ((isSoOnt1 && isSoOnt2) || distKm < 80) {
+        visited.add(j);
+        cluster.push(n2);
+      }
+    }
+
+    if (cluster.length > 1) {
+      const totalCount = cluster.reduce((sum, n) => sum + (parseInt(n.totalNodes, 10) || 1), 0);
+      const avgLat = cluster.reduce((sum, n) => sum + n.lat * (parseInt(n.totalNodes, 10) || 1), 0) / totalCount;
+      const avgLon = cluster.reduce((sum, n) => sum + n.lon * (parseInt(n.totalNodes, 10) || 1), 0) / totalCount;
+      const cities = cluster.map(n => n.city).filter(Boolean);
+
+      clusters.push({
+        id: 'NODE-CLUSTER-SO-ON',
+        city: 'Southern Ontario',
+        region: 'Ontario',
+        country: 'Canada',
+        countryCode: 'CA',
+        lat: Number(avgLat.toFixed(4)),
+        lon: Number(avgLon.toFixed(4)),
+        role: `${totalCount} Enlisted Sovereign Nodes (${cities.join(' & ')})`,
+        tier: 'shield',
+        status: 'Aggregated Regional Cluster',
+        totalNodes: totalCount,
+        isCluster: true,
+        subNodes: cluster
+      });
+    } else {
+      clusters.push({ ...cluster[0], isCluster: false, subNodes: cluster });
+    }
+  }
+
+  return [...originNodes.map(n => ({ ...n, isCluster: false, subNodes: [n] })), ...clusters];
+}
+
 function renderTopoMapNodes() {
   if (!topoMap) return;
 
@@ -1133,11 +1229,15 @@ function renderTopoMapNodes() {
   topoMapMarkers.forEach(m => topoMap.removeLayer(m));
   topoMapMarkers = [];
 
-  // Draw clean static node points
-  meshNodes.forEach(node => {
+  const zoom = topoMap.getZoom();
+  const displayNodes = getClusteredNodes(meshNodes, zoom);
+
+  // Draw node points
+  displayNodes.forEach(node => {
     if (!node.lat || !node.lon) return;
 
     const isOrigin = (node.tier === 'allied' || node.id === 'NODE-BZ-ORIGIN');
+    const isCluster = !!node.isCluster;
     const isNew = !!node.isNew;
     const tierClass = isNew ? 'new-join' : (isOrigin ? 'allied' : 'shield');
 
@@ -1148,7 +1248,14 @@ function renderTopoMapNodes() {
     let iconSize = [12, 12];
     let iconAnchor = [6, 6];
 
-    if (isOrigin) {
+    if (isCluster) {
+      iconSize = [16, 16];
+      iconAnchor = [8, 8];
+      iconHtml = `
+        <div class="topo-marker-core cluster" title="Southern Ontario Cluster (${node.totalNodes} Nodes)"></div>
+        <div class="topo-marker-label">${cityLabel}</div>
+      `;
+    } else if (isOrigin) {
       iconSize = [18, 18];
       iconAnchor = [9, 9];
       iconHtml = `
@@ -1160,46 +1267,86 @@ function renderTopoMapNodes() {
         <div class="topo-marker-label origin-anchor-label">${cityLabel}</div>
       `;
     } else {
+      const posClass = node.labelPosition === 'left' ? 'label-left' : '';
       iconHtml = `
         <div class="topo-marker-core ${tierClass}"></div>
-        <div class="topo-marker-label">${cityLabel}</div>
+        <div class="topo-marker-label ${posClass}">${cityLabel}</div>
       `;
     }
 
     const customIcon = L.divIcon({
-      className: 'leaflet-node-marker' + (isOrigin ? ' origin-anchor-marker' : ''),
+      className: 'leaflet-node-marker' + (isOrigin ? ' origin-anchor-marker' : (isCluster ? ' cluster-node-marker' : '')),
       iconSize: iconSize,
       iconAnchor: iconAnchor,
-      popupAnchor: [0, isOrigin ? -12 : -10],
+      popupAnchor: [0, isOrigin ? -12 : (isCluster ? -10 : -8)],
       html: iconHtml
     });
 
     const marker = L.marker([node.lat, node.lon], { icon: customIcon }).addTo(topoMap);
     marker._isOrigin = isOrigin;
+    marker._isCluster = isCluster;
     marker._nodeData = node;
 
-    // Rich Informational Popup with Persistent Click & Hover
-    const popupHtml = `
-      <div class="topo-popup-inner" style="min-width: 210px; font-family: var(--font-mono, monospace); font-size: 0.74rem; line-height: 1.45;">
-        <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 5px; border-bottom: 1px solid rgba(255,255,255,0.15); padding-bottom: 4px;">
-          <strong style="color: ${isOrigin ? '#f5d074' : '#10b981'}; font-size: 0.78rem;">${isOrigin ? '⚓ ' : ''}${node.id || 'NODE-CA-ENLISTED'}</strong>
-          <span style="font-size: 0.62rem; color: ${isOrigin ? '#f5d074' : '#94a3b8'}; text-transform: uppercase; font-weight: 600;">${node.status || 'ACTIVE ENCLAVE'}</span>
+    // Informational Popup
+    let popupHtml = '';
+    if (isCluster) {
+      popupHtml = `
+        <div class="topo-popup-inner" style="min-width: 230px; font-family: var(--font-mono, monospace); font-size: 0.74rem; line-height: 1.45;">
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 5px; border-bottom: 1px solid rgba(255,255,255,0.15); padding-bottom: 4px;">
+            <strong style="color: #10b981; font-size: 0.78rem;">REGIONAL ENCLAVE CLUSTER</strong>
+            <span style="font-size: 0.62rem; color: #10b981; text-transform: uppercase; font-weight: 700; background: rgba(16,185,129,0.15); padding: 2px 6px; border-radius: 4px;">${node.totalNodes} NODES</span>
+          </div>
+          <div style="font-size: 0.88rem; font-weight: 700; color: #FFFFFF; margin-bottom: 2px;">${node.city}, Canada</div>
+          <div style="color: #94a3b8; font-size: 0.72rem; margin-bottom: 6px;">Consolidated Southern Ontario Enclaves</div>
+          <div style="background: rgba(255,255,255,0.04); border-radius: 6px; padding: 6px 8px; margin-bottom: 8px; border: 1px solid rgba(255,255,255,0.08);">
+            ${(node.subNodes || []).map(sn => `
+              <div style="display: flex; justify-content: space-between; font-size: 0.72rem; color: #cbd5e1; padding: 2px 0;">
+                <span>● ${sn.city}</span>
+                <strong style="color: #10b981;">${sn.totalNodes || 1} node${(sn.totalNodes || 1) > 1 ? 's' : ''}</strong>
+              </div>
+            `).join('')}
+          </div>
+          <div style="font-size: 0.65rem; color: #94a3b8; margin-bottom: 6px;">
+            Centroid: ${Math.abs(node.lat).toFixed(2)}°${node.lat >= 0 ? 'N' : 'S'}, ${Math.abs(node.lon).toFixed(2)}°${node.lon >= 0 ? 'E' : 'W'}
+          </div>
+          <button type="button" class="topo-cluster-zoom-btn" onclick="zoomToCluster(${node.lat}, ${node.lon})">
+            🔍 Zoom In to Disaggregate &rarr;
+          </button>
         </div>
-        <div style="font-size: 0.88rem; font-weight: 700; color: #FFFFFF; margin-bottom: 2px;">${[node.city, node.region, node.country].filter(Boolean).join(', ')}</div>
-        <div style="color: #cbd5e1; font-size: 0.72rem; margin-bottom: 4px;">${node.role || 'Sovereign Cooperative Enclave'}</div>
-        <div style="font-size: 0.65rem; color: #94a3b8;">${Math.abs(node.lat).toFixed(2)}°${node.lat >= 0 ? 'N' : 'S'}, ${Math.abs(node.lon).toFixed(2)}°${node.lon >= 0 ? 'E' : 'W'}</div>
-        ${isOrigin ? `
+      `;
+    } else if (isOrigin) {
+      popupHtml = `
+        <div class="topo-popup-inner" style="min-width: 210px; font-family: var(--font-mono, monospace); font-size: 0.74rem; line-height: 1.45;">
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 5px; border-bottom: 1px solid rgba(255,255,255,0.15); padding-bottom: 4px;">
+            <strong style="color: #f5d074; font-size: 0.78rem;">⚓ NODE-BZ-ORIGIN</strong>
+            <span style="font-size: 0.62rem; color: #f5d074; text-transform: uppercase; font-weight: 600;">${node.status || 'ACTIVE ENCLAVE'}</span>
+          </div>
+          <div style="font-size: 0.88rem; font-weight: 700; color: #FFFFFF; margin-bottom: 2px;">${[node.city, node.region, node.country].filter(Boolean).join(', ')}</div>
+          <div style="color: #cbd5e1; font-size: 0.72rem; margin-bottom: 4px;">${node.role || 'Sovereign Cooperative Enclave'}</div>
+          <div style="font-size: 0.65rem; color: #94a3b8;">${Math.abs(node.lat).toFixed(2)}°${node.lat >= 0 ? 'N' : 'S'}, ${Math.abs(node.lon).toFixed(2)}°${node.lon >= 0 ? 'E' : 'W'}</div>
           <div style="margin-top: 8px; padding-top: 8px; border-top: 1px dashed rgba(212,175,55,0.4);">
             <a href="https://www.youtube.com/watch?v=jMIO2P_r_uU" target="_blank" rel="noopener noreferrer" style="color: #0d110f; background: #f5d074; font-size: 0.74rem; font-family: var(--font-mono); text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.4);">
               <span>▶</span> Watch UNESCO Film (2025) ↗
             </a>
           </div>
-        ` : ''}
-      </div>
-    `;
+        </div>
+      `;
+    } else {
+      popupHtml = `
+        <div class="topo-popup-inner" style="min-width: 210px; font-family: var(--font-mono, monospace); font-size: 0.74rem; line-height: 1.45;">
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 5px; border-bottom: 1px solid rgba(255,255,255,0.15); padding-bottom: 4px;">
+            <strong style="color: #10b981; font-size: 0.78rem;">${node.id || 'NODE-CA-ENLISTED'}</strong>
+            <span style="font-size: 0.62rem; color: #94a3b8; text-transform: uppercase; font-weight: 600;">${node.status || 'ACTIVE ENCLAVE'}</span>
+          </div>
+          <div style="font-size: 0.88rem; font-weight: 700; color: #FFFFFF; margin-bottom: 2px;">${[node.city, node.region, node.country].filter(Boolean).join(', ')}</div>
+          <div style="color: #cbd5e1; font-size: 0.72rem; margin-bottom: 4px;">${node.role || 'Sovereign Cooperative Enclave'}</div>
+          <div style="font-size: 0.65rem; color: #94a3b8;">${Math.abs(node.lat).toFixed(2)}°${node.lat >= 0 ? 'N' : 'S'}, ${Math.abs(node.lon).toFixed(2)}°${node.lon >= 0 ? 'E' : 'W'}</div>
+        </div>
+      `;
+    }
 
     marker.bindPopup(popupHtml, {
-      offset: [0, isOrigin ? -12 : -8],
+      offset: [0, isOrigin ? -12 : (isCluster ? -10 : -8)],
       className: 'custom-topo-popup',
       closeButton: true,
       autoPan: true
@@ -1226,6 +1373,10 @@ function renderTopoMapNodes() {
     });
 
     marker.on('click', () => {
+      if (isCluster) {
+        topoMap.setView([node.lat, node.lon], 9, { animate: true });
+        return;
+      }
       isPinned = true;
       if (hoverTimer) {
         clearTimeout(hoverTimer);
@@ -1288,6 +1439,11 @@ function initMeshRadarTelemetry() {
 
   // Enable scroll-wheel zoom when clicked / focused
   topoMap.on('focus', () => { topoMap.scrollWheelZoom.enable(); });
+
+  // Listen for zoom changes to dynamically toggle clusters and individual nodes
+  topoMap.on('zoomend', () => {
+    renderTopoMapNodes();
+  });
 
   // 2. Add standard OpenStreetMap raster tile basemap
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {

@@ -11,3 +11,7 @@ INSTA/
 # System files
 .DS_Store
 Thumbs.db
+
+# Server local artifacts
+server/node_modules/
+server/data/*.db

@@ -1,0 +1,17 @@
+[Unit]
+Description=Xolotl Sovereign Telemetry and Waitlist API
+After=network.target
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/var/www/xolotl-api
+ExecStart=/usr/bin/node server.js
+Restart=always
+RestartSec=5
+Environment=NODE_ENV=production
+Environment=PORT=3000
+Environment=ADMIN_TOKEN=xolotl_sovereign_secret_key_2026
+
+[Install]
+WantedBy=multi-user.target

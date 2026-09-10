@@ -1182,6 +1182,13 @@ function renderTopoMapNodes() {
         <div style="font-size: 0.82rem; font-weight: 700; color: #FFFFFF; margin-bottom: 2px;">${[node.city, node.region, node.country].filter(Boolean).join(', ')}</div>
         <div style="color: #cbd5e1; font-size: 0.68rem; margin-bottom: 3px;">${node.role || 'Sovereign Cooperative Enclave'}</div>
         <div style="font-size: 0.62rem; color: #64748b;">${Math.abs(node.lat).toFixed(2)}°${node.lat >= 0 ? 'N' : 'S'}, ${Math.abs(node.lon).toFixed(2)}°${node.lon >= 0 ? 'E' : 'W'}</div>
+        ${isOrigin ? `
+          <div style="margin-top: 5px; padding-top: 4px; border-top: 1px dashed rgba(212,175,55,0.3);">
+            <a href="https://www.youtube.com/watch?v=jMIO2P_r_uU" target="_blank" rel="noopener" style="color: #f5d074; font-size: 0.65rem; text-decoration: underline; display: flex; align-items: center; gap: 4px;">
+              ▶ UNESCO Heritage Film (2025) ↗
+            </a>
+          </div>
+        ` : ''}
       </div>
     `;
 

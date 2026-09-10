@@ -1102,6 +1102,10 @@ window.focusTopoView = function(preset, btnElement) {
   if (preset === 'origin') {
     // Focus directly onto Gales Point Manatee, Belize
     topoMap.setView([17.218, -88.336], 7);
+    const originMarker = topoMapMarkers.find(m => m._isOrigin);
+    if (originMarker) {
+      setTimeout(() => originMarker.openPopup(), 350);
+    }
   } else if (preset === 'canada') {
     // Focus onto Canadian Sovereign Enclaves
     const caNodes = meshNodes.filter(n => n.countryCode === 'CA' && n.lat && n.lon);
@@ -1171,32 +1175,89 @@ function renderTopoMapNodes() {
     });
 
     const marker = L.marker([node.lat, node.lon], { icon: customIcon }).addTo(topoMap);
+    marker._isOrigin = isOrigin;
+    marker._nodeData = node;
 
-    // Rich Informational Tooltip
-    const tooltipHtml = `
-      <div style="font-family: var(--font-mono, monospace); font-size: 0.72rem; line-height: 1.45; min-width: 180px;">
-        <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 4px; border-bottom: 1px solid rgba(255,255,255,0.15); padding-bottom: 4px;">
-          <strong style="color: ${isOrigin ? '#f5d074' : '#10b981'}; font-size: 0.75rem;">${isOrigin ? '⚓ ' : ''}${node.id || 'NODE-CA-ENLISTED'}</strong>
-          <span style="font-size: 0.6rem; color: ${isOrigin ? '#f5d074' : '#94a3b8'}; text-transform: uppercase; font-weight: 600;">${node.status || 'ACTIVE ENCLAVE'}</span>
+    // Rich Informational Popup with Persistent Click & Hover
+    const popupHtml = `
+      <div class="topo-popup-inner" style="min-width: 210px; font-family: var(--font-mono, monospace); font-size: 0.74rem; line-height: 1.45;">
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 5px; border-bottom: 1px solid rgba(255,255,255,0.15); padding-bottom: 4px;">
+          <strong style="color: ${isOrigin ? '#f5d074' : '#10b981'}; font-size: 0.78rem;">${isOrigin ? '⚓ ' : ''}${node.id || 'NODE-CA-ENLISTED'}</strong>
+          <span style="font-size: 0.62rem; color: ${isOrigin ? '#f5d074' : '#94a3b8'}; text-transform: uppercase; font-weight: 600;">${node.status || 'ACTIVE ENCLAVE'}</span>
         </div>
-        <div style="font-size: 0.82rem; font-weight: 700; color: #FFFFFF; margin-bottom: 2px;">${[node.city, node.region, node.country].filter(Boolean).join(', ')}</div>
-        <div style="color: #cbd5e1; font-size: 0.68rem; margin-bottom: 3px;">${node.role || 'Sovereign Cooperative Enclave'}</div>
-        <div style="font-size: 0.62rem; color: #64748b;">${Math.abs(node.lat).toFixed(2)}°${node.lat >= 0 ? 'N' : 'S'}, ${Math.abs(node.lon).toFixed(2)}°${node.lon >= 0 ? 'E' : 'W'}</div>
+        <div style="font-size: 0.88rem; font-weight: 700; color: #FFFFFF; margin-bottom: 2px;">${[node.city, node.region, node.country].filter(Boolean).join(', ')}</div>
+        <div style="color: #cbd5e1; font-size: 0.72rem; margin-bottom: 4px;">${node.role || 'Sovereign Cooperative Enclave'}</div>
+        <div style="font-size: 0.65rem; color: #94a3b8;">${Math.abs(node.lat).toFixed(2)}°${node.lat >= 0 ? 'N' : 'S'}, ${Math.abs(node.lon).toFixed(2)}°${node.lon >= 0 ? 'E' : 'W'}</div>
         ${isOrigin ? `
-          <div style="margin-top: 5px; padding-top: 4px; border-top: 1px dashed rgba(212,175,55,0.3);">
-            <a href="https://www.youtube.com/watch?v=jMIO2P_r_uU" target="_blank" rel="noopener" style="color: #f5d074; font-size: 0.65rem; text-decoration: underline; display: flex; align-items: center; gap: 4px;">
-              ▶ UNESCO Heritage Film (2025) ↗
+          <div style="margin-top: 8px; padding-top: 8px; border-top: 1px dashed rgba(212,175,55,0.4);">
+            <a href="https://www.youtube.com/watch?v=jMIO2P_r_uU" target="_blank" rel="noopener noreferrer" style="color: #0d110f; background: #f5d074; font-size: 0.74rem; font-family: var(--font-mono); text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.4);">
+              <span>▶</span> Watch UNESCO Film (2025) ↗
             </a>
           </div>
         ` : ''}
       </div>
     `;
 
-    marker.bindTooltip(tooltipHtml, {
-      direction: 'top',
-      offset: [0, isOrigin ? -12 : -12],
-      className: 'custom-topo-tooltip',
-      opacity: 1
+    marker.bindPopup(popupHtml, {
+      offset: [0, isOrigin ? -12 : -8],
+      className: 'custom-topo-popup',
+      closeButton: true,
+      autoPan: true
+    });
+
+    let hoverTimer = null;
+    let isPinned = false;
+
+    marker.on('mouseover', () => {
+      if (hoverTimer) {
+        clearTimeout(hoverTimer);
+        hoverTimer = null;
+      }
+      if (!marker.isPopupOpen()) {
+        marker.openPopup();
+      }
+    });
+
+    marker.on('mouseout', () => {
+      if (isPinned) return;
+      hoverTimer = setTimeout(() => {
+        if (!isPinned) marker.closePopup();
+      }, 2000); // 2 full seconds persistence
+    });
+
+    marker.on('click', () => {
+      isPinned = true;
+      if (hoverTimer) {
+        clearTimeout(hoverTimer);
+        hoverTimer = null;
+      }
+      marker.openPopup();
+    });
+
+    marker.on('popupopen', (e) => {
+      const popupEl = e.popup.getElement();
+      if (popupEl) {
+        popupEl.addEventListener('mouseenter', () => {
+          if (hoverTimer) {
+            clearTimeout(hoverTimer);
+            hoverTimer = null;
+          }
+        });
+        popupEl.addEventListener('mouseleave', () => {
+          if (isPinned) return;
+          hoverTimer = setTimeout(() => {
+            if (!isPinned) marker.closePopup();
+          }, 1800);
+        });
+      }
+    });
+
+    marker.on('popupclose', () => {
+      isPinned = false;
+      if (hoverTimer) {
+        clearTimeout(hoverTimer);
+        hoverTimer = null;
+      }
     });
 
     topoMapMarkers.push(marker);

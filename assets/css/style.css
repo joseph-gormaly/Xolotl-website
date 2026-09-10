@@ -4480,637 +4480,473 @@
 }
 
 /* ==========================================================================
-   BURST MECHANICS ARCHITECTURE (Episodic Sticky Stacking & Interactive Bursts)
+   SID LEE INSPIRED EDITORIAL DESIGN SYSTEM (Monumental Sovereign Authority)
    ========================================================================== */
 
-/* 1. Stacking Cards Burst Container (The Sovereign Dilemma) */
-.burst-stack-container {
-  display: block;
+/* 1. Editorial Sections & Typography */
+.editorial-section {
+  padding: clamp(75px, 8vw, 120px) 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   position: relative;
-  margin-top: 44px;
-  padding-bottom: 360px;
 }
 
-.burst-stack-card {
-  position: -webkit-sticky;
-  position: sticky;
-  border-radius: 22px;
-  padding: 22px 44px 34px;
-  background: #0d1511;
-  background-image: linear-gradient(180deg, #152219 0%, #0c1410 100%);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 -12px 36px -4px rgba(0, 0, 0, 0.8), 0 24px 48px -8px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.06);
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, filter 0.35s ease;
-  will-change: transform, filter;
-  transform-origin: top center;
-  height: 560px;
-  margin-bottom: 32px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  box-sizing: border-box;
-}
-
-/* Staggered sticky top offsets for card deck stacking effect */
-.burst-stack-card:nth-child(1) {
-  top: 85px;
-  z-index: 10;
-}
-.burst-stack-card:nth-child(2) {
-  top: 145px;
-  z-index: 20;
-}
-.burst-stack-card:nth-child(3) {
-  top: 205px;
-  z-index: 30;
-  margin-bottom: 0;
-}
-
-.burst-stack-card.highlight {
-  background: #0f1c14;
-  background-image: linear-gradient(180deg, #193122 0%, #0d1a12 100%);
-  border: 1.5px solid rgba(212, 175, 55, 0.75);
-  box-shadow: 0 -12px 36px -4px rgba(0, 0, 0, 0.85), 0 32px 64px -8px rgba(0, 0, 0, 0.95), 0 0 36px rgba(212, 175, 55, 0.22);
-}
-
-.burst-card-inner {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 36px;
-  align-items: center;
-}
-
-.burst-card-header {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 12px;
-}
-
-.burst-card-step {
+.editorial-surtitle {
   font-family: var(--font-mono);
-  font-size: 0.82rem;
+  font-size: clamp(0.72rem, 1vw, 0.84rem);
   font-weight: 700;
   color: var(--accent-gold-light);
-  letter-spacing: 0.08em;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.burst-card-title {
-  font-size: clamp(1.4rem, 2.4vw, 1.85rem);
-  font-weight: 700;
+.editorial-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.3rem, 5.2vw, 4.1rem);
+  font-weight: 800;
+  line-height: 1.08;
   color: #FFFFFF;
-  line-height: 1.25;
-  margin-bottom: 14px;
+  letter-spacing: var(--tracking-wide, 0.04em);
+  margin-bottom: 22px;
 }
 
-.burst-card-lead {
-  font-size: 1.02rem;
-  color: #e2e8f0;
+.editorial-lead {
+  font-size: clamp(1.12rem, 1.7vw, 1.38rem);
+  font-weight: 400;
   line-height: 1.6;
-  margin-bottom: 14px;
+  color: #E2E8F0;
+  max-width: 860px;
+  margin-bottom: 28px;
 }
 
-.burst-card-desc {
-  font-size: 0.9rem;
+.editorial-body {
+  font-size: clamp(0.94rem, 1.15vw, 1.05rem);
+  line-height: 1.7;
   color: var(--text-warm-gray);
-  line-height: 1.65;
-  margin-bottom: 0;
+  max-width: 800px;
 }
 
-/* Threat / Guarantee Matrix Box on right of burst card */
-.burst-matrix-box {
-  background: rgba(8, 14, 10, 0.8);
+/* 2. Hero Chapter Showcase Index (Sid Lee Menu Style) */
+.showcase-index-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 50px;
+}
+
+.showcase-index-item {
+  background: rgba(14, 20, 16, 0.72);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 14px;
-  padding: 26px;
+  padding: 22px 20px;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  justify-content: space-between;
+  min-height: 125px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
 }
 
-.burst-matrix-box.risk {
-  border-color: rgba(239, 68, 68, 0.35);
-  background: radial-gradient(circle at 100% 0%, rgba(239, 68, 68, 0.08) 0%, rgba(10, 16, 12, 0.85) 100%);
+.showcase-index-item:hover {
+  background: rgba(22, 34, 26, 0.9);
+  border-color: rgba(212, 175, 55, 0.55);
+  transform: translateY(-4px);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.6), 0 0 20px rgba(212, 175, 55, 0.15);
 }
 
-.burst-matrix-box.friction {
-  border-color: rgba(245, 158, 11, 0.35);
-  background: radial-gradient(circle at 100% 0%, rgba(245, 158, 11, 0.08) 0%, rgba(10, 16, 12, 0.85) 100%);
+.showcase-index-num {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent-gold);
+  letter-spacing: 0.12em;
+  font-weight: 700;
 }
 
-.burst-matrix-box.solution {
-  border-color: rgba(212, 175, 55, 0.5);
-  background: radial-gradient(circle at 100% 0%, rgba(212, 175, 55, 0.12) 0%, rgba(10, 20, 14, 0.9) 100%);
-}
-
-.burst-matrix-header {
+.showcase-index-label {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 1.35;
+  margin-top: 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  padding-bottom: 10px;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
 }
 
-.burst-matrix-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.showcase-index-arrow {
+  font-size: 1.1rem;
+  color: var(--accent-aurora);
+  transition: transform 0.25s ease;
+}
+
+.showcase-index-item:hover .showcase-index-arrow {
+  transform: translateX(4px);
+}
+
+/* 3. Collection N°1: The Sovereign Imperative (Editorial Split Monolith) */
+.editorial-split-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-top: 46px;
+}
+
+.editorial-split-card {
+  background: rgba(13, 19, 15, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 40px 36px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  justify-content: space-between;
+  position: relative;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
 }
 
-.burst-matrix-item {
-  font-size: 0.88rem;
+.editorial-split-card.risk {
+  border-color: rgba(239, 68, 68, 0.35);
+  background: linear-gradient(180deg, rgba(28, 16, 16, 0.75) 0%, rgba(13, 19, 15, 0.92) 100%);
+}
+
+.editorial-split-card.sovereign {
+  border: 1.5px solid rgba(212, 175, 55, 0.65);
+  background: linear-gradient(180deg, rgba(20, 36, 26, 0.88) 0%, rgba(13, 20, 16, 0.95) 100%);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6), 0 0 32px rgba(212, 175, 55, 0.15);
+}
+
+.split-card-header {
   display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  line-height: 1.45;
-}
-.burst-matrix-item.bad { color: #fca5a5; }
-.burst-matrix-item.neutral { color: #fde68a; }
-.burst-matrix-item.good { color: #a7f3d0; font-weight: 500; }
-
-.burst-matrix-status {
-  font-family: var(--font-mono);
-  font-size: 0.76rem;
-  font-weight: 700;
-  padding: 8px 12px;
-  border-radius: 6px;
-  text-align: center;
-  letter-spacing: 0.05em;
-  margin-top: 4px;
-}
-.burst-matrix-status.risk {
-  background: rgba(239, 68, 68, 0.15);
-  color: #f87171;
-  border: 1px solid rgba(239, 68, 68, 0.3);
-}
-.burst-matrix-status.friction {
-  background: rgba(245, 158, 11, 0.15);
-  color: #fbbf24;
-  border: 1px solid rgba(245, 158, 11, 0.3);
-}
-.burst-matrix-status.solution {
-  background: rgba(16, 185, 129, 0.2);
-  color: #34d399;
-  border: 1px solid rgba(16, 185, 129, 0.5);
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
 }
 
-.dilemma-card-badge {
+.split-badge {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.7rem;
   font-weight: 700;
-  text-transform: uppercase;
   letter-spacing: 0.1em;
-  padding: 3px 8px;
+  text-transform: uppercase;
+  padding: 4px 10px;
   border-radius: 4px;
-  width: fit-content;
 }
-.dilemma-card-badge.risk {
+
+.split-badge.risk {
   background: rgba(239, 68, 68, 0.15);
   color: #f87171;
   border: 1px solid rgba(239, 68, 68, 0.35);
 }
-.dilemma-card-badge.friction {
-  background: rgba(245, 158, 11, 0.15);
-  color: #fbbf24;
-  border: 1px solid rgba(245, 158, 11, 0.35);
-}
-.dilemma-card-badge.solution {
+
+.split-badge.sovereign {
   background: rgba(16, 185, 129, 0.2);
   color: #34d399;
   border: 1px solid rgba(16, 185, 129, 0.5);
 }
 
-/* 2. Interactive Workflow Step Bursts */
-.workflow-burst-container {
-  margin-top: 40px;
+.split-card-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+  color: #FFFFFF;
+  margin-bottom: 14px;
+  line-height: 1.25;
 }
 
-.workflow-nav {
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-bottom: 28px;
+.split-card-p {
+  font-size: 0.95rem;
+  color: var(--text-warm-gray);
+  line-height: 1.65;
+  margin-bottom: 22px;
 }
 
-.workflow-tab-btn {
-  background: rgba(18, 28, 22, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 30px;
-  padding: 10px 22px;
-  color: #94a3b8;
+.split-card-footer {
   font-family: var(--font-mono);
-  font-size: 0.82rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.workflow-tab-btn:hover {
-  color: #FFFFFF;
-  border-color: rgba(212, 175, 55, 0.4);
-  background: rgba(26, 40, 31, 0.85);
+.split-card-footer.risk {
+  color: #fca5a5;
 }
 
-.workflow-tab-btn.active {
-  background: rgba(212, 175, 55, 0.18);
-  border-color: var(--accent-gold);
-  color: #FFFFFF;
-  box-shadow: 0 0 16px rgba(212, 175, 55, 0.25);
+.split-card-footer.sovereign {
+  color: #6ee7b7;
 }
 
-.workflow-panel {
-  display: none;
-  background: rgba(14, 22, 17, 0.92);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 18px;
-  padding: 40px;
-  animation: burstFadeIn 0.35s ease forwards;
-}
-
-.workflow-panel.active {
+/* 4. Collection N°2: Curated Institutional Showcases (Sid Lee Publication Cards) */
+.showcase-publication-card {
   display: grid;
   grid-template-columns: 1.15fr 1fr;
-  gap: 36px;
+  gap: 48px;
   align-items: center;
-}
-
-@keyframes burstFadeIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.workflow-sim-card {
-  background: rgba(9, 15, 11, 0.85);
+  background: rgba(12, 18, 14, 0.75);
   border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 38px;
+  margin-bottom: 40px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.showcase-publication-card:hover {
+  border-color: rgba(212, 175, 55, 0.5);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.6), 0 0 24px rgba(212, 175, 55, 0.12);
+}
+
+.showcase-publication-media {
   border-radius: 14px;
-  padding: 24px;
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 16 / 10;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #000000;
+}
+
+.showcase-publication-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.showcase-publication-card:hover .showcase-publication-media img {
+  transform: scale(1.04);
+}
+
+.showcase-publication-client {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: var(--accent-gold-light);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+
+.showcase-publication-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 2.5vw, 2.25rem);
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+
+.showcase-publication-desc {
+  font-size: 0.98rem;
+  color: var(--text-warm-gray);
+  line-height: 1.65;
+  margin-bottom: 22px;
+}
+
+.showcase-publication-tags {
   display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-/* 3. Interactive Sector Navigator Burst */
-.sector-burst-container {
-  margin-top: 40px;
-}
-
-.sector-nav {
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-bottom: 30px;
-}
-
-.sector-nav-btn {
-  background: rgba(18, 28, 22, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 30px;
-  padding: 10px 22px;
-  color: #cbd5e1;
-  font-family: var(--font-sans);
-  font-size: 0.9rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  display: inline-flex;
-  align-items: center;
   gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
 }
 
-.sector-nav-btn:hover {
-  color: #FFFFFF;
-  border-color: rgba(212, 175, 55, 0.4);
-  background: rgba(26, 40, 31, 0.85);
-}
-
-.sector-nav-btn.active {
-  background: rgba(212, 175, 55, 0.18);
-  border-color: var(--accent-gold);
-  color: #FFFFFF;
-  box-shadow: 0 0 18px rgba(212, 175, 55, 0.25);
-}
-
-.sector-panel {
-  display: none;
-  background: rgba(14, 22, 17, 0.94);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 18px;
-  padding: 42px;
-  animation: burstFadeIn 0.35s ease forwards;
-}
-
-.sector-panel.active {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 36px;
-  align-items: center;
-}
-
-.sector-spec-card {
-  background: rgba(8, 14, 10, 0.85);
-  border: 1px solid rgba(212, 175, 55, 0.35);
-  border-radius: 14px;
-  padding: 26px;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  box-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.7);
-}
-
-.sector-spec-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  padding-bottom: 10px;
+.showcase-publication-tag {
   font-family: var(--font-mono);
   font-size: 0.72rem;
-  color: var(--accent-gold-light);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.sector-spec-row {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.84rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  padding-bottom: 8px;
-}
-
-.sector-spec-label {
-  color: var(--text-warm-gray);
-}
-
-.sector-spec-val {
-  color: #FFFFFF;
-  font-family: var(--font-mono);
-  font-weight: 600;
-  text-align: right;
-}
-
-/* Fallback grid styles for legacy containers if referenced elsewhere */
-.dilemma-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  margin-top: 40px;
-}
-
-.dilemma-card {
-  background: rgba(18, 28, 22, 0.7);
+  padding: 4px 10px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  padding: 32px 26px;
+  color: #cbd5e1;
+}
+
+.showcase-publication-action {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--accent-aurora);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  transition: gap 0.2s ease, color 0.2s ease;
+}
+
+.showcase-publication-action:hover {
+  color: #FFFFFF;
+  gap: 10px;
+}
+
+/* 5. Collection N°3: The Cooperative Manifesto Pillars */
+.manifesto-pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+}
+
+.manifesto-pillar {
+  background: rgba(14, 22, 17, 0.68);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 34px 26px;
   display: flex;
   flex-direction: column;
-  transition: transform 0.2s ease, border-color 0.2s ease;
+  transition: all 0.25s ease;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
-.dilemma-card.highlight {
-  background: linear-gradient(180deg, rgba(20, 36, 26, 0.9) 0%, rgba(13, 22, 16, 0.95) 100%);
-  border: 1.5px solid rgba(212, 175, 55, 0.5);
-  box-shadow: 0 12px 36px -10px rgba(0, 0, 0, 0.7), 0 0 24px rgba(212, 175, 55, 0.15);
-  position: relative;
+.manifesto-pillar:hover {
+  border-color: rgba(0, 255, 102, 0.45);
+  transform: translateY(-4px);
+  background: rgba(20, 32, 24, 0.85);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 255, 102, 0.15);
 }
 
-.dilemma-card h3 {
-  font-size: 1.25rem;
+.pillar-num {
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--accent-gold);
+  margin-bottom: 16px;
+  line-height: 1;
+}
+
+.pillar-title {
+  font-size: 1.18rem;
+  font-weight: 700;
   color: #FFFFFF;
   margin-bottom: 12px;
   line-height: 1.3;
 }
 
-.dilemma-card p {
-  font-size: 0.92rem;
-  color: var(--text-warm-gray);
-  line-height: 1.6;
-  margin-bottom: 16px;
-}
-
-.dilemma-points {
-  list-style: none;
-  padding: 0;
-  margin: auto 0 0 0;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  padding-top: 16px;
-}
-
-.dilemma-point {
-  font-size: 0.85rem;
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  line-height: 1.45;
-}
-.dilemma-point.bad { color: #fca5a5; }
-.dilemma-point.neutral { color: #fde68a; }
-.dilemma-point.good { color: #a7f3d0; font-weight: 600; }
-
-.workflow-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  margin-top: 40px;
-}
-
-.workflow-card {
-  background: rgba(18, 28, 22, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  padding: 32px 24px;
-  display: flex;
-  flex-direction: column;
-}
-
-.workflow-step-num {
-  font-family: var(--font-mono);
-  font-size: 1.8rem;
-  font-weight: 800;
-  color: var(--accent-gold-light);
-  line-height: 1;
-  margin-bottom: 14px;
-}
-
-.workflow-card h3 {
-  font-size: 1.18rem;
-  color: #FFFFFF;
-  margin-bottom: 10px;
-}
-
-.workflow-card p {
-  font-size: 0.92rem;
+.pillar-desc {
+  font-size: 0.88rem;
   color: var(--text-warm-gray);
   line-height: 1.6;
 }
 
-/* Deep Dive Portals Grid */
-.deep-dive-grid {
+/* 6. Collection N°4: The Blueprints (Giving the Owner Control) */
+.blueprints-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  margin-top: 36px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+  margin-top: 44px;
 }
 
-.deep-dive-card {
-  background: rgba(15, 23, 18, 0.75);
+.blueprint-card {
+  background: rgba(14, 21, 16, 0.75);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  padding: 24px;
+  border-radius: 16px;
+  padding: 30px 24px;
   text-decoration: none;
   display: flex;
   flex-direction: column;
   transition: all 0.25s ease;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
-.deep-dive-card:hover {
-  transform: translateY(-3px);
-  border-color: rgba(212, 175, 55, 0.4);
-  background: rgba(20, 32, 24, 0.85);
+.blueprint-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(212, 175, 55, 0.55);
+  background: rgba(20, 32, 24, 0.9);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 22px rgba(212, 175, 55, 0.15);
 }
 
-.deep-dive-card .card-icon {
-  font-size: 1.6rem;
-  margin-bottom: 12px;
+.blueprint-icon {
+  font-size: 1.8rem;
+  margin-bottom: 16px;
 }
 
-.deep-dive-card h4 {
-  font-size: 1.05rem;
+.blueprint-title {
+  font-size: 1.15rem;
+  font-weight: 700;
   color: #FFFFFF;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
 }
 
-.deep-dive-card p {
-  font-size: 0.85rem;
+.blueprint-desc {
+  font-size: 0.86rem;
   color: var(--text-warm-gray);
-  line-height: 1.5;
-  margin-bottom: 12px;
+  line-height: 1.55;
+  margin-bottom: 18px;
 }
 
-.deep-dive-card .card-link-text {
+.blueprint-link {
   margin-top: auto;
   font-family: var(--font-mono);
-  font-size: 0.76rem;
+  font-size: 0.78rem;
   font-weight: 700;
   color: var(--accent-gold-light);
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
+  transition: gap 0.2s ease;
 }
 
-/* Responsive Overrides */
-@media (max-width: 960px) {
-  .product-window-body {
+.blueprint-card:hover .blueprint-link {
+  gap: 10px;
+}
+
+/* 7. Institutional Clearance Monolith */
+.clearance-monolith {
+  background: radial-gradient(circle at 50% 50%, rgba(200, 157, 75, 0.14) 0%, rgba(13, 20, 16, 0.98) 100%);
+  border: 1.5px solid var(--border-glass-gold);
+  border-radius: 20px;
+  padding: 65px 44px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+}
+
+/* Responsive Rules for Sid Lee System */
+@media (max-width: 1080px) {
+  .showcase-index-grid,
+  .manifesto-pillars-grid,
+  .blueprints-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 860px) {
+  .editorial-split-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .showcase-publication-card {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding: 28px;
+  }
+}
+
+@media (max-width: 640px) {
+  .showcase-index-grid,
+  .manifesto-pillars-grid,
+  .blueprints-grid {
     grid-template-columns: 1fr;
   }
-  .product-window-sidebar {
-    display: none;
+  .editorial-section {
+    padding: 60px 0;
   }
-  .dilemma-grid, .workflow-grid {
-    grid-template-columns: 1fr;
-  }
-  .product-file-table-header, .product-file-row {
-    grid-template-columns: 2fr 1fr 1fr;
-  }
-  .product-file-table-header span:last-child,
-  .product-file-row span:last-child {
-    display: none;
+  .clearance-monolith {
+    padding: 44px 22px;
   }
 }
 
-@media (max-width: 600px) {
-  .product-file-table-header, .product-file-row {
-    grid-template-columns: 1fr auto;
-  }
-  .product-file-table-header span:nth-child(2),
-  .product-file-row span:nth-child(2) {
-    display: none;
-  }
-  .product-window-titlebar {
-    padding: 8px 12px;
-  }
-  .window-title {
-    font-size: 0.68rem;
-  }
-}
-
-/* Responsive Overrides for Burst Mechanics */
-@media (max-width: 960px) {
-  .burst-card-inner,
-  .workflow-panel.active,
-  .sector-panel.active {
-    grid-template-columns: 1fr;
-    gap: 22px;
-  }
-  .burst-stack-card {
-    padding: 22px 26px 28px;
-    min-height: auto;
-  }
-  .sector-panel,
-  .workflow-panel {
-    padding: 28px 22px;
-  }
-  .burst-stack-card:nth-child(1) {
-    top: 72px;
-    margin-bottom: 140px;
-  }
-  .burst-stack-card:nth-child(2) {
-    top: 116px;
-    margin-bottom: 140px;
-  }
-  .burst-stack-card:nth-child(3) {
-    top: 160px;
-    margin-bottom: 0;
-  }
-}
-
-@media (max-width: 680px) {
-  .burst-stack-container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding-bottom: 24px;
-  }
-  .burst-stack-card {
-    position: relative;
-    top: auto !important;
-    padding: 22px 18px;
-    margin-bottom: 0 !important;
-    min-height: auto;
-  }
-  .sector-nav,
-  .workflow-nav {
-    flex-direction: column;
-    gap: 8px;
-  }
-  .sector-nav-btn,
-  .workflow-tab-btn {
-    width: 100%;
-    justify-content: center;
-    font-size: 0.82rem;
-    padding: 10px 16px;
-  }
-  .burst-card-header {
-    flex-wrap: wrap;
-  }
-}
 
 

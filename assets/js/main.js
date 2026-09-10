@@ -1045,6 +1045,7 @@ try {
 document.addEventListener('DOMContentLoaded', () => {
   initCookie();
   initMeshRadarTelemetry();
+  initBurstMechanics();
 });
 
 // ==============================================================================
@@ -1514,7 +1515,16 @@ function addLiveNodeToMesh(nodeData) {
 window.addLiveNodeToMesh = addLiveNodeToMesh;
 
 // --- Burst Mechanics Controllers (Episodic Step & Sector Switchers) ---
-function switchWorkflowBurst(stepIndex) {
+let workflowAutoTimer = null;
+let sectorAutoTimer = null;
+let workflowUserInteracted = false;
+let sectorUserInteracted = false;
+let currentWorkflowStep = 0;
+let currentSectorIndex = 0;
+
+function switchWorkflowBurst(stepIndex, manual = false) {
+  if (manual) workflowUserInteracted = true;
+  currentWorkflowStep = stepIndex;
   const tabs = document.querySelectorAll('.workflow-tab-btn');
   const panels = document.querySelectorAll('.workflow-panel');
   tabs.forEach((tab, i) => {
@@ -1535,7 +1545,9 @@ function switchWorkflowBurst(stepIndex) {
   });
 }
 
-function switchSectorBurst(sectorIndex) {
+function switchSectorBurst(sectorIndex, manual = false) {
+  if (manual) sectorUserInteracted = true;
+  currentSectorIndex = sectorIndex;
   const tabs = document.querySelectorAll('.sector-nav-btn');
   const panels = document.querySelectorAll('.sector-panel');
   tabs.forEach((tab, i) => {
@@ -1564,8 +1576,109 @@ function openPilotForSector(sectorValue) {
   }
 }
 
+function initBurstMechanics() {
+  // 1. Stacking Cards Scroll Physics & Dynamic Depth (Section 2)
+  const stackCards = document.querySelectorAll('.burst-stack-card');
+  if (stackCards.length >= 2) {
+    function onScrollStackPhysics() {
+      if (window.innerWidth < 680) {
+        stackCards.forEach(card => {
+          card.style.transform = '';
+          card.style.filter = '';
+        });
+        return;
+      }
+      const rect2 = stackCards[1].getBoundingClientRect();
+      const rect3 = stackCards[2] ? stackCards[2].getBoundingClientRect() : null;
+
+      // Card 2 stacking threshold (~145px from top)
+      if (rect2.top <= 150) {
+        stackCards[0].style.transform = 'scale(0.97)';
+        stackCards[0].style.filter = 'brightness(0.68)';
+      } else {
+        stackCards[0].style.transform = 'scale(1)';
+        stackCards[0].style.filter = 'brightness(1)';
+      }
+
+      // Card 3 stacking threshold (~205px from top)
+      if (rect3 && rect3.top <= 210) {
+        stackCards[0].style.transform = 'scale(0.94)';
+        stackCards[0].style.filter = 'brightness(0.48)';
+        stackCards[1].style.transform = 'scale(0.97)';
+        stackCards[1].style.filter = 'brightness(0.72)';
+      } else if (rect2.top <= 150) {
+        stackCards[1].style.transform = 'scale(1)';
+        stackCards[1].style.filter = 'brightness(1)';
+      }
+    }
+
+    window.addEventListener('scroll', onScrollStackPhysics, { passive: true });
+    window.addEventListener('resize', onScrollStackPhysics, { passive: true });
+    onScrollStackPhysics();
+  }
+
+  // 2. Section 3 (Workflow) Auto-burst progression when in view
+  const workflowWrap = document.querySelector('.workflow-burst-container');
+  if (workflowWrap && typeof IntersectionObserver !== 'undefined') {
+    let isWorkflowHovered = false;
+    workflowWrap.addEventListener('mouseenter', () => { isWorkflowHovered = true; });
+    workflowWrap.addEventListener('mouseleave', () => { isWorkflowHovered = false; });
+
+    const workflowObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          if (!workflowAutoTimer && !workflowUserInteracted) {
+            workflowAutoTimer = setInterval(() => {
+              if (!workflowUserInteracted && !isWorkflowHovered) {
+                currentWorkflowStep = (currentWorkflowStep + 1) % 3;
+                switchWorkflowBurst(currentWorkflowStep, false);
+              }
+            }, 4200);
+          }
+        } else {
+          if (workflowAutoTimer) {
+            clearInterval(workflowAutoTimer);
+            workflowAutoTimer = null;
+          }
+        }
+      });
+    }, { threshold: 0.2 });
+    workflowObserver.observe(workflowWrap);
+  }
+
+  // 3. Section 4 (Sectors) Auto-burst progression when in view
+  const sectorWrap = document.querySelector('.sector-burst-container');
+  if (sectorWrap && typeof IntersectionObserver !== 'undefined') {
+    let isSectorHovered = false;
+    sectorWrap.addEventListener('mouseenter', () => { isSectorHovered = true; });
+    sectorWrap.addEventListener('mouseleave', () => { isSectorHovered = false; });
+
+    const sectorObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          if (!sectorAutoTimer && !sectorUserInteracted) {
+            sectorAutoTimer = setInterval(() => {
+              if (!sectorUserInteracted && !isSectorHovered) {
+                currentSectorIndex = (currentSectorIndex + 1) % 4;
+                switchSectorBurst(currentSectorIndex, false);
+              }
+            }, 4800);
+          }
+        } else {
+          if (sectorAutoTimer) {
+            clearInterval(sectorAutoTimer);
+            sectorAutoTimer = null;
+          }
+        }
+      });
+    }, { threshold: 0.2 });
+    sectorObserver.observe(sectorWrap);
+  }
+}
+
 window.switchWorkflowBurst = switchWorkflowBurst;
 window.switchSectorBurst = switchSectorBurst;
 window.openPilotForSector = openPilotForSector;
+window.initBurstMechanics = initBurstMechanics;
 
 

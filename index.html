@@ -405,13 +405,13 @@
       <!-- Step Navigation Selector -->
       <div class="workflow-burst-container">
         <div class="workflow-nav" role="tablist">
-          <button class="workflow-tab-btn active" onclick="switchWorkflowBurst(0)" role="tab" aria-selected="true">
+          <button class="workflow-tab-btn active" onclick="switchWorkflowBurst(0, true)" role="tab" aria-selected="true">
             <span>01</span> Native Desktop Drop-In
           </button>
-          <button class="workflow-tab-btn" onclick="switchWorkflowBurst(1)" role="tab" aria-selected="false">
+          <button class="workflow-tab-btn" onclick="switchWorkflowBurst(1, true)" role="tab" aria-selected="false">
             <span>02</span> Blind Threshold Shredding
           </button>
-          <button class="workflow-tab-btn" onclick="switchWorkflowBurst(2)" role="tab" aria-selected="false">
+          <button class="workflow-tab-btn" onclick="switchWorkflowBurst(2, true)" role="tab" aria-selected="false">
             <span>03</span> Multi-Jurisdiction Quorum
           </button>
         </div>
@@ -431,7 +431,7 @@
             <p style="color: var(--text-warm-gray); font-size: 0.9rem; line-height: 1.6; margin-bottom: 22px;">
               Your staff continues organizing confidential case files, board papers, and research cohorts exactly as they do today. The moment a document enters the local sync enclave, cryptographic isolation initiates instantly.
             </p>
-            <button class="btn btn-secondary" onclick="switchWorkflowBurst(1)" style="padding: 10px 20px; font-size: 0.88rem;">
+            <button class="btn btn-secondary" onclick="switchWorkflowBurst(1, true)" style="padding: 10px 20px; font-size: 0.88rem;">
               Next: Step 02 Blind Shredding &nbsp;→
             </button>
           </div>
@@ -468,9 +468,14 @@
             <p style="color: var(--text-warm-gray); font-size: 0.9rem; line-height: 1.6; margin-bottom: 22px;">
               Using audited Pedersen Distributed Key Generation (DKG) and FROST Schnorr algorithms, the system creates unlinked encrypted shards. No single master key ever exists on disk, in transit, or on any server.
             </p>
-            <button class="btn btn-secondary" onclick="switchWorkflowBurst(2)" style="padding: 10px 20px; font-size: 0.88rem;">
-              Next: Step 03 Multi-Jurisdiction &nbsp;→
-            </button>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+              <button class="btn btn-secondary" onclick="switchWorkflowBurst(0, true)" style="padding: 10px 18px; font-size: 0.88rem;">
+                ← Back: Step 01
+              </button>
+              <button class="btn btn-secondary" onclick="switchWorkflowBurst(2, true)" style="padding: 10px 18px; font-size: 0.88rem;">
+                Next: Step 03 Multi-Jurisdiction &nbsp;→
+              </button>
+            </div>
           </div>
 
           <div class="workflow-sim-card">
@@ -505,9 +510,14 @@
             <p style="color: var(--text-warm-gray); font-size: 0.9rem; line-height: 1.6; margin-bottom: 22px;">
               Plaintext can only be reconstructed when an authorized mathematical quorum of independent enclaves agree to collaborate. No single court, cloud vendor, or rogue insider can force unlock.
             </p>
-            <button class="btn btn-aurora" onclick="openModal('pilot')" style="padding: 10px 22px; font-size: 0.88rem;">
-              Request Institutional Pilot &nbsp;→
-            </button>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+              <button class="btn btn-secondary" onclick="switchWorkflowBurst(1, true)" style="padding: 10px 18px; font-size: 0.88rem;">
+                ← Back: Step 02
+              </button>
+              <button class="btn btn-aurora" onclick="openModal('pilot')" style="padding: 10px 22px; font-size: 0.88rem;">
+                Request Institutional Pilot &nbsp;→
+              </button>
+            </div>
           </div>
 
           <div class="workflow-sim-card">
@@ -544,16 +554,16 @@
       <!-- Sector Navigation Selector -->
       <div class="sector-burst-container">
         <div class="sector-nav" role="tablist">
-          <button class="sector-nav-btn active" onclick="switchSectorBurst(0)" role="tab" aria-selected="true">
+          <button class="sector-nav-btn active" onclick="switchSectorBurst(0, true)" role="tab" aria-selected="true">
             ⚖️ Cross-Border Law &amp; M&amp;A
           </button>
-          <button class="sector-nav-btn" onclick="switchSectorBurst(1)" role="tab" aria-selected="false">
+          <button class="sector-nav-btn" onclick="switchSectorBurst(1, true)" role="tab" aria-selected="false">
             🏛️ Family Offices &amp; Wealth
           </button>
-          <button class="sector-nav-btn" onclick="switchSectorBurst(2)" role="tab" aria-selected="false">
+          <button class="sector-nav-btn" onclick="switchSectorBurst(2, true)" role="tab" aria-selected="false">
             🛡️ Defense Industrial Base (CUI)
           </button>
-          <button class="sector-nav-btn" onclick="switchSectorBurst(3)" role="tab" aria-selected="false">
+          <button class="sector-nav-btn" onclick="switchSectorBurst(3, true)" role="tab" aria-selected="false">
             🧬 Healthcare &amp; Genomics
           </button>
         </div>

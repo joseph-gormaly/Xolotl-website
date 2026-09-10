@@ -405,13 +405,13 @@
       <!-- Selector de Navegación por Pasos -->
       <div class="workflow-burst-container">
         <div class="workflow-nav" role="tablist">
-          <button class="workflow-tab-btn active" onclick="switchWorkflowBurst(0)" role="tab" aria-selected="true">
+          <button class="workflow-tab-btn active" onclick="switchWorkflowBurst(0, true)" role="tab" aria-selected="true">
             <span>01</span> Integración Nativa en Escritorio
           </button>
-          <button class="workflow-tab-btn" onclick="switchWorkflowBurst(1)" role="tab" aria-selected="false">
+          <button class="workflow-tab-btn" onclick="switchWorkflowBurst(1, true)" role="tab" aria-selected="false">
             <span>02</span> Fragmentación Ciega
           </button>
-          <button class="workflow-tab-btn" onclick="switchWorkflowBurst(2)" role="tab" aria-selected="false">
+          <button class="workflow-tab-btn" onclick="switchWorkflowBurst(2, true)" role="tab" aria-selected="false">
             <span>03</span> Cuórum Multijurisdiccional
           </button>
         </div>
@@ -431,7 +431,7 @@
             <p style="color: var(--text-warm-gray); font-size: 0.9rem; line-height: 1.6; margin-bottom: 22px;">
               Su equipo continúa organizando expedientes confidenciales, actas de juntas y cohortes de investigación exactamente como lo hace hoy. En cuanto un documento ingresa a la carpeta, el aislamiento criptográfico se activa al instante.
             </p>
-            <button class="btn btn-secondary" onclick="switchWorkflowBurst(1)" style="padding: 10px 20px; font-size: 0.88rem;">
+            <button class="btn btn-secondary" onclick="switchWorkflowBurst(1, true)" style="padding: 10px 20px; font-size: 0.88rem;">
               Siguiente: Paso 02 Fragmentación &nbsp;→
             </button>
           </div>
@@ -468,9 +468,14 @@
             <p style="color: var(--text-warm-gray); font-size: 0.9rem; line-height: 1.6; margin-bottom: 22px;">
               Mediante los algoritmos auditados Pedersen DKG y FROST Schnorr, el sistema crea fragmentos cifrados desvinculados. Jamás existe una clave maestra en disco, en red o en servidores centrales.
             </p>
-            <button class="btn btn-secondary" onclick="switchWorkflowBurst(2)" style="padding: 10px 20px; font-size: 0.88rem;">
-              Siguiente: Paso 03 Cuórum Multijurisdiccional &nbsp;→
-            </button>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+              <button class="btn btn-secondary" onclick="switchWorkflowBurst(0, true)" style="padding: 10px 18px; font-size: 0.88rem;">
+                ← Volver: Paso 01
+              </button>
+              <button class="btn btn-secondary" onclick="switchWorkflowBurst(2, true)" style="padding: 10px 18px; font-size: 0.88rem;">
+                Siguiente: Paso 03 Cuórum Multijurisdiccional &nbsp;→
+              </button>
+            </div>
           </div>
 
           <div class="workflow-sim-card">
@@ -505,9 +510,14 @@
             <p style="color: var(--text-warm-gray); font-size: 0.9rem; line-height: 1.6; margin-bottom: 22px;">
               El archivo en claro solo puede reconstruirse cuando un cuórum criptográfico de servidores independientes firma la autorización. Ningún tribunal extranjero ni atacante puede obligar al descifrado.
             </p>
-            <button class="btn btn-aurora" onclick="openModal('pilot')" style="padding: 10px 22px; font-size: 0.88rem;">
-              Solicitar Piloto Institucional &nbsp;→
-            </button>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+              <button class="btn btn-secondary" onclick="switchWorkflowBurst(1, true)" style="padding: 10px 18px; font-size: 0.88rem;">
+                ← Volver: Paso 02
+              </button>
+              <button class="btn btn-aurora" onclick="openModal('pilot')" style="padding: 10px 22px; font-size: 0.88rem;">
+                Solicitar Piloto Institucional &nbsp;→
+              </button>
+            </div>
           </div>
 
           <div class="workflow-sim-card">
@@ -544,16 +554,16 @@
       <!-- Selector de Navegación de Sectores -->
       <div class="sector-burst-container">
         <div class="sector-nav" role="tablist">
-          <button class="sector-nav-btn active" onclick="switchSectorBurst(0)" role="tab" aria-selected="true">
+          <button class="sector-nav-btn active" onclick="switchSectorBurst(0, true)" role="tab" aria-selected="true">
             ⚖️ Derecho Transfronterizo y M&amp;A
           </button>
-          <button class="sector-nav-btn" onclick="switchSectorBurst(1)" role="tab" aria-selected="false">
+          <button class="sector-nav-btn" onclick="switchSectorBurst(1, true)" role="tab" aria-selected="false">
             🏛️ Family Offices y Patrimonio
           </button>
-          <button class="sector-nav-btn" onclick="switchSectorBurst(2)" role="tab" aria-selected="false">
+          <button class="sector-nav-btn" onclick="switchSectorBurst(2, true)" role="tab" aria-selected="false">
             🛡️ Industria de Defensa (CUI)
           </button>
-          <button class="sector-nav-btn" onclick="switchSectorBurst(3)" role="tab" aria-selected="false">
+          <button class="sector-nav-btn" onclick="switchSectorBurst(3, true)" role="tab" aria-selected="false">
             🧬 Salud e Investigación Genómica
           </button>
         </div>

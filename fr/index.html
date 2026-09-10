@@ -405,13 +405,13 @@
       <!-- Sélecteur de Navigation par Étapes -->
       <div class="workflow-burst-container">
         <div class="workflow-nav" role="tablist">
-          <button class="workflow-tab-btn active" onclick="switchWorkflowBurst(0)" role="tab" aria-selected="true">
+          <button class="workflow-tab-btn active" onclick="switchWorkflowBurst(0, true)" role="tab" aria-selected="true">
             <span>01</span> Dépôt Natif sur Bureau
           </button>
-          <button class="workflow-tab-btn" onclick="switchWorkflowBurst(1)" role="tab" aria-selected="false">
+          <button class="workflow-tab-btn" onclick="switchWorkflowBurst(1, true)" role="tab" aria-selected="false">
             <span>02</span> Fragmentation Aveugle
           </button>
-          <button class="workflow-tab-btn" onclick="switchWorkflowBurst(2)" role="tab" aria-selected="false">
+          <button class="workflow-tab-btn" onclick="switchWorkflowBurst(2, true)" role="tab" aria-selected="false">
             <span>03</span> Quorum Multijuridictionnel
           </button>
         </div>
@@ -431,7 +431,7 @@
             <p style="color: var(--text-warm-gray); font-size: 0.9rem; line-height: 1.6; margin-bottom: 22px;">
               Vos collaborateurs continuent d'organiser leurs dossiers de litige, procès-verbaux de conseil et cohortes de recherche exactement comme d'habitude. Dès qu'un fichier touche le dossier, l'isolation cryptographique se déclenche instantanément.
             </p>
-            <button class="btn btn-secondary" onclick="switchWorkflowBurst(1)" style="padding: 10px 20px; font-size: 0.88rem;">
+            <button class="btn btn-secondary" onclick="switchWorkflowBurst(1, true)" style="padding: 10px 20px; font-size: 0.88rem;">
               Suivant : Étape 02 Fragmentation &nbsp;→
             </button>
           </div>
@@ -468,9 +468,14 @@
             <p style="color: var(--text-warm-gray); font-size: 0.9rem; line-height: 1.6; margin-bottom: 22px;">
               En utilisant les protocoles audités Pedersen DKG et FROST Schnorr, le système génère des fragments chiffrés dissociés. Aucune clé maîtresse n'existe sur disque, sur le réseau ou sur un serveur central.
             </p>
-            <button class="btn btn-secondary" onclick="switchWorkflowBurst(2)" style="padding: 10px 20px; font-size: 0.88rem;">
-              Suivant : Étape 03 Quorum Juridique &nbsp;→
-            </button>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+              <button class="btn btn-secondary" onclick="switchWorkflowBurst(0, true)" style="padding: 10px 18px; font-size: 0.88rem;">
+                ← Retour : Étape 01
+              </button>
+              <button class="btn btn-secondary" onclick="switchWorkflowBurst(2, true)" style="padding: 10px 18px; font-size: 0.88rem;">
+                Suivant : Étape 03 Quorum Juridique &nbsp;→
+              </button>
+            </div>
           </div>
 
           <div class="workflow-sim-card">
@@ -505,9 +510,14 @@
             <p style="color: var(--text-warm-gray); font-size: 0.9rem; line-height: 1.6; margin-bottom: 22px;">
               Le fichier original ne peut être réassemblé que lorsqu'un quorum cryptographique de serveurs indépendants signe l'autorisation. Aucun tribunal isolé ni pirate ne peut contraindre le déchiffrement.
             </p>
-            <button class="btn btn-aurora" onclick="openModal('pilot')" style="padding: 10px 22px; font-size: 0.88rem;">
-              Demander un Accès Pilote Institutionnel &nbsp;→
-            </button>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+              <button class="btn btn-secondary" onclick="switchWorkflowBurst(1, true)" style="padding: 10px 18px; font-size: 0.88rem;">
+                ← Retour : Étape 02
+              </button>
+              <button class="btn btn-aurora" onclick="openModal('pilot')" style="padding: 10px 22px; font-size: 0.88rem;">
+                Demander un Accès Pilote Institutionnel &nbsp;→
+              </button>
+            </div>
           </div>
 
           <div class="workflow-sim-card">
@@ -544,16 +554,16 @@
       <!-- Sélecteur de Secteurs -->
       <div class="sector-burst-container">
         <div class="sector-nav" role="tablist">
-          <button class="sector-nav-btn active" onclick="switchSectorBurst(0)" role="tab" aria-selected="true">
+          <button class="sector-nav-btn active" onclick="switchSectorBurst(0, true)" role="tab" aria-selected="true">
             ⚖️ Droit Transfrontalier &amp; M&amp;A
           </button>
-          <button class="sector-nav-btn" onclick="switchSectorBurst(1)" role="tab" aria-selected="false">
+          <button class="sector-nav-btn" onclick="switchSectorBurst(1, true)" role="tab" aria-selected="false">
             🏛️ Family Offices &amp; Patrimoine
           </button>
-          <button class="sector-nav-btn" onclick="switchSectorBurst(2)" role="tab" aria-selected="false">
+          <button class="sector-nav-btn" onclick="switchSectorBurst(2, true)" role="tab" aria-selected="false">
             🛡️ Industrie de Défense (CUI)
           </button>
-          <button class="sector-nav-btn" onclick="switchSectorBurst(3)" role="tab" aria-selected="false">
+          <button class="sector-nav-btn" onclick="switchSectorBurst(3, true)" role="tab" aria-selected="false">
             🧬 Santé &amp; Recherche Génomique
           </button>
         </div>

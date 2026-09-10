@@ -78,9 +78,7 @@
             <a href="fr/index.html" class="lang-switch-btn" title="Voir en français" onclick="setUserLanguage('fr')">FR</a>
             <a href="es/index.html" class="lang-switch-btn" title="Ver en Español" onclick="setUserLanguage('es')">ES</a>
           </div>
-          <a href="memo.html" class="btn btn-secondary nav-memo-btn">Invest</a>
-          <button class="btn btn-aurora" onclick="openModal('beta')">Join Beta</button>
-          <button class="btn btn-gold" onclick="openModal('pilot')">Join Pilot</button>
+          <button class="btn btn-aurora" onclick="openModal('beta')">Try Free</button>
           <a href="https://still.bz/" target="_blank" rel="noopener noreferrer" class="nav-xolo-container" title="Still — still.bz" aria-label="Still">
             <img src="assets/images/Xoloitzcuintle_logo_v0.png" alt="Xoloitzcuintle" class="nav-xolo-img">
           </a>
@@ -136,350 +134,44 @@
   </div>
 
 
-  <!-- Editorial Hero Section (Sid Lee Inspired) -->
-  <section class="editorial-section" style="background: radial-gradient(circle at 50% 12%, rgba(20, 36, 26, 0.5) 0%, rgba(10, 15, 12, 0.98) 75%); padding-top: 140px; padding-bottom: 90px;">
+  <!-- Dead-Simple Homepage (Grandparents & Everyday Public) -->
+  <main class="dead-simple-hero">
     <div class="container">
-      <div style="max-width: 1040px; margin: 0 auto; text-align: center;">
-        <div class="editorial-surtitle" style="justify-content: center;">
-          <span>🍁</span> Canadian Sovereign Data Infrastructure · Enterprise File Custody
+      <div class="dead-simple-box">
+        <div class="dead-simple-badge">
+          <span>🍁</span> Simple, Private &amp; 100% Canadian Cloud Storage
         </div>
 
-        <h1 class="editorial-title" style="margin-bottom: 24px;">
-          The cloud has trust issues. <br>
-          <span class="hero-highlight">Your data doesn't need to.</span> <br>
-          <span class="serif-light" style="font-size: 0.62em; font-weight: 400; color: #cbd5e1; display: block; margin-top: 8px;">Sovereign Enterprise Cloud Storage.</span>
+        <h1 class="dead-simple-h1">
+          Your private photos, documents, and memories don’t belong in big tech’s hands.
         </h1>
 
-        <p class="editorial-lead" style="margin: 0 auto 32px;">
-          Xolotl delivers the familiar desktop sync your teams already use—backed by uncoercible multi-jurisdictional threshold encryption. Zero foreign cloud custody. No single entity, court order, or ransomware attack can access your plaintext.
+        <p class="dead-simple-lead">
+          Xolotl is personal cloud storage that works just like the normal folders already on your computer and phone. Only you hold the key—no corporation, no stranger, and not even us can ever see what you store. There is nothing complicated to learn, and no computer expertise required. Protected right here in Canada, powered by clean energy, and owned by the everyday people who use it.
         </p>
 
-        <!-- Hero Actions -->
-        <div style="display: flex; gap: 16px; align-items: center; justify-content: center; flex-wrap: wrap; margin-bottom: 32px;">
-          <button class="btn btn-aurora" onclick="openModal('pilot')" style="font-size: 1.05rem; padding: 16px 36px;">
-            Request Institutional Clearance &nbsp;→
+        <span class="dead-simple-punchline">
+          Keep what matters safe, private, and truly yours.
+        </span>
+
+        <div class="dead-simple-actions">
+          <button class="btn btn-aurora" onclick="openModal('beta')" style="font-size: 1.12rem; padding: 16px 36px; border-radius: 12px;">
+            Try Xolotl Free &nbsp;→
           </button>
-          <a href="#blueprints" class="btn btn-secondary" style="font-size: 1.02rem; padding: 16px 28px;">
-            Explore Blueprints &nbsp;↓
+          <a href="about.html" class="btn btn-secondary" style="font-size: 1.05rem; padding: 16px 28px; border-radius: 12px;">
+            How It Works &nbsp;→
           </a>
         </div>
 
-        <!-- Trust Credentials Bar -->
-        <div style="display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; font-family: var(--font-mono); font-size: 0.78rem; color: #94a3b8; padding-top: 4px;">
-          <span>✓ 100% Canadian Data Residency</span>
-          <span>✓ Zero SaaS Key Custody</span>
-          <span>✓ PIPEDA &amp; Law 25 Adequacy</span>
-          <span>✓ FIPS 140-3 Validated</span>
-        </div>
-
-        <!-- Sid Lee Inspired Showcase Index Menu -->
-        <div class="showcase-index-grid">
-          <a href="#imperative" class="showcase-index-item">
-            <span class="showcase-index-num">01 // EXTRACTED RISK</span>
-            <div class="showcase-index-label">
-              <span>The Sovereign Imperative</span>
-              <span class="showcase-index-arrow">→</span>
-            </div>
-          </a>
-
-          <a href="#enclaves" class="showcase-index-item">
-            <span class="showcase-index-num">02 // CURATED WORK</span>
-            <div class="showcase-index-label">
-              <span>Institutional Enclaves</span>
-              <span class="showcase-index-arrow">→</span>
-            </div>
-          </a>
-
-          <a href="#cooperative" class="showcase-index-item">
-            <span class="showcase-index-num">03 // FIDUCIARY CORE</span>
-            <div class="showcase-index-label">
-              <span>The Canadian Bedrock</span>
-              <span class="showcase-index-arrow">→</span>
-            </div>
-          </a>
-
-          <a href="#blueprints" class="showcase-index-item">
-            <span class="showcase-index-num">04 // OPEN ACCESS</span>
-            <div class="showcase-index-label">
-              <span>Technical Blueprints</span>
-              <span class="showcase-index-arrow">→</span>
-            </div>
-          </a>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Collection N°1: The Sovereign Imperative -->
-  <section id="imperative" class="editorial-section">
-    <div class="container">
-      <div style="max-width: 920px;">
-        <div class="editorial-surtitle">Collection N°1 // The Sovereign Imperative</div>
-        <h2 class="editorial-title">No Foreign Keys.<br>No Subpoena Overreach.</h2>
-        <p class="editorial-lead">
-          Under 18 U.S.C. § 2713 (The US CLOUD Act), foreign hyperscalers are legally compelled to disclose client data anywhere on Earth upon domestic court order.
-        </p>
-        <p class="editorial-body">
-          Plaintext encryption keys managed in foreign cloud accounts waive attorney-client privilege and commercial secrecy without your knowledge or consent. Xolotl breaks the pattern: files are fragmented into blinded threshold polynomial shares across Canada, Belize, and Switzerland. Even under direct court order, no single entity possesses the key to surrender.
-        </p>
-      </div>
-
-      <!-- High-Contrast Editorial Split Monolith -->
-      <div class="editorial-split-grid">
-        <div class="editorial-split-card risk">
-          <div>
-            <div class="split-card-header">
-              <span style="font-family: var(--font-mono); font-size: 0.74rem; color: #f87171;">CONVENTIONAL PUBLIC CLOUD</span>
-              <span class="split-badge risk">Extraterritorial Risk</span>
-            </div>
-            <h3 class="split-card-title">Convenient Collaboration With Zero Legal Defense.</h3>
-            <p class="split-card-p">
-              When master keys reside on foreign cloud servers, foreign parent corporate jurisdiction overrides domestic residency promises. FISA and CLOUD Act warrants compel silent turnover of privileged enterprise data.
-            </p>
-          </div>
-          <div class="split-card-footer risk">
-            ✕ CRITICAL EXPOSURE: ZERO JURISDICTIONAL IMMUNITY
-          </div>
-        </div>
-
-        <div class="editorial-split-card sovereign">
-          <div>
-            <div class="split-card-header">
-              <span style="font-family: var(--font-mono); font-size: 0.74rem; color: var(--accent-gold-light);">THE CANADIAN SHIELD ENCLAVE</span>
-              <span class="split-badge sovereign">Mathematical Immunity</span>
-            </div>
-            <h3 class="split-card-title">Familiar Desktop Sync With Uncoercible Proof.</h3>
-            <p class="split-card-p">
-              Every document is shredded locally into blinded polynomial shares before egress. Reassembly requires an independent multi-jurisdictional quorum. 100% member-owned Canadian cooperative bedrock.
-            </p>
-          </div>
-          <div class="split-card-footer sovereign">
-            ✓ VERIFIED IMMUNITY: MATHEMATICALLY UNCOERCIBLE
-          </div>
+        <div class="dead-simple-reassurance">
+          <span>🔒 Only you hold the key</span>
+          <span>📁 Works like your normal folders</span>
+          <span>🍁 100% Canadian &amp; community-owned</span>
         </div>
       </div>
     </div>
-  </section>
+  </main>
 
-  <!-- Collection N°2: Curated Institutional Enclaves -->
-  <section id="enclaves" class="editorial-section">
-    <div class="container">
-      <div style="max-width: 920px; margin-bottom: 50px;">
-        <div class="editorial-surtitle">Collection N°2 // Institutional Enclaves</div>
-        <h2 class="editorial-title">Curated Jurisdictional Showcases.</h2>
-        <p class="editorial-lead">
-          High-consequence organizations cannot rely on consumer cloud terms of service. Xolotl engineers dedicated sovereign enclaves for domains where failure is not an option.
-        </p>
-      </div>
-
-      <!-- Showcase 01: Law & M&A -->
-      <div class="showcase-publication-card">
-        <div class="showcase-publication-media">
-          <img src="assets/images/canadian_vault_bedrock.jpg" alt="Sovereign Privilege Vault Bedrock" loading="lazy">
-        </div>
-        <div class="showcase-publication-content">
-          <div class="showcase-publication-client">For Cross-Border Litigation &amp; M&amp;A</div>
-          <h3 class="showcase-publication-title">The Privilege Vault</h3>
-          <p class="showcase-publication-desc">
-            During high-stakes cross-border acquisitions and contentious litigation, storing deal rooms on US cloud hyperscalers waives legal privilege under foreign discovery. We engineered zero-knowledge threshold enclaves that keep work product mathematically insulated from foreign subpoenas.
-          </p>
-          <div class="showcase-publication-tags">
-            <span class="showcase-publication-tag">LEGAL PRIVILEGE CUSTODY</span>
-            <span class="showcase-publication-tag">CLOUD ACT IMMUNE</span>
-            <span class="showcase-publication-tag">M&amp;A DEAL ROOMS</span>
-          </div>
-          <button class="showcase-publication-action" onclick="openPilotForSector('legal')">
-            Request Legal Enclave Clearance &nbsp;→
-          </button>
-        </div>
-      </div>
-
-      <!-- Showcase 02: Family Offices -->
-      <div class="showcase-publication-card">
-        <div class="showcase-publication-media">
-          <img src="assets/images/canadian_shield_twilight.jpg" alt="Canadian Shield Twilight Bedrock" loading="lazy">
-        </div>
-        <div class="showcase-publication-content">
-          <div class="showcase-publication-client">For Sovereign Family Offices &amp; Wealth</div>
-          <h3 class="showcase-publication-title">Generational Bedrock</h3>
-          <p class="showcase-publication-desc">
-            Family offices safeguarding deeds, trusts, private equity registers, and cryptographic reserves cannot risk corporate deplatforming or foreign policy sanctions. Owned 100% as an independent Canadian cooperative, Xolotl provides perpetual multi-decade custody anchored in Precambrian granite.
-          </p>
-          <div class="showcase-publication-tags">
-            <span class="showcase-publication-tag">GENERATIONAL CUSTODY</span>
-            <span class="showcase-publication-tag">CANNOT BE ACQUIRED</span>
-            <span class="showcase-publication-tag">PRECAMBRIAN GRANITE</span>
-          </div>
-          <button class="showcase-publication-action" onclick="openPilotForSector('banking')">
-            Request Wealth Vault Clearance &nbsp;→
-          </button>
-        </div>
-      </div>
-
-      <!-- Showcase 03: Defense & CUI -->
-      <div class="showcase-publication-card">
-        <div class="showcase-publication-media">
-          <img src="assets/images/sovereign_defense_matrix.jpg" alt="Sovereign Defense Matrix Cryptography" loading="lazy">
-        </div>
-        <div class="showcase-publication-content">
-          <div class="showcase-publication-client">For Defense Industrial Base &amp; CUI</div>
-          <h3 class="showcase-publication-title">Sovereign AirLock</h3>
-          <p class="showcase-publication-desc">
-            Defense contractors handling Controlled Unclassified Information (CUI) under CMMC 2.0 Level 2 and ITAR face millions in legacy GovCloud licensing fees. Xolotl delivers FIPS-validated cryptography, tamper-evident audit trails, and zero SaaS key custody with ordinary desktop sync ergonomics.
-          </p>
-          <div class="showcase-publication-tags">
-            <span class="showcase-publication-tag">CMMC 2.0 LEVEL 2</span>
-            <span class="showcase-publication-tag">ITAR ADEQUACY</span>
-            <span class="showcase-publication-tag">FIPS VALIDATED</span>
-          </div>
-          <button class="showcase-publication-action" onclick="openPilotForSector('defense')">
-            Request Defense Enclave Clearance &nbsp;→
-          </button>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Collection N°3: The Canadian Cooperative Manifesto -->
-  <section id="cooperative" class="editorial-section" style="background: rgba(10, 16, 12, 0.65);">
-    <div class="container">
-      <div style="max-width: 920px;">
-        <div class="editorial-surtitle">Collection N°3 // The Canadian Cooperative</div>
-        <h2 class="editorial-title">A Fiduciary Cooperative,<br>Not a Surveillance Platform.</h2>
-        <p class="editorial-lead">
-          You cannot buy digital sovereignty from a Silicon Valley corporation beholden to foreign stock markets. Fiduciary custody requires structural independence.
-        </p>
-        <p class="editorial-body">
-          Xolotl is incorporated in Canada as an independent, member-owned cooperative. Our architecture is mathematically incapable of monetizing your telemetry, selling backdoors, or complying with foreign administrative warrants.
-        </p>
-      </div>
-
-      <div class="manifesto-pillars-grid">
-        <div class="manifesto-pillar">
-          <div class="pillar-num">01</div>
-          <h3 class="pillar-title">Member-Owned Cooperative</h3>
-          <p class="pillar-desc">
-            Governed under Canadian federal and provincial cooperative law. It cannot be acquired by Microsoft, pressurized by foreign stock markets, or compelled to create backdoors.
-          </p>
-        </div>
-
-        <div class="manifesto-pillar">
-          <div class="pillar-num">02</div>
-          <h3 class="pillar-title">Zero SaaS Plaintext Custody</h3>
-          <p class="pillar-desc">
-            Our storage core holds exclusively blinded polynomial shards and zero decryption keys. Even under court subpoena, our officers cannot produce your plaintext because it is mathematically impossible.
-          </p>
-        </div>
-
-        <div class="manifesto-pillar">
-          <div class="pillar-num">03</div>
-          <h3 class="pillar-title">93-Day Hardware WORM Lock</h3>
-          <p class="pillar-desc">
-            Hardware-enforced Write Once, Read Many retention guarantees that ransomware wipers cannot overwrite your backup history, enabling instant second-level rollback.
-          </p>
-        </div>
-
-        <div class="manifesto-pillar">
-          <div class="pillar-num">04</div>
-          <h3 class="pillar-title">Precambrian Bedrock Core</h3>
-          <p class="pillar-desc">
-            Hosted on Canadian sovereign infrastructure anchored into ancient Precambrian granite in Montreal and Winnipeg, powered 100% by clean domestic hydro-electricity.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Collection N°4: The Blueprints (Giving the Owner Control) -->
-  <section id="blueprints" class="editorial-section">
-    <div class="container">
-      <div style="max-width: 920px;">
-        <div class="editorial-surtitle">Collection N°4 // The Blueprints</div>
-        <h2 class="editorial-title">Explore the Foundation.</h2>
-        <p class="editorial-lead">
-          Inspect our architectural specifications, historical roots, investor deck, or real-time network telemetry at your own pace.
-        </p>
-      </div>
-
-      <div class="blueprints-grid">
-        <a href="architecture.html" class="blueprint-card">
-          <div class="blueprint-icon">📐</div>
-          <div class="blueprint-title">
-            <span>Technical Architecture</span>
-            <span>↗</span>
-          </div>
-          <p class="blueprint-desc">
-            Inspect the 3-Layer Hybrid Edge specifications, Pedersen DKG ceremonies, and Threshold ElGamal zero-knowledge proofs.
-          </p>
-          <div class="blueprint-link">Read Architecture Specs &rarr;</div>
-        </a>
-
-        <a href="about.html" class="blueprint-card">
-          <div class="blueprint-icon">📜</div>
-          <div class="blueprint-title">
-            <span>Origins &amp; Roots</span>
-            <span>↗</span>
-          </div>
-          <p class="blueprint-desc">
-            The journey from Gales Point Manatee and the Red River to Montreal bedrock. Why biological resilience beats brittle security.
-          </p>
-          <div class="blueprint-link">Explore Origins &amp; Roots &rarr;</div>
-        </a>
-
-        <a href="deck.html" class="blueprint-card">
-          <div class="blueprint-icon">📊</div>
-          <div class="blueprint-title">
-            <span>14-Slide Investor Deck</span>
-            <span>↗</span>
-          </div>
-          <p class="blueprint-desc">
-            Interactive presentation covering market opportunity, unit economics, regulatory moats, and deployment roadmap.
-          </p>
-          <div class="blueprint-link">Launch Slide Deck &rarr;</div>
-        </a>
-
-        <a href="network.html" class="blueprint-card">
-          <div class="blueprint-icon">🌐</div>
-          <div class="blueprint-title">
-            <span>Live Network Explorer</span>
-            <span>↗</span>
-          </div>
-          <p class="blueprint-desc">
-            Real-time node telemetry, cluster distribution, and jurisdictional transit mapping linking international enclaves.
-          </p>
-          <div class="blueprint-link">Open Telemetry Map &rarr;</div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Institutional Clearance Monolith -->
-  <section class="container" style="padding: clamp(60px, 8vw, 95px) 0 clamp(80px, 10vw, 120px);">
-    <div class="clearance-monolith">
-      <div style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--accent-gold); letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 12px;">
-        // JURISDICTIONAL IMMUNITY ON DEMAND
-      </div>
-      <h2 style="font-size: clamp(2rem, 4vw, 2.8rem); color: #FFFFFF; margin-bottom: 16px; font-weight: 800; line-height: 1.15;">
-        Deploy the Sovereign Shield.
-      </h2>
-      <p style="max-width: 680px; margin: 0 auto 32px; color: var(--text-warm-gray); font-size: 1.08rem; line-height: 1.65;">
-        Clearance for regulated law firms, family offices, defense subcontractors, and enterprise enclaves. Direct executive contact with our Canadian leadership.
-      </p>
-      <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
-        <button class="btn btn-aurora" onclick="openModal('pilot')" style="font-size: 1.05rem; padding: 16px 36px;">
-          Request Institutional Clearance &nbsp;→
-        </button>
-        <button class="btn btn-secondary" onclick="openModal('beta')" style="font-size: 1.05rem; padding: 16px 32px;">
-          Join Sovereign Beta &nbsp;→
-        </button>
-      </div>
-      <div style="margin-top: 28px; font-size: 0.94rem; color: var(--text-warm-gray);">
-        Direct Executive Contact: <a href="mailto:cooperate@xolotl.ca" style="color: var(--accent-gold-light); font-weight: 600; text-decoration: underline;">cooperate@xolotl.ca</a> &bull; Montreal &amp; Winnipeg, Canada
-      </div>
-    </div>
-  </section>
 
 
 

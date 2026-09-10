@@ -78,9 +78,7 @@
             <a href="../fr/index.html" class="lang-switch-btn" title="Voir en français" onclick="setUserLanguage('fr')">FR</a>
             <a href="index.html" class="lang-switch-btn active" aria-current="page" onclick="setUserLanguage('es')">ES</a>
           </div>
-          <a href="memo.html" class="btn btn-secondary nav-memo-btn">Invertir</a>
-          <button class="btn btn-aurora" onclick="openModal('beta')">Unirse a la Beta</button>
-          <button class="btn btn-gold" onclick="openModal('pilot')">Unirse al Piloto</button>
+          <button class="btn btn-aurora" onclick="openModal('beta')">Probar gratis</button>
           <a href="https://still.bz/" target="_blank" rel="noopener noreferrer" class="nav-xolo-container" title="Still — still.bz" aria-label="Still">
             <img src="../assets/images/Xoloitzcuintle_logo_v0.png" alt="Xoloitzcuintle" class="nav-xolo-img">
           </a>
@@ -136,350 +134,44 @@
   </div>
 
 
-  <!-- Editorial Hero Section (Sid Lee Inspired) -->
-  <section class="editorial-section" style="background: radial-gradient(circle at 50% 12%, rgba(20, 36, 26, 0.5) 0%, rgba(10, 15, 12, 0.98) 75%); padding-top: 140px; padding-bottom: 90px;">
+  <!-- Dead-Simple Homepage (Grandparents & Everyday Public) -->
+  <main class="dead-simple-hero">
     <div class="container">
-      <div style="max-width: 1040px; margin: 0 auto; text-align: center;">
-        <div class="editorial-surtitle" style="justify-content: center;">
-          <span>🍁</span> Infraestructura Digital Soberana Canadiense · Custodia de Archivos Corporativos
+      <div class="dead-simple-box">
+        <div class="dead-simple-badge">
+          <span>🍁</span> Almacenamiento en la nube simple, privado y 100 % canadiense
         </div>
 
-        <h1 class="editorial-title" style="margin-bottom: 24px;">
-          La nube tiene problemas de confianza. <br>
-          <span class="hero-highlight">Sus datos no tienen por qué tenerlos.</span> <br>
-          <span class="serif-light" style="font-size: 0.62em; font-weight: 400; color: #cbd5e1; display: block; margin-top: 8px;">Almacenamiento Soberano en la Nube para Empresas.</span>
+        <h1 class="dead-simple-h1">
+          Tus fotos familiares, documentos y recuerdos privados no le pertenecen a las grandes empresas tecnológicas.
         </h1>
 
-        <p class="editorial-lead" style="margin: 0 auto 32px;">
-          Xolotl ofrece la sincronización de escritorio fluida que sus equipos ya dominan &mdash; respaldada por un cifrado multijurisdiccional incoercible. Cero custodia de claves en la nube extranjera. Ninguna entidad, orden judicial foránea o ataque de ransomware puede acceder a sus datos en texto claro.
+        <p class="dead-simple-lead">
+          Xolotl es un almacenamiento personal en la nube que funciona exactamente como las carpetas que ya conoces en tu computadora y teléfono. Solo tú tienes la llave: ninguna corporación, ningún extraño, y ni siquiera nosotros podemos ver lo que guardas. No hay nada complicado que aprender, ni se necesitan conocimientos técnicos. Protegido aquí mismo en Canadá, impulsado por energía limpia y propiedad de las personas que lo utilizan.
         </p>
 
-        <!-- Hero Actions -->
-        <div style="display: flex; gap: 16px; align-items: center; justify-content: center; flex-wrap: wrap; margin-bottom: 32px;">
-          <button class="btn btn-aurora" onclick="openModal('pilot')" style="font-size: 1.05rem; padding: 16px 36px;">
-            Solicitar Habilitación Institucional &nbsp;→
+        <span class="dead-simple-punchline">
+          Mantén lo que más importa seguro, privado y verdaderamente tuyo.
+        </span>
+
+        <div class="dead-simple-actions">
+          <button class="btn btn-aurora" onclick="openModal('beta')" style="font-size: 1.12rem; padding: 16px 36px; border-radius: 12px;">
+            Probar Xolotl gratis &nbsp;→
           </button>
-          <a href="#blueprints" class="btn btn-secondary" style="font-size: 1.02rem; padding: 16px 28px;">
-            Explorar los Planos &nbsp;↓
+          <a href="about.html" class="btn btn-secondary" style="font-size: 1.05rem; padding: 16px 28px; border-radius: 12px;">
+            Cómo funciona &nbsp;→
           </a>
         </div>
 
-        <!-- Trust Credentials Bar -->
-        <div style="display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; font-family: var(--font-mono); font-size: 0.78rem; color: #94a3b8; padding-top: 4px;">
-          <span>✓ Residencia de Datos 100% Canadiense</span>
-          <span>✓ Cero Custodia de Claves en SaaS</span>
-          <span>✓ Cumplimiento PIPEDA y Ley 25 de Quebec</span>
-          <span>✓ Validado FIPS 140-3</span>
-        </div>
-
-        <!-- Sid Lee Inspired Showcase Index Menu -->
-        <div class="showcase-index-grid">
-          <a href="#imperative" class="showcase-index-item">
-            <span class="showcase-index-num">01 // RIESGO EXTRATERRITORIAL</span>
-            <div class="showcase-index-label">
-              <span>El Imperativo Soberano</span>
-              <span class="showcase-index-arrow">→</span>
-            </div>
-          </a>
-
-          <a href="#enclaves" class="showcase-index-item">
-            <span class="showcase-index-num">02 // VITRINA DE ENCLAVES</span>
-            <div class="showcase-index-label">
-              <span>Enclaves Institucionales</span>
-              <span class="showcase-index-arrow">→</span>
-            </div>
-          </a>
-
-          <a href="#cooperative" class="showcase-index-item">
-            <span class="showcase-index-num">03 // NÚCLEO FIDUCIARIO</span>
-            <div class="showcase-index-label">
-              <span>La Base Cooperativa Canadiense</span>
-              <span class="showcase-index-arrow">→</span>
-            </div>
-          </a>
-
-          <a href="#blueprints" class="showcase-index-item">
-            <span class="showcase-index-num">04 // ACCESO ABIERTO</span>
-            <div class="showcase-index-label">
-              <span>Planos Arquitectónicos</span>
-              <span class="showcase-index-arrow">→</span>
-            </div>
-          </a>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Collection N°1: El Imperativo Soberano -->
-  <section id="imperative" class="editorial-section">
-    <div class="container">
-      <div style="max-width: 920px;">
-        <div class="editorial-surtitle">Colección N°1 // El Imperativo Soberano</div>
-        <h2 class="editorial-title">Sin Claves Extranjeras.<br>Sin Extralimitación Judicial.</h2>
-        <p class="editorial-lead">
-          Bajo el artículo 2713 del Título 18 del Código de EE. UU. (la Ley CLOUD Act), los gigantes tecnológicos extranjeros están legalmente obligados a entregar los datos de sus clientes en cualquier parte del planeta ante una orden judicial estadounidense.
-        </p>
-        <p class="editorial-body">
-          Las claves de cifrado gestionadas en cuentas de nube foráneas anulan de inmediato el secreto profesional entre abogado y cliente y la confidencialidad comercial, sin su conocimiento ni consentimiento. Xolotl rompe este patrón: los archivos se fragmentan en partes polinómicas ciegas distribuidas entre Canadá, Belice y Suiza. Incluso ante una orden judicial directa, ninguna entidad posee por sí sola la clave para entregar sus datos en claro.
-        </p>
-      </div>
-
-      <!-- High-Contrast Editorial Split Monolith -->
-      <div class="editorial-split-grid">
-        <div class="editorial-split-card risk">
-          <div>
-            <div class="split-card-header">
-              <span style="font-family: var(--font-mono); font-size: 0.74rem; color: #f87171;">NUBE PÚBLICA CONVENCIONAL</span>
-              <span class="split-badge risk">Riesgo Extraterritorial</span>
-            </div>
-            <h3 class="split-card-title">Colaboración Práctica Sin Defensa Jurídica.</h3>
-            <p class="split-card-p">
-              When las claves maestras residen en servidores de nube foráneos, la jurisdicción corporativa de la casa matriz prevalece sobre las promesas locales de residencia de datos. Las órdenes judiciales FISA y CLOUD Act obligan a la entrega secreta de información corporativa protegida.
-            </p>
-          </div>
-          <div class="split-card-footer risk">
-            ✕ EXPOSICIÓN CRÍTICA: CERO INMUNIDAD JURISDICCIONAL
-          </div>
-        </div>
-
-        <div class="editorial-split-card sovereign">
-          <div>
-            <div class="split-card-header">
-              <span style="font-family: var(--font-mono); font-size: 0.74rem; color: #accent-gold-light;">EL ENCLAVE DEL ESCUDO CANADIENSE</span>
-              <span class="split-badge sovereign">Inmunidad Matemática</span>
-            </div>
-            <h3 class="split-card-title">Sincronización de Escritorio Fluida e Incoercible.</h3>
-            <p class="split-card-p">
-              Cada documento es cifrado y fragmentado localmente en partes polinómicas ciegas antes de cualquier transmisión. La reconstrucción exige el consenso de un cuórum multijurisdiccional independiente. Base cooperativa canadiense 100% propiedad de sus miembros.
-            </p>
-          </div>
-          <div class="split-card-footer sovereign">
-            ✓ INMUNIDAD VERIFICADA: MATEMÁTICAMENTE INCOERCIBLE
-          </div>
+        <div class="dead-simple-reassurance">
+          <span>🔒 Solo tú tienes la llave</span>
+          <span>📁 Funciona como tus carpetas normales</span>
+          <span>🍁 100 % canadiense y cooperativo</span>
         </div>
       </div>
     </div>
-  </section>
+  </main>
 
-  <!-- Collection N°2: Enclaves Institucionales -->
-  <section id="enclaves" class="editorial-section">
-    <div class="container">
-      <div style="max-width: 920px; margin-bottom: 50px;">
-        <div class="editorial-surtitle">Colección N°2 // Enclaves Institucionales</div>
-        <h2 class="editorial-title">Vitrinas Jurisdiccionales Específicas.</h2>
-        <p class="editorial-lead">
-          Las organizaciones de alto impacto no pueden depender de los términos de servicio de la nube de consumo. Xolotl diseña enclaves soberanos dedicados para ámbitos donde el fallo no es una opción.
-        </p>
-      </div>
-
-      <!-- Showcase 01: Law & M&A -->
-      <div class="showcase-publication-card">
-        <div class="showcase-publication-media">
-          <img src="../assets/images/canadian_vault_bedrock.jpg" alt="Cimientos de la Bóveda del Secreto Profesional" loading="lazy">
-        </div>
-        <div class="showcase-publication-content">
-          <div class="showcase-publication-client">Para Despachos Legales &amp; Fusiones y Adquisiciones</div>
-          <h3 class="showcase-publication-title">La Bóveda del Secreto Profesional</h3>
-          <p class="showcase-publication-desc">
-            Durante fusiones transfronterizas de alto riesgo y litigios contenciosos complejos, alojar salas de datos en proveedores estadounidenses expone las pruebas al descubrimiento judicial foráneo. Diseñamos enclaves de conocimiento cero que aíslan matemáticamente el trabajo de los equipos legales frente a órdenes judiciales extranjeras.
-          </p>
-          <div class="showcase-publication-tags">
-            <span class="showcase-publication-tag">SECRETO PROFESIONAL</span>
-            <span class="showcase-publication-tag">INMUNIDAD CLOUD ACT</span>
-            <span class="showcase-publication-tag">SALAS DE DATOS M&amp;A</span>
-          </div>
-          <button class="showcase-publication-action" onclick="openPilotForSector('legal')">
-            Solicitar Habilitación Legal &nbsp;→
-          </button>
-        </div>
-      </div>
-
-      <!-- Showcase 02: Family Offices -->
-      <div class="showcase-publication-card">
-        <div class="showcase-publication-media">
-          <img src="../assets/images/canadian_shield_twilight.jpg" alt="Crepúsculo en el Escudo Canadiense" loading="lazy">
-        </div>
-        <div class="showcase-publication-content">
-          <div class="showcase-publication-client">Para Family Offices &amp; Gestión Patrimonial</div>
-          <h3 class="showcase-publication-title">El Cimiento Generacional</h3>
-          <p class="showcase-publication-desc">
-            Las oficinas familiares que custodian escrituras de propiedad, fideicomisos sucesorios, registros de accionistas y activos criptográficos privados no pueden arriesgarse a bloqueos unilaterales corporativos o sanciones geopolíticas. Constituida como cooperativa canadiense independiente, Xolotl brinda custodia multidecenal anclada en granito precámbrico.
-          </p>
-          <div class="showcase-publication-tags">
-            <span class="showcase-publication-tag">CUSTODIA GENERACIONAL</span>
-            <span class="showcase-publication-tag">NO PUEDE SER ADQUIRIDO</span>
-            <span class="showcase-publication-tag">GRANITO PRECÁMBRICO</span>
-          </div>
-          <button class="showcase-publication-action" onclick="openPilotForSector('banking')">
-            Solicitar Habilitación Patrimonial &nbsp;→
-          </button>
-        </div>
-      </div>
-
-      <!-- Showcase 03: Defense & CUI -->
-      <div class="showcase-publication-card">
-        <div class="showcase-publication-media">
-          <img src="../assets/images/sovereign_defense_matrix.jpg" alt="Matriz Criptográfica de Defensa Soberana" loading="lazy">
-        </div>
-        <div class="showcase-publication-content">
-          <div class="showcase-publication-client">Para la Base Industrial de Defensa &amp; CUI</div>
-          <h3 class="showcase-publication-title">La Esclusa Soberana</h3>
-          <p class="showcase-publication-desc">
-            Los contratistas de defensa que administran Información No Clasificada Controlada (CUI) bajo CMMC 2.0 Nivel 2 e ITAR afrontan licencias anuales desmesuradas en nubes gubernamentales heredadas. Xolotl ofrece criptografía validada FIPS, pistas de auditoría infalsificables y cero custodia de claves en la nube con la simplicidad de una carpeta local de escritorio.
-          </p>
-          <div class="showcase-publication-tags">
-            <span class="showcase-publication-tag">CMMC 2.0 NIVEL 2</span>
-            <span class="showcase-publication-tag">CUMPLIMIENTO ITAR</span>
-            <span class="showcase-publication-tag">VALIDADO FIPS</span>
-          </div>
-          <button class="showcase-publication-action" onclick="openPilotForSector('defense')">
-            Solicitar Habilitación de Defensa &nbsp;→
-          </button>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Collection N°3: El Manifiesto Cooperativo Canadiense -->
-  <section id="cooperative" class="editorial-section" style="background: rgba(10, 16, 12, 0.65);">
-    <div class="container">
-      <div style="max-width: 920px;">
-        <div class="editorial-surtitle">Colección N°3 // La Cooperativa Canadiense</div>
-        <h2 class="editorial-title">Una Cooperativa Fiduciaria,<br>No una Plataforma de Vigilancia.</h2>
-        <p class="editorial-lead">
-          No es posible adquirir soberanía digital genuina de una corporación de Silicon Valley subordinada a los mercados bursátiles extranjeros. La custodia fiduciaria requiere independencia estructural.
-        </p>
-        <p class="editorial-body">
-          Xolotl está constituida en Canadá como una cooperativa independiente, propiedad exclusiva de sus miembros. Nuestra arquitectura es matemáticamente incapaz de comercializar su telemetría, implementar puertas traseras o acatar órdenes administrativas foráneas sin fundamento de tratados formales.
-        </p>
-      </div>
-
-      <div class="manifesto-pillars-grid">
-        <div class="manifesto-pillar">
-          <div class="pillar-num">01</div>
-          <h3 class="pillar-title">Cooperativa de Miembros</h3>
-          <p class="pillar-desc">
-            Gobernada bajo las leyes cooperativas canadienses. No puede ser adquirida por Microsoft, coaccionada por mercados de valores extranjeros ni obligada a insertar puertas traseras.
-          </p>
-        </div>
-
-        <div class="manifesto-pillar">
-          <div class="pillar-num">02</div>
-          <h3 class="pillar-title">Cero Texto en Claro en SaaS</h3>
-          <p class="pillar-desc">
-            Nuestro núcleo de almacenamiento solo conserva fragmentos polinómicos ciegos y ninguna clave de descifrado. Incluso bajo citación judicial, es matemáticamente imposible entregar sus archivos en claro.
-          </p>
-        </div>
-
-        <div class="manifesto-pillar">
-          <div class="pillar-num">03</div>
-          <h3 class="pillar-title">Bloqueo WORM Físico 93 Días</h3>
-          <p class="pillar-desc">
-            La retención Write Once, Read Many aplicada por hardware garantiza que ningún ransomware pueda sobrescribir su historial de respaldos, permitiendo restauraciones inmediatas al segundo.
-          </p>
-        </div>
-
-        <div class="manifesto-pillar">
-          <div class="pillar-num">04</div>
-          <h3 class="pillar-title">Cimiento Precámbrico y Energía Limpia</h3>
-          <p class="pillar-desc">
-            Alojada en infraestructura soberana anclada en el zócalo de granito precámbrico de Montreal y Winnipeg, impulsada al 100% por hidroelectricidad limpia canadiense.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Collection N°4: Los Planos Arquitectónicos (Dar el Control al Usuario) -->
-  <section id="blueprints" class="editorial-section">
-    <div class="container">
-      <div style="max-width: 920px;">
-        <div class="editorial-surtitle">Colección N°4 // Los Planos</div>
-        <h2 class="editorial-title">Explore los Fundamentos.</h2>
-        <p class="editorial-lead">
-          Examine nuestras especificaciones técnicas, raíces históricas, presentación para inversores o telemetría de red en tiempo real a su propio ritmo.
-        </p>
-      </div>
-
-      <div class="blueprints-grid">
-        <a href="architecture.html" class="blueprint-card">
-          <div class="blueprint-icon">📐</div>
-          <div class="blueprint-title">
-            <span>Arquitectura Técnica</span>
-            <span>↗</span>
-          </div>
-          <p class="blueprint-desc">
-            Examine las especificaciones del Borde Híbrido en 3 Capas, ceremonias Pedersen DKG y pruebas criptográficas de conocimiento cero.
-          </p>
-          <div class="blueprint-link">Consultar Arquitectura &rarr;</div>
-        </a>
-
-        <a href="about.html" class="blueprint-card">
-          <div class="blueprint-icon">📜</div>
-          <div class="blueprint-title">
-            <span>Orígenes y Filosofía</span>
-            <span>↗</span>
-          </div>
-          <p class="blueprint-desc">
-            La trayectoria desde Gales Point Manatee y el Río Rojo hasta el zócalo de Montreal. Por qué la resiliencia biológica supera a la seguridad rígida.
-          </p>
-          <div class="blueprint-link">Explorar Orígenes &rarr;</div>
-        </a>
-
-        <a href="deck.html" class="blueprint-card">
-          <div class="blueprint-icon">📊</div>
-          <div class="blueprint-title">
-            <span>Presentación 14 Diapositivas</span>
-            <span>↗</span>
-          </div>
-          <p class="blueprint-desc">
-            Presentación ejecutiva interactiva que analiza la oportunidad de mercado, economía unitaria, ventajas regulatorias y despliegue.
-          </p>
-          <div class="blueprint-link">Ver Presentación &rarr;</div>
-        </a>
-
-        <a href="../network.html" class="blueprint-card">
-          <div class="blueprint-icon">🌐</div>
-          <div class="blueprint-title">
-            <span>Explorador de Red en Vivo</span>
-            <span>↗</span>
-          </div>
-          <p class="blueprint-desc">
-            Telemetría de nodos en tiempo real, distribución de clústeres y mapa de tránsito jurisdiccional entre enclaves internacionales.
-          </p>
-          <div class="blueprint-link">Abrir Telemetría &rarr;</div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Monolito de Habilitación Institucional -->
-  <section class="container" style="padding: clamp(60px, 8vw, 95px) 0 clamp(80px, 10vw, 120px);">
-    <div class="clearance-monolith">
-      <div style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--accent-gold); letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 12px;">
-        // INMUNIDAD JURISDICCIONAL BAJO DEMANDA
-      </div>
-      <h2 style="font-size: clamp(2rem, 4vw, 2.8rem); color: #FFFFFF; margin-bottom: 16px; font-weight: 800; line-height: 1.15;">
-        Despliegue el Escudo Soberano.
-      </h2>
-      <p style="max-width: 680px; margin: 0 auto 32px; color: var(--text-warm-gray); font-size: 1.08rem; line-height: 1.65;">
-        Habilitación para despachos legales regulados, family offices, contratistas de defensa y enclaves corporativos. Contacto directo con el liderazgo canadiense.
-      </p>
-      <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
-        <button class="btn btn-aurora" onclick="openModal('pilot')" style="font-size: 1.05rem; padding: 16px 36px;">
-          Solicitar Habilitación Institucional &nbsp;→
-        </button>
-        <button class="btn btn-secondary" onclick="openModal('beta')" style="font-size: 1.05rem; padding: 16px 32px;">
-          Unirse a la Beta Soberana &nbsp;→
-        </button>
-      </div>
-      <div style="margin-top: 28px; font-size: 0.94rem; color: var(--text-warm-gray);">
-        Contacto Ejecutivo Directo: <a href="mailto:cooperate@xolotl.ca" style="color: var(--accent-gold-light); font-weight: 600; text-decoration: underline;">cooperate@xolotl.ca</a> &bull; Montreal y Winnipeg, Canadá
-      </div>
-    </div>
-  </section>
 
 
 

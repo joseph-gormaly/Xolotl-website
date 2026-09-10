@@ -4948,5 +4948,122 @@
   }
 }
 
+/* ==============================================================================
+   DEAD-SIMPLE HERO (Human, Warm, 100% Accessible, 5-6 Sentences)
+   ============================================================================== */
+.dead-simple-hero {
+  min-height: calc(100vh - 160px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: clamp(24px, 4vh, 48px) 0 clamp(32px, 5vh, 56px);
+  position: relative;
+}
+
+.dead-simple-box {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: clamp(28px, 4vw, 44px) clamp(20px, 4.5vw, 50px);
+  background: radial-gradient(circle at 50% 10%, rgba(22, 38, 28, 0.78) 0%, rgba(13, 17, 15, 0.95) 80%);
+  border: 1px solid rgba(212, 175, 55, 0.32);
+  border-radius: 24px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65), 0 0 40px rgba(0, 255, 102, 0.05);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.dead-simple-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: clamp(0.72rem, 0.95vw, 0.8rem);
+  color: var(--accent-gold-light);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.32);
+  padding: 5px 16px;
+  border-radius: 999px;
+  margin-bottom: 20px;
+}
+
+.dead-simple-h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.7vw, 3.1rem);
+  font-weight: 800;
+  line-height: 1.16;
+  color: #FFFFFF;
+  margin-bottom: 20px;
+  letter-spacing: -0.01em;
+}
+
+.dead-simple-lead {
+  font-size: clamp(1.02rem, 1.35vw, 1.2rem);
+  line-height: 1.65;
+  color: #E2E8F0;
+  margin: 0 auto 16px;
+  font-weight: 400;
+  max-width: 820px;
+}
+
+.dead-simple-punchline {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1.12rem, 1.45vw, 1.32rem);
+  color: var(--accent-gold-light);
+  margin-bottom: 26px;
+  display: block;
+}
+
+.dead-simple-actions {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 26px;
+}
+
+.dead-simple-reassurance {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.88rem;
+  color: #cbd5e1;
+}
+
+.dead-simple-reassurance span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+@media (max-width: 640px) {
+  .dead-simple-box {
+    padding: 28px 18px;
+    border-radius: 20px;
+  }
+  .dead-simple-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  .dead-simple-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .dead-simple-reassurance {
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+  }
+}
+
+
 
 

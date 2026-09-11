@@ -1187,7 +1187,8 @@ function getClusteredNodes(allNodes, zoom) {
       const isSoOnt1 = isSouthernOntario(n1);
       const isSoOnt2 = isSouthernOntario(n2);
 
-      if ((isSoOnt1 && isSoOnt2) || distKm < 80) {
+      // Aggregate Southern Ontario corridor (Toronto, Mississauga) or nodes within 40km
+      if ((isSoOnt1 && isSoOnt2) || (distKm < 40 && n1.region === n2.region)) {
         visited.add(j);
         cluster.push(n2);
       }
@@ -1199,10 +1200,14 @@ function getClusteredNodes(allNodes, zoom) {
       const avgLon = cluster.reduce((sum, n) => sum + n.lon * (parseInt(n.totalNodes, 10) || 1), 0) / totalCount;
       const cities = cluster.map(n => n.city).filter(Boolean);
 
+      const isSoOnt = cluster.some(n => isSouthernOntario(n));
+      const clusterCityName = isSoOnt ? 'Southern Ontario' : (cluster[0].region ? `${cluster[0].region} Cluster` : `${cities[0]} Region`);
+      const clusterRegion = isSoOnt ? 'Ontario' : (cluster[0].region || '');
+
       clusters.push({
-        id: 'NODE-CLUSTER-SO-ON',
-        city: 'Southern Ontario',
-        region: 'Ontario',
+        id: isSoOnt ? 'NODE-CLUSTER-SO-ON' : `NODE-CLUSTER-${(cluster[0].countryCode || 'CA').toUpperCase()}`,
+        city: clusterCityName,
+        region: clusterRegion,
         country: 'Canada',
         countryCode: 'CA',
         lat: Number(avgLat.toFixed(4)),

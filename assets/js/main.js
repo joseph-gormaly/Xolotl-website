@@ -1491,6 +1491,250 @@ function initMeshRadarTelemetry() {
 
   // 7. Sync live data from Supabase & LocalStorage
   loadMeshTelemetryData();
+
+  // 8. Start Sovereign Packet Flare & Pulse FX Engine
+  initPacketTelemetryFX();
+}
+
+// ==============================================================================
+// SOVEREIGN TELEMETRY PACKET FLARE & PULSE FX ENGINE
+// ==============================================================================
+
+let packetCanvas = null;
+let packetCtx = null;
+let activePackets = [];
+let ambientRipples = [];
+let lastPacketTime = 0;
+let lastAmbientTime = 0;
+let packetAnimFrameId = null;
+
+function triggerNodeArrivalFlash(marker, isSubtle) {
+  if (!marker) return;
+  const el = (typeof marker.getElement === 'function') ? marker.getElement() : null;
+  if (!el) return;
+
+  const core = el.querySelector('.topo-marker-core') || el.querySelector('.topo-monotone-anchor');
+  if (!core) return;
+
+  core.classList.remove('packet-arrived');
+  void core.offsetWidth; // Trigger CSS reflow to re-fire animation
+  core.classList.add('packet-arrived');
+
+  setTimeout(() => {
+    core.classList.remove('packet-arrived');
+  }, 900);
+}
+
+function initPacketTelemetryFX() {
+  const container = document.getElementById('meshRadarMap');
+  if (!container || !topoMap) return;
+
+  if (!packetCanvas) {
+    packetCanvas = document.createElement('canvas');
+    packetCanvas.className = 'topo-packet-canvas';
+    container.appendChild(packetCanvas);
+    packetCtx = packetCanvas.getContext('2d');
+
+    const resizeCanvas = () => {
+      if (!packetCanvas || !container) return;
+      const dpr = window.devicePixelRatio || 1;
+      const rect = container.getBoundingClientRect();
+      if (rect.width === 0 || rect.height === 0) return;
+      packetCanvas.width = rect.width * dpr;
+      packetCanvas.height = rect.height * dpr;
+      packetCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+    topoMap.on('resize moveend zoomend', resizeCanvas);
+  }
+
+  if (!packetAnimFrameId) {
+    packetAnimFrameId = requestAnimationFrame(animatePackets);
+  }
+}
+
+function spawnPacket(now) {
+  if (!topoMapMarkers || topoMapMarkers.length < 2) return;
+
+  const validMarkers = topoMapMarkers.filter(m => {
+    const ll = m.getLatLng();
+    return ll && !isNaN(ll.lat) && !isNaN(ll.lng);
+  });
+
+  if (validMarkers.length < 2) return;
+
+  // Pick random source and distinct destination marker
+  const srcIdx = Math.floor(Math.random() * validMarkers.length);
+  let dstIdx = Math.floor(Math.random() * validMarkers.length);
+  while (dstIdx === srcIdx) {
+    dstIdx = Math.floor(Math.random() * validMarkers.length);
+  }
+
+  const srcM = validMarkers[srcIdx];
+  const dstM = validMarkers[dstIdx];
+
+  const srcLL = srcM.getLatLng();
+  const dstLL = dstM.getLatLng();
+
+  // Gentle, measured flight time: 2.2s to 3.6s based slightly on distance
+  const dLat = dstLL.lat - srcLL.lat;
+  const dLon = dstLL.lng - srcLL.lng;
+  const geoDist = Math.hypot(dLat, dLon);
+  const duration = Math.min(3600, Math.max(2200, 1800 + geoDist * 32));
+
+  activePackets.push({
+    fromLat: srcLL.lat,
+    fromLon: srcLL.lng,
+    toLat: dstLL.lat,
+    toLon: dstLL.lng,
+    targetMarker: dstM,
+    startTime: now,
+    duration: duration,
+    tailSpan: 0.085 // 8.5% trail length
+  });
+}
+
+function spawnAmbientRipple(now) {
+  if (!topoMapMarkers || topoMapMarkers.length === 0) return;
+
+  // 70% chance to pulse on an existing active node, 30% on a random Canadian Shield mesh coordinate
+  if (Math.random() < 0.7) {
+    const m = topoMapMarkers[Math.floor(Math.random() * topoMapMarkers.length)];
+    const ll = m.getLatLng();
+    ambientRipples.push({
+      lat: ll.lat,
+      lon: ll.lng,
+      maxRadius: 24,
+      duration: 1800,
+      startTime: now
+    });
+    triggerNodeArrivalFlash(m, true);
+  } else {
+    // Random Canadian coordinates
+    const lat = 46.5 + Math.random() * 12;
+    const lon = -112 + Math.random() * 38;
+    ambientRipples.push({
+      lat: lat,
+      lon: lon,
+      maxRadius: 18,
+      duration: 2000,
+      startTime: now
+    });
+  }
+}
+
+function animatePackets(now) {
+  if (!packetCtx || !packetCanvas || !topoMap) {
+    packetAnimFrameId = requestAnimationFrame(animatePackets);
+    return;
+  }
+
+  const w = packetCanvas.clientWidth;
+  const h = packetCanvas.clientHeight;
+  packetCtx.clearRect(0, 0, w, h);
+
+  // 1. Packet Spawning: exactly 1 packet active at a time, spaced by 2.2s - 3.8s
+  if (activePackets.length === 0 && (now - lastPacketTime > 2400)) {
+    spawnPacket(now);
+    lastPacketTime = now;
+  }
+
+  // 2. Ambient Pulse Spawning: every 4.0s - 6.5s
+  if (now - lastAmbientTime > 4200) {
+    spawnAmbientRipple(now);
+    lastAmbientTime = now;
+  }
+
+  // 3. Render Ambient Radar Ripples
+  for (let i = ambientRipples.length - 1; i >= 0; i--) {
+    const r = ambientRipples[i];
+    const progress = (now - r.startTime) / r.duration;
+    if (progress >= 1) {
+      ambientRipples.splice(i, 1);
+      continue;
+    }
+
+    const pt = topoMap.latLngToContainerPoint([r.lat, r.lon]);
+    if (pt.x < -60 || pt.x > w + 60 || pt.y < -60 || pt.y > h + 60) continue;
+
+    const currentRadius = r.maxRadius * Math.pow(progress, 0.65);
+    const alpha = (1 - progress) * (isDarkTopo ? 0.4 : 0.32);
+
+    packetCtx.save();
+    packetCtx.beginPath();
+    packetCtx.arc(pt.x, pt.y, currentRadius, 0, Math.PI * 2);
+    packetCtx.strokeStyle = isDarkTopo ? `rgba(52, 211, 153, ${alpha})` : `rgba(5, 150, 105, ${alpha})`;
+    packetCtx.lineWidth = 1.3;
+    packetCtx.stroke();
+    packetCtx.restore();
+  }
+
+  // 4. Render Travelling Packets with Faded Gradient Tails
+  for (let i = activePackets.length - 1; i >= 0; i--) {
+    const pkt = activePackets[i];
+    const progress = (now - pkt.startTime) / pkt.duration;
+
+    if (progress >= 1) {
+      triggerNodeArrivalFlash(pkt.targetMarker);
+      activePackets.splice(i, 1);
+      continue;
+    }
+
+    const t = Math.min(1, Math.max(0, progress));
+    const curLat = pkt.fromLat + (pkt.toLat - pkt.fromLat) * t;
+    const curLon = pkt.fromLon + (pkt.toLon - pkt.fromLon) * t;
+
+    // Tail lag
+    const tailT = Math.max(0, t - pkt.tailSpan);
+    const tailLat = pkt.fromLat + (pkt.toLat - pkt.fromLat) * tailT;
+    const tailLon = pkt.fromLon + (pkt.toLon - pkt.fromLon) * tailT;
+
+    const headPt = topoMap.latLngToContainerPoint([curLat, curLon]);
+    const tailPt = topoMap.latLngToContainerPoint([tailLat, tailLon]);
+
+    const dx = headPt.x - tailPt.x;
+    const dy = headPt.y - tailPt.y;
+    const tailDist = Math.hypot(dx, dy);
+
+    if (headPt.x >= -80 && headPt.x <= w + 80 && headPt.y >= -80 && headPt.y <= h + 80) {
+      packetCtx.save();
+
+      if (tailDist > 2) {
+        const grad = packetCtx.createLinearGradient(tailPt.x, tailPt.y, headPt.x, headPt.y);
+        if (isDarkTopo) {
+          grad.addColorStop(0, 'rgba(52, 211, 153, 0)');
+          grad.addColorStop(0.5, 'rgba(52, 211, 153, 0.22)');
+          grad.addColorStop(1, 'rgba(167, 243, 208, 0.85)');
+        } else {
+          grad.addColorStop(0, 'rgba(5, 150, 105, 0)');
+          grad.addColorStop(0.5, 'rgba(5, 150, 105, 0.28)');
+          grad.addColorStop(1, 'rgba(16, 185, 129, 0.85)');
+        }
+
+        packetCtx.beginPath();
+        packetCtx.moveTo(tailPt.x, tailPt.y);
+        packetCtx.lineTo(headPt.x, headPt.y);
+        packetCtx.strokeStyle = grad;
+        packetCtx.lineWidth = 1.8;
+        packetCtx.lineCap = 'round';
+        packetCtx.stroke();
+      }
+
+      // Head: bright monotone particle with subtle glow
+      packetCtx.beginPath();
+      packetCtx.arc(headPt.x, headPt.y, 2.2, 0, Math.PI * 2);
+      packetCtx.fillStyle = isDarkTopo ? '#f8fafc' : '#ffffff';
+      packetCtx.shadowColor = isDarkTopo ? '#34d399' : '#059669';
+      packetCtx.shadowBlur = 4;
+      packetCtx.fill();
+
+      packetCtx.restore();
+    }
+  }
+
+  packetAnimFrameId = requestAnimationFrame(animatePackets);
 }
 
 function resolveNodeCoords(locText, country, lat, lon) {

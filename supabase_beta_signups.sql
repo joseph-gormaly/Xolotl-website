@@ -36,6 +36,14 @@ CREATE TABLE IF NOT EXISTS public.beta_signups (
 -- so on a live project this ALTER is what actually applies the NUMERIC(6,2)
 -- tightening from NUMERIC(8,4) — idempotent, and safe to re-run (rounding an
 -- already-rounded value to the same precision is a no-op).
+--
+-- The view has to go first: Postgres refuses to change a column's type while
+-- a view's rule still depends on it (a live re-run of this file hit exactly
+-- that — 0A000, "cannot alter type of a column used by a view or rule").
+-- Section 9 below recreates it with CREATE OR REPLACE VIEW, so dropping it
+-- here is safe and this file stays idempotent end to end.
+DROP VIEW IF EXISTS public.beta_nodes_geographic_distribution;
+
 ALTER TABLE public.beta_signups ALTER COLUMN latitude TYPE NUMERIC(6, 2);
 ALTER TABLE public.beta_signups ALTER COLUMN longitude TYPE NUMERIC(6, 2);
 

@@ -18,8 +18,11 @@ CREATE TABLE IF NOT EXISTS public.beta_signups (
     region TEXT,                               -- Province or State (e.g. 'Manitoba', 'Quebec')
     country TEXT,                              -- e.g. 'Canada', 'Switzerland'
     country_code TEXT,                         -- e.g. 'CA', 'CH', 'IS'
-    latitude NUMERIC(8, 4),                    -- Coarse location (~1km radius) for privacy
-    longitude NUMERIC(8, 4),
+    latitude NUMERIC(6, 2),                    -- Coarse location (~1km radius) for privacy —
+    longitude NUMERIC(6, 2),                   -- enforced at the column, not just the client:
+                                                -- NUMERIC(8,4) previously allowed ~11m resolution,
+                                                -- far finer than "coarse" — 2 decimals is what
+                                                -- actually delivers ~1km (0.01 degree latitude).
     detected_timezone TEXT,                    -- e.g. 'America/Winnipeg'
     language TEXT DEFAULT 'en',                -- 'en', 'fr', 'es'
     notes TEXT,                                -- Why data sovereignty matters / custom requirements
@@ -27,6 +30,14 @@ CREATE TABLE IF NOT EXISTS public.beta_signups (
     status TEXT DEFAULT 'waitlist',            -- 'waitlist', 'approved', 'invited', 'active'
     ip_address INET                            -- Coarse client IP (optional)
 );
+
+-- 1b. Narrow an already-deployed table's coordinate precision to match.
+-- CREATE TABLE IF NOT EXISTS is a no-op against a table that already exists,
+-- so on a live project this ALTER is what actually applies the NUMERIC(6,2)
+-- tightening from NUMERIC(8,4) — idempotent, and safe to re-run (rounding an
+-- already-rounded value to the same precision is a no-op).
+ALTER TABLE public.beta_signups ALTER COLUMN latitude TYPE NUMERIC(6, 2);
+ALTER TABLE public.beta_signups ALTER COLUMN longitude TYPE NUMERIC(6, 2);
 
 -- 2. Performance & Retrieval Indexes
 CREATE INDEX IF NOT EXISTS idx_beta_signups_email ON public.beta_signups (email);
@@ -90,22 +101,35 @@ WITH CHECK (true);
 
 -- 9. Geographic Node Distribution Analytics View (For Dashboards)
 -- Query this in your Supabase SQL editor to see community node clusters:
+--
+-- Two independent privacy layers, deliberately: coordinate coarsening (§1's
+-- NUMERIC(6,2) columns) protects individual precision, but a city bucket with
+-- only one or two signups is still effectively that person/those people,
+-- regardless of how coarse each individual coordinate is — averaging one or
+-- two ~1km-precision points does not anonymize them further. The
+-- HAVING COUNT(*) >= 3 clause is what actually prevents a small/rural/remote
+-- community's sole beta signup from being individually identifiable on a
+-- public, unauthenticated endpoint. A city below the threshold simply does
+-- not appear in this view — it still exists in the underlying table, which
+-- only service_role can read.
 CREATE OR REPLACE VIEW public.beta_nodes_geographic_distribution AS
-SELECT 
+SELECT
     COALESCE(country, 'Unknown') AS country,
     COALESCE(country_code, '??') AS country_code,
     COALESCE(region, 'Unknown') AS region,
     COALESCE(city, 'Unknown') AS city,
     COUNT(*) AS total_nodes,
-    ROUND(AVG(latitude), 4) AS avg_latitude,
-    ROUND(AVG(longitude), 4) AS avg_longitude,
+    ROUND(AVG(latitude), 2) AS avg_latitude,
+    ROUND(AVG(longitude), 2) AS avg_longitude,
     MAX(created_at) AS latest_node_enlisted
 FROM public.beta_signups
 GROUP BY country, country_code, region, city
+HAVING COUNT(*) >= 3
 ORDER BY total_nodes DESC;
 
 -- Grant read access on analytics view to public anon and authenticated roles
--- (Completely privacy-preserving: exposes ONLY coarse city, country, count, and avg lat/lon. Zero emails, names, or IPs)
+-- (Privacy-preserving: exposes only coarse city, country, count, and avg lat/lon
+-- for buckets of 3+ signups. Zero emails, names, IPs, or single-signup buckets.)
 GRANT SELECT ON public.beta_nodes_geographic_distribution TO anon, authenticated, service_role;
 
 -- ==============================================================================

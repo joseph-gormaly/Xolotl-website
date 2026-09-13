@@ -346,8 +346,8 @@ function initBetaLocationDetection() {
         detectedGeo.country = data.countryName || '';
         detectedGeo.countryCode = data.countryCode || '';
         if (data.latitude && data.longitude) {
-          detectedGeo.latitude = Number(Number(data.latitude).toFixed(3));
-          detectedGeo.longitude = Number(Number(data.longitude).toFixed(3));
+          detectedGeo.latitude = Number(Number(data.latitude).toFixed(2));
+          detectedGeo.longitude = Number(Number(data.longitude).toFixed(2));
         }
 
         const formatted = [detectedGeo.city, detectedGeo.region, detectedGeo.country].filter(Boolean).join(', ');
@@ -419,8 +419,13 @@ function detectExactGPSLocation() {
 
   navigator.geolocation.getCurrentPosition(
     pos => {
-      detectedGeo.latitude = Number(pos.coords.latitude.toFixed(3));
-      detectedGeo.longitude = Number(pos.coords.longitude.toFixed(3));
+      // Rounded to 2 decimal places (~1.1km) before it ever leaves the browser —
+      // data minimization at the source, not just at display time. 3 decimals
+      // (~111m) was still precise enough to identify a specific building in a
+      // low-density area; 2 decimals actually matches what the DB schema's own
+      // column comment has always claimed to provide.
+      detectedGeo.latitude = Number(pos.coords.latitude.toFixed(2));
+      detectedGeo.longitude = Number(pos.coords.longitude.toFixed(2));
       detectedGeo.isCoarse = false;
 
       fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${detectedGeo.latitude}&lon=${detectedGeo.longitude}`)

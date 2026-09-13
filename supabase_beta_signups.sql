@@ -110,16 +110,16 @@ WITH CHECK (true);
 -- 9. Geographic Node Distribution Analytics View (For Dashboards)
 -- Query this in your Supabase SQL editor to see community node clusters:
 --
--- Two independent privacy layers, deliberately: coordinate coarsening (§1's
--- NUMERIC(6,2) columns) protects individual precision, but a city bucket with
--- only one or two signups is still effectively that person/those people,
--- regardless of how coarse each individual coordinate is — averaging one or
--- two ~1km-precision points does not anonymize them further. The
--- HAVING COUNT(*) >= 3 clause is what actually prevents a small/rural/remote
--- community's sole beta signup from being individually identifiable on a
--- public, unauthenticated endpoint. A city below the threshold simply does
--- not appear in this view — it still exists in the underlying table, which
--- only service_role can read.
+-- No minimum group size here (deliberate — reverted 2026-09-13; an earlier
+-- version of this view had HAVING COUNT(*) >= 3, which correctly suppressed
+-- small/single-signup city buckets but also left the public network map
+-- empty until a city crossed that threshold). The one remaining privacy
+-- layer is §1's NUMERIC(6,2) coordinate coarsening (~1km, not the ~11m the
+-- schema briefly allowed) — meaningfully coarser than before, but a city
+-- with exactly one signup is still individually identifiable at ~1km
+-- resolution on this public, unauthenticated endpoint. Revisit the
+-- threshold once real signups are common enough that an empty map isn't
+-- the tradeoff.
 CREATE OR REPLACE VIEW public.beta_nodes_geographic_distribution AS
 SELECT
     COALESCE(country, 'Unknown') AS country,
@@ -132,12 +132,11 @@ SELECT
     MAX(created_at) AS latest_node_enlisted
 FROM public.beta_signups
 GROUP BY country, country_code, region, city
-HAVING COUNT(*) >= 3
 ORDER BY total_nodes DESC;
 
 -- Grant read access on analytics view to public anon and authenticated roles
--- (Privacy-preserving: exposes only coarse city, country, count, and avg lat/lon
--- for buckets of 3+ signups. Zero emails, names, IPs, or single-signup buckets.)
+-- (Exposes coarse ~1km city-level location, country, count, and last-signup
+-- timestamp. Zero emails, names, or IPs. No minimum group size — see above.)
 GRANT SELECT ON public.beta_nodes_geographic_distribution TO anon, authenticated, service_role;
 
 -- ==============================================================================
